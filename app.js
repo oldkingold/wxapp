@@ -1,6 +1,14 @@
 //app.js
 App({
   onLaunch: function () {
+    var that = this;
+    // 获取基本信息
+    wx.getSystemInfo({
+      complete: function(e) {
+        console.log(e);
+        that.globalData.systemInfo = {height: e.windowHeight};
+      }
+    }); 
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -34,6 +42,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    systemInfo: null
   }
 })

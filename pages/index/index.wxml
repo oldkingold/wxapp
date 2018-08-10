@@ -11,3 +11,18 @@
     <text class="user-motto">{{motto}}</text>
   </view>
 </view>
+
+<view class='table'>
+  <view>123456</view>
+  <view>123456</view>
+  <view>123456</view>
+  <view>123456</view>
+  <view>123456</view>
+  <view>123456</view>
+  <view>123456</view>
+  <view>123456</view>
+  <view>123456</view>
+  <view>123456</view>
+  <view>123456</view>
+  <view>123456</view>
+</view>

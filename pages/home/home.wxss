@@ -1,0 +1,300 @@
+/* pages/home/home.wxss */
+page {
+  background-color: #f1f2f6;
+  height: 100%;
+}
+
+.menu {
+  height: 40px;
+  background-color: white;
+}
+
+.menu_left {
+  float: left;
+  width: 4%;
+  height: 100%;
+}
+
+.menu_right {
+  float: right;
+  width: 10%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  
+  /* box-shadow: -2px 0px 0px #f1f2f6;
+  border-radius: 5px;
+  border-color: transparent #f1f2f6 transparent; */
+}
+
+.menu_right image {
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.menu_line {
+  /* margin-right: 13rpx; */
+  /* right: 60rpx;
+  margin-top: 6px;
+  position: absolute;
+  width: 2px;
+  background-color: rgb(250, 250, 246);
+  height: 28px;
+  opacity: 0.8; */
+  /* box-shadow: -2px 0px 0px rgba(243, 238, 238, 0.1); */
+}
+
+.scroll-view_H {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 40px;
+  width: 86%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.nav_title {
+  display: inline-block;
+  /* float: left; */
+  /* margin: 10rpx 15rpx; */
+  margin-top: 12px;
+  padding: 0rpx 10px;
+}
+
+.nav_hover {
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.nav_active {
+  margin-top: 8px;
+  margin-left: 6px;
+  margin-right: 6px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #f5a300;
+}
+
+.nav_select {
+  color: #f6b72c;
+}
+
+.swiper {
+  /* height: 100%; */
+}
+
+.swiper .item {
+  margin: 0 25rpx;
+  
+}
+
+.card_1 {
+  width: 700rpx;
+  height: 395rpx;
+  border-radius: 14rpx;
+  /* background: url('http://peixun-9.58jz.com.cn/images/card_bg.png'); */
+  overflow: hidden;
+  position: relative;
+  margin: 25rpx 0;
+}
+
+.card_1_bg {
+  height: 100%;
+  width: 100%;
+}
+
+.card_1_dc {
+  width: 264rpx;
+  height: 33rpx;
+  position: absolute;
+  top: 25rpx;
+  left: 25rpx;
+}
+
+.card_1_title {
+  position: absolute;
+  top: 100rpx;
+  left: 25rpx;
+  color: white;
+  font-size: 28rpx;
+}
+
+.card_1_addr {
+  background-color: #f4a600;
+  font-size: 22rpx;
+  border-radius: 16rpx;
+  padding: 0px 14rpx;
+  margin-right: 30rpx;
+}
+
+.card_1_teacher {
+  position: absolute;
+  color: white;
+  top: 170rpx;
+  left: 25rpx;
+}
+
+.card_1_head {
+  width: 105rpx;
+  height: 105rpx;
+  float: left;
+  border:5rpx solid white;
+  border-radius: 55rpx;
+}
+
+.card_1_head image{
+  width: 105rpx;
+  height: 105rpx;
+}
+
+.card_1_name {
+  font-size: 26rpx;
+  margin-left: 130rpx;
+}
+
+.card_1_introduce {
+  font-size: 22rpx;
+  line-height: 36rpx;
+  margin-left: 130rpx;
+  margin-top: 9rpx;
+  width: 545rpx;
+}
+
+.card_1_tp {
+  position: absolute;
+  top: 290rpx;
+  left: 25rpx;
+  color: white;
+  margin-top: 42rpx;
+}
+
+.card_1_date {
+  font-size: 25rpx;
+  display: flex;
+  float: left; 
+}
+
+.card_1_date image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 18rpx;
+}
+
+.card_1_price {
+  color: #ff3131; 
+  font-size: 23rpx;
+  float: right;
+  margin-left: 335rpx;
+  margin-top: -8rpx;
+}
+
+.card_1_price text {
+  font-size: 30rpx;
+  /* font-weight: bold; */  
+}
+
+.card_2 {
+  width: 700rpx;
+  height: 326rpx;
+  border-radius: 14rpx;
+  /* background: url('http://peixun-9.58jz.com.cn/images/card_bg.png'); */
+  overflow: hidden;
+  position: relative;
+  margin: 25rpx 0;
+}
+
+.card_2_title {
+  position: absolute;
+  top: 25rpx;
+  left: 25rpx;
+  color: white;
+  font-size: 28rpx;
+}
+
+.card_1_addr {
+  background-color: #f7a503;
+  font-size: 22rpx;
+  border-radius: 16rpx;
+  padding: 0px 14rpx;
+  margin-right: 30rpx;
+}
+
+.card_2_teacher {
+  position: absolute;
+  color: white;
+  top: 95rpx;
+  left: 25rpx;
+}
+
+.card_1_head {
+  width: 105rpx;
+  height: 105rpx;
+  float: left;
+  border:5rpx solid white;
+  border-radius: 55rpx;
+}
+
+.card_1_head image{
+  width: 105rpx;
+  height: 105rpx;
+}
+
+.card_1_name {
+  font-size: 26rpx;
+  margin-left: 130rpx;
+}
+
+.card_1_introduce {
+  font-size: 22rpx;
+  line-height: 36rpx;
+  margin-left: 130rpx;
+  margin-top: 9rpx;
+  width: 545rpx;
+}
+
+.card_2_tp {
+  position: absolute;
+  top: 237rpx;
+  left: 25rpx;
+  color: #2e2e2e;
+  margin-top: 42rpx;
+}
+
+.card_1_date {
+  font-size: 25rpx;
+  display: flex;
+  float: left; 
+}
+
+.card_1_date image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 18rpx;
+}
+
+.card_1_price {
+  color: #fd3434; 
+  font-size: 23rpx;
+  float: right;
+  margin-left: 335rpx;
+  margin-top: -8rpx;
+}
+
+.card_1_price text {
+  font-size: 30rpx;
+  /* font-weight: bold; */  
+}
+
+
+
+
+
+

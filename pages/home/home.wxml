@@ -1,0 +1,116 @@
+<view class='menu'>
+  <view class='menu_left'>
+    
+  </view>
+  <view class='menu_line'></view>
+  <view class='menu_right'>   
+    <image src='../../static/images/menu_down.png'></image>
+  </view>
+  <scroll-view class="scroll-view_H" scroll-x scroll-into-view='{{nav_siv}}'>
+    <view wx:for='{{menu}}' wx:key='{{menu_id}}' id='menu{{index}}' data-id='{{index}}' class='nav_title' catchtap='nav_select'>
+      <block wx:if='{{"menu"+index == nav_selectId}}'>
+        <view class='nav_hover nav_select'>
+          {{item.title}}
+        </view>
+        <view class='nav_active'>
+
+        </view>
+      </block>
+      <block wx:else>
+        <view class='nav_hover'>
+          {{item.title}}
+        </view>
+      </block> 
+    </view>
+  </scroll-view>
+  
+</view>
+
+<swiper class='swiper' style='height:{{screenHeight - 40}}px'>
+  <block>
+    <swiper-item class="item">
+      <scroll-view scroll-y style='height:{{screenHeight - 40}}px'>
+        <block>
+          <view class='card_1'>
+            <image class='card_1_bg'  src='http://peixun-9.58jz.com.cn/images/wxxcx/card_bg.png'></image>
+            <image class='card_1_dc' src='../../static/images/duchuan.png'> </image>
+            <view class='card_1_title'>
+              <text class='card_1_addr'>贵阳</text>
+              <text class='card_1_text'>建筑企业投标/合同/成本等涉税实务操作</text>
+            </view>
+            <view class='card_1_teacher'>
+              <view class='card_1_head'>
+                <image src='../../static/images/teacher_head.png'></image>
+              </view>
+              <view class='card_1_name'>
+                何广涛
+              </view>
+              <view class='card_1_introduce'>
+                中国人民大学会计学博士、高级会计师、注册税务师、研究生导师，具有扎实理论功底和20年丰富的实操经验
+              </view>
+            </view>
+            <view class='card_1_tp'>
+              <view class='card_1_date'><image src='../../static/images/clock.png'></image><text>08.17-08.18</text></view>
+              <view class='card_1_price'>￥<text>2980</text>.00</view>
+            </view>
+          </view>
+        </block>
+
+        <block>
+          <view class='card_1'>
+            <image class='card_1_bg'  src='http://peixun-9.58jz.com.cn/images/wxxcx/card_bg.png'></image>
+            <image class='card_1_dc' src='../../static/images/duchuan.png'> </image>
+            <view class='card_1_title'>
+              <text class='card_1_addr'>贵阳</text>
+              <text class='card_1_text'>建筑企业投标/合同/成本等涉税实务操作</text>
+            </view>
+            <view class='card_1_teacher'>
+              <view class='card_1_head'>
+                <image src='../../static/images/teacher_head.png'></image>
+              </view>
+              <view class='card_1_name'>
+                何广涛
+              </view>
+              <view class='card_1_introduce'>
+                中国人民大学会计学博士、高级会计师、注册税务师、研究生导师，具有扎实理论功底和20年丰富的实操经验
+              </view>
+            </view>
+            <view class='card_1_tp'>
+              <view class='card_1_date'><image src='../../static/images/clock.png'></image><text>08.17-08.18</text></view>
+              <view class='card_1_price'>￥<text>2980</text>.00</view>
+            </view>
+          </view>
+        </block>
+
+        <block>
+          <view class='card_2'>
+            <image class='card_1_bg'  src='http://peixun-9.58jz.com.cn/images/wxxcx/card_bg2.png'></image>
+            <!-- <image class='card_1_dc' src='../../static/images/duchuan.png'> </image> -->
+            <view class='card_2_title'>
+              <text class='card_1_addr'>贵阳</text>
+              <text class='card_1_text'>建筑企业投标/合同/成本等涉税实务操作</text>
+            </view>
+            <view class='card_2_teacher'>
+              <view class='card_1_head'>
+                <image src='../../static/images/teacher_head.png'></image>
+              </view>
+              <view class='card_1_name'>
+                何广涛
+              </view>
+              <view class='card_1_introduce'>
+                中国人民大学会计学博士、高级会计师、注册税务师、研究生导师，具有扎实理论功底和20年丰富的实操经验
+              </view>
+            </view>
+            <view class='card_2_tp'>
+              <view class='card_1_date'><image src='../../static/images/clock1.png'></image><text>08.17-08.18</text></view>
+              <view class='card_1_price'>￥<text>2980</text>.00</view>
+            </view>
+          </view>
+        </block>
+
+      </scroll-view>
+    </swiper-item>
+  </block>
+</swiper>
+
+
