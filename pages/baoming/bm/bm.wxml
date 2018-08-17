@@ -1,0 +1,350 @@
+<!-- <view hidden='{{showmodel}}' class='showmodel'>
+  <view catchtap='closeshow' class='close'>关闭</view>
+  <view class='showcontent'>
+    <view class='showtext'>
+      *<text>姓名：</text>
+      <input value='{{showmodeldata["name"]}}' bindinput='showmodelname'></input>
+    </view>
+    <view class='showtext'>
+      *<text>职务：</text>
+      <input value='{{showmodeldata["duty"]}}' bindinput='showmodelduty'></input>
+    </view>
+    <view class='showtext'>
+      *<text>手机：</text>
+      <input value='{{showmodeldata["phone"]}}' bindinput='showmodelphone'></input>
+    </view>
+    <view class='showbtn' catchtap='showbtn'>
+      确认提交
+    </view>
+  </view>
+</view>
+<view hidden='{{showmodel}}' class='show'></view>    -->
+<showmodel id="showmodel"></showmodel>
+<view class='content'>
+    <view class='meeting-name'>
+      <view class='meeting-name2'>会议名称：</view><view class='meeting-name1'>{{Meetingname}}建筑企业投标/合同/成本等涉税实务操作</view>
+    </view>
+    <view class='company'>
+      <view class="section">
+        <view class="section__title">公司名称</view>
+        <view class='section_input'>
+          <input name="compName" placeholder="请输入" bindfocus="showCompanys" bindblur='hideCompanys' bindinput="bindCompNameInput" value='{{compName}}' />
+          <block wx:if="{{selfCompanies != null}}">
+            <view wx:for="{{selfCompanies}}" class='section_company' hidden='{{showCompanys}}'>
+              <view data-index='{{index}}' class='com' catchtap='choseCompany'>
+                {{item.name}}
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+
+      <view class="section section_gap">
+        <view class="section__title">企业性质</view>
+        <radio-group name="radio-group" bindchange="changeNatureRadio">
+          <label>
+            <radio value="民营" name="compNature" checked="{{compNature=='民营'? 'checked':''}}" />民营</label>
+          <label>
+            <radio value="国企" name="compNature" checked="{{compNature=='国企'? 'checked':''}}" />国企</label>
+        </radio-group>
+      </view>
+    </view>
+
+
+    <view class='meeting-person'>
+      <view class='meeting-person-object'>
+        <text class='meeting-person-title'>参会人员</text>
+        <text class='meeting-person-desc'>(联系方式请放在第一位)</text>
+      </view>
+      <view class="table">
+        <view class="tr bg-w">
+          <view class="th">姓名</view>
+          <view class="th">职务</view>
+          <view class="th ">电话</view>
+          <view class="th ">操作</view>
+
+        </view>
+        <block wx:for="{{meetPersonlist}}" wx:key="{{code}}">
+          <view class="tr bg-g" wx:if="{{index % 2 == 1}}">
+            <view class="td">{{item.name}}</view>
+            <view class="td">{{item.duty}}</view>
+            <view class="td">{{item.phone}}</view>
+            <view class="td del" bindtap='delMeetPerson' data-item-index="{{index}}">删除</view>
+          </view>
+          <view class="tr" wx:else>
+            <view class="td">{{item.name}}</view>
+            <view class="td">{{item.duty}}</view>
+            <view class="td">{{item.phone}}</view>
+            <view class="td del" bindtap='delMeetPerson' data-item-index="{{index}}">删除</view>
+          </view>
+        </block>
+      </view>
+
+      <view class='meeting-add-url'>
+        <view class='meeting-add-url-content' bindtap='addMemtPersonUrl'>
+          新增参会人员
+        </view>
+      </view>
+    </view>
+
+    <view class='hotel'>
+      <view class='line'>
+        <view class='hotel-object'>酒店</view>
+
+        <view class="selnum selnum1">
+          <view class='room'>单间</view>
+          <image  class="cut" bindtap="cutSingleNumber" src='../../../static/images/cut.png'></image >
+          <input value="{{singleRoomNum}}" class="number" type="number" bindfocus='bindfocus_singleRoomNum' bindblur='bindblur_singleRoomNum' />
+          <image  class="add" bindtap="addSingleNumber" src='../../../static/images/add.png'></image>
+        </view>
+
+        <view class="selnum">
+          <view class='room'>标间</view>
+          <image  class="cut" bindtap="cutDoubleNumber" src='../../../static/images/cut.png'></image >
+          <input value="{{doubleRoomNum}}" class="number" type="number" bindfocus='bindfocus_doubleRoomNum' bindblur='bindblur_doubleRoomNum' />
+          <image  class="add" bindtap="addDoubleNumber" src='../../../static/images/add.png'></image>
+        </view>
+
+      </view>
+
+      <view class='line line_bottom'>
+        <view class='check-box' bindtap='BindIsNotNeedRoom'>
+          <view wx:if="{{isNotNeedRoom}}" class='check-box-icon'>
+            <image src='../../../static/images/checked@3x.png'></image>
+          </view>
+          <view wx:else class='check-box-icon'>
+            <image src='../../../static/images/check@3x.png'></image>
+          </view>
+          <view class='check-box-value'>不需要</view>
+        </view>
+      </view>
+
+    </view>
+
+
+    <view class='meal' wx:if="{{consoleMeetings.m_select==1}}">
+      <view class='meal-content'>
+        <view class='meal-object'>
+          <text> 餐饮</text>
+        </view>
+        <view class='meal_all'>
+          <block wx:for="{{mealList}}">
+            <view class='meal_day'>
+              <view class='meal_date' >{{item.name}}:</view>
+               <block wx:for="{{item.data}}" wx:for-index="idx" wx:for-item="meal">
+                <view class="selnum {{idx == 'dinner'? '':'selnum1'}}">
+                  <view class='room'>{{idx == "dinner"? "晚餐":"中餐"}}</view>
+                  <block wx:if="{{meal.status == 1}}">
+                    <image data-id="{{index+'_'+idx}}" class="cut" bindtap="mealcutNumber" src='../../../static/images/cut1.png'></image >
+                    <input data-id="{{index+'_'+idx}}" value="{{meal.pnum}}" class="number" type="number" bindfocus='bindfocus_mealNum' bindblur='bindblur_mealNum' />
+                    <image data-id="{{index+'_'+idx}}" class="add" bindtap="mealaddNumber" src='../../../static/images/add.png'></image>
+                  </block>
+                  <block wx:if="{{meal.status == 0}}">
+                    <image class="cut"></image >
+                    <input value="{{meal.pnum}}" class="number" type="number" disabled='false'/>
+                    <image class="add"></image>
+                  </block>
+                </view>
+              </block> 
+            </view>
+          </block>
+          <view class='line1'>
+            <view class='check-box' bindtap='BindIsNotNeedMeal'>
+              <view wx:if="{{isNotNeedMeal == 0}}" class='check-box-icon'>
+                <image src='../../../static/images/checked@3x.png'></image>
+              </view>
+              <view wx:else class='check-box-icon'>
+                <image src='../../../static/images/check@3x.png'></image>
+              </view>
+              <view class='check-box-value'>不需要</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- </view> -->
+
+
+    </view>
+
+    <picker mode="date" value="{{arriveDate}}" start="2018-02-01" end="2097-09-01" bindchange="arriveDateChange">
+      <view class='arrive-time'>
+        <view class='arrive-time-content'>
+          <view class='arrive-time-name'>
+            <text>到达时间</text>
+          </view>
+
+          <view class='arrive-time-icon'>
+            <image src='/static/images/date@3x.png'></image>
+          </view>
+          <view class='arrive-time-value'>
+            <view class="picker picker-holder" wx:if="{{isArriveDateHolder}}">
+              {{arriveDateHolder}}
+            </view>
+            <view class="picker" wx:else>
+              {{arriveDate}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </picker>
+
+    <picker mode="date" value="{{leaveDate}}" start="2018-02-01" end="2097-09-01" bindchange="leaveDateChange">
+      <view class='arrive-time'>
+        <view class='arrive-time-content'>
+          <view class='arrive-time-name'>
+            <text>离开时间</text>
+          </view>
+          <view class='arrive-time-icon'>
+            <image src='/static/images/date@3x.png'></image>
+          </view>
+          <view class='arrive-time-value'>
+            <view class="picker picker-holder" wx:if="{{isLeaveDateHolder}}">
+              {{leaveDateHolder}}
+            </view>
+            <view class="picker" wx:else>
+              {{leaveDate}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </picker>
+
+    <view class='invoice'>
+
+      <view class='invoice-content'>
+        <view class='invoice-object'>
+          <text>发票信息</text>
+        </view>
+
+        <view class='invoice-item '>
+          <radio-group name="radio-group" bindchange="listenerRadioGroup">
+            <label class='label-4'>
+              <radio value="暂不填写" checked="{{invoice.invType=='暂不填写'?'checked':''}}" name="invoice" />暂不填写
+            </label>
+            <label class='label-4'>
+              <radio value="普票" checked="{{invoice.invType=='普票'?'checked':''}}" name="invoice" />普票
+            </label>
+            <label class='label-4'>
+              <radio value="专票" checked="{{invoice.invType=='专票'?'checked':''}}" name="invoice" />专票
+            </label>
+            <label class='label-4'>
+              <radio value="不开票" checked="{{invoice.invType=='不开票'?'checked':''}}" name="invoice" />不开票
+            </label>
+          </radio-group>
+        </view>
+        <block wx:if="{{invoice.invType=='暂不填写'}}">
+          <view class='invoice-desc'>
+            <text> 注：若后期需要开票，请与会务工作人员联系！</text>
+          </view>
+        </block>
+        <block class='invoice-detail' wx:if="{{invoice.invType=='普票'}}">
+          <view class="section2">
+            <view class="section__title2">公司名称</view>
+            <input name="invCompName" value='{{invoice.invCompName}}' placeholder="请输入" bindinput='invCompName' />
+          </view>
+          <view class="section2">
+            <view class="section__title2">纳税识别号</view>
+            <input name="taxIdNum" value='{{invoice.taxIdNum}}' placeholder="请输入 (注:英文字母需大写)" bindinput='taxIdNum' />
+          </view>
+        </block>
+        <block class='invoice-detail' wx:if="{{invoice.invType=='专票'}}">
+          <view class="section2">
+            <view class="section__title2">公司名称</view>
+            <input name="invCompName" value='{{invoice.invCompName}}' placeholder="请输入" bindinput='invCompName' />
+          </view>
+          <view class="section2">
+            <view class="section__title2">纳税识别号</view>
+            <input name="taxIdNum" value='{{invoice.taxIdNum}}' placeholder="请输入 (注:英文字母需大写)" bindinput='taxIdNum' />
+          </view>
+          <view class="section2">
+            <view class="section__title2">公司地址</view>
+            <input name="compAddr" value='{{invoice.compAddr}}' placeholder="请输入" bindinput='compAddr' />
+          </view>
+
+          <view class="section2">
+            <view class="section__title2">电话号码</view>
+            <input name="compTel" value='{{invoice.compTel}}'  placeholder="请输入" bindinput='compTel' />
+          </view>
+          <view class="section2">
+            <view class="section__title2">开户银行</view>
+            <input name="compBank" value='{{invoice.compBank}}'  placeholder="请输入" bindinput='compBank' />
+          </view>
+          <view class="section2">
+            <view class="section__title2">银行账号</view>
+            <input name="compBankAccount" value='{{invoice.compBankAccount}}' placeholder="请输入" bindinput='compBankAccount' />
+          </view>
+        </block>
+      </view>
+    </view>
+
+
+    <view class='suggest'>
+      <view class='suggest-main'>
+        <view class='suggest-object'>意见与建议</view>
+        <view class='suggest-content'>
+          <textarea placeholder="请输入意见与建议..." name="textarea" maxlength="250" value='{{note}}' bindinput="valueChange" />
+          <view class='suggest-chartDesc'>{{usedChart}}/250</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="btn-area">
+      <view class='btn-content'>
+        <view class="btn-item-default" bindtap="bmReset">
+          重置
+        </view>
+        <view class="btn-item-selected" bindtap="bmSubbmit">
+          提交
+        </view>
+      </view>
+    </view>
+
+    <view class='contact'>
+      <view class='contact-main'>
+        <view class='staff-object item'>
+          <text> 会务联系方式</text>
+        </view>
+        <view class='staff-emp'>
+          <view class='staff-emp-desc'>通讯</view>
+            <view class='emp'>
+              <block class='staff-emp-item' wx:for="{{consoleMeetings.employees}}" wx:key="{{item.index}}">
+                <view class='staff-emp-item' wx:if="{{(index+1) >=2}}">
+                  <view class='staff-teacher'>{{item.name}}</view>
+                  <view data-tel='{{item.tel}}' class='staff-teacher-phone' catchtap='phoneCall'>{{item.tel}}</view>
+                </view>
+                <view class='staff-emp-item' wx:else>
+                  <view class='staff-teacher'>{{item.name}}</view>
+                  <view data-tel='{{item.tel}}' class='staff-teacher-phone' catchtap='phoneCall'>{{item.tel}}</view>
+                </view>
+              </block>
+            </view>
+          </view>  
+        <view class='staff-tel item'>
+          <view class='staff-tel-name' catchtap='phoneCall'>电话</view>
+          <view data-tel='{{Contact.Tel}}' class='staff-tel-value' catchtap='phoneCall'>{{Contact.Tel}}</view>
+        </view>
+        <view class='staff-fax target-object item'>
+          <view class='staff-fax-name'>传真</view>
+          <view class='staff-fax-value target-value'>{{Contact.fax}}</view>
+        </view>
+        <view class='staff-url target-object item'>
+          <view class='staff-url-name'>网址</view>
+          <view class='staff-url-value target-value'>{{Contact.url}}</view>
+        </view>
+        <view class='staff-email target-object item'>
+          <view class='staff-email-name'>邮箱</view>
+          <view class='staff-email-value target-value'>{{Contact.email}}</view>
+        </view>
+        <view class='staff-addr target-object item'>
+          <view class='staff-addr-name'>地址</view>
+          <view class=' target-value item staff-addr-value'>{{Contact.addr}}</view>
+        </view>
+        <view class='staff-postcode target-object item'>
+          <view class='staff-postcode-name'>邮编</view>
+          <view class=' target-value item staff-postcode-value'>{{Contact.postCode}}</view>
+        </view>
+
+      </view>
+    </view>
+
+</view>

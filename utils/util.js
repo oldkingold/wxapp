@@ -1,3 +1,15 @@
+/*
+*数组分割
+*/
+const split_array = (arr,len) => {
+  let arrlen = arr.length;
+  let newarr = [];
+  for (let i = 0; i < arrlen; i += len) {
+    newarr.push(arr.slice(i, i + len));
+  }
+  return newarr;
+}
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -15,5 +27,6 @@ const formatNumber = n => {
 }
 
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  split_array: split_array,
 }

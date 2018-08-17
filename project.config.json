@@ -1,7 +1,15 @@
 {
 	"description": "项目配置文件。",
 	"packOptions": {
-		"ignore": []
+		"ignore": [
+			{
+				"type": "folder",
+				"value": ".git"
+			},{
+        "type": "folder",
+        "value": "static/image-big"
+      }
+		]
 	},
 	"setting": {
 		"urlCheck": true,
@@ -11,7 +19,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.98",
+	"libVersion": "2.2.2",
 	"appid": "wxf09f92ab2843ecf2",
 	"projectname": "wx-app2.0",
 	"isGameTourist": false,

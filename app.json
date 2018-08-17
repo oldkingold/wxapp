@@ -1,8 +1,10 @@
 {
   "pages": [
+    "pages/baoming/bm/bm",
     "pages/home/home",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/baoming/receipt/receipt"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -3,7 +3,7 @@
     
   </view>
   <view class='menu_line'></view>
-  <view class='menu_right'>   
+  <view class='menu_right' catchtap='menuDown'>   
     <image src='../../static/images/menu_down.png'></image>
   </view>
   <scroll-view class="scroll-view_H" scroll-x scroll-into-view='{{nav_siv}}'>
@@ -25,13 +25,22 @@
   </scroll-view>
   
 </view>
+<view class='menudown' hidden='{{menudownShow}}'>  
+  <view class='menudown_content'>
+    <view wx:for="{{menu_list}}" wx:key='*this'  wx:for-item="line" class='nav_list'>
+      <view wx:for="{{line}}" data-id='{{item.menu_id}}' wx:key='menu_id' wx:for-index="menuid" wx:for-item="item" class='nav_row {{"menu"+item.menu_id == nav_selectId ? "nav_list_select": ""}}'  catchtap='nav_list_selected'>
+        <text>{{item.title}}</text>
+      </view>  
+    </view>
+  </view>
+</view>
 
 <swiper class='swiper' style='height:{{screenHeight - 40}}px'>
   <block>
     <swiper-item class="item">
       <scroll-view scroll-y style='height:{{screenHeight - 40}}px'>
         <block>
-          <view class='card_1'>
+          <view class='card_1' catchtap='toBaoming'>
             <image class='card_1_bg'  src='http://peixun-9.58jz.com.cn/images/wxxcx/card_bg.png'></image>
             <image class='card_1_dc' src='../../static/images/duchuan.png'> </image>
             <view class='card_1_title'>

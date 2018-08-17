@@ -1,0 +1,21 @@
+<view hidden='{{showmodel}}' class='showmodel'>
+  <view catchtap='closeshow' class='close'>关闭</view>
+  <view class='showcontent'>
+    <view class='showtext'>
+      *<text>姓名：</text>
+      <input value='{{showmodelname}}' bindinput='showmodelname'></input>
+    </view>
+    <view class='showtext'>
+      *<text>职务：</text>
+      <input value='{{showmodelduty}}' bindinput='showmodelduty'></input>
+    </view>
+    <view class='showtext'>
+      *<text>手机：</text>
+      <input value='{{showmodelphone}}' bindinput='showmodelphone'></input>
+    </view>
+    <view class='showbtn' catchtap='showbtn'>
+      确认提交
+    </view>
+  </view>
+</view>
+<view hidden='{{showmodel}}' class='show'></view>   

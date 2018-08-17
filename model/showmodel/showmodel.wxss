@@ -1,0 +1,60 @@
+.showmodel {
+  width: 80%;
+  margin-left: 10%;
+  height: auto;
+  background-color: white;
+  position: fixed;
+  z-index: 1001;
+  margin-top: 300rpx;
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.close {
+  color: #4498fa;
+  padding-bottom: 16rpx;
+  text-align: right;
+  margin: 20rpx 30rpx 0 30rpx;
+  border-bottom: 2rpx dotted #b0b0b0;
+}
+
+.showcontent {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.showtext {
+  margin: 25rpx 30rpx 10rpx 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: red;
+}
+
+.showtext input {
+  color: black;
+  min-height: 0rpx;
+  border: 3rpx solid #dadada;
+  border-radius: 10rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+
+.showtext text {
+  font-size: 34rpx;
+}
+
+.showbtn {
+  margin-left: 35%;
+  width: 30%;
+  text-align: center;
+  background-color: #4498fa;
+  line-height: 49rpx;
+  border: 3rpx solid #dadada;
+  border-radius: 15rpx;
+  color: white;
+  margin-top: 30rpx;
+  margin-bottom: 18rpx;
+}

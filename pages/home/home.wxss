@@ -70,7 +70,8 @@ page {
 }
 
 .nav_hover {
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 600;
   line-height: 16px;
 }
 
@@ -219,45 +220,11 @@ page {
   font-size: 28rpx;
 }
 
-.card_1_addr {
-  background-color: #f7a503;
-  font-size: 22rpx;
-  border-radius: 16rpx;
-  padding: 0px 14rpx;
-  margin-right: 30rpx;
-}
-
 .card_2_teacher {
   position: absolute;
   color: white;
   top: 95rpx;
   left: 25rpx;
-}
-
-.card_1_head {
-  width: 105rpx;
-  height: 105rpx;
-  float: left;
-  border:5rpx solid white;
-  border-radius: 55rpx;
-}
-
-.card_1_head image{
-  width: 105rpx;
-  height: 105rpx;
-}
-
-.card_1_name {
-  font-size: 26rpx;
-  margin-left: 130rpx;
-}
-
-.card_1_introduce {
-  font-size: 22rpx;
-  line-height: 36rpx;
-  margin-left: 130rpx;
-  margin-top: 9rpx;
-  width: 545rpx;
 }
 
 .card_2_tp {
@@ -268,33 +235,35 @@ page {
   margin-top: 42rpx;
 }
 
-.card_1_date {
-  font-size: 25rpx;
+.menudown {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  /* height: 80px; */
+  z-index: 100;
+  
+  /* padding-left: 30rpx;
+  padding-right: 30rpx; */
+}
+
+.menudown .nav_list {
+  padding: 0 10px;
+  border-bottom: 2rpx solid #dadfe5;
   display: flex;
-  float: left; 
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.card_1_date image{
-  width: 30rpx;
-  height: 30rpx;
-  margin-right: 18rpx;
+.nav_list_select {
+  color: #f6b72c;
 }
 
-.card_1_price {
-  color: #fd3434; 
-  font-size: 23rpx;
-  float: right;
-  margin-left: 335rpx;
-  margin-top: -8rpx;
+.menudown text {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 30px;
 }
 
-.card_1_price text {
-  font-size: 30rpx;
-  /* font-weight: bold; */  
+.menudown_content { 
+  margin: 0 30rpx;
 }
-
-
-
-
-
-
