@@ -1,15 +1,37 @@
 {
   "pages": [
-    "pages/baoming/bm/bm",
+    "pages/order/order",
     "pages/home/home",
+    "pages/baoming/bm/bm",
+    "pages/baoming/bmAddPerson/bmAddPerson",
+    "pages/baoming/receipt/receipt",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/baoming/receipt/receipt"
+    "pages/wode/wode",
+    "pages/aboutas/aboutas",
+    "pages/setting/setting/setting",
+    "pages/message/message"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/baoming/bm/bm",
+        "text": "text"
+      },
+      {
+        "pagePath": "pages/wode/wode",
+        "text": "wode"
+      }
+    ]
   }
 }

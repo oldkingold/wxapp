@@ -1,0 +1,40 @@
+page {
+  background-color: #ebf0f5;
+}
+
+.menu {
+  height: 40px;
+  width: 96%;
+  margin-top: 1rpx;
+  padding: 0 2%;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: white;
+  display: flex;
+  justify-content: space-around
+}
+
+.nav_title {
+  display: inline-block;
+  margin-top: 12px;
+}
+
+.nav_hover {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.nav_active {
+  margin-top: 8px;
+  margin-left: 6px;
+  margin-right: 6px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #f5a300;
+}
+
+.nav_select {
+  color: #f6b72c;
+}
+

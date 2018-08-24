@@ -7,6 +7,8 @@ page {
 .menu {
   height: 40px;
   background-color: white;
+  border-top: 2rpx solid #f9f9f9;
+  border-bottom: 2rpx solid #f9f9f9;
 }
 
 .menu_left {
@@ -166,7 +168,7 @@ page {
   line-height: 36rpx;
   margin-left: 130rpx;
   margin-top: 9rpx;
-  width: 545rpx;
+  width: 535rpx;
 }
 
 .card_1_tp {
@@ -266,4 +268,5 @@ page {
 
 .menudown_content { 
   margin: 0 30rpx;
+  
 }

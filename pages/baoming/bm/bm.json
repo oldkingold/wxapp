@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "showmodel":"/model/showmodel/showmodel"
+    "showmodel":"/model/showmodel/showmodel",
+    "contact":"/model/contact/contact"
   }
 }

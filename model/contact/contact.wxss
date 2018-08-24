@@ -1,0 +1,90 @@
+.contact {
+  width: 100%;
+  background-color: #fff;
+  font-size: 27rpx;
+}
+
+.contact-main {
+  margin-left: 20rpx;
+}
+
+.item {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.staff-object {
+  height: 70rpx;
+  line-height: 70rpx;
+  border-bottom: 1rpx solid #eeeff1;
+  width: 100%;
+  font-weight: 600;
+}
+
+.emp {
+  display: flex;
+  flex-direction: column;
+}
+
+.staff-emp {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.staff-emp-desc {
+  height: 54rpx;
+  line-height: 54rpx;
+}
+
+.staff-emp-item {
+  height: 54rpx;
+  line-height: 54rpx;
+  margin-left: 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.staff-teacher-phone {
+  margin-left:35rpx; 
+  color: #479df7;
+}
+
+.staff-tel {
+  height: 54rpx;
+  line-height: 54rpx;
+}
+
+.staff-tel-value {
+  margin: 0 40rpx;
+  color: #479df7;
+}
+
+.target-object {
+  height: 54rpx;
+  line-height: 54rpx;
+  width: 98%;
+}
+
+.target-object {
+  height: 54rpx;
+  line-height: 54rpx;
+  width: 98%;
+}
+
+.target-value {
+  margin: 0 40rpx;
+  color: #479df7;
+}
+
+.staff-addr-value {
+  color: #333;
+}
+
+.staff-postcode-value {
+  color: #333;
+}

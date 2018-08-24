@@ -1,24 +1,3 @@
-<!-- <view hidden='{{showmodel}}' class='showmodel'>
-  <view catchtap='closeshow' class='close'>关闭</view>
-  <view class='showcontent'>
-    <view class='showtext'>
-      *<text>姓名：</text>
-      <input value='{{showmodeldata["name"]}}' bindinput='showmodelname'></input>
-    </view>
-    <view class='showtext'>
-      *<text>职务：</text>
-      <input value='{{showmodeldata["duty"]}}' bindinput='showmodelduty'></input>
-    </view>
-    <view class='showtext'>
-      *<text>手机：</text>
-      <input value='{{showmodeldata["phone"]}}' bindinput='showmodelphone'></input>
-    </view>
-    <view class='showbtn' catchtap='showbtn'>
-      确认提交
-    </view>
-  </view>
-</view>
-<view hidden='{{showmodel}}' class='show'></view>    -->
 <showmodel id="showmodel"></showmodel>
 <view class='content'>
     <view class='meeting-name'>
@@ -299,52 +278,6 @@
       </view>
     </view>
 
-    <view class='contact'>
-      <view class='contact-main'>
-        <view class='staff-object item'>
-          <text> 会务联系方式</text>
-        </view>
-        <view class='staff-emp'>
-          <view class='staff-emp-desc'>通讯</view>
-            <view class='emp'>
-              <block class='staff-emp-item' wx:for="{{consoleMeetings.employees}}" wx:key="{{item.index}}">
-                <view class='staff-emp-item' wx:if="{{(index+1) >=2}}">
-                  <view class='staff-teacher'>{{item.name}}</view>
-                  <view data-tel='{{item.tel}}' class='staff-teacher-phone' catchtap='phoneCall'>{{item.tel}}</view>
-                </view>
-                <view class='staff-emp-item' wx:else>
-                  <view class='staff-teacher'>{{item.name}}</view>
-                  <view data-tel='{{item.tel}}' class='staff-teacher-phone' catchtap='phoneCall'>{{item.tel}}</view>
-                </view>
-              </block>
-            </view>
-          </view>  
-        <view class='staff-tel item'>
-          <view class='staff-tel-name' catchtap='phoneCall'>电话</view>
-          <view data-tel='{{Contact.Tel}}' class='staff-tel-value' catchtap='phoneCall'>{{Contact.Tel}}</view>
-        </view>
-        <view class='staff-fax target-object item'>
-          <view class='staff-fax-name'>传真</view>
-          <view class='staff-fax-value target-value'>{{Contact.fax}}</view>
-        </view>
-        <view class='staff-url target-object item'>
-          <view class='staff-url-name'>网址</view>
-          <view class='staff-url-value target-value'>{{Contact.url}}</view>
-        </view>
-        <view class='staff-email target-object item'>
-          <view class='staff-email-name'>邮箱</view>
-          <view class='staff-email-value target-value'>{{Contact.email}}</view>
-        </view>
-        <view class='staff-addr target-object item'>
-          <view class='staff-addr-name'>地址</view>
-          <view class=' target-value item staff-addr-value'>{{Contact.addr}}</view>
-        </view>
-        <view class='staff-postcode target-object item'>
-          <view class='staff-postcode-name'>邮编</view>
-          <view class=' target-value item staff-postcode-value'>{{Contact.postCode}}</view>
-        </view>
-
-      </view>
-    </view>
+    <contact id="contact" bind:phoneCall="phoneCall"></contact>
 
 </view>

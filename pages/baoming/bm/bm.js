@@ -38,16 +38,6 @@ Page({
 
     note: "",
     usedChart: 0,
-    Contact: {
-      employeeTeacherList: [
-      ],
-      Tel: "0571-89809186",
-      fax: "0571-89809185",
-      url: "www.58jz.com.cn",
-      email: "sll@58jz.com.cn",
-      addr: "杭州市西湖区紫萱路158号西城博司4幢8楼",
-      postCode: "310013",
-    },
     consoleMeetings: {},
     selfCompanies: {},
     showCompanys: true,//是否显示公司提示
@@ -481,7 +471,7 @@ Page({
             data: detail,
             success: function (res) {
               wx.navigateTo({
-                url: '/pages/baoMing/bmAddPerson/bmAddPerson',
+                url: '/pages/baoming/bmAddPerson/bmAddPerson',
                 success: function (res) {
                   console.log("数据存储成功")
                 },
@@ -800,8 +790,9 @@ Page({
       }
     });
   },
+
   phoneCall: function (e) {
-    let tel = e.target.dataset['tel'];
+    let tel = e.detail.tel;
     wx.makePhoneCall({
       phoneNumber: tel
     })

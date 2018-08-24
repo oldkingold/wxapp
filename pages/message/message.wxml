@@ -1,0 +1,19 @@
+<view class='message' wx:for="{{message}}">
+  <view class='date'>
+    <image src='../../static/images/clock2.png'></image>
+    {{item.date}}
+  </view>
+  <view class='content'>
+    <view class='title'>通知内容：</view>
+    <view class='info' >
+      <block wx:for="{{item.info}}" wx:for-index="i" wx:for-item="info">
+        <block wx:if="{{i % 2 == 0}}">
+          {{info}}
+        </block>
+        <block wx:else>
+          <text class='phone' bindtap = 'phonecall' data-tel='{{info}}'> {{info}} </text>
+        </block>
+      </block>
+    </view>
+  </view>
+</view>

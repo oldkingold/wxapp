@@ -1,0 +1,46 @@
+<view class='contact'>
+  <view class='contact-main'>
+    <view class='staff-object item'>
+      <text> 会务联系方式</text>
+    </view>
+    <view class='staff-emp'>
+      <view class='staff-emp-desc'>通讯</view>
+        <view class='emp'>
+          <block class='staff-emp-item' wx:for="{{consoleMeetings.employees}}" wx:key="{{item.index}}">
+            <view class='staff-emp-item' wx:if="{{(index+1) >=2}}">
+              <view class='staff-teacher'>{{item.name}}</view>
+              <view data-tel='{{item.tel}}' class='staff-teacher-phone' catchtap='phoneCall'>{{item.tel}}</view>
+            </view>
+            <view class='staff-emp-item' wx:else>
+              <view class='staff-teacher'>{{item.name}}</view>
+              <view data-tel='{{item.tel}}' class='staff-teacher-phone' catchtap='phoneCall'>{{item.tel}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    <view class='staff-tel item'>
+      <view class='staff-tel-name' catchtap='phoneCall'>电话</view>
+      <view data-tel='{{info.Tel}}' class='staff-tel-value' catchtap='phoneCall'>{{info.Tel}}</view>
+    </view>
+    <view class='staff-fax target-object item'>
+      <view class='staff-fax-name'>传真</view>
+      <view class='staff-fax-value target-value'>{{info.fax}}</view>
+    </view>
+    <view class='staff-url target-object item'>
+      <view class='staff-url-name'>网址</view>
+      <view class='staff-url-value target-value'>{{info.url}}</view>
+    </view>
+    <view class='staff-email target-object item'>
+      <view class='staff-email-name'>邮箱</view>
+      <view class='staff-email-value target-value'>{{info.email}}</view>
+    </view>
+    <view class='staff-addr target-object item'>
+      <view class='staff-addr-name'>地址</view>
+      <view class=' target-value item staff-addr-value'>{{info.addr}}</view>
+    </view>
+    <view class='staff-postcode target-object item'>
+      <view class='staff-postcode-name'>邮编</view>
+      <view class=' target-value item staff-postcode-value'>{{info.postCode}}</view>
+    </view>
+  </view>
+</view>

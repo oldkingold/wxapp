@@ -1,1 +1,253 @@
-/* pages/baoming/receipt/receipt.wxss */
+page {
+  background-color: #eeeff1;
+  font-size: 27rpx;
+}
+
+.receipt {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.receipt-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30rpx;
+}
+
+.receipt-icon {
+  margin-top: 30rpx;
+}
+
+image {
+  width: 99px;
+  height: 100px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.receipt-info {
+  font-weight: 600;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+  margin-bottom: 12rpx;
+}
+
+.receipt-desc {
+  font-weight: 500;
+}
+
+.middle {
+  background-color: #fff;
+}
+
+.arrive-time-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15rpx;
+}
+
+.middle-line {
+  width: 96%;
+  display: flex;
+  flex-direction: row;
+}
+
+.middle-name {
+  line-height: 50rpx;
+  width: 16%;
+  margin-right: 5%;
+}
+
+.middle-value {
+  line-height: 50rpx;
+  width: 79%;
+}
+
+.dinner-name-hidden{
+  visibility: hidden
+}
+
+.middle-buttom {
+  width: 96%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 18rpx;
+  background-color: #edf1f2;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  margin-top: 10rpx;
+}
+
+.text-font {
+  font-size: 26rpx;
+}
+
+.trangle {
+  width: 20rpx;
+  height: 16rpx;
+  margin-top: -26rpx;
+  margin-left: 12rpx;
+}
+
+.invoice-line {
+  display: flex;
+  border-bottom:1rpx solid #F2F2F2;
+
+}
+
+.invoice-comp-name {
+  line-height: 54rpx;
+  width: 160rpx;
+}
+
+.invoice-comp-value {
+  line-height: 54rpx;
+  margin-left: 18rpx;
+}
+
+.invoice-line-name-common {
+  line-height: 54rpx;
+  width: 160rpx;
+}
+
+.invoice-line-value-common {
+  line-height: 54rpx;
+  margin-left: 18rpx;
+}
+
+.desc {
+  background-color: #fff;
+  margin: 28rpx 0;
+  display: flex;
+  justify-content: center;
+}
+
+.desc-objetc {
+  width: 96%;
+  margin-top: 15rpx;
+}
+
+.desc-title {
+  height: 80rpx;
+  line-height: 40rpx;
+  margin-bottom: 2%;
+}
+
+.desc-content {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 12rpx;
+  background-color: #edf1f2;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+}
+
+.contact {
+  width: 100%;
+  background-color: #fff;
+}
+
+.contact-main {
+  margin-left: 20rpx;
+}
+
+.item {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.staff-object {
+  height: 70rpx;
+  line-height: 70rpx;
+  border-bottom: 1rpx solid #eeeff1;
+  width: 100%;
+  font-weight: 600;
+}
+
+.emp {
+  display: flex;
+  flex-direction: column;
+}
+
+.staff-emp {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.staff-emp-desc {
+  height: 54rpx;
+  line-height: 54rpx;
+}
+
+.staff-emp-item {
+  height: 54rpx;
+  line-height: 54rpx;
+  margin-left: 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.staff-teacher-phone {
+  margin-left:35rpx; 
+  color: #479df7;
+}
+
+.staff-tel {
+  height: 54rpx;
+  line-height: 54rpx;
+}
+
+.staff-tel-value {
+  margin: 0 40rpx;
+  color: #479df7;
+}
+
+.target-object {
+  height: 54rpx;
+  line-height: 54rpx;
+  width: 98%;
+}
+
+.target-value {
+  margin: 0 40rpx;
+  color: #479df7;
+}
+
+.staff-addr-value {
+  color: #333;
+}
+
+.staff-postcode {
+  margin-bottom: 15rpx;
+}
+
+.staff-postcode-value {
+  color: #333;
+}
+
+.buttom {
+  background-color: #eeeff1;
+  float: left;
+  width: 100%;
+  height: 80rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0rpx;
+  height: 0rpx;
+  /* color:#929292; */
+  color: transparent;
+}

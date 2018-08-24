@@ -1,2 +1,216 @@
-<!--pages/baoming/receipt/receipt.wxml-->
-<text>pages/baoming/receipt/receipt.wxml</text>
+<view class="page">
+  <view class='receipt'>
+    <view class='receipt-top'>
+      <view class='receipt-icon'>
+        <image src='/static/images/checkout.png'></image>
+      </view>
+      <view class='receipt-info'>
+        尊敬的用户恭喜您已报名成功!
+      </view>
+      <view class='receipt-desc'>
+        报名信息可在报名记录里查看，再次感谢您的支持!
+      </view>
+    </view>
+
+
+    <view class='middle'>
+      <view class='arrive-time-content'>
+        <view class='middle-line'>
+          <view class='middle-name'>
+            <text>参会时间</text>
+          </view>
+          <view class='middle-value'>
+            <text>{{meetdate.start_date + "-" + meetdate.end_date}}</text>
+          </view>
+        </view>
+        <view class='middle-line'>
+          <view class='middle-name'>
+            <text>参会地址</text>
+          </view>
+          <view class='middle-value'>
+            <text>{{meeting.h_tip}}</text>
+          </view>
+        </view>
+        <view class='middle-line'>
+          <view class='middle-name'>
+            <text>餐<text class='dinner-name-hidden'>餐饮</text>饮</text>
+          </view>
+          <view class='middle-value'>
+            <text>{{mealList}}</text>
+          </view>
+        </view>
+        <view class='middle-line'>
+          <view class='middle-name'>
+            <text>开票信息</text>
+          </view>
+          <view class='middle-value'>
+            <text>{{invoice.invType}}</text>
+          </view>
+        </view>
+        <block wx:if="{{invoice.invType != '不开票'}}">
+          <view class='middle-buttom' >
+
+            <image class='trangle' src='/static/images/icon_trangle.png'></image>
+            <block wx:if="{{invoice.invType == '普票'}}">
+              <view class='invoice-line'>
+                <view class='invoice-comp-name'>
+                  <text class='text-font'>公司名称</text>
+                </view>
+                <view class='invoice-comp-value'>
+                  <text class='text-font'>{{invoice.invCompName}}</text>
+                </view>
+              </view>
+              <view class='invoice-line'>
+                <view class='invoice-id-name invoice-line-name-common'>
+                  <text class='text-font'>纳税识别号</text>
+                </view>
+                <view class='invoice-id-value invoice-line-value-common'>
+                  <text class='text-font'>{{invoice.taxIdNum}}</text>
+                </view>
+              </view>
+            </block>
+            <block wx:elif="{{invoice.invType == '专票'}}">
+              <view class='invoice-line'>
+                <view class='invoice-comp-name'>
+                  <text class='text-font'>公司名称</text>
+                </view>
+                <view class='invoice-comp-value'>
+                  <text class='text-font'>{{invoice.invCompName}}</text>
+                </view>
+              </view>
+              <view class='invoice-line'>
+                <view class='invoice-id-name invoice-line-name-common'>
+                  <text class='text-font'>纳税识别号</text>
+                </view>
+                <view class='invoice-id-value invoice-line-value-common'>
+                  <text class='text-font'>{{invoice.taxIdNum}}</text>
+                </view>
+              </view>
+              <view class='invoice-line'>
+                <view class='invoice-addr-name invoice-line-name-common'>
+                  <text class='text-font'>公司地址</text>
+                </view>
+                <view class='invoice-addr-value invoice-line-value-common'>
+                  <text class='text-font'>{{invoice.compAddr}}</text>
+                </view>
+              </view>
+              <view class='invoice-line'>
+                <view class='invoice-tel-name invoice-line-name-common'>
+                  <text class='text-font'>电话号码</text>
+                </view>
+                <view class='invoice-tel-value invoice-line-value-common'>
+                  <text class='text-font'>{{invoice.compTel}}</text>
+                </view>
+              </view>
+              <view class='invoice-line'>
+                <view class='invoice-openbank-name invoice-line-name-common'>
+                  <text class='text-font'>开户银行</text>
+                </view>
+                <view class='invoice-openbank-value invoice-line-value-common'>
+                  <text class='text-font'>{{invoice.compBank}}</text>
+                </view>
+              </view>
+              <view class='invoice-line'>
+                <view class='invoice-bankaccount-name invoice-line-name-common'>
+                  <text class='text-font'>银行账号</text>
+                </view>
+                <view class='invoice-bankaccount-value invoice-line-value-common'>
+                  <text class='text-font'>{{invoice.compBankAccount}}</text>
+                </view>
+              </view>
+            </block>
+            <block wx:elif="{{invoice.invType == '暂不填写'}}">
+              <view class='invoice-line'>
+                注：若后期需要开票，请与会务工作人员联系！
+              </view>
+            </block>
+          </view>
+        </block>
+      </view>
+    </view>
+
+<view class='desc'>
+  <view class='desc-objetc'>
+    <view class='desc-title'>为了便于做好住宿、餐饮等各项接待工作，请将培训费（￥{{meeting.price}}/人）汇入到收款公司账户，账户信息如下：</view>
+    <view class='desc-content'>
+    <image class='trangle' src='/static/images/icon_trangle.png'></image>
+        <view class='invoice-line'>
+            <view class=' invoice-line-name-common'>
+              <text class='text-font'>户名</text>
+            </view>
+            <view class='invoice-bankaccount-value invoice-line-value-common'>
+              <text class='text-font'>{{meeting.pay_com.name}}</text>
+            </view>
+          </view>
+                  <view class='invoice-line'>
+            <view class=' invoice-line-name-common'>
+              <text class='text-font'>开户行</text>
+            </view>
+            <view class='invoice-bankaccount-value invoice-line-value-common'>
+              <text class='text-font'>{{meeting.pay_com.bank}}</text>
+            </view>
+          </view>
+                  <view class='invoice-line'>
+            <view class=' invoice-line-name-common'>
+              <text class='text-font'>账号</text>
+            </view>
+            <view class='invoice-bankaccount-value invoice-line-value-common'>
+              <text class='text-font'>{{meeting.pay_com.tax_id}}</text>
+            </view>
+          </view>
+    </view>
+  
+  </view>
+
+</view>
+
+
+    <view class='contact'>
+      <view class='contact-main'>
+        <view class='staff-object item'>
+          <text> 会务联系方式</text>
+        </view>
+        <view class='staff-emp'>
+          <view class='staff-emp-desc'>通讯</view>
+          <view class='emp'>
+            <block class='staff-emp-item' wx:for="{{meeting.employees}}" wx:key="{{item.index}}">
+              <view class='staff-emp-item' wx:if="{{(index+1) >=2}}">
+                <view class='staff-teacher'>{{item.name}}</view>
+                <view class='staff-teacher-phone'>{{item.tel}}</view>
+              </view>
+              <view class='staff-emp-item' wx:else>
+                <view class='staff-teacher'>{{item.name}}</view>
+                <view class='staff-teacher-phone'>{{item.tel}}</view>
+              </view>
+            </block>
+          </view>
+        </view>
+        <view class='staff-tel item'>
+          <view class='staff-tel-name'>电话</view>
+          <view class='staff-tel-value'>{{Contact.Tel}}</view>
+        </view>
+        <view class='staff-fax target-object item'>
+          <view class='staff-fax-name'>传真</view>
+          <view class='staff-fax-value target-value'>{{Contact.fax}}</view>
+        </view>
+        <view class='staff-url target-object item'>
+          <view class='staff-url-name'>网址</view>
+          <view class='staff-url-value target-value'>{{Contact.url}}</view>
+        </view>
+        <view class='staff-email target-object item'>
+          <view class='staff-email-name'>邮箱</view>
+          <view class='staff-email-value target-value'>{{Contact.email}}</view>
+        </view>
+        <view class='staff-addr target-object item'>
+          <view class='staff-addr-name'>地址</view>
+          <view class=' target-value item staff-addr-value'>{{Contact.addr}}</view>
+        </view>
+        <view class='staff-postcode target-object item'>
+          <view class='staff-postcode-name'>邮编</view>
+          <view class=' target-value item staff-postcode-value'>{{Contact.postCode}}</view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+</view>

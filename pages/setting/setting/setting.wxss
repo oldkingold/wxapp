@@ -1,0 +1,73 @@
+page{
+  height: 100%
+}
+.container {
+  background: #f5f5f5;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background-color: transparent;
+}
+.top-margin{
+  height: 0.1rpx;
+}
+.middle {
+  padding: 0 18rpx;
+  background-color: white;
+  margin-top: 36rpx;
+}
+
+.line {
+  height:88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.border-line{
+  border-bottom: 2rpx solid #F5F5F5;
+}
+
+.line image {
+  height: 49rpx;
+  width: 49rpx;
+}
+
+.line-name {
+  margin-left: 18rpx;
+}
+
+.icon_go {
+  margin-right: 18rpx;
+}
+
+.icon_go image {
+  height: 23rpx;
+  width: 16rpx;
+}
+
+.go {
+  margin-right: 18rpx;
+}
+
+.line-value{
+  display:flex;
+  justify-content:flex-end;
+  
+}
+
+.add-conferee-button{
+  color:#2185F7;
+  width:80%;
+  height:70rpx;
+  text-align:center;
+  margin:8rpx auto;
+  border:3rpx solid #2185F7;
+  line-height:70rpx;
+  border-radius:36rpx;
+  font-size:35rpx;
+  background-color:#fff;
+  margin-top:68rpx;
+  margin-bottom:36rpx;
+}
