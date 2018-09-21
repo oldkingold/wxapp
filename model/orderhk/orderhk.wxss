@@ -1,0 +1,129 @@
+.hk_bg {
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.5;
+  position: fixed;
+  z-index: 1000;
+}
+
+.hk_main {
+  position: fixed;
+  background-color: white;
+  width: 650rpx;
+  height: 616rpx;
+  margin: 38rpx 50rpx 0 50rpx;
+  opacity: 1;
+  z-index: 1001;
+  border-radius: 20rpx;
+}
+
+.hk_title {
+  font-size: 29rpx;
+  line-height: 29rpx;
+  font-weight: bold;
+  margin-left: 36rpx;
+  margin-top: 50rpx;
+}
+
+.hk_content {
+  font-size: 28rpx;
+  line-height: 42rpx;
+  margin-top: 10rpx;
+  margin-left: 36rpx;
+  margin-right: 36rpx;
+  text-indent: 58rpx;
+}
+
+.hk_table {
+  background-color: #eef2f3;
+  margin-top: 28rpx;
+  margin-left: 36rpx;
+  margin-right: 36rpx;
+  border-radius: 10rpx;
+  padding-top: 18rpx;
+  padding-bottom: 18rpx;
+}
+
+.hk_table .hk_td{ 
+  display: flex;
+  font-size: 21rpx;
+  margin-left: 22rpx;
+  margin-right: 22rpx;
+  line-height: 38rpx;
+}
+
+.hk_table .hk_td .title{ 
+  width: 100rpx;
+}
+/* #ef5450
+  #f2f2f2
+  #f4a500
+  #eef2f3
+  #7a7a7a
+  #dedede
+ */
+
+.hk_info {
+  font-size: 29rpx;
+  margin-top: 22rpx;
+  margin-left: 36rpx;
+  margin-right: 36rpx;
+  font-weight: bold;
+}
+
+.hk_btn {
+  display: flex;
+  justify-content: space-around;
+  font-size: 30rpx;
+  line-height: 74rpx;
+  text-align: center;
+  margin: 73rpx 36rpx 0 36rpx;
+}
+
+.hk_zw {
+   color: #7a7a7a;
+   background-color: #f2f2f2;
+   height: 70rpx;
+   width: 256rpx; 
+   border-radius: 40rpx;
+   border: 2rpx solid #dedede;
+}
+
+.hk_qr {
+  color: white;
+  background-color: #f4a500;
+  height: 74rpx;
+  width: 256rpx;
+  border-radius: 40rpx;
+}
+
+.cancel {
+  position: fixed; 
+  z-index: 1005;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 626rpx;
+  margin-left: 343rpx;
+}
+
+.cancel .line {
+  width: 5rpx;
+  height: 60rpx;
+  background-color: white;
+}
+
+.cancel .image {
+  width: 60rpx;
+  height: 60rpx;
+  border: 5rpx solid #ffffff; 
+  border-radius: 34rpx;
+}
+
+.cancel .image image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 10rpx;
+  margin-top: 10rpx;
+}

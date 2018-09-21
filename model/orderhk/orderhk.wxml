@@ -1,0 +1,30 @@
+<view class='hk_bg' catchtap='cancel' hidden='{{show}}'></view>
+<view class='hk_main'>
+  <view class='hk_title'>尊敬的用户：</view>
+  <view class='hk_content'>请您确认是否已将11920.00汇款至以下账户，谢谢您的支持。</view>
+  <view class='hk_table'>
+    <view class='hk_td'>
+      <view class='title'>户名</view>
+      <view>浙江度川企业管理咨询有线公司</view>
+    </view>
+    <view class='hk_td'>
+      <view class='title'>开户行</view>
+      <view>中国工商银行股份有限公司杭州三墩支行</view>
+    </view>
+    <view class='hk_td'>
+      <view class='title'>账户</view>
+      <view>1202023309910119345</view>
+    </view>
+    <view></view>
+    <view></view>
+  </view>
+  <view class='hk_info'>若您未汇款或汇款失败将会导致订单失败！</view>
+  <view class='hk_btn'>
+    <view class='hk_zw'>暂未汇款</view>
+    <view class='hk_qr'>确认已汇款</view>
+  </view>
+</view>
+<view class='cancel'>
+  <view class='line'></view>
+  <view class='image'><image src='../../static/images/cancel.png'></image></view>  
+</view>

@@ -1,7 +1,5 @@
 <view class='menu'>
-  <view class='menu_left'>
-    
-  </view>
+  <view class='menu_left'></view>
   <view class='menu_line'></view>
   <view class='menu_right' catchtap='menuDown'>   
     <image src='../../static/images/menu_down.png'></image>
@@ -12,9 +10,7 @@
         <view class='nav_hover nav_select'>
           {{item.title}}
         </view>
-        <view class='nav_active'>
-
-        </view>
+        <view class='nav_active'></view>
       </block>
       <block wx:else>
         <view class='nav_hover'>

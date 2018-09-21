@@ -1,3 +1,4 @@
+<orderhk id='orderhk' show='{{false}}'></orderhk>
 <view class='menu'>
   <view wx:for='{{menu}}' wx:key='{{menu_id}}' id='menu{{index}}' data-id='{{index}}' class='nav_title' catchtap='nav_select'>
     <block wx:if='{{"menu"+index == nav_selectId}}'>
@@ -16,32 +17,50 @@
   </view>
 </view>
 
-<swiper>
-  <swiper-item>
-    <view>
-      <view> 
-        <view>订单号：1234567890</view>
-      </view>
-      <view>
-        <view>
-          <view>已购产品:</view>
-          <view>10人套餐</view>
+<swiper style='height:{{screenHeight - 40}}px'>
+  <swiper-item class="item">
+    <scroll-view scroll-y style='height:{{screenHeight - 41}}px'>
+      <view class='card1'>
+        <view class='top'>
+          <view class='dd'>订单号：1234567890</view>
+          <!-- <view class='hk'>汇款确认中</view> -->
+          <!-- <view class='hk'>
+            <view class='clock'>
+              <image src='../../static/images/clock3.png'></image>03:23:15
+            </view>待汇款
+          </view> -->
+          <image class='status' src='../../static/images/dd-success.png'></image>
         </view>
-          <view>赠送人次:</view>
-          <view>1人</view>
-        <view>
-          <view>提交时间:</view>
-          <view>2018.02.12 12:23:34</view>
+        <view class='center'>
+          <view class='center_item'>
+            <view class='title'>已购产品:</view>
+            <view class='content'>10人套餐</view>
+          </view>
+          <view class='center_item'>
+            <view class='title'>赠送人次:</view>
+            <view class='content'>1人</view>
+          </view>
+          <view class='center_item'>
+            <view class='title'>提交时间:</view>
+            <view class='content'>2018.02.12　12:23:34</view>
+          </view>
+          <view class='center_item'>
+            <view class='title'>支付时间:</view>
+            <view class='content'>2018.02.12　12:23:34</view>
+          </view>
         </view>
-        <view>
-          <view>支付时间:</view>
-          <view>2018.02.12 12:23:34</view>
+        <view class='bottom'>
+          <view class='flex'>
+            <view class='title'>总金额:</view>
+            <view class='content'>¥7156</view>
+          </view>
+          <view class='flex'>
+            <view class='btn-qx'>取消</view>
+            <view class='btn-hk'>去汇款</view>
+          </view>
+          <!-- <view class='btn-dd'>重新下单</view> -->
         </view>
       </view>
-      <view>
-        <view>总金额:</view>
-        <view>7156</view>
-      </view>
-    </view>
+    </scroll-view>
   </swiper-item>
 </swiper>

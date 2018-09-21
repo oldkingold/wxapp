@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/order/order",
+    
     "pages/home/home",
     "pages/baoming/bm/bm",
     "pages/baoming/bmAddPerson/bmAddPerson",
@@ -9,8 +9,8 @@
     "pages/wode/wode",
     "pages/aboutas/aboutas",
     "pages/setting/setting/setting",
-    "pages/message/message"
-    
+    "pages/message/message",
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -19,18 +19,26 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "color": "#777777",
+    "selectedColor": "#f5a601",
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "static/images/home.png",
+        "selectedIconPath": "static/images/home_h.png"
       },
       {
         "pagePath": "pages/baoming/bm/bm",
-        "text": "text"
+        "text": "会员卡",
+        "iconPath": "static/images/card.png",
+        "selectedIconPath": "static/images/card_h.png"
       },
       {
         "pagePath": "pages/wode/wode",
-        "text": "wode"
+        "text": "我的",
+        "iconPath": "static/images/mine.png",
+        "selectedIconPath": "static/images/mine_h.png"
       }
     ]
   }

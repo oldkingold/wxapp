@@ -2,6 +2,10 @@ page {
   background-color: #ebf0f5;
 }
 
+/*
+ 页面导航栏 
+ */
+
 .menu {
   height: 40px;
   width: 96%;
@@ -38,3 +42,151 @@ page {
   color: #f6b72c;
 }
 
+/*
+  订单
+*/
+.item {
+  margin: 0 31rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.card1 {
+  position: absolute;
+  width: 650rpx;
+  height: 315rpx;
+  background-color: white;
+  overflow: hidden;
+  margin-top: 33rpx;
+  padding: 22rpx 20rpx; 
+  border-radius: 20rpx;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 23rpx;
+  border-bottom: 2rpx solid #f0f2f5;
+}
+
+.top .dd {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  font-weight: bold;
+}
+
+.top .status {
+  position: absolute;
+  width: 141rpx;
+  height: 97rpx;
+  right: 30rpx;
+  top: 0rpx;
+}
+
+.top .hk {
+  display: flex;
+  align-items: center;
+  font-size: 22rpx;
+  line-height: 28rpx;
+  color: #ff1f1f;
+}
+
+.top .hk .clock {
+  color: #868686;
+  margin-right: 12rpx;
+  line-height: 28rpx;
+  display: flex;
+  align-items: center;
+}
+
+.top .hk .clock image{
+  margin-right: 12rpx;
+  width: 22rpx;
+  height: 22rpx;
+}
+
+.center {
+  padding-bottom: 18rpx;
+  border-bottom: 2rpx solid #f0f2f5;
+}
+
+.center_item {
+  display: flex;
+  margin-top: 18rpx;
+}
+
+.center_item .title {
+  color: #2e2e2e;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  margin-right: 18rpx;
+}
+
+.center_item .content {
+  color: #878787;
+  font-size: 26rpx;
+  line-height: 26rpx;
+}
+
+.bottom {
+  height: 95rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+
+.bottom .flex {
+  display: flex;
+
+}
+
+.bottom .title {
+  color: #2d2d2e;
+  font-size: 22rpx;
+  margin-right: 18rpx;
+}
+
+.bottom .content { 
+  color: #ff1f1f;
+  font-size: 22rpx;
+}
+
+.btn-qx {
+  font-size: 30rpx;
+  background-color: #f5f5f5;
+  color: #ababab;
+  border:2rpx  solid #d9d9d9;
+  height: 41rpx;
+  width: 129rpx;
+  text-align: center;
+  line-height: 41rpx;
+  border-radius: 25rpx;
+  margin-right: 24rpx;
+}
+
+.btn-hk {
+  font-size: 30rpx;
+  background-color: #f4a600;
+  color: white;
+  height: 45rpx;
+  width: 129rpx;
+  text-align: center;
+  line-height: 45rpx;
+  border-radius: 25rpx;
+}
+
+.btn-dd {
+  font-size: 30rpx;
+  background-color: white;
+  color: #f4a600;
+  border:2rpx  solid #f4a600;
+  height: 41rpx;
+  width: 150rpx;
+  text-align: center;
+  line-height: 41rpx;
+  border-radius: 25rpx;
+}
