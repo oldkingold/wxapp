@@ -7,8 +7,8 @@ page {
 .menu {
   height: 40px;
   background-color: white;
-  border-top: 2rpx solid #f9f9f9;
-  border-bottom: 2rpx solid #f9f9f9;
+  border-top: 1px solid #f9f9f9;
+  border-bottom: 1px solid #f9f9f9;
 }
 
 .menu_left {
@@ -151,6 +151,7 @@ page {
   float: left;
   border:5rpx solid white;
   border-radius: 55rpx;
+  overflow: hidden;
 }
 
 .card_1_head image{
@@ -169,6 +170,12 @@ page {
   margin-left: 130rpx;
   margin-top: 9rpx;
   width: 535rpx;
+  /*限制两行*/
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
 }
 
 .card_1_tp {
@@ -235,6 +242,53 @@ page {
   left: 25rpx;
   color: #2e2e2e;
   margin-top: 42rpx;
+}
+
+.card_3_teacher {
+  position: absolute;
+  color: white;
+  top: 95rpx;
+  left: 25rpx;
+  height: 150rpx;
+  width: 660rpx;
+}
+
+.card_3_teach {
+  width: 330rpx;
+}
+
+.card_3_head {
+  width: 70rpx;
+  height: 70rpx;
+  float: left;
+  border:5rpx solid white;
+  border-radius: 55rpx;
+  overflow: hidden;
+}
+
+.card_3_head image{
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.card_3_name {
+  font-size: 26rpx;
+  margin-left: 95rpx;
+  margin-top: 20rpx;
+}
+
+.card_3_introduce {
+  font-size: 20rpx;
+  line-height: 36rpx;
+  margin-top: 30rpx;
+  margin-right: 30rpx;
+  width: 300rpx;
+  /*限制两行*/
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
 }
 
 .menudown {

@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/home/home",
     "pages/baoming/bm/bm",
     "pages/baoming/bmAddPerson/bmAddPerson",
@@ -10,7 +9,8 @@
     "pages/aboutas/aboutas",
     "pages/setting/setting/setting",
     "pages/message/message",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

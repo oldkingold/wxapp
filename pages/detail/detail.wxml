@@ -1,0 +1,449 @@
+<view>
+  <view class='top'>
+    <image src='{{rooturl + meeting.themeimg}}' class='top-img'>
+    </image>
+  </view>
+  <view class='middle'>
+    <view class='middle-content'>
+      建筑安装企业经营特点鲜明，管理模式各异，涉及财税和会计问题极其复杂。长期以来，很多企业不规范操作的风险在增值税时代都暴露无遗，不同程度的存在漏缴甚至多缴税款的情况。
+    </view>
+    <view class='middle-content'>
+      在行业变革风起云涌，税收政策层出不穷之际，广大建筑业企业面临的经营环境日趋复杂。工人工资表入账存在什么风险，如何规避？如何妥善处理复杂经营模式中的财税问题？如何匹配挂靠模式下的成本费用？如何妥善安全的提取挂靠利润？如何避免异地施工核定征收个人所得税？异地成立分子公司，如何处理最为规范？
+    </view>
+    <view class='middle-content'>
+      为此，我们有幸运邀请到国内知名老师，特举办《国地税合并背景下建筑业「价、税、会」实务操作研讨班》，从工程造价、财税管理、会计处理等三个维度展开详尽讲解，为大家解疑释惑.
+    </view>
+  </view>
+
+  <view class='detail'>
+    <view class='detail-item' bindtap='detailClick' data-index='1' wx:if='{{chxz.title}}'>
+      <view class='detail-item-left'>
+        <view class='left-icon'></view>
+        <view class='left-content'>参会须知</view>
+      </view>
+      <view class='detail-item-right'>
+        <view class='right-content'>查看详情</view>
+        <view class='right-img'>
+          <image src='../../static/images/detailimage/detail-top.png' wx:if='{{1 == select_index}}'></image>
+          <image src='../../static/images/detailimage/detail-down.png' wx:if='{{1 != select_index}}'></image>
+        </view>
+      </view>
+    </view>
+    <view class='chxz' wx:if='{{select_index == 1}}'>
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/收藏(1)@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>培训特色：</i>
+          <i class='chxz-content-info'>紧扣施工企业需求，无缝贴近工程实践，突出实际操作</i>
+        </view>
+      </view>
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/人员组-实@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>参加对象：</i>
+          <i class='chxz-content-info'>建筑企业董事长、总经理、管理人员、财务人 员、税务人员等</i>
+        </view>
+      </view>
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/时间@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>培训时间：</i>
+          <i class='chxz-content-info time'>2018年07月24-25日（23日报到）</i>
+        </view>
+      </view>
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/居乐乐地点@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>培训地点：</i>
+          <i class='chxz-content-info'>兰州·锦江阳光酒店（四星级）</i>
+          <view bindtap='goMap' data-longitude='103.85831955554' data-latitude='36.056401331702'>
+            <i class='chxz-content-info hotel'>兰州城关区东岗西路589号（近民航售票处） ></i>
+          </view>
+          <view>
+            <i class='chxz-content-info tip'>注：酒店电话：
+              <i class='hotel' data-tel='0931-8805511' bindtap='makeCall'>0931-8805511</i>；住宿费用：
+              <i class='time'>480元/间</i>（含双早，房间面积约26平米）。</i>
+          </view>
+        </view>
+      </view>
+
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/地图@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>交通路线：</i>
+          <view>
+            <i class='chxz-content-info'>1.兰州中川国际机场至兰州锦江阳光酒店（距离70公里）</i>
+            <view class='chxz-content no-margin'>
+              <view class='chxz-img'>
+                <image src='../../static/images/detailimage/bus-大巴@3x.png'></image>
+              </view>
+              <i class='chxz-content-info margin-left'>从兰州中川国际机场乘坐机场大巴城关区线，在兰州 东方大酒店下车，步行约600米，到达锦江阳光酒店， 用时约1小时30分钟。</i>
+            </view>
+            <view class='chxz-content no-margin'>
+              <view class='chxz-img'>
+                <image src='../../static/images/detailimage/16出租车@3x.png'></image>
+              </view>
+              <i class='chxz-content-info margin-left'>费用约为150元，用时约1小时40分钟。</i>
+            </view>
+          </view>
+
+          <view>
+            <i class='chxz-content-info'>2.兰州站至兰州锦江阳光酒店（距离2.5公里）</i>
+            <view class='chxz-content no-margin'>
+              <view class='chxz-img'>
+                <image src='../../static/images/detailimage/bus-大巴@3x.png'></image>
+              </view>
+              <i class='chxz-content-info margin-left'>从兰州站乘坐36路，经过3站，在广场南路东口下车， 步行约800米，到达锦江阳光酒店，用时约30分钟。</i>
+            </view>
+            <view class='chxz-content no-margin'>
+              <view class='chxz-img'>
+                <image src='../../static/images/detailimage/16出租车@3x.png'></image>
+              </view>
+              <i class='chxz-content-info margin-left'>费用约10元，用时约10分钟。</i>
+            </view>
+          </view>
+
+          <view>
+            <i class='chxz-content-info'>3.兰州西站至兰州锦江阳光酒店（距离10公里）</i>
+            <view class='chxz-content no-margin'>
+              <view class='chxz-img'>
+                <image src='../../static/images/detailimage/bus-大巴@3x.png'></image>
+              </view>
+              <i class='chxz-content-info margin-left'>从兰州西站乘坐1路汽车，经过12站，在盘旋路西口下车，步行200米，用时约1小时。</i>
+            </view>
+            <view class='chxz-content no-margin'>
+              <view class='chxz-img'>
+                <image src='../../static/images/detailimage/16出租车@3x.png'></image>
+              </view>
+              <i class='chxz-content-info margin-left'>费用约为25元，用时约30分钟。</i>
+            </view>
+          </view>
+
+          <view>
+            <i class='chxz-content-info hotel tip'>以上信息来源于高德地图，仅供参考！</i>
+          </view>
+
+        </view>
+
+
+
+      </view>
+
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/折扣-实拷贝@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>学费优惠：</i>
+          <view>
+            <i class='chxz-content-info black'>1.培训费用：
+              <i class='time'>￥2980/人 </i>
+            </i>
+            <view class='chxz-content no-margin'>
+              <i class='chxz-content-info'>包含：师资、教材、场地、会务服务、报到晚餐/培训首日与次日中餐和晚餐，以及增值税普通发票；住宿统一安排、费用自理。</i>
+            </view>
+          </view>
+
+          <view>
+            <i class='chxz-content-info black'>2.优惠价格：</i>
+            <view class='chxz-content no-margin block'>
+              <view>
+                <i class='chxz-content-info'>（1）缴费
+                  <i class='time'>3人及以上</i>，优惠价
+                  <i class='time'>9.0折</i>
+                </i>
+              </view>
+              <view>
+                <i class='chxz-content-info'>（2）缴费
+                  <i class='time'>5人及以上</i>，优惠价
+                  <i class='time'>8.0折</i>
+                </i>
+              </view>
+              <view>
+                <i class='chxz-content-info'>（3）缴费
+                  <i class='time'>10人及以上</i>，优惠价
+                  <i class='time'>7.5折</i>
+                </i>
+              </view>
+              <view>
+                <i class='chxz-content-info'>（4）缴费
+                  <i class='time'>15人及以上</i>，优惠价
+                  <i class='time'>7.0折</i>
+                </i>
+              </view>
+            </view>
+          </view>
+
+          <view>
+            <i class='chxz-content-info black'>3.缴费方式：</i>
+            <view class='chxz-content no-margin block'>
+              <view>
+                <i class='chxz-content-info black'>
+                  户 名：浙江度川企业管理咨询有限公司
+                </i>
+              </view>
+              <view>
+                <i class='chxz-content-info black'>
+                  开户行：中国工商银行股份有限公司杭州三墩支行
+                </i>
+              </view>
+              <view>
+                <i class='chxz-content-info black'>
+                  账 号：1202023309910119345
+                </i>
+              </view>
+            </view>
+          </view>
+
+
+
+        </view>
+
+
+
+      </view>
+
+    </view>
+
+    <view class='detail-item' bindtap='detailClick' data-index='2' wx:if='{{kctg.title}}'>
+      <view class='detail-item-left'>
+        <view class='left-icon'></view>
+        <view class='left-content'>课程提纲</view>
+      </view>
+      <view class='detail-item-right'>
+        <view class='right-content'>查看详情</view>
+        <view class='right-img'>
+          <image src='../../static/images/detailimage/detail-top.png' wx:if='{{2 == select_index}}'></image>
+          <image src='../../static/images/detailimage/detail-down.png' wx:if='{{2 != select_index}}'></image>
+        </view>
+      </view>
+    </view>
+    <view class='chxz' wx:if='{{select_index == 2}}'>
+      <view class='chxz-content kctg'>
+        <view>
+          <i class='chxz-content-title'>一、最新财税政策解析</i>
+        </view>
+        <view>
+          <i class='chxz-content-info kctg'>1.税率下降对不同计税方法计税项目的影响与对策。</i>
+          <i class='chxz-content-info kctg'>2.5.1之前已收工程款，未申报未开票收入，5.1后怎么办？</i>
+          <i class='chxz-content-info kctg'>3.如何判断什么情况开11%发票，什么情况开10%发票？</i>
+          <i class='chxz-content-info kctg'>4.供应商什么情况开17%发票，什么情况开16%发票？</i>
+          <i class='chxz-content-info kctg'>5.苗木花卉等农产品，什么情况可以扣除11%，什么情况可以扣除10%？</i>
+          <i class='chxz-content-info kctg'>6.建筑工人实名制对建筑业企业财税管理有什么影响？以工资表入账，还行得通吗？</i>
+        </view>
+      </view>
+      <view class='chxz-content kctg'>
+        <view>
+          <i class='chxz-content-title'>二、经营模式中的财税问题</i>
+        </view>
+        <view>
+          <i class='chxz-content-info kctg'>1.什么是三流合一？甲控材、甲指分包，业主直接向分供商付款，建筑业企业应如何处理？</i>
+          <i class='chxz-content-info kctg'>2.供应商（分包商）原公司被“注销”，无法开具发票，支付欠款时如何操作？</i>
+          <i class='chxz-content-info kctg'>3.总公司签订合同，分公司和子公司施工有哪些注意事项？发票应由谁开？</i>
+          <i class='chxz-content-info kctg'>4.挂靠利润如何提取？</i>
+        </view>
+      </view>
+
+    </view>
+
+    <view class='detail-item' bindtap='detailClick' data-index='3' wx:if='{{chxz.title}}'>
+      <view class='detail-item-left'>
+        <view class='left-icon'></view>
+        <view class='left-content'>老师介绍</view>
+      </view>
+      <view class='detail-item-right'>
+        <view class='right-content'>查看详情</view>
+        <view class='right-img'>
+          <image src='../../static/images/detailimage/detail-top.png' wx:if='{{3 == select_index}}'></image>
+          <image src='../../static/images/detailimage/detail-down.png' wx:if='{{3 != select_index}}'></image>
+        </view>
+      </view>
+    </view>
+    <view class='chxz' wx:if='{{select_index == 3}}'>
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/人员@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>个人简介：</i>
+          <view>
+            <i class='chxz-content-info'>　　何广涛老师是中国人民大学会计学博士，高级会计师，注册税务师，北京理工大学、首都经贸大学、北京工商大学校外研究生导师。曾在北京某大型双特级资质建筑集团从事财税实务工作十余年，历任国家体育场“鸟巢”项目财务负责人，集团公司税务负责人等多重岗位锻炼，具备完整的建安行业财税实操经验。</i>
+          </view>
+          <view>
+            <i class='chxz-content-info'>　　何老师既具备深厚的理论功底和丰富的实践经验，又有精准的政策把握能力和敏锐的政策洞察力，深耕建安领域财税，多年来笔耕不辍，累计已发表文章三百余篇，其中关于增值税会计处理规定、建筑服务预收款纳税义务时间、商品和税收编码等学术观点，已在后续国家出台的政策中得到印证。</i>
+          </view>
+        </view>
+      </view>
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/耳机@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>课程试听：</i>
+          <view class='video-view'>
+            <video src='http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'></video>
+          </view>
+        </view>
+      </view>
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/文章@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>老师文章：</i>
+          <view>
+            <i class='chxz-content-info blue'>关于建筑业企业年末缴税增加的思考</i>
+          </view>
+        </view>
+      </view>
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/书籍@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>老师书籍：</i>
+          <i class='chxz-content-title'>《建筑业增值税管理与会计实务》</i>
+        </view>
+      </view>
+
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/评论@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>老师评价：</i>
+          <view>
+            <i class='chxz-content-info'>老师评价老师评价老师评价老师评价老师评价老师评价老师评价老师评价</i>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class='detail-item' bindtap='detailClick' data-index='4' wx:if='{{chxz.title}}'>
+      <view class='detail-item-left'>
+        <view class='left-icon'></view>
+        <view class='left-content'>主办单位</view>
+      </view>
+      <view class='detail-item-right'>
+        <view class='right-content'>查看详情</view>
+        <view class='right-img'>
+          <image src='../../static/images/detailimage/detail-top.png' wx:if='{{4 == select_index}}'></image>
+          <image src='../../static/images/detailimage/detail-down.png' wx:if='{{4 != select_index}}'></image>
+        </view>
+      </view>
+    </view>
+    <view class='chxz' wx:if='{{select_index == 4}}'>
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/公司名称@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>公司简介：</i>
+          <view>
+            <i class='chxz-content-info'>　　度川公司成立于二零一五年四月，坐落于美丽的人间天堂·杭州，是一家以“互联网+建筑业”为整体定位的新型互联网企业，业务涵盖新媒体、教育培训、电子商务、软件开发、行业研究、咨询服务等。</i>
+          </view>
+          <view>
+            <i class='chxz-content-info'>　　我们一直探索为建筑企业提供最科学、最实用的培训课程，经过多年实践与总结，已形成了从战略到执行的完整课程体系，涵盖了新政策/新市场/新技术等知识普及、建筑企业管理难点问题深度解析与应对策略、建筑企业管理岗位能力提升等课程。目前参加培训的建筑企业管理人员已超过2万人，满意率接近100%。</i>
+          </view>
+          <view>
+            <i class='chxz-content-info'>　　我们运营的新媒体平台目前汇聚了100余万读者，累计阅读量超过3亿人次，本着“深一度，快一秒”的理念，为读者传递最新的建筑行业资讯和最实用的管理知识。我们也一直注重研发投入，打造建筑行业综合网络服务平台和建筑企业管理信息系统，促进建筑行业资源共享和提升建筑企业管理效率。</i>
+          </view>
+          <view>
+            <i class='chxz-content-info'>　　度川公司将深耕建筑业，积极创新，开拓进取，为客户提供最优质的服务而奋斗，力争通过十年努力成为全球领先的建筑业综合服务商。</i>
+          </view>
+        </view>
+      </view>
+      <view class='chxz-content'>
+        <view class='chxz-img'>
+          <image src='../../static/images/detailimage/沙漏@3x.png'></image>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>历史培训：</i>
+          <view>
+            <view class='card'>
+              <view class='card-left'>
+               <image src='../../static/images/detailimage/1.png'></image>
+              </view>
+              <view class='card-right'>
+                <view class='card-title'>第二期全球建筑业考察系列之日本建筑工业化参观考察学习班</view>
+                <view class='card-time'>2018-06-29</view>
+                <view class='card-content'>我国建筑业传统生产方式存在着资...</view>
+              </view>
+            </view>
+            <view class='card'>
+              <view class='card-left'>
+               <image src='../../static/images/detailimage/1.png'></image>
+              </view>
+              <view class='card-right'>
+                <view class='card-title'>第二期全球建筑业考察系列之日本建筑工业化参观考察学习班</view>
+                <view class='card-time'>2018-06-29</view>
+                <view class='card-content'>我国建筑业传统生产方式存在着资...</view>
+              </view>
+            </view>
+            <view class='card'>
+              <view class='card-left'>
+               <image src='../../static/images/detailimage/1.png'></image>
+              </view>
+              <view class='card-right'>
+                <view class='card-title'>第二期全球建筑业考察系列之日本建筑工业化参观考察学习班</view>
+                <view class='card-time'>2018-06-29</view>
+                <view class='card-content'>我国建筑业传统生产方式存在着资...</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+    </view>
+
+    <view class='detail-item' bindtap='detailClick' data-index='5' wx:if='{{chxz.title}}'>
+      <view class='detail-item-left'>
+        <view class='left-icon'></view>
+        <view class='left-content'>客户评价</view>
+      </view>
+      <view class='detail-item-right'>
+        <view class='right-content'>查看详情</view>
+        <view class='right-img'>
+          <image src='../../static/images/detailimage/detail-top.png' wx:if='{{5 == select_index}}'></image>
+          <image src='../../static/images/detailimage/detail-down.png' wx:if='{{5 != select_index}}'></image>
+        </view>
+      </view>
+    </view>
+    <view class='chxz' wx:if='{{select_index == 5}}'>
+      <view class='chxz-content comment'>
+        <view class='user-icon'>
+        </view>
+        <view class='chxz-content-detail'>
+          <i class='chxz-content-title'>用户名：</i>
+        </view>
+        <view class='comment-content'>
+            <view class='comment-info'>度川公司成立于二零一五年四月，坐落于美丽的人间天堂·杭州，是一家以“互联网+建筑业”为整体定位的新型互联网企业，业务涵盖新媒体、教育培训、电子商务、软件开发、行业研究、咨询服务等。</view>
+        </view>
+      </view> 
+    </view>
+
+
+    <!-- <view class='detail-item'>
+      <view class='detail-item-left'>
+        <view class='left-icon-2'></view>
+        <view class='left-content'>课程提纲</view>
+      </view>
+      <view class='detail-item-right'>
+        <view class='right-content'>查看详情</view>
+        <view class='right-img'>
+          <image src='../images/detail-down.png'></image>
+        </view>
+      </view>
+    </view> -->
+  </view>
+</view>

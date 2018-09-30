@@ -1,5 +1,7 @@
 const app = getApp();
 const util = require('../../utils/util.js');
+const meeting = require('../../utils/home/meeting.js');
+const api = require('../../config/api.js');
 
 Page({
 
@@ -11,33 +13,51 @@ Page({
     nav_selectId: 'menu0',
     nav_siv: 'menu0',
     nav_list_selectId: 'menu0',
-    menu: [{ menu_id: 0, title: "全部" }, 
-          { menu_id: 1, title: "财税" },
-          { menu_id: 2, title: "管理" },
-          { menu_id: 3, title: "法务" },
-          { menu_id: 4, title: "造价" },
-          { menu_id: 5, title: "财税财税"},
-          { menu_id: 6, title: "合同" },
-          { menu_id: 7, title: "财税" },
-          { menu_id: 8, title: "财税" },
-          { menu_id: 9, title: "财税" },
-          { menu_id: 10, title: "财税" },
-          { menu_id: 11, title: "财税" },
-          { menu_id: 12, title: "财税" },],
-    menu_list: [],
-    menudownShow: true,
+    menu: [],        
+    menu_list: [],   //类型栏下拉框
+    menuShow: false, // 是否展示类型栏
+    menudownShow: true, //类型栏下拉框控制
+    rooturl: api.ApiRootUrl,
+    meetings: [],
+    menu_meetings: [],
+    swipercurrentitemid: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData.systemInfo['height']);
-    console.log(util.split_array(this.data.menu,6));
-    this.data.menu_list = util.split_array(this.data.menu, 6);
-    this.setData({
-      menu_list: util.split_array(this.data.menu, 6)
+    var that = this;
+    
+    //会议主题
+    meeting.themes().then(function(res) {
+      if (res.data.menu.length > 1) {
+        console.log(res.data.meeting);
+        that.setData({
+          menu : res.data.menu,
+          menu_meetings: res.data.meeting,
+          menu_list: util.split_array(res.data.menu, 6)
+        });
+      }else {
+        that.setData({
+          menuShow: true,
+          screenHeight: that.data.screenHeight + 42
+        });
+      }
     });
+
+    meeting.meeting().then(function(res) {
+      if (res.data) {
+        that.setData({
+          meetings: res.data,
+        });
+        console.log(res.data);
+        wx.setStorageSync("meetings", res.data);
+      }
+    });
+
+    // console.log(app.globalData.systemInfo['height']);
+    // console.log(util.split_array(this.data.menu,6));
   
   },
 
@@ -93,7 +113,8 @@ Page({
     var cnum = e.currentTarget.dataset['id'] -2 
     this.setData({
       nav_siv: "menu"+cnum,
-      nav_selectId: e.currentTarget.id
+      nav_selectId: e.currentTarget.id,
+      swipercurrentitemid: cnum + 2,
     })
   },
   nav_list_selected (e) {
@@ -101,8 +122,16 @@ Page({
     var cnum = e.currentTarget.dataset['id'] - 2 >= 0 ? e.currentTarget.dataset['id'] - 2 : 0;
     this.setData({
       nav_siv: "menu" + cnum,
-      nav_selectId: "menu" + e.currentTarget.dataset['id']
+      nav_selectId: "menu" + e.currentTarget.dataset['id'],
+      swipercurrentitemid: cnum + e.currentTarget.dataset['id'],
     })
+  },
+  //左右滑动事件
+  swiperChange (e) {
+    console.log(e.detail.currentItemId);
+    this.setData({
+      nav_selectId: "menu" + e.detail.currentItemId,
+    });
   },
   menuDown: function (e) {
     console.log(e);
@@ -110,6 +139,13 @@ Page({
     this.setData({
       menudownShow: menudownShow
     });
+  },
+  //跳转到详情页
+  toDetail: function (e) {
+    // console.log(e.currentTarget.dataset['meeting']);
+    wx.navigateTo({
+      url: '../detail/detail?meeting=' + e.currentTarget.dataset['meeting'],
+    })
   },
   toBaoming: function (e) {
     wx.navigateTo({
