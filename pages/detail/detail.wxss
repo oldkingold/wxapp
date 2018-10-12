@@ -1,3 +1,7 @@
+.wximg {
+  max-width: 100%;
+}
+
 page {
   background-color: #f0f2f5;
 }
@@ -230,4 +234,36 @@ video {
 .comment-info {
   margin: 15rpx;
   color: #828282;
+}
+
+.baoming {
+  position: fixed;
+  bottom: 0rpx;
+  height: 90rpx;
+  width: 100%;
+  background-color: #f3a401;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.baoming .price {
+  float: left;
+  color: white;
+  font-size: 22rpx;
+  margin-left: 30rpx;
+}
+
+.baoming .price text{
+  font-size: 38rpx;
+}
+
+.baoming .bm {
+  float: right;
+  background-color: white;
+  color: #f3a401;
+  font-size: 32rpx;
+  padding: 10rpx 40rpx 10rpx 40rpx;
+  border-radius: 35rpx;
+  margin-right: 30rpx;
 }

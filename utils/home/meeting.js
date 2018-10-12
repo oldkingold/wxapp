@@ -47,8 +47,32 @@ function meetingDetail(id) {
 
 }
 
+function companyInfo() {
+  let companyInfo = wx.getStorageSync("companyInfo");
+  
+    return new Promise(function (resolve, reject) {
+      if (!companyInfo) {
+        wx.request({
+          url: api.companyInfo,
+          method: "GET",
+          success: function (res) {
+            wx.setStorageSync("companyInfo", res.data);
+            resolve(res.data)
+          },
+          fail: function (res) {
+            reject(res);
+          }
+        })
+      } else {
+        resolve(companyInfo)
+      }
+    });
+  
+}
+
 module.exports = {
   themes: themes,
   meeting: meeting,
   meetingDetail: meetingDetail,
+  companyInfo: companyInfo,
 }

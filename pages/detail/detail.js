@@ -5,6 +5,7 @@ const api = require('../../config/api.js');
 Page({
   data: {
     rooturl: api.ApiRootUrl,
+    companyInfo: "",
     chxz: {},
     kctg: {},
     select_index: '0',
@@ -21,15 +22,65 @@ Page({
 
     var that = this;
 
+    meet.companyInfo().then(function(res) {
+      // that.data.companyInfo = res.split("\n");
+      that.setData({
+        companyInfo: res.split("\n")
+      });
+    })
+
     let meeting = meet.meetingDetail(options['meeting']);
     if(meeting) {
+      
+      meeting.course.introduction = meeting.course.introduction.replace(/<img/g,'<img style="max-width: 100%;height:auto"')
+      meeting.hotel.routes = JSON.parse(meeting.hotel.routes);
+      meeting.hotel.jwd = meeting.hotel.jwd.split(",");
+      meeting.introduction = meeting.introduction.split("\n");
+      let start_date = new Date(meeting.start_date.replace(/-/g,"/"));
+      let bddate = start_date.getDate();
+      let end_date = new Date(meeting.end_date.replace(/-/g, "/"));
+      start_date.setTime(start_date.getTime() + 24 * 60 * 60 * 1000);
+      end_date.setTime(end_date.getTime() - 24 * 60 * 60 * 1000);
+      meeting.pxdate = start_date.getFullYear() + "年" + (start_date.getMonth() + 1) + "年" + start_date.getDate() + "-" + end_date.getDate() + "日（" + bddate + "日报道）";
+
+      meeting.teach_introduction = [];
+      meeting.teach_article = {};
+      meeting.teach_book = "";
+      meeting.teach_assess = [];
+      if (meeting.teachers_num == 1) {
+        meeting.teach_introduction = meeting.teachers.introduction.split("\n");
+        meeting.teach_book = meeting.teachers.books;
+        meeting.teach_assess.push(meeting.teachers.assess);
+        
+        let articles = JSON.parse(meeting.teachers.articles);
+        for (let key in articles) {
+          meeting.teach_article[key] = articles[key];
+        }
+      }else {
+        for (let i = 0; i < meeting.teachers_num; i ++) {
+          let introductions = meeting.teachers[i].introduction.split("\n");
+          for (let j = 0; j < introductions.length; j++) {
+            meeting.teach_introduction.push(introductions[j]);
+          }
+          meeting.teach_book += meeting.teachers[i].books;
+          meeting.teach_assess.push(meeting.teachers[i].assess);
+
+          let articles = JSON.parse(meeting.teachers[i].articles);
+          for (let key in articles) {
+            meeting.teach_article[key] = articles[key];
+          }
+        }
+      }
+
+      let yhjg = meeting.sale.sale.split("\n");
+      console.log(yhjg[0].match("/[0-9]/g"))
+
       console.log(meeting);
       that.setData({
         meeting: meeting
       });
     }
     
-
     for (var i = 0; i < testData.length; i++) {
       if (testData[i].title == 'chxz') {
         that.setData({
