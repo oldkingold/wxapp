@@ -5,15 +5,16 @@ var app = getApp();
 
 Page({
   data: {
-    userInfo: {
-      avatarUrl: '/static/images/moren.png'
-    },
+    // userInfo: {
+    //   avatarUrl: '/static/images/moren.png'
+    // },
     canIUseGetUserInfo: wx.canIUse('button.open-type.getUserInfo'),
     userInfo_status: 0,
     loginStatus: 0,
     com_name: '',
     account: '',
   },
+
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     var that = this;
@@ -32,6 +33,7 @@ Page({
       }
     })
   },
+
   onShow: function () {
     // let company_setting = storage.getstorage('company_setting', null);
     if (company_setting != null) {
@@ -46,19 +48,20 @@ Page({
       });
     }
   },
+
   bindweixin(e) {
     let that = this;
     if (e.detail.userInfo) {
       //微信账号登录
-      // util.wxlogin().then((res) => {
-      //   that.setData(
-      //     userInfo_status: 1,
-      //     userInfo: e.detail.userInfo,
-      //   });
-      //   app.globalData.token = res.token;
-      //   app.globalData.openId = res.openId;
-      //   that.onShow();
-      // });
+      util.wxlogin().then((res) => {
+        that.setData({
+          userInfo_status: 1,
+          userInfo: e.detail.userInfo,
+        });
+        app.globalData.token = res.token;
+        app.globalData.openId = res.openId;
+        that.onShow();
+      });
 
     }else{
       wx.showModal({
@@ -68,23 +71,24 @@ Page({
       })
     }
   },
+  
   bindcheckloginwx(e) {
     let that = this;
     if (e.detail.userInfo) {
       //微信账号登录
       let url = e.target.dataset['url'];
 
-      // util.wxlogin().then((res) => {
-      //   that.setData({
-      //     userInfo_status: 1,
-      //     userInfo: e.detail.userInfo,
-      //   });
-      //   app.globalData.token = res.token;
-      //   app.globalData.openId = res.openId;
-      //   wx.navigateTo({
-      //     url: url,
-      //   })
-      // });
+      util.wxlogin().then((res) => {
+        that.setData({
+          userInfo_status: 1,
+          userInfo: e.detail.userInfo,
+        });
+        app.globalData.token = res.token;
+        app.globalData.openId = res.openId;
+        wx.navigateTo({
+          url: url,
+        })
+      });
 
     } else {
       wx.showModal({

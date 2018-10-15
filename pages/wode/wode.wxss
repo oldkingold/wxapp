@@ -24,6 +24,7 @@ page {
   left: 90rpx;
   border-radius: 50%;
   border: 4rpx solid white;
+  padding: 0rpx;
 }
 
 .avatarUrl image {
@@ -44,6 +45,7 @@ page {
   position: absolute;
   left: 250rpx;
   margin-right: 70rpx;
+  top: 40rpx;
 }
 
 .userBtn_1 {

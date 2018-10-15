@@ -1,6 +1,7 @@
 const app = getApp()
 const meet = require('../../utils/home/meeting.js');
 const api = require('../../config/api.js');
+const util = require('../../utils/util.js');
 
 Page({
   data: {
@@ -72,8 +73,19 @@ Page({
         }
       }
 
-      let yhjg = meeting.sale.sale.split("\n");
-      console.log(yhjg[0].match("/[0-9]/g"))
+      let saledetail = meeting.sale.sale.split("\n"); 
+      for (let key in saledetail) {
+        saledetail[key] = util.bouncer(saledetail[key].split(/([0-9]{1,3}人及以上)|([0-9]\.[0-9]{1,2}折)/));
+      }
+      for (let key in saledetail) {
+        let sd = {};
+        for (let i in saledetail[key]) {
+          sd[saledetail[key][i]] = /([0-9]{1,3}人及以上)|([0-9]\.[0-9]{1,2}折)/.test(saledetail[key][i]);  
+        }
+        saledetail[key] = sd;
+      }
+
+      meeting.saledetail = saledetail;
 
       console.log(meeting);
       that.setData({

@@ -32,10 +32,9 @@
     </view>
   </view>
 </view>
-
 <swiper class='swiper' style='height:{{screenHeight - 42}}px' current-item-id="{{swipercurrentitemid}}" bindchange="swiperChange">
   <block>
-    <swiper-item item-id="0" class="item">
+    <swiper-item item-id="0" class="item" >
       <scroll-view scroll-y style='height:{{screenHeight - 42}}px'>
         <block wx:for="{{meetings}}" wx:key='*this'>
           <view class='card_1' catchtap='toDetail' data-meeting='{{index}}' wx:if="{{ item.img }}">          

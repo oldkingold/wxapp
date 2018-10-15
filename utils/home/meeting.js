@@ -10,7 +10,7 @@ function themes() {
         resolve(res)
       },
       fail: function(res) {
-        // console.log(res);
+        console.log(res);
         reject(res);
       }
 
@@ -28,7 +28,7 @@ function meeting() {
         resolve(res)
       },
       fail: function (res) {
-        // console.log(res);
+        console.log(res);
         reject(res);
       }
 

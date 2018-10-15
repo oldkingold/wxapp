@@ -119,30 +119,20 @@
           <view>
             <i class='chxz-content-info black'>2.优惠价格：</i>
             <view class='chxz-content no-margin block'>
-              <view>
-                <i class='chxz-content-info'>（1）缴费
-                  <i class='time'>3人及以上</i>，优惠价
-                  <i class='time'>9.0折</i>
+
+              <view wx:for="{{meeting.saledetail}}">
+                <i class='chxz-content-info'>
+                  <block wx:for="{{item}}" wx:for-index="iindex" wx:for-item="iitem">
+                    <block wx:if="{{iitem}}">
+                      <i class='time'>{{iindex}}</i>
+                    </block>
+                    <block wx:else>
+                      {{iindex}}
+                    </block>
+                  </block>
                 </i>
               </view>
-              <view>
-                <i class='chxz-content-info'>（2）缴费
-                  <i class='time'>5人及以上</i>，优惠价
-                  <i class='time'>8.0折</i>
-                </i>
-              </view>
-              <view>
-                <i class='chxz-content-info'>（3）缴费
-                  <i class='time'>10人及以上</i>，优惠价
-                  <i class='time'>7.5折</i>
-                </i>
-              </view>
-              <view>
-                <i class='chxz-content-info'>（4）缴费
-                  <i class='time'>15人及以上</i>，优惠价
-                  <i class='time'>7.0折</i>
-                </i>
-              </view>
+              
             </view>
           </view>
 
