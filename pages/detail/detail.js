@@ -6,7 +6,7 @@ const util = require('../../utils/util.js');
 Page({
   data: {
     rooturl: api.ApiRootUrl,
-    companyInfo: "",
+    companyInfo: [],
     chxz: {},
     kctg: {},
     select_index: '0',
@@ -143,6 +143,26 @@ Page({
     } else {
       this.setData({
         'select_index': index
+      })
+    }
+  },
+
+  bindweixin: function (e) {
+    let that = this;
+    if (e.detail.userInfo) {
+      util.wxlogin().then((res) => {
+        app.globalData.token = res.token;
+        app.globalData.openId = res.openId;
+        wx.navigateTo({
+          url: '/pages/baoming/bm/bm?id=' + that.data.meeting.id,
+        })
+      });
+      
+    } else {
+      wx.showModal({
+        title: "用户未授权",
+        content: '请授权允许微信登录后进行报名',
+        showCancel: false,
       })
     }
   },

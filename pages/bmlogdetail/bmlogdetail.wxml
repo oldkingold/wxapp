@@ -1,0 +1,196 @@
+<view class="container">
+  <view class='content'>
+    <view class='item'>
+      <!-- 过期 -->
+      <block wx:if="{{bmMeetingLog.isOvertime}}">
+        <view class='title content-line is-over-time'>{{bmMeetingLog.name}}</view>
+          <view class='m-status-img'>
+            <image src='/static/images/overdue@3x.png'></image>
+          </view> 
+        <view class='place-object content-line'>
+          <view class='object-name is-over-time'>时间地点</view>
+          <view class='is-over-time '>{{bmMeetingLog.startime}}-{{bmMeetingLog.endtime}}</view>
+          <view class='place is-over-time'>{{bmMeetingLog.place}}</view>
+        </view>
+
+        <view class='teacher-object content-line'>
+          <view class='object-name is-over-time'>会议讲师</view>
+          <view class='is-over-time' wx:for="{{bmMeetingLog.teachers}}" wx:for-item="titem" wx:key="*this" wx:for-index="tindex">
+            <block wx:if="{{tindex==(bmMeetingLog.teachers.length-1)}}">
+              {{titem.name}}
+            </block>
+            <block wx:else>
+              {{titem.name}}、
+            </block>
+          </view>
+        </view>
+
+        <view class='attend-object content-line'>
+          <view class='object-name is-over-time'>参会人员</view>
+          <view class='attend-right'>
+            <view class='is-over-time' wx:for="{{bmMeetingLog.attendees}}" wx:for-item="aitem" wx:key="*this" wx:for-index="aindex">
+              <block wx:if="{{aindex==(bmMeetingLog.attendees.length-1)}}">
+                {{aitem.name}}
+              </block>
+              <block wx:else>
+                {{aitem.name}}、
+              </block>
+            </view>
+          </view>
+        </view>
+
+        <view class='fee-object content-line'>
+          <view class='object-name is-over-time'>会费</view>
+          <view class='is-over-time'>￥{{bmMeetingLog.fee}}/人</view>
+        </view>
+
+        <view class='invoice-object content-line'>
+          <view class='object-name is-over-time'>开票信息</view>
+          <view class='is-over-time'>{{bmMeetingLog.invoice.anture}}</view>
+        </view>
+        <block wx:if="{{bmMeetingLog.invoice.anture!='不开票'}}">
+          <view class='middle'>
+
+            <view class='invoice-image-object'>
+              <image class='trangle' src='/static/images/icon_trangle.png'></image>
+            </view>
+            <block wx:if="{{bmMeetingLog.invoice.anture=='专票' || bmMeetingLog.invoice.anture=='普票'}}">
+              <view class='invoice-comp-name-object content-line'>
+                <view class='object-name is-over-time'>公司名称</view>
+                <view class='is-over-time'>{{bmMeetingLog.invoice.compName}}</view>
+              </view>
+
+              <view class='invoice-id-object content-line'>
+                <view class='object-name is-over-time'>纳税识别号</view>
+                <view class='is-over-time'>{{bmMeetingLog.invoice.invoiceId}}</view>
+              </view>
+              <block wx:if="{{bmMeetingLog.invoice.anture=='专票'}}">
+                <view class='invoice-addr-object content-line'>
+                  <view class='object-name is-over-time'>公司地址</view>
+                  <view class='is-over-time'>{{bmMeetingLog.invoice.compAddr}}</view>
+                </view>
+                <view class='invoice-tel-object content-line'>
+                  <view class='object-name is-over-time'>电话号码</view>
+                  <view class='is-over-time'>{{bmMeetingLog.invoice.compTel}}</view>
+                </view>
+                <view class='invoice-openbank-object content-line'>
+                  <view class='object-name is-over-time'>开户银行</view>
+                  <view class='is-over-time'>{{bmMeetingLog.invoice.openBank}}</view>
+                </view>
+                <view class='invoice-bankaccount-object content-line'>
+                  <view class='object-name is-over-time'>银行账号</view>
+                  <view class='is-over-time'>{{bmMeetingLog.invoice.bankAccount}}</view>
+                </view>
+              </block>
+            </block>
+            <block wx:else>
+              注：若后期需要开票，请与会务工作人员联系！
+            </block>
+          </view>
+        </block>
+      </block>
+      <!-- 没有过期 -->
+      <block wx:else>
+        <view class='title content-line'>{{bmMeetingLog.name}}</view>
+        <!-- <view class='m-status-img'>
+                    <image src='/static/images/overdue@3x.png'></image>
+                  </view> -->
+        <view class='place-object content-line'>
+          <view class='object-name'>时间地点</view>
+          <view class=''>{{bmMeetingLog.startime}}-{{bmMeetingLog.endtime}}</view>
+          <view class='place '>{{bmMeetingLog.place}}</view>
+        </view>
+
+        <view class='teacher-object content-line'>
+          <view class='object-name'>会议讲师</view>
+          <view class='' wx:for="{{bmMeetingLog.teachers}}" wx:for-item="titem" wx:key="*this" wx:for-index="tindex">
+            <block wx:if="{{tindex==(bmMeetingLog.teachers.length-1)}}">
+              {{titem.name}}
+            </block>
+            <block wx:else>
+              {{titem.name}}、
+            </block>
+          </view>
+        </view>
+
+        <view class='attend-object content-line'>
+          <view class='object-name'>参会人员</view>
+          <view class='attend-right'>
+            <view class='' wx:for="{{bmMeetingLog.attendees}}" wx:for-item="aitem" wx:key="*this" wx:for-index="aindex">
+              <block wx:if="{{aindex==(bmMeetingLog.attendees.length-1)}}">
+                {{aitem.name}}
+              </block>
+              <block wx:else>
+                {{aitem.name}}、
+              </block>
+            </view>
+          </view>
+        </view>
+
+        <view class='fee-object content-line'>
+          <view class='object-name '>会费</view>
+          <view class=''>￥{{bmMeetingLog.fee}}/人</view>
+        </view>
+
+        <view class='invoice-object content-line'>
+          <view class='object-name '>开票信息</view>
+          <view class=''>{{bmMeetingLog.invoice.anture}}</view>
+        </view>
+
+        <block wx:if="{{bmMeetingLog.invoice.anture!='不开票'}}">
+            <view class='middle'>
+              <view class='invoice-image-object'>
+                <image class='trangle' src='/static/images/icon_trangle.png'></image>
+              </view>
+            <block wx:if="{{bmMeetingLog.invoice.anture=='专票' || bmMeetingLog.invoice.anture=='普票'}}">
+              <view class='invoice-comp-name-object content-line'>
+                <view class='object-name '>公司名称</view>
+                <view class=''>{{bmMeetingLog.invoice.compName}}</view>
+              </view>
+
+              <view class='invoice-id-object content-line'>
+                <view class='object-name'>纳税识别号</view>
+                <view class=''>{{bmMeetingLog.invoice.invoiceId}}</view>
+              </view>
+              <block wx:if="{{bmMeetingLog.invoice.anture=='专票'}}">
+                <view class='invoice-addr-object content-line'>
+                  <view class='object-name '>公司地址</view>
+                  <view class=''>{{bmMeetingLog.invoice.compAddr}}</view>
+                </view>
+                <view class='invoice-tel-object content-line'>
+                  <view class='object-name '>电话号码</view>
+                  <view class=''>{{bmMeetingLog.invoice.compTel}}</view>
+                </view>
+                <view class='invoice-openbank-object content-line'>
+                  <view class='object-name '>开户银行</view>
+                  <view class=''>{{bmMeetingLog.invoice.openBank}}</view>
+                </view>
+                <view class='invoice-bankaccount-object content-line'>
+                  <view class='object-name '>银行账号</view>
+                  <view class=''>{{bmMeetingLog.invoice.bankAccount}}</view>
+                </view>
+              </block>
+            </block>
+            <block wx:else>
+              注：若后期需要开票，请与会务工作人员联系！
+            </block>
+          </view>
+        </block>
+
+      </block>
+    </view>
+  </view>
+  <block wx:if="{{!bmMeetingLog.isOvertime}}">
+    <view class='bottom-object content-line'>
+      <block wx:if="{{!bmMeetingLog.iscancle}}">
+        <view class='canclebm' catchtap='canclebm'>取消报名</view>
+      </block>
+      <block wx:if="{{!bmMeetingLog.iscancle}}">
+        <view class='changebm' catchtap='changebm' data-id='change'>变更报名</view>
+      </block>
+      <block wx:else>
+        <view class='changebm' catchtap='changebm' data-id='restart'>重新报名</view>
+      </block>
+    </view>
+  </block>
+</view>

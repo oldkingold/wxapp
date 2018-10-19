@@ -1,7 +1,7 @@
 <showmodel id="showmodel"></showmodel>
 <view class='content'>
     <view class='meeting-name'>
-      <view class='meeting-name2'>会议名称：</view><view class='meeting-name1'>{{Meetingname}}建筑企业投标/合同/成本等涉税实务操作</view>
+      <view class='meeting-name2'>会议名称：</view><view class='meeting-name1'>{{meeting.name}}</view>
     </view>
     <view class='company'>
       <view class="section">
@@ -100,52 +100,7 @@
 
     </view>
 
-
-    <view class='meal' wx:if="{{consoleMeetings.m_select==1}}">
-      <view class='meal-content'>
-        <view class='meal-object'>
-          <text> 餐饮</text>
-        </view>
-        <view class='meal_all'>
-          <block wx:for="{{mealList}}">
-            <view class='meal_day'>
-              <view class='meal_date' >{{item.name}}:</view>
-               <block wx:for="{{item.data}}" wx:for-index="idx" wx:for-item="meal">
-                <view class="selnum {{idx == 'dinner'? '':'selnum1'}}">
-                  <view class='room'>{{idx == "dinner"? "晚餐":"中餐"}}</view>
-                  <block wx:if="{{meal.status == 1}}">
-                    <image data-id="{{index+'_'+idx}}" class="cut" bindtap="mealcutNumber" src='../../../static/images/cut1.png'></image >
-                    <input data-id="{{index+'_'+idx}}" value="{{meal.pnum}}" class="number" type="number" bindfocus='bindfocus_mealNum' bindblur='bindblur_mealNum' />
-                    <image data-id="{{index+'_'+idx}}" class="add" bindtap="mealaddNumber" src='../../../static/images/add.png'></image>
-                  </block>
-                  <block wx:if="{{meal.status == 0}}">
-                    <image class="cut"></image >
-                    <input value="{{meal.pnum}}" class="number" type="number" disabled='false'/>
-                    <image class="add"></image>
-                  </block>
-                </view>
-              </block> 
-            </view>
-          </block>
-          <view class='line1'>
-            <view class='check-box' bindtap='BindIsNotNeedMeal'>
-              <view wx:if="{{isNotNeedMeal == 0}}" class='check-box-icon'>
-                <image src='../../../static/images/checked@3x.png'></image>
-              </view>
-              <view wx:else class='check-box-icon'>
-                <image src='../../../static/images/check@3x.png'></image>
-              </view>
-              <view class='check-box-value'>不需要</view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <!-- </view> -->
-
-
-    </view>
-
-    <picker mode="date" value="{{arriveDate}}" start="2018-02-01" end="2097-09-01" bindchange="arriveDateChange">
+    <picker mode="date" value="{{meeting.end_show}}" start="2018-02-01" end="2097-09-01" bindchange="arriveDateChange">
       <view class='arrive-time'>
         <view class='arrive-time-content'>
           <view class='arrive-time-name'>
@@ -160,14 +115,14 @@
               {{arriveDateHolder}}
             </view>
             <view class="picker" wx:else>
-              {{arriveDate}}
+              {{meeting.end_show}}
             </view>
           </view>
         </view>
       </view>
     </picker>
 
-    <picker mode="date" value="{{leaveDate}}" start="2018-02-01" end="2097-09-01" bindchange="leaveDateChange">
+    <picker mode="date" value="{{meeting.end_date}}" start="2018-02-01" end="2097-09-01" bindchange="leaveDateChange">
       <view class='arrive-time'>
         <view class='arrive-time-content'>
           <view class='arrive-time-name'>
@@ -181,7 +136,7 @@
               {{leaveDateHolder}}
             </view>
             <view class="picker" wx:else>
-              {{leaveDate}}
+              {{meeting.end_date}}
             </view>
           </view>
         </view>
@@ -278,6 +233,6 @@
       </view>
     </view>
 
-    <contact id="contact" bind:phoneCall="phoneCall"></contact>
+    <contact id="contact" employeeTeacherList="{{meeting.employees}}"  bind:phoneCall="phoneCall"></contact>
 
 </view>

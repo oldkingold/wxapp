@@ -1,13 +1,11 @@
-// var util = require('../../../utils/util.js');
+var util = require('../../utils/util.js');
 // var api = require('../../../config/api.js');
 // var storage = require('../../../services/storage.js');
 var app = getApp();
 
 Page({
   data: {
-    // userInfo: {
-    //   avatarUrl: '/static/images/moren.png'
-    // },
+    userInfo: {},
     canIUseGetUserInfo: wx.canIUse('button.open-type.getUserInfo'),
     userInfo_status: 0,
     loginStatus: 0,
@@ -18,41 +16,39 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     var that = this;
-    // let userInfo = storage.getstorage('userInfo', null);
+    //判断是否微信授权登录
     wx.getSetting({
       success: function (res) {
         if (res.authSetting['scope.userInfo']) {
-          that.setData({ userInfo_status: 1 });
-          if (userInfo != null) {
+          let userInfo = wx.getStorageSync('userInfo');
+          if (userInfo) {
             that.setData({
-              userInfo: userInfo
+              userInfo: userInfo,
+              userInfo_status: 1
             })
           }
-
+          //判断是否公司账号登录
+          let company_setting = wx.getStorageSync('company_setting');
+          if (company_setting) {
+            that.setData({
+              loginStatus: 1,
+              com_name: company_setting.name,
+              account: company_setting.money,
+            });
+          }
         }
       }
     })
   },
 
   onShow: function () {
-    // let company_setting = storage.getstorage('company_setting', null);
-    if (company_setting != null) {
-      this.setData({
-        loginStatus: 1,
-        com_name: company_setting.name,
-        account: company_setting.money,
-      });
-    } else {
-      this.setData({
-        loginStatus: 0,
-      });
-    }
+     
   },
 
+  //微信授权登录
   bindweixin(e) {
     let that = this;
     if (e.detail.userInfo) {
-      //微信账号登录
       util.wxlogin().then((res) => {
         that.setData({
           userInfo_status: 1,
@@ -62,7 +58,6 @@ Page({
         app.globalData.openId = res.openId;
         that.onShow();
       });
-
     }else{
       wx.showModal({
         title: "用户未授权",
@@ -101,7 +96,7 @@ Page({
   //绑定企业账号
   goLogin() {
     wx.navigateTo({
-      url: '/pages/ucenter/login/login'
+      url: '/pages/login/login'
     });
   },
   scanCode: function () {
@@ -109,7 +104,7 @@ Page({
       onlyFromCamera: true,
       success: (res) => {
         wx.navigateTo({
-          url: '/pages/ucenter/judge/judge?website=' + res.result,
+          url: '/pages/judge/judge?website=' + res.result,
         })
       }
     })
@@ -124,7 +119,7 @@ Page({
           wx.removeStorageSync('token');
           wx.removeStorageSync('userInfo');
           wx.switchTab({
-            url: '/pages/index/index'
+            url: '/pages/home/home'
           });
         }
       }

@@ -1,0 +1,124 @@
+<view class="container">
+
+  <view class="cate-nav">
+    <view class="tab-h">
+      <block wx:for="{{themeList}}" wx:key="*this" data-index="{{index}}">
+        <view class="tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" bindtap="swichNav">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+
+  <swiper class="swiper-content" current="{{currentTab}}" duration="300" catchchange="switchTab">
+    <swiper-item wx:for="{{bmMeetingLog}}" wx:key="*this">
+      <block wx:if="{{item}}">
+        <scroll-view scroll-y="true" class="scoll-h">
+          <block wx:for="{{item}}" wx:key="*this" wx:for-item="iitem" wx:for-index="iindex">
+            <block wx:if="{{iitem.isOvertime && !iitem.iscancle}}">
+                <view id='{{iindex}}' class='item' catchtap='tobmlogdetail'>
+                  <view>
+                    <view class='title content-line is-over-time'>{{iitem.name}}</view>
+                    <view class='m-status-img'>
+                      <image src='/static/images/overdue@3x.png'></image>
+                    </view>
+                    <view class='place-object content-line'>
+                      <view class='object-name is-over-time'>时间地点</view>
+                      <view class='is-over-time'>{{iitem.startime}}-{{iitem.endtime}}</view>
+                      <view class='place is-over-time'>{{iitem.place}}</view>
+                    </view>
+                    <view class='teacher-object content-line'>
+                      <view class='object-name is-over-time'>会议讲师</view>
+                      <view class='is-over-time' wx:for="{{iitem.teachers}}" wx:for-item="titem" wx:key="*this" wx:for-index="tindex">
+                        <block wx:if="{{tindex==(iitem.teachers.length-1)}}">
+                          {{titem.name}}
+                        </block>
+                        <block wx:else>
+                          {{titem.name}}、
+                        </block>
+                      </view>
+                    </view>
+                    <view class='attend-object content-line'>
+                      <view class='object-name is-over-time'>参会人员</view>
+                      <view class='attend-right'>
+                        <view class='is-over-time' wx:for="{{iitem.attendees}}" wx:for-item="aitem" wx:key="*this" wx:for-index="aindex">
+                          <block wx:if="{{aindex==(iitem.attendees.length-1)}}">
+                            {{aitem.name}}
+                          </block>
+                          <block wx:else>
+                            {{aitem.name}}、
+                          </block>
+                        </view>
+                      </view>
+                    </view>
+                    <view class='fee-object content-line'>
+                      <view class='object-name is-over-time'>会费</view>
+                      <view class='is-over-time'>￥{{iitem.fee}}/人</view>
+                    </view>
+                    <view class='content-bottom'>
+                      <view hidden='true' class='changebm-is-over-time'>变更报名</view>
+                      <view hidden='true' class='canclebm-is-over-time '>取消报名</view>
+                    </view>
+                  </view>
+                </view>
+            </block>
+
+            <block wx:else>
+                <view id='{{iindex}}' class='item' catchtap='tobmlogdetail'>
+                  <view>
+                    <view class='title content-line'>{{iitem.name}}</view>
+                    <view class='place-object content-line'>
+                      <view class='object-name'>时间地点</view>
+                      <view>{{iitem.startime}}-{{iitem.endtime}}</view>
+                      <view class='place'>{{iitem.place}}</view>
+                    </view>
+                    <view class='teacher-object content-line'>
+                      <view class='object-name'>会议讲师</view>
+                      <view wx:for="{{iitem.teachers}}" wx:for-item="titem" wx:key="*this" wx:for-index="tindex">
+                        <block wx:if="{{tindex==(iitem.teachers.length-1)}}">
+                          {{titem.name}}
+                        </block>
+                        <block wx:else>
+                          {{titem.name}}、
+                        </block>
+                      </view>
+                    </view>
+                    <view class='attend-object content-line'>
+                      <view class='object-name'>参会人员</view>
+                      <view class='attend-right'>
+                        <view wx:for="{{iitem.attendees}}" wx:for-item="aitem" wx:key="*this" wx:for-index="aindex">
+                          <block wx:if="{{aindex==(iitem.attendees.length-1)}}">
+                            {{aitem.name}}
+                          </block>
+                          <block wx:else>
+                            {{aitem.name}}、
+                          </block>
+                        </view>
+                      </view>
+                    </view>
+                    <view class='fee-object content-line'>
+                      <view class='object-name'>会费</view>
+                      <view>￥{{iitem.fee}}/人</view>
+                    </view>
+                    <view class='content-bottom'> 
+                    <block wx:if="{{iitem.iscancle}}">
+                      <view data-id='/pages/baoming/bm/bm?id={{iitem.meet}}&method=restart' id='{{iindex}}' class='rebm' catchtap='changebm'>重新报名</view>
+                    </block>
+                    <block wx:else>
+                    <view data-id='/pages/baoming/bm/bm?id={{iitem.meet}}&method=change' id='{{iindex}}' class='changebm' catchtap='changebm'>变更报名</view>
+                      <view class='canclebm' id='{{iindex}}' catchtap='canclebm'>取消报名</view>            
+                    </block>
+                    </view>
+                  </view>
+                </view>
+            </block>
+          </block>
+        </scroll-view>
+      </block>
+      <block wx:else>
+        <view class='nolog'>
+          <image src='/static/images/nolog@3x.png'></image>
+          <view class='nolog-text'>暂无记录</view>
+        </view>
+      </block>
+    </swiper-item>
+  </swiper>
+</view>

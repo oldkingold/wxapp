@@ -239,7 +239,7 @@ video {
 .baoming {
   position: fixed;
   bottom: 0rpx;
-  height: 90rpx;
+  height: 120rpx;
   width: 100%;
   background-color: #f3a401;
   display: flex;
@@ -250,20 +250,21 @@ video {
 .baoming .price {
   float: left;
   color: white;
-  font-size: 22rpx;
+  font-size: 36rpx;
   margin-left: 30rpx;
 }
 
 .baoming .price text{
-  font-size: 38rpx;
+  font-size: 50rpx;
 }
 
 .baoming .bm {
   float: right;
   background-color: white;
   color: #f3a401;
-  font-size: 32rpx;
-  padding: 10rpx 40rpx 10rpx 40rpx;
+  font-size: 42rpx;
+  padding: 15rpx 30rpx 15rpx 30rpx;
   border-radius: 35rpx;
   margin-right: 30rpx;
+  line-height: 40rpx;
 }

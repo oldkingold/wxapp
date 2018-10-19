@@ -6,7 +6,7 @@
     <view class='staff-emp'>
       <view class='staff-emp-desc'>通讯</view>
         <view class='emp'>
-          <block class='staff-emp-item' wx:for="{{consoleMeetings.employees}}" wx:key="{{item.index}}">
+          <block class='staff-emp-item' wx:for="{{employeeTeacherList}}" wx:key="*this">
             <view class='staff-emp-item' wx:if="{{(index+1) >=2}}">
               <view class='staff-teacher'>{{item.name}}</view>
               <view data-tel='{{item.tel}}' class='staff-teacher-phone' catchtap='phoneCall'>{{item.tel}}</view>

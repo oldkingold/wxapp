@@ -1,0 +1,112 @@
+page {
+  height: 100%
+}
+
+.container {
+  padding-top: 20rpx;
+  background: #f5f5f5;
+  height: 100%
+}
+
+.content {
+  background-color: #fff;
+  padding-bottom: 18rpx;
+  padding: 36rpx 0 26rpx 0rpx;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone {
+  display: flex;
+  justify-content: center;
+  width: 168rpx;
+  height: 160rpx;
+}
+
+.phone image {
+  width: 93rpx;
+  height: 160rpx;
+}
+
+.phone-text {
+  margin-top: 18rpx;
+  margin-bottom: 36rpx;
+}
+
+.form-item {
+  display: flex;
+  margin: 18rpx 18rpx 0rpx 18rpx;
+  background-color: #fff;
+  align-items: center;
+}
+
+.content-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  border: 1px solid #e6e6e6;
+  border-radius: 8rpx;
+  height: 80rpx;
+  padding-left: 18rpx;
+}
+
+.sides {
+  display: flex;
+  align-items: center;
+  height: 80%;
+}
+
+.item-name {
+  white-space: nowrap;
+}
+
+.column-line {
+  width: 1rpx;
+  border-right: 1px solid #e6e6e6;
+  height: 60%;
+  margin-left: 18rpx;
+}
+
+.sides input {
+  margin-left: 26rpx;
+  margin-right: 26rpx;
+}
+
+.form-item button {
+  display: block;
+  border-radius: 16rpx;
+  color: #007aff;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #007aff;
+  font-size: 26rpx;
+  margin-left: 18rpx;
+  width:60%;
+}
+
+.showmsg {
+  height: 34rpx;
+  text-align: left;
+  margin-left: 18rpx;
+  color: #e6e6e6;
+  font-size: 25rpx;
+  margin-top: 18rpx;
+}
+
+.login-btn {
+  height: 86rpx;
+  line-height: 86rpx;
+  color: #fff;
+  font-size: 30rpx;
+  width: 80%;
+  background: #007aff;
+  border-radius: 45rpx;
+  margin-top: 80rpx;
+  letter-spacing: norow;
+}

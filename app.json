@@ -1,16 +1,31 @@
 {
   "pages": [
-    "pages/home/home",
-    "pages/baoming/bm/bm",
-    "pages/baoming/bmAddPerson/bmAddPerson",
-    "pages/baoming/receipt/receipt",
-    "pages/index/index",
-    "pages/wode/wode",
-    "pages/aboutas/aboutas",
-    "pages/setting/setting/setting",
-    "pages/message/message",
-    "pages/order/order",
-    "pages/detail/detail"
+    "pages/home/home", 
+    "pages/baoming/bm/bm", 
+    "pages/baoming/bmAddPerson/bmAddPerson", 
+    "pages/baoming/receipt/receipt", 
+    "pages/index/index", 
+    "pages/wode/wode", 
+    "pages/login/login", 
+    "pages/reset/reset", 
+    "pages/sign/sign", 
+    "pages/bmlog/bmlog", 
+    "pages/bmlogdetail/bmlogdetail", 
+    "pages/aboutas/aboutas", 
+    "pages/setting/setting/setting", 
+    "pages/message/message", 
+    "pages/order/order", 
+    "pages/detail/detail", 
+    "pages/setting/changepwd/changepwd", 
+    "pages/setting/changephone/changephone", 
+    "pages/setting/changephonenext/changephonenext", 
+    "pages/personmanage/personmanage", 
+    "pages/signin/signin", 
+    "pages/signining/singining", 
+    "pages/judge/judge", 
+    "pages/infomanage/infomanage", 
+    "pages/editcominfo/editcominfo", 
+    "pages/addcominfo/addcominfo" 
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -29,7 +44,7 @@
         "selectedIconPath": "static/images/home_h.png"
       },
       {
-        "pagePath": "pages/baoming/bm/bm",
+        "pagePath": "pages/order/order",
         "text": "会员卡",
         "iconPath": "static/images/card.png",
         "selectedIconPath": "static/images/card_h.png"

@@ -1,0 +1,24 @@
+<view class="container">
+  <view class='content'>
+    <view class='top'>
+      <view class='phone'>
+        <image src='/static/images/changephone@3x.png'></image>
+      </view>
+      <view class='phone-text'>你当前绑定的手机号为：{{companyBindTel}}</view>
+    </view>
+
+    <view class="form-item">
+      <view class="content-item">
+        <view class='sides'>
+          <view class='item-name'>验证码</view>
+          <view class='column-line'></view>
+          <input type="text" maxlength="6" bindchange="bind_phone_code" />
+        </view>
+      </view>
+      <button bindtap="downtime">{{time}}</button>
+    </view>
+  <view class='showmsg'>{{showmsg}}</view>
+  </view>
+
+  <button class="login-btn" bindtap="to_change_phone_next">下一步</button>
+</view>

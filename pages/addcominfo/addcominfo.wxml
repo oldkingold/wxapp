@@ -1,0 +1,84 @@
+<view class="container" >  
+  <view class='content'>
+    <view class='content-line'>
+      <view class='object-name'>公司名称</view>
+      <input value="{{cominfodetail.name}}" bindinput="bind_comName" placeholder="请输入" />
+    </view>
+
+    <view class='content-line'>
+      <view class='object-name'>公司性质</view>
+
+      <block wx:for="{{antureCom}}" wx:for-item="anture" wx:key="*key">
+        <view class='check-box-item' catchtap='bind_changebox' data-name="{{anture.name}}" data-type="1">
+          <view wx:if="{{anture.checked}}" class='check-box-icon'>
+            <image src='/static/images/checked@3x.png'></image>
+          </view>
+          <view wx:else class='check-box-icon'>
+            <image src='/static/images/check@3x.png'></image>
+          </view>
+          <view class='check-box-value'>{{anture.name}}</view>
+        </view>
+      </block>
+
+      <view class=''>{{cominfodetail.antureCom}}</view>
+    </view>
+
+    <view class='fee-object content-line'>
+      <view class='object-name'>发票类型</view>
+
+      <block wx:for="{{invoicetypes}}" wx:for-item="invoice" wx:key="*key">
+        <view class='check-box-item' catchtap='bind_changebox' data-name="{{invoice.name}}" data-type="2">
+          <view wx:if="{{invoice.checked}}" class='check-box-icon'>
+            <image src='/static/images/checked@3x.png'></image>
+          </view>
+          <view wx:else class='check-box-icon'>
+            <image src='/static/images/check@3x.png'></image>
+          </view>
+          <view class='check-box-value'>{{invoice.name}}</view>
+        </view>
+      </block>
+
+      <view class=''>{{cominfodetail.invoice.anture}}</view>
+    </view>
+  </view>
+
+  <!-- 底部的添加人员信息 -->
+  <view class='content'>
+    <view class='content-line'>
+      <view class='object-name'>开票信息</view>
+    </view>
+    <view class='content-line'>
+      <view class='object-name'>纳税识别号</view>
+      <input value="" bindinput="bind_invoicEin" size="2" placeholder="请输入 (注：英文字母需大写)" />
+    </view>
+    <block wx:if="{{invoicetypes[1].checked}}">
+      <view class='content-line'>
+        <view class='object-name'>公司地址</view>
+        <input value="" bindinput="bind_invoicComAddr" placeholder="请输入" />
+      </view>
+      <view class='content-line'>
+        <view class='object-name'>电话号码</view>
+        <input value="" bindinput="bind_invoicComTel" placeholder="请输入" />
+      </view>
+      <view class='content-line'>
+        <view class='object-name'>开户银行</view>
+        <input value="" bindinput="bind_invoicOpenBank" placeholder="请输入" />
+      </view>
+      <view class='content-line'>
+        <view class='object-name'>银行账号</view>
+        <input value="" bindinput="bind_invoicBankAccount" placeholder="请输入" />
+      </view>
+    </block>
+
+  </view>
+
+    <view class='btn-content'>
+      <view class="{{bmResetSelected ?'btn-item-selected':'btn-item-default'}}" bindtap="bmReset">
+        重置
+      </view>
+      <view class="{{bmSubbmitSelected ?'btn-item-selected':'btn-item-default'}}" bindtap="bmSubbmit">
+        提交
+      </view>
+    </view>
+
+</view>

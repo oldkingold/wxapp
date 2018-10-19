@@ -15,7 +15,7 @@
   </block>
   <block wx:else>
     <view wx:if="{{loginStatus==0}}" class='loginStatus' catchtap="goLogin">
-      <view class="top-middle_0">
+      <view  class="top-middle_0">
         <view class='userName_0'>
           {{userInfo.nickName}}
         </view>
@@ -24,16 +24,16 @@
     </view>
     <block wx:else>
       <view class="top-middle">
-        <view class='userName'>{{userInfo.nickName}}不将就</view>
+        <view class='userName'>{{userInfo.nickName}}</view>
         <view class='comp'>
             <image class='comp-icon' mode='aspectFit' src="/static/images/company.png"></image>
           <view class='comp-name'>
-            {{com_name}}浙江度川网络科技有限公司
+            {{com_name}}
           </view>
         </view>
         <navigator class='account' url='/pages/ucenter/balance/balance'>
           账户余额（元）|
-          <text class="account-vale">{{account}}30000.00</text>
+          <text class="account-vale">{{account}}</text>
         </navigator>
       </view>
     </block>
@@ -55,7 +55,7 @@
 
 <view class='operation'>
   <block wx:if="{{userInfo_status==0}}">
-    <button data-url='/pages/ucenter/register/m_register/m_register' class='attendance nobutton'
+    <button data-url='/pages/signin/signin' class='attendance nobutton'
     wx:if="{{canIUseGetUserInfo}}" open-type="getUserInfo" bindgetuserinfo='bindcheckloginwx'>
       <image src='/static/images/1.png'></image>
       <text>签到</text>
@@ -64,14 +64,14 @@
       <image src='/static/images/2.png'></image>
       <text>评价</text>
     </button>
-    <button data-url='/pages/ucenter/bmlog/bmlog' class='log nobutton'
+    <button data-url='/pages/bmlog/bmlog' class='log nobutton'
     wx:if="{{canIUseGetUserInfo}}" open-type="getUserInfo" bindgetuserinfo='bindcheckloginwx'>
       <image src='/static/images/3.png'></image>
       <text>记录</text>
     </button>
   </block>
   <block wx:else>
-    <navigator url='/pages/ucenter/register/m_register/m_register' class='attendance'>
+    <navigator url='/pages/signin/signin' class='attendance'>
       <image src='/static/images/1.png'></image>
       <text>签到</text>
     </navigator>
@@ -79,7 +79,7 @@
       <image src='/static/images/2.png'></image>
       <text>评价</text>
     </view>
-    <navigator url='/pages/ucenter/bmlog/bmlog' class='log'>
+    <navigator url='/pages/bmlog/bmlog' class='log'>
       <image src='/static/images/3.png'></image>
       <text>记录</text>
     </navigator>
@@ -87,28 +87,18 @@
 </view>
 
 <view class='middle'>
-  <block wx:if="{{loginStatus==1}}"> 
-    <!-- 没有公司账号不显示 -->
-    <navigator url='/pages/ucenter/umanagement/umanagement' class='line'>
-      <image src='/static/images/Usersbinding@3x.png'></image>
-      <view class='line-name'>已绑定用户</view>
-      <view class='icon_go'>
-        <image class='go' src='/static/images/go.png'></image>
-      </view>
-    </navigator>
-  </block>
   <block wx:if="{{userInfo_status==0}}">
-    <button data-url='/pages/ucenter/infomanage/infomanage' class='line nobutton'
+    <button data-url='/pages/infomanage/infomanage' class='line nobutton'
     wx:if="{{canIUseGetUserInfo}}" open-type="getUserInfo" bindgetuserinfo='bindcheckloginwx'>
-      <image src='/static/images/m_order.png'></image>
+      <image mode="aspectFit" src='/static/images/m_info.png'></image>
       <view class='line-name'>信息维护</view>
       <view class='icon_go'>
         <image class='go' src='/static/images/go.png'></image>
       </view>
     </button>
-      <button data-url='/pages/ucenter/setting/setting' class='line nobutton'
+      <button data-url='/pages/setting/setting/setting' class='line nobutton'
       wx:if="{{canIUseGetUserInfo}}" open-type="getUserInfo" bindgetuserinfo='bindcheckloginwx'>
-      <image src='/static/images/m_message.png'></image>
+      <image mode="aspectFit" style='height: 38rpx;width: 38rpx;' src='/static/images/m_setting.png'></image>
       <view class='line-name'>设置</view>
       <view class='icon_go'>
         <image class='go' src='/static/images/go.png'></image>
@@ -116,7 +106,7 @@
     </button>
   </block>
   <block wx:else>
-    <navigator url='/pages/ucenter/infomanage/infomanage' class='line'>
+    <navigator url='/pages/order/order' class='line'>
       <image mode="aspectFit" src='/static/images/m_order.png'></image>
       <view class='line-name'>我的订单</view>
       <view class='icon_go'>
@@ -130,28 +120,31 @@
         <image class='go' src='/static/images/go.png'></image>
       </view>
     </navigator>
-  </block> 
-  <navigator url='/pages/ucenter/about/about' class='line'>
-    <image mode="aspectFit" src='/static/images/m_person.png'></image>
-    <view class='line-name'>以绑定用户</view>
-    <view class='icon_go'>
-      <image class='go' src='/static/images/go.png'></image>
-    </view>
-  </navigator>
-  <navigator url='/pages/ucenter/about/about' class='line'>
-    <image mode="aspectFit" src='/static/images/m_info.png'></image>
-    <view class='line-name'>信息维护</view>
-    <view class='icon_go'>
-      <image class='go' src='/static/images/go.png'></image>
-    </view>
-  </navigator>
-  <navigator url='/pages/setting/setting/setting' class='line'>
-    <image mode="aspectFit" style='height: 38rpx;width: 38rpx;' src='/static/images/m_setting.png'></image>
-    <view class='line-name'>设置</view>
-    <view class='icon_go'>
-      <image class='go' src='/static/images/go.png'></image>
-    </view>
-  </navigator>
+    <navigator url='/pages/infomanage/infomanage' class='line'>
+      <image mode="aspectFit" src='/static/images/m_info.png'></image>
+      <view class='line-name'>信息维护</view>
+      <view class='icon_go'>
+        <image class='go' src='/static/images/go.png'></image>
+      </view>
+    </navigator>
+    <navigator url='/pages/setting/setting/setting' class='line'>
+      <image mode="aspectFit" style='height: 38rpx;width: 38rpx;' src='/static/images/m_setting.png'></image>
+      <view class='line-name'>设置</view>
+      <view class='icon_go'>
+        <image class='go' src='/static/images/go.png'></image>
+      </view>
+    </navigator>
+  </block>
+  <block wx:if="{{loginStatus==1}}"> 
+    <navigator url='/pages/personmanage/personmanage' class='line'>
+      <image mode="aspectFit" src='/static/images/m_person.png'></image>
+      <view class='line-name'>以绑定用户</view>
+      <view class='icon_go'>
+        <image class='go' src='/static/images/go.png'></image>
+      </view>
+    </navigator>
+  </block>
+  
   <navigator url='/pages/aboutas/aboutas' class='line'>
     <image mode="aspectFit" style='height: 38rpx;width: 38rpx;' src='/static/images/m_about.png'></image>
     <view class='line-name'>关于度川</view>
@@ -160,6 +153,8 @@
     </view>
   </navigator>
 </view>
+
+
 <view class='bottom-title'>会务联系方式</view>
 <view class='buttom'> 
   <view class='buttom-line' data-reply-phone="13677886754" catchtap="phoneCall" >

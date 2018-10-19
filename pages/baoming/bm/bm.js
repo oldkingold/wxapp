@@ -1,22 +1,22 @@
-var app = getApp();
-var util = require('../../../utils/util.js');
-// var api = require('../../../config/api.js');
-// var storage = require('../../../services/storage.js');
+const app = getApp();
+const util = require('../../../utils/util.js');
+const api = require('../../../config/api.js');
+const meet = require('../../../utils/home/meeting.js');
 
 Page({
   data: {
+    meeting: [],
     id: 0,
     method: 'method',
     com: 'com',
-    Meetingname: '',
     compName: "",
     compNature: "民营",
     meetPersonlist: [],
     singleRoomNum: 0,
     doubleRoomNum: 0,
     isNotNeedRoom: true,
-    mealList: [],
-    isNotNeedMeal: 0,
+    // mealList: [],
+    // isNotNeedMeal: 0,
     // noMeal: false,
     arriveDateHolder: "请选择到达时间",
     isArriveDateHolder: false,
@@ -51,60 +51,34 @@ Page({
 
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
+    console.log(options);
     let that = this;
     this.getTopic();
     this.data.id = parseInt(options.id);
-    for (let i = 0; i < app.globalData.meetingInfo.length; i++) {
-      if (options.id == app.globalData.meetingInfo[i].id) {
+    
+    let meeting = meet.meetingDetail(this.data.id);
+    console.log(meeting);
+    that.setData({
+      meeting: meeting
+    });
 
-        let varmeals = app.globalData.meetingInfo[i].meals;
-        let mlist = {};
-        for (let j = 0; j < varmeals.length; j++) {
-          mlist[varmeals[j]['meal_date'].substring(5)] = { name: varmeals[j]['meal_date'].substring(5), data: {} };
-        }
-        for (let j = 0; j < varmeals.length; j++) {
-          let mt = mlist[varmeals[j]['meal_date'].substring(5)]['data'];
-          mt[varmeals[j]['type']] = { status: varmeals[j]['status'], pnum: 0 };
-        }
-
-        if (Object.keys(mlist).length == 3) {
-          let n = 1;
-          for (let k in mlist) {
-            if (n == 1) {
-              mlist[k]['name'] = '报到';
-              n = n + 1;
-            } else if (n == 2) {
-              mlist[k]['name'] = '首日';
-              n = n + 1;
-            } else if (n == 3) {
-              mlist[k]['name'] = '次日';
-            }
-          }
-        }
-
-        this.setData({
-          Meetingname: app.globalData.meetingInfo[i].name,
-          consoleMeetings: app.globalData.meetingInfo[i],
-          mealList: mlist,
-          arriveDate: app.globalData.meetingInfo[i].start_date,
-          leaveDate: app.globalData.meetingInfo[i].end_date,
-        });
-      }
-    };
     //页面从哪跳转过来的
     if (options.method) {
       this.data.method = options.method;
     }
+
     //存入公司信息
     this.setData({
-      selfCompanies: storage.getstorage('selfCompanies', null)
+      selfCompanies: wx.getStorageSync('selfCompanies')
     });
     console.log(this.data.selfCompanies);
+
     //获取之前的报名信息并存入
     let keyid = that.data.id + 'bm';
     if (this.data.method == "restart" || this.data.method == "change") {
       keyid = 'changebmdata';
     }
+
     try {
       let value = wx.getStorageSync(keyid)
       if (value) {
@@ -118,10 +92,6 @@ Page({
           singleRoomNum: value.singleRoomNum,
           doubleRoomNum: value.doubleRoomNum,
           isNotNeedRoom: value.isNotNeedRoom,
-          mealList: value.mealList,
-          isNotNeedMeal: value.isNotNeedMeal,
-          // arriveDate: value.arriveDate,
-          // leaveDate: value.leaveDate,
           invoice: value.invoice,
           note: value.note,
           usedChart: value.usedChart,
@@ -137,6 +107,7 @@ Page({
       console.log("bm 数据获取失败" + e);
     }
   },
+  
   onShow: function () {
     console.log(this.data);
     let that = this;
@@ -147,7 +118,6 @@ Page({
       success: function (res) {
         console.log(res)
         let varSelected = res.data;
-        // if (varSelected.route =='pages/baoMing/bmAddPerson/bmAddPerson'){
         if (varSelected.list.length > 0) {
           let mlist = that.data.mealList;
           let sum = 0;
@@ -165,10 +135,9 @@ Page({
           that.setData({
             meetPersonlist: varSelected.list,
             mealList: mlist,
-            isNotNeedMeal: sum
           })
         }
-        // }
+
       },
       fail: function () {
         console.log("meetPersonListSelected 数据获取失败");
@@ -181,7 +150,7 @@ Page({
     // 页面关闭
     // 在页面离开前做数据的缓存
     if (this.data.method == 'restart' || this.data.method == 'change') {
-      storage.remove('changebmdata');
+      wx.removeStorage('changebmdata');
     } else {
       var keyid = this.data.id + 'bm';
       var compName = this.data;
@@ -192,12 +161,14 @@ Page({
     }
 
   },
+
   //输入公司名时展示公司信息
   showCompanys: function () {
     this.setData({
       showCompanys: false,
     });
   },
+
   hideCompanys: function () {
     this.setData({
       showCompanys: true,
@@ -292,11 +263,13 @@ Page({
     });
     this.clearIsNotNeedRoom();
   },
+
   bindfocus_doubleRoomNum: function (e) {
     this.setData({
       doubleRoomNum: '',
     });
   },
+
   bindblur_doubleRoomNum: function (e) {
     let num = parseInt(e.detail.value.substring(0, 3));
     if (isNaN(num)) num = 0;
@@ -304,31 +277,6 @@ Page({
       doubleRoomNum: num,
     });
     this.clearIsNotNeedRoom();
-  },
-  bindfocus_mealNum: function (e) {
-    let id = e.target.dataset.id;
-    let keys = id.split('_');
-    let mlist = this.data.mealList;
-    let oldpnum = mlist[keys[0]]['data'][keys[1]]['pnum'];
-    mlist[keys[0]]['data'][keys[1]]['pnum'] = '';
-    this.setData({
-      mealList: mlist,
-      isNotNeedMeal: this.data.isNotNeedMeal - oldpnum
-    });
-  },
-  bindblur_mealNum: function (e) {
-    let id = e.target.dataset.id;
-    let keys = id.split('_');
-    let mlist = this.data.mealList;
-    let oldpnum = mlist[keys[0]]['data'][keys[1]]['pnum'];
-
-    let num = parseInt(e.detail.value.substring(0, 3));
-    if (isNaN(num)) num = 0;
-    mlist[keys[0]]['data'][keys[1]]['pnum'] = num;
-    this.setData({
-      mealList: mlist,
-      isNotNeedMeal: this.data.isNotNeedMeal - oldpnum + num
-    });
   },
 
   //单间 减
@@ -359,29 +307,7 @@ Page({
     });
     this.clearIsNotNeedRoom();
   },
-  //餐饮人数 减
-  mealcutNumber: function (e) {
-    let id = e.target.dataset.id;
-    let keys = id.split('_');
-    let mlist = this.data.mealList;
-    let oldpnum = mlist[keys[0]]['data'][keys[1]]['pnum'];
-    mlist[keys[0]]['data'][keys[1]]['pnum'] = (mlist[keys[0]]['data'][keys[1]]['pnum'] - 1 >= 1) ? mlist[keys[0]]['data'][keys[1]]['pnum'] - 1 : 0;
-    this.setData({
-      mealList: mlist,
-      isNotNeedMeal: this.data.isNotNeedMeal + mlist[keys[0]]['data'][keys[1]]['pnum'] - oldpnum
-    });
-  },
-  //餐饮人数 加
-  mealaddNumber: function (e) {
-    let id = e.target.dataset.id;
-    let keys = id.split('_');
-    let mlist = this.data.mealList;
-    mlist[keys[0]]['data'][keys[1]]['pnum'] = mlist[keys[0]]['data'][keys[1]]['pnum'] + 1;
-    this.setData({
-      mealList: mlist,
-      isNotNeedMeal: this.data.isNotNeedMeal + 1
-    });
-  },
+
   BindIsNotNeedRoom: function () {
     let that = this;
     if (!that.data.isNotNeedRoom) {
@@ -392,6 +318,7 @@ Page({
       })
     }
   },
+
   clearIsNotNeedRoom() {
     let that = this;
     if (that.data.singleRoomNum + that.data.doubleRoomNum > 0)
@@ -404,22 +331,7 @@ Page({
       });
     }
   },
-  BindIsNotNeedMeal: function () {
-    if (this.data.isNotNeedMeal != 0) {
-      let mlist = this.data.mealList;
-      for (let date in mlist) {
-        for (let type in mlist[date]['data']) {
-          if (mlist[date]['data'][type]['status'] == 1) {
-            mlist[date]['data'][type]['pnum'] = 0;
-          }
-        }
-      }
-      this.setData({
-        mealList: mlist,
-        isNotNeedMeal: 0
-      });
-    }
-  },
+
   //到达日期修改
   arriveDateChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -436,6 +348,7 @@ Page({
       isLeaveDateHolder: false
     });
   },
+
   //切换发票信息
   listenerRadioGroup: function (e) {
     let that = this;
@@ -445,6 +358,7 @@ Page({
       invoice: invoice
     })
   },
+
   //意见与建议
   valueChange: function (e) {
     let that = this;
@@ -453,6 +367,7 @@ Page({
       usedChart: e.detail.value.length
     });
   },
+
   //跳转人员添加页面
   addMemtPersonUrl: function () {
     let that = this;
@@ -492,6 +407,7 @@ Page({
       showmodel: true
     });
   },
+
   showmodelname: function (e) {
     let smd = this.data.showmodeldata;
     smd['name'] = e.detail.value;
@@ -499,6 +415,7 @@ Page({
       showmodeldata: smd
     });
   },
+  
   showmodelduty: function (e) {
     let smd = this.data.showmodeldata;
     smd['duty'] = e.detail.value;
@@ -506,6 +423,7 @@ Page({
       showmodeldata: smd
     });
   },
+
   showmodelphone: function (e) {
     let smd = this.data.showmodeldata;
     smd['phone'] = e.detail.value;
@@ -513,6 +431,7 @@ Page({
       showmodeldata: smd
     });
   },
+
   showbtn: function () {
     let meetPersonlist = this.data.meetPersonlist;
     let smd = this.data.showmodeldata;
@@ -610,46 +529,7 @@ Page({
   },
 
   bmReset: function (e) {
-
     let that = this;
-    let meetingId = that.data.id
-    for (let i = 0; i < app.globalData.meetingInfo.length; i++) {
-      if (meetingId == app.globalData.meetingInfo[i].id) {
-        let varmeals = app.globalData.meetingInfo[i].meals;
-        let mlist = {};
-        for (let j = 0; j < varmeals.length; j++) {
-          mlist[varmeals[j]['meal_date'].substring(5)] = { name: varmeals[j]['meal_date'].substring(5), data: {} };
-        }
-        for (let j = 0; j < varmeals.length; j++) {
-          let mt = mlist[varmeals[j]['meal_date'].substring(5)]['data'];
-          mt[varmeals[j]['type']] = { status: varmeals[j]['status'], pnum: 0 };
-        }
-
-        if (Object.keys(mlist).length == 3) {
-          let n = 1;
-          for (let k in mlist) {
-            if (n == 1) {
-              mlist[k]['name'] = '报到';
-              n = n + 1;
-            } else if (n == 2) {
-              mlist[k]['name'] = '首日';
-              n = n + 1;
-            } else if (n == 3) {
-              mlist[k]['name'] = '次日';
-            }
-          }
-        }
-
-        this.setData({
-          Meetingname: app.globalData.meetingInfo[i].name,
-          consoleMeetings: app.globalData.meetingInfo[i],
-          mealList: mlist,
-          arriveDate: app.globalData.meetingInfo[i].start_date,
-          leaveDate: app.globalData.meetingInfo[i].end_date,
-        });
-      }
-    };
-
     that.setData({
       compName: "",
       compNature: "民营",
@@ -657,7 +537,6 @@ Page({
       singleRoomNum: 0,
       doubleRoomNum: 0,
       isNotNeedRoom: true,
-      isNotNeedMeal: 0,
       isArriveDateHolder: false,
       isLeaveDateHolder: false,
       invCompNamechange: false,
@@ -748,7 +627,7 @@ Page({
     console.log(that.data.mealList);
     // app.globalData.token
     wx.request({
-      // url: api.ApiRootUrl + 'wxapp/wxbm',
+      url: api.ApiRootUrl + 'wxapp/wxbm',
       data: {
         meetingId: that.data.id,
         compName: that.data.compName,
@@ -757,8 +636,8 @@ Page({
         singleRoomNum: that.data.singleRoomNum,
         doubleRoomNum: that.data.doubleRoomNum,
         isNotNeedRoom: that.data.isNotNeedRoom,
-        mealList: that.data.mealList,
-        isNotNeedMeal: that.data.isNotNeedMeal,
+        // mealList: that.data.mealList,
+        // isNotNeedMeal: that.data.isNotNeedMeal,
         arriveDate: that.data.arriveDate,
         leaveDate: that.data.leaveDate,
         invoice: that.data.invoice,
@@ -779,9 +658,9 @@ Page({
             companyName: that.data.compName,
             meetdate: { start_date: that.data.arriveDate, end_date: that.data.leaveDate }
           }
-          storage.put('receipt', receipt, 60 * 60 * 15);
+          wx.setStorageSync('receipt', receipt);
           wx.navigateTo({
-            url: '/pages/baoMing/receipt/receipt?method=' + that.data.method + "&usertype=" + res.data.usertype,
+            url: '/pages/baoming/receipt/receipt?method=' + that.data.method + "&usertype=" + res.data.usertype,
           })
         }
       },

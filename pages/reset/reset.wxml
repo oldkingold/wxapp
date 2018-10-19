@@ -1,0 +1,20 @@
+<view class="container">
+  <view class="form-box">
+    <view class="form-item form-item-border">
+      <view class='item-name'>公司账号</view>
+      <input class="password" value="{{compName}}" bindinput="bindCompNameInput" placeholder="请输入" />
+    </view>
+
+    <view class="form-item-code">
+      <view class="form-item code-item">
+            <view class='item-name'>验证码</view>
+        <input class="code" value="{{code}}" bindinput="bindCodeInput" maxlength='6'/>
+      </view>
+      <button bindtap="downtime">{{time}}</button>
+    </view>
+
+  </view>
+  <view>{{msg}}</view>
+
+   <button class="login-btn" bindtap="toreset">下一步</button>
+</view>

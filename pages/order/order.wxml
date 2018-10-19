@@ -1,4 +1,4 @@
-<orderhk id='orderhk' show='{{false}}'></orderhk>
+<orderhk id='orderhk' show='{{true}}'></orderhk>
 <view class='menu'>
   <view wx:for='{{menu}}' wx:key='{{menu_id}}' id='menu{{index}}' data-id='{{index}}' class='nav_title' catchtap='nav_select'>
     <block wx:if='{{"menu"+index == nav_selectId}}'>

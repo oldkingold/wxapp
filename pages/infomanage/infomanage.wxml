@@ -1,0 +1,112 @@
+<view class="container" style='height:{{}}px'>
+  <view class='com-info-object'>参会公司信息</view>
+  <block wx:for="{{coms}}" wx:for-item="item" wx:key="item.id">
+    <view class='com-item'>
+
+      <view class='com-info-item'>
+        <view class='info-name'>公司名称</view>
+        <view class='info-value'>{{item.name}}</view>
+      </view>
+      <view class='com-info-item'>
+        <view class='info-name'>公司性质</view>
+        <view class='info-value'>{{item.company_type}}</view>
+      </view>
+      <view class='com-info-item'>
+        <view class='info-name'>税号</view>
+        <view class='info-value'>{{item.tax_id}}</view>
+      </view>
+
+      <view class='com-bottom-item'>
+        <navigator url='/pages/editcominfo/editcominfo?id={{item.id}}' class='bottom-left'>
+          <view class='icon'>
+            <image src='/static/images/edit@3x.png'></image>
+          </view>
+          <view class='operation'>编辑</view>
+        </navigator>
+        <view class='bottom-right' catchtap='bind_del_com' data-id='{{item.id}}'>
+          <view class='icon'>
+            <image src='/static/images/del@3x.png'></image>
+          </view>
+          <view class='operation'>删除</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <navigator url='/pages/addcominfo/addcominfo' class='add-cominfo'>添加公司信息</navigator> 
+
+  <view class='conferee-object'>参会人员信息</view>
+
+  <block wx:for="{{conferees}}" wx:for-item="conferee" wx:key="*key">
+    <view class='conferee-item'>
+      <view class='conferee-info-item'>
+        <view class='conferee-name'>{{conferee.name}}</view>
+        <view class='conferee-phone'>{{conferee.tel}}</view>
+      </view>
+      <view class='conferee-info-item'>
+        <view class='conferee-duty'>{{conferee.job}}</view>
+      </view>
+
+      <view class='conferee-bottom-item'>
+        <view class='bottom-left ' catchtap='bind_edit_conferee' data-id='{{conferee.id}}'>
+          <view class='icon'>
+            <image src='/static/images/edit@3x.png'></image>
+          </view>
+          <view class='operation'>编辑</view>
+        </view>
+        <view class='bottom-right' catchtap='bind_del_conferee' data-id='{{conferee.id}}'>
+          <view class='icon'>
+            <image src='/static/images/del@3x.png'></image>
+          </view>
+          <view class='operation'>删除</view>
+        </view>
+      </view>
+
+    </view>
+  </block>
+
+
+  <!-- 底部的添加人员信息 -->
+  <view class='add-conferee'>
+    <view class='add-conferee-item'>
+      <view class='object-name'>姓名</view>
+      <input value="{{addconferee.name}}" bindinput="bind_conf_name" placeholder="请输入" />
+    </view>
+    <view class='add-conferee-item'>
+      <view class='object-name'>职务</view>
+      <input value="{{addconferee.job}}" bindinput="bind_conf_duty" placeholder="请输入" />
+    </view>
+    <view class='add-conferee-item'>
+      <view class='object-name'>手机</view>
+      <input value="{{addconferee.tel}}" bindinput="bind_conf_phone" placeholder="请输入" />
+    </view>
+    <button class='add-conferee-button' catchtap='bind_add_conferee'>确定添加人员信息</button>
+  </view>
+
+  <!-- 编辑参会人员信息 -->
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+    <view class="modal-title">编辑参会人员信息</view>
+    <view class="modal-content">
+      <input value="{{editconferee.id}}" hidden='true' />
+      <view class='add-conferee-item'>
+        <view class='object-name'>姓名</view>
+        <input value="{{editconferee.name}}" bindinput="edit_conf_name" placeholder="请输入" />
+      </view>
+      <view class='add-conferee-item'>
+        <view class='object-name'>职务</view>
+        <input value="{{editconferee.job}}" bindinput="edit_conf_duty" placeholder="请输入" />
+      </view>
+      <view class='add-conferee-item'>
+        <view class='object-name'>手机</view>
+        <input value="{{editconferee.tel}}" bindinput="edit_conf_phone" placeholder="请输入" />
+      </view>
+    </view>
+
+    <view class="modal-footer">
+      <view class="btn-confirm" bindtap="bind_edit_cancel">取消</view>
+      <view class="btn-confirm" bindtap="bind_edit_confirm">确定</view>
+    </view>
+  </view>
+
+</view>

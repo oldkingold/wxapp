@@ -81,6 +81,7 @@ page {
 }
 
 .section_company {
+  left: -16rpx;
   position: relative;  
   height: auto;
   background-color: #fff;
@@ -89,9 +90,10 @@ page {
 }
 
 .com {
-  padding-left: 10rpx;
-  height: 50rpx;
-  line-height: 50rpx;
+  padding-left: 16rpx;
+  height: 70rpx;
+  line-height: 65rpx;
+  font-size: 50rpx;
 }
 
 .com:hover {

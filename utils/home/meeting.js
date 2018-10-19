@@ -1,5 +1,6 @@
 const api = require('../../config/api.js');
 
+//获取会议主题
 function themes() {
   return new Promise(function (resolve, reject) {
     wx.request({
@@ -18,6 +19,7 @@ function themes() {
   });
 }
 
+//获取会议
 function meeting() {
   return new Promise(function (resolve, reject) {
     wx.request({
@@ -36,6 +38,7 @@ function meeting() {
   });
 }
 
+//获取某一场会议
 function meetingDetail(id) {
   let meetings = wx.getStorageSync("meetings");
 

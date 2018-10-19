@@ -1,8 +1,3 @@
-var app = getApp();
-// var util = require('../../../utils/util.js');
-// var api = require('../../../config/api.js');
-// var storage = require('../../../services/storage.js');
-
 Page({
   data: {
     meeting: {},
@@ -30,34 +25,17 @@ Page({
   },
 
   onLoad: function (options) {
-    // this.getTopic();
     console.log(options);
     let that = this;
     that.data.method = options.method;
     that.data.usertype = options.usertype;
-    let receipt = storage.getstorage('receipt', {});
-    storage.remove('receipt');
+    let receipt = wx.getStorageSync('receipt', {});
+    wx.removeStorageSync('receipt');
 
-    let meals = receipt['meals'];
-    let mealstr = '';
-    for (let date in meals) {
-      for (let type in meals[date]['data']) {
-        if (meals[date]['data'][type]['pnum'] != 0) {
-          if (type == 'dinner') {
-            mealstr += date.substring(3) + "号晚餐, ";
-          } else if (type == 'launch') {
-            mealstr += date.substring(3) + "号中餐, ";
-          }
-
-        }
-
-      }
-    }
     console.log(receipt);
     that.setData({
       meeting: receipt['meeting'],
       invoice: receipt['invoice'],
-      mealList: mealstr.substring(0, mealstr.length - 2),
       companyName: receipt['companyName'],
       meetdate: receipt['meetdate'],
     });
@@ -86,15 +64,15 @@ Page({
                 if (e.confirm) {
                   if (that.data.usertype == 'olduser') {
                     wx.navigateTo({
-                      url: '../../ucenter/login/login?compName=' + that.data.companyName,
+                      url: 'pages/login/login?compName=' + that.data.companyName,
                     })
                   } else if (that.data.usertype == 'newolduser') {
                     wx.navigateTo({
-                      url: '../../ucenter/sign/sign?compName=' + that.data.companyName,
+                      url: 'pages/sign/sign?compName=' + that.data.companyName,
                     })
                   } else if (that.data.usertype == 'newuser') {
                     wx.navigateTo({
-                      url: '../../ucenter/sign/sign?compName=' + that.data.companyName,
+                      url: 'pages/sign/sign?compName=' + that.data.companyName,
                     })
                   }
                 }

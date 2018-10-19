@@ -18,15 +18,15 @@
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
         <view class='right-img'>
-          <image src='../../static/images/detailimage/detail-top.png' wx:if='{{1 == select_index}}'></image>
-          <image src='../../static/images/detailimage/detail-down.png' wx:if='{{1 != select_index}}'></image>
+          <image src='/static/images/detailimage/detail-top.png' wx:if='{{1 == select_index}}'></image>
+          <image src='/static/images/detailimage/detail-down.png' wx:if='{{1 != select_index}}'></image>
         </view>
       </view>
     </view>
     <view class='chxz' wx:if='{{select_index == 1}}'>
       <view class='chxz-content'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/收藏(1)@3x.png'></image>
+          <image src='/static/images/detailimage/collection.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>培训特色：</i>
@@ -35,7 +35,7 @@
       </view>
       <view class='chxz-content'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/人员组-实@3x.png'></image>
+          <image src='/static/images/detailimage/persons@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>参加对象：</i>
@@ -44,7 +44,7 @@
       </view>
       <view class='chxz-content'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/时间@3x.png'></image>
+          <image src='/static/images/detailimage/clock@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>培训时间：</i>
@@ -54,7 +54,7 @@
       
       <view class='chxz-content'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/居乐乐地点@3x.png'></image>
+          <image src='/static/images/detailimage/address@3x.png'></image>
         </view>
 
         <view class='chxz-content-detail'>
@@ -73,7 +73,7 @@
 
       <view class='chxz-content'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/地图@3x.png'></image>
+          <image src='/static/images/detailimage/map@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>交通路线：</i>
@@ -82,13 +82,13 @@
             <i class='chxz-content-info'>{{index + 1}}.{{item.name}}（距离{{item.distance}}）</i>
             <view class='chxz-content no-margin'>
               <view class='chxz-img'>
-                <image src='../../static/images/detailimage/bus-大巴@3x.png'></image>
+                <image src='/static/images/detailimage/bus@3x.png'></image>
               </view>
               <i class='chxz-content-info margin-left'>{{item.bus}}</i>
             </view>
             <view class='chxz-content no-margin'>
               <view class='chxz-img'>
-                <image src='../../static/images/detailimage/16出租车@3x.png'></image>
+                <image src='/static/images/detailimage/taxi@3x.png'></image>
               </view>
               <i class='chxz-content-info margin-left'>{{item.taxi}}</i>
             </view>
@@ -103,7 +103,7 @@
 
       <view class='chxz-content'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/折扣-实拷贝@3x.png'></image>
+          <image src='/static/images/detailimage/discount@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>学费优惠：</i>
@@ -169,36 +169,12 @@
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
         <view class='right-img'>
-          <image src='../../static/images/detailimage/detail-top.png' wx:if='{{2 == select_index}}'></image>
-          <image src='../../static/images/detailimage/detail-down.png' wx:if='{{2 != select_index}}'></image>
+          <image src='/static/images/detailimage/detail-top.png' wx:if='{{2 == select_index}}'></image>
+          <image src='/static/images/detailimage/detail-down.png' wx:if='{{2 != select_index}}'></image>
         </view>
       </view>
     </view>
     <view class='chxz' wx:if='{{select_index == 2}}' style='padding:20rpx 20rpx 20rpx 20rpx'>
-      <!-- <view class='chxz-content kctg'>
-        <view>
-          <i class='chxz-content-title'>一、最新财税政策解析</i>
-        </view>
-        <view>
-          <i class='chxz-content-info kctg'>1.税率下降对不同计税方法计税项目的影响与对策。</i>
-          <i class='chxz-content-info kctg'>2.5.1之前已收工程款，未申报未开票收入，5.1后怎么办？</i>
-          <i class='chxz-content-info kctg'>3.如何判断什么情况开11%发票，什么情况开10%发票？</i>
-          <i class='chxz-content-info kctg'>4.供应商什么情况开17%发票，什么情况开16%发票？</i>
-          <i class='chxz-content-info kctg'>5.苗木花卉等农产品，什么情况可以扣除11%，什么情况可以扣除10%？</i>
-          <i class='chxz-content-info kctg'>6.建筑工人实名制对建筑业企业财税管理有什么影响？以工资表入账，还行得通吗？</i>
-        </view>
-      </view>
-      <view class='chxz-content kctg'>
-        <view>
-          <i class='chxz-content-title'>二、经营模式中的财税问题</i>
-        </view>
-        <view>
-          <i class='chxz-content-info kctg'>1.什么是三流合一？甲控材、甲指分包，业主直接向分供商付款，建筑业企业应如何处理？</i>
-          <i class='chxz-content-info kctg'>2.供应商（分包商）原公司被“注销”，无法开具发票，支付欠款时如何操作？</i>
-          <i class='chxz-content-info kctg'>3.总公司签订合同，分公司和子公司施工有哪些注意事项？发票应由谁开？</i>
-          <i class='chxz-content-info kctg'>4.挂靠利润如何提取？</i>
-        </view>
-      </view> -->
 
       <rich-text nodes="{{meeting.course.introduction}}" bindtap="tap"></rich-text>
     </view>
@@ -211,15 +187,15 @@
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
         <view class='right-img'>
-          <image src='../../static/images/detailimage/detail-top.png' wx:if='{{3 == select_index}}'></image>
-          <image src='../../static/images/detailimage/detail-down.png' wx:if='{{3 != select_index}}'></image>
+          <image src='/static/images/detailimage/detail-top.png' wx:if='{{3 == select_index}}'></image>
+          <image src='/static/images/detailimage/detail-down.png' wx:if='{{3 != select_index}}'></image>
         </view>
       </view>
     </view>
     <view class='chxz' wx:if='{{select_index == 3}}'>
       <view class='chxz-content' style='margin-right: 55rpx;'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/人员@3x.png'></image>
+          <image src='/static/images/detailimage/person@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>个人简介：</i>
@@ -233,7 +209,7 @@
       </view>
       <view class='chxz-content'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/耳机@3x.png'></image>
+          <image src='/static/images/detailimage/headset@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>课程试听：</i>
@@ -244,7 +220,7 @@
       </view>
       <view class='chxz-content' style='margin-right: 55rpx;'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/文章@3x.png'></image>
+          <image src='/static/images/detailimage/article@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>老师文章：</i>
@@ -255,7 +231,7 @@
       </view>
       <view class='chxz-content' style='margin-right: 55rpx;'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/书籍@3x.png'></image>
+          <image src='/static/images/detailimage/book@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>老师书籍：</i>
@@ -265,7 +241,7 @@
 
       <view class='chxz-content' style='margin-right: 55rpx;'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/评论@3x.png'></image>
+          <image src='/static/images/detailimage/comment@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>老师评价：</i>
@@ -284,19 +260,19 @@
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
         <view class='right-img'>
-          <image src='../../static/images/detailimage/detail-top.png' wx:if='{{4 == select_index}}'></image>
-          <image src='../../static/images/detailimage/detail-down.png' wx:if='{{4 != select_index}}'></image>
+          <image src='/static/images/detailimage/detail-top.png' wx:if='{{4 == select_index}}'></image>
+          <image src='/static/images/detailimage/detail-down.png' wx:if='{{4 != select_index}}'></image>
         </view>
       </view>
     </view>
     <view class='chxz' wx:if='{{select_index == 4}}'>
       <view class='chxz-content' style='margin-right: 55rpx;'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/公司名称@3x.png'></image>
+          <image src='/static/images/detailimage/company@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>公司简介：</i>
-          <view wx:for="{{companyInfo}}">
+          <view wx:for="{{companyInfo}}" wx:key="*this">
             <i class='chxz-content-info'>　　{{item}}</i>
           </view>
           <!-- <view>
@@ -312,14 +288,14 @@
       </view>
       <view class='chxz-content'style='margin-right: 55rpx;'>
         <view class='chxz-img'>
-          <image src='../../static/images/detailimage/沙漏@3x.png'></image>
+          <image src='/static/images/detailimage/hourglass@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>历史培训：</i>
           <view>
             <view class='card'>
               <view class='card-left'>
-               <image src='../../static/images/detailimage/1.png'></image>
+               <image src='/static/images/detailimage/1.png'></image>
               </view>
               <view class='card-right'>
                 <view class='card-title'>第二期全球建筑业考察系列之日本建筑工业化参观考察学习班</view>
@@ -329,7 +305,7 @@
             </view>
             <view class='card'>
               <view class='card-left'>
-               <image src='../../static/images/detailimage/1.png'></image>
+               <image src='/static/images/detailimage/1.png'></image>
               </view>
               <view class='card-right'>
                 <view class='card-title'>第二期全球建筑业考察系列之日本建筑工业化参观考察学习班</view>
@@ -339,7 +315,7 @@
             </view>
             <view class='card'>
               <view class='card-left'>
-               <image src='../../static/images/detailimage/1.png'></image>
+               <image src='/static/images/detailimage/1.png'></image>
               </view>
               <view class='card-right'>
                 <view class='card-title'>第二期全球建筑业考察系列之日本建筑工业化参观考察学习班</view>
@@ -361,8 +337,8 @@
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
         <view class='right-img'>
-          <image src='../../static/images/detailimage/detail-top.png' wx:if='{{5 == select_index}}'></image>
-          <image src='../../static/images/detailimage/detail-down.png' wx:if='{{5 != select_index}}'></image>
+          <image src='/static/images/detailimage/detail-top.png' wx:if='{{5 == select_index}}'></image>
+          <image src='/static/images/detailimage/detail-down.png' wx:if='{{5 != select_index}}'></image>
         </view>
       </view>
     </view>
@@ -399,5 +375,6 @@
 </view>
 <view class='baoming'>
   <view class='price'>￥<text>{{meeting.price}}</text>.00</view>
-  <view class='bm'>在线报名</view>
+  <!-- <navigator class='bm' url="/pages/baoming/bm/bm?id={{meeting.id}}">在线报名</navigator> -->
+  <button class='bm' open-type="getUserInfo" bindgetuserinfo="bindweixin">在线报名</button>
 </view>

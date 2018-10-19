@@ -1,0 +1,70 @@
+<view class="container" style='height:100%'>
+<view class='content'>
+  <view class="form-item">
+    <view class="content-item">
+      <view class='sides'>
+        <view class='item-name'>原密码</view>
+        <view class='column-line'></view>
+        <input type="text" placeholder="请输入你的原密码" maxlength="20" bindchange="bind_pre_pwd" />
+      </view>
+    </view>
+  </view>
+
+  <view class="form-item">
+    <view class="content-item">
+      <view class='sides'>
+        <view class='item-name'>新密码</view>
+        <view class='column-line'></view>
+        <input password="{{_eye ? true:false}}" value='{{newCom["newPwd"]}}' placeholder="请输入你的新密码" maxlength="20" bindchange="bind_new_pwd" />
+      </view>
+      <view class='sides' bindtap="pasortext">
+        <block name="switch" class="block" >
+          <view class='viewimage' wx:if="{{!_eye}}">
+            <image mode='aspectFit' src='/static/images/eye.png'></image>
+          </view>
+          <view class='viewimage' wx:if="{{_eye}}">
+            <image mode='aspectFit' src='/static/images/eyecut.png'></image>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view class="form-item">
+    <view class="content-item">
+      <view class='sides'>
+        <view class='item-name'>新密码</view>
+        <view class='column-line'></view>
+        <input password="{{new_eye ? true:false}}" value='{{newCom["newPwd2"]}}' placeholder="请确认你的新密码" maxlength="20" bindchange="bind_new_pwd2" />
+      </view>
+      <view class='sides' bindtap="pasortext2" data-new-num='1'>
+        <block name="switch" class="block" >
+          <view class='viewimage' wx:if="{{!new_eye}}">
+            <image mode='aspectFit' src='/static/images/eye.png'></image>
+          </view>
+          <view class='viewimage' wx:if="{{new_eye}}">
+            <image mode='aspectFit' src='/static/images/eyecut.png'></image>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view class="form-item">
+    <view class="content-item">
+      <view class='sides'>
+        <view class='item-name'>验证码</view>
+        <view class='column-line'></view>
+        <input type="text" placeholder="" maxlength="4" value='{{cptCode}}' bindinput="bind_cptCode"/>
+      </view>
+    </view>
+    <view class='sides'>
+        <view class='img'>
+          <canvas bindtouchend="onTap" style="width:{{cvs.width}}px;height:{{cvs.height}}px;" canvas-id="canvas"></canvas> 
+        </view>
+    </view>
+  </view>
+</view>
+
+<button class="login-btn" bindtap="confirm">确认修改</button>
+</view>

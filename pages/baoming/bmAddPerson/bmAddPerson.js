@@ -1,7 +1,5 @@
 var app = getApp();
-// var util = require('../../../utils/util.js');
-// var api = require('../../../config/api.js');
-// const storage = require('../../../services/storage.js');
+var api = require('../../../config/api.js');
 
 Page({
   data: {
@@ -16,7 +14,7 @@ Page({
 
     let that = this;
     //获取历史参会人员信息
-    that.data.addmeetPersonlist = storage.getstorage('selfPersons', []);
+    that.data.addmeetPersonlist = wx.getStorageSync('selfPersons');
 
     console.log(that.data.addmeetPersonlist);
 
@@ -82,7 +80,7 @@ Page({
       }
     }
     detail.list = list
-    detail.route = 'pages/baoMing/bmAddPerson/bmAddPerson'
+    detail.route = 'pages/baoming/bmAddPerson/bmAddPerson'
     wx.setStorage({
       key: 'meetPersonListSelected',
       data: detail,
@@ -141,23 +139,23 @@ Page({
         inputduty: "",
         inputphone: "",
       });
-      // var token = app.globalData.token;
-      // wx.request({
-      //   url: api.addPeople,
-      //   method: 'POST',
-      //   data: {
-      //     token: token,
-      //     name: varmeetPerson.name,
-      //     job: varmeetPerson.job,
-      //     tel: varmeetPerson.tel,
-      //   },
-      //   success: function (r) {
-      //     console.log(r.data);
-      //     if (r.data.code == 200) {
-      //       storage.put('selfPersons', varmeetPersonlist, 60 * 60 * 15);
-      //     }
-      //   }
-      // })
+      var token = app.globalData.token;
+      wx.request({
+        url: api.addPeople,
+        method: 'POST',
+        data: {
+          token: token,
+          name: varmeetPerson.name,
+          job: varmeetPerson.job,
+          tel: varmeetPerson.tel,
+        },
+        success: function (r) {
+          console.log(r.data);
+          if (r.data.code == 200) {
+            wx.setStorageSync('selfPersons', varmeetPersonlist);
+          }
+        }
+      })
 
     }
   },
@@ -194,7 +192,7 @@ Page({
   //提交
   buttomSubbmit: function (e) {
     wx.navigateBack({
-      url: '../../../pages/baoMing/bm/bm',
+      url: '/pages/baoming/bm/bm',
       success: function (res) {
         console.log(
           "数据存储成功"

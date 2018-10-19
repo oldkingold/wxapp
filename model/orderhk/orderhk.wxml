@@ -1,4 +1,5 @@
-<view class='hk_bg' catchtap='cancel' hidden='{{show}}'></view>
+<view hidden='{{show}}'>
+<view class='hk_bg' catchtap='cancel'></view>
 <view class='hk_main'>
   <view class='hk_title'>尊敬的用户：</view>
   <view class='hk_content'>请您确认是否已将11920.00汇款至以下账户，谢谢您的支持。</view>
@@ -27,4 +28,5 @@
 <view class='cancel'>
   <view class='line'></view>
   <view class='image'><image src='../../static/images/cancel.png'></image></view>  
+</view>
 </view>

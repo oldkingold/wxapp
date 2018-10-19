@@ -1,3 +1,4 @@
+var api = require('../config/api.js');
 /*
 *数组分割
 */
@@ -40,7 +41,7 @@ function wxlogin() {
       code = res.code;
       return getUserInfo();
     }).then((userInfo) => {
-      storage.put('userInfo', userInfo.userInfo, 60 * 60 * 15);
+      wx.setStorageSync('userInfo', userInfo.userInfo);
       wx.request({
         url: api.Wxlogin,
         method: 'POST',
@@ -49,17 +50,17 @@ function wxlogin() {
           console.log(res)
           if (res.data) {
             let bind_setting = { company: res.data.bind_company, name: res.data.bind_name, tel: res.data.bind_tel };
-            storage.put('bind_setting', bind_setting, 60 * 60 * 15);
+            wx.setStorageSync('bind_setting', bind_setting);
             if (res.data.companyName && res.data.companyBindTel) {
               let money = res.data.companyAdd - res.data.companyReduce > 0 ? res.data.companyAdd - res.data.companyReduce : 0;
               let company_setting = { name: res.data.companyName, tel: res.data.companyBindTel, money: money, admin: res.data.companyAdmin };
-              storage.put('company_setting', company_setting, 60 * 60 * 15);
+              wx.setStorageSync('company_setting', company_setting);
             } else {
-              storage.remove('company_setting');
+              wx.removeStorageSync('company_setting');
             }
-            storage.put('selfCompanies', res.data.selfCompanies, 60 * 60 * 15);
-            storage.put('selfPersons', res.data.selfPersons, 60 * 60 * 15);
-            storage.put('companyBindTel', res.data.companyBindTel, 60 * 60 * 15);
+            wx.setStorageSync('selfCompanies', res.data.selfCompanies);
+            wx.setStorageSync('selfPersons', res.data.selfPersons);
+            wx.setStorageSync('companyBindTel', res.data.companyBindTel);
             resolve(res.data);
           } else {
             reject(false);
@@ -112,4 +113,5 @@ module.exports = {
   formatTime: formatTime,
   split_array: split_array,
   bouncer: bouncer,
+  wxlogin: wxlogin,
 }

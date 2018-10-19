@@ -1,0 +1,246 @@
+page{
+  height: 100%
+}
+
+.container {
+  background: #f5f5f5;
+  padding-top: 20rpx;
+}
+
+.container-item {
+  margin-left: 26rpx;
+  margin-right: 26rpx;
+  background-color: #fff;
+}
+
+.top-item {
+  display: flex;
+  justify-content: space-between;
+  /* height: 167rpx; */
+  padding: 28rpx;
+}
+
+.left {
+  display: flex;
+}
+
+.wxphoto {
+  width: 106rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  margin-left: 18rpx;
+}
+
+.middle-top {
+  display: flex;
+  align-items: center;
+  height: 39rpx;
+}
+
+.wxname {
+  font-weight: 600;
+}
+
+.umanager {
+  margin-left: 12rpx;
+  color: #60a2f0;
+  font-size: 18rpx;
+  width: 76rpx;
+  height: 30rpx;
+  background-color: #e8ffff;
+  border: 1rpx solid #60a2f0;
+  border-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.middle-bottom {
+  display: flex;
+  align-items: center;
+  height: 39rpx;
+}
+
+.wxid-name {
+  color: #9a9a9a;
+  font-size: 25rpx;
+}
+
+.wxid-value {
+  margin-left: 12rpx;
+  color: #9a9a9a;
+  font-size: 25rpx;
+}
+
+.right {
+  color: #d1d1d1;
+  font-size: 25rpx;
+}
+
+.logobject {
+  margin-left: 26rpx;
+  margin-right: 26rpx;
+  margin-top: 16rpx;
+  font-weight: 600;
+}
+
+.logmain {
+  margin-top: 16rpx;
+}
+
+.log-line {
+  display: flex;
+  padding: 9rpx 8rpx 6rpx 18rpx;
+  align-items: center;
+}
+
+.log-time {
+  color: #989898;
+  font-size: 25rpx;
+}
+
+.log-operation {
+  color: #989898;
+  font-size: 25rpx;
+  margin-left: 18rpx;
+  display: flex;
+  flex-wrap: wrap;
+  width: 69%;
+}
+
+.bottom {
+  position: fixed;
+  margin-left: 13%;
+  bottom: 36rpx;
+}
+
+.bottom-content {
+  display: flex;
+  justify-content: center;
+}
+
+
+.bottom-text {
+  font-size: 25rpx;
+  color: #989898;
+}
+
+.bottom-opertaion {
+  display: fixed;
+  color: #60a2f0;
+  font-size: 25rpx;
+  
+}
+
+
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff;
+}
+
+.modal-dialog {
+  width:86%;
+  overflow:hidden;
+  position:fixed;
+  top:9%;
+  z-index:9999;
+  background:#FFFFFF;
+  border-radius:36rpx;
+  margin:auto 8%;
+}
+
+
+.modal-title {
+padding-top:28rpx;
+font-size:32rpx;
+color:#030303;
+text-align:center;
+font-weight:500;
+padding-bottom:9px;
+border-bottom:1rpx solid #F5F5F5;
+
+}
+
+.modal-desc{
+  color:#A2A2A2;
+margin-bottom:14rpx;
+
+}
+
+.modal-content {
+padding:50rpx 32rpx;
+padding-top:16rpx;
+display:flex;
+flex-direction:column;
+justify-content: flex-start;
+padding-bottom:16rpx;
+    width: 100%;
+    height: 80%;
+}
+
+.modal-line {
+  font-size:26rpx;
+  font-weight:600;
+  height:40rpx;
+
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  height: 86rpx;
+  border-top: 1px solid #dedede;
+  font-size: 34rpx;
+  line-height: 86rpx;
+  justify-content:center;
+}
+
+.btn-cancel {
+  width: 50%;
+  color: #666;
+  text-align: center;
+  border-right: 1px solid #dedede;
+}
+
+.btn-confirm {
+  width:50%;
+  color:#4C9BFB;
+  text-align:center;
+  font-size:36rpx;
+  letter-spacing:2rpx;
+  border-right: 1rpx solid #DEDEDE;
+}
+.check-box-item{
+  display: flex;
+  align-content: center;
+  height:76rpx;
+
+}
+.check-box-icon {
+   display: flex;
+    align-content: center;
+}
+
+.check-box-icon image {
+  height: 36rpx;
+  width: 36rpx;
+  display: inline-flex
+}
+.check-box-value{
+  margin-left: 18rpx;
+    display: flex;
+  align-content: center;
+}

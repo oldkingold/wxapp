@@ -69,6 +69,7 @@ page {
 .top-middle_0 {
   position: absolute;
   left: 250rpx;
+  top: 40rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -81,7 +82,7 @@ page {
   text-align: center;
   letter-spacing: 2rpx;
   width: 100%;
-  margin-top: 16rpx;
+  margin-top: 4rpx;
 }
 
 .userBtn_0 {
@@ -93,9 +94,9 @@ page {
   border-radius: 250rpx;
   padding-top: 10rpx;
   padding-bottom: 10rpx;
-  padding-left: 60rpx;
-  padding-right: 60rpx;
-  margin-top: 20rpx;
+  padding-left: 22rpx;
+  padding-right: 22rpx;
+  margin-top: 16rpx;
   width: 100%;
 }
 

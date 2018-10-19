@@ -1,10 +1,17 @@
 // var api = require('../../../config/api.js');
+const meet = require('../../utils/home/meeting.js');
 Page({
   data: {
+    companyInfo: [],
   },
   onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数
-    // 页面渲染完成
+    var that = this;
+    meet.companyInfo().then(function (res) {
+      // that.data.companyInfo = res.split("\n");
+      that.setData({
+        companyInfo: res.split("\n")
+      });
+    })
   },
   previewImage: function (e) {
     // wx.previewImage({

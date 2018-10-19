@@ -1,11 +1,13 @@
 Component({
   
   properties: {
+    employeeTeacherList: {
+      "type": Array,
+      "value": [],
+    },
     info: {
       "type": Object,
       "value": {
-        employeeTeacherList: [
-        ],
         Tel: "0571-89809186",
         fax: "0571-89809185",
         url: "www.58jz.com.cn",
@@ -23,7 +25,7 @@ Component({
   methods: {
     phoneCall: function(e) {
       var tel = e.target.dataset['tel'];
-      var detail = { tel: tel}
+      var detail = {tel: tel}
       this.triggerEvent('phoneCall',detail);
     }
   }

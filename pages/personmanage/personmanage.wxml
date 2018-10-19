@@ -1,0 +1,62 @@
+
+<view class="container" style='height:100%'>
+<view class='margin-top'></view>
+  <view class='top container-item'>
+    <view class='top-item' wx:for="{{users}}" wx:for-item="item" wx:key="*this">
+      <view class='left'>
+        <image class='wxphoto' src='{{item.avatar_url}}'></image>
+        <view class='middle'>
+          <view class='middle-top'>
+            <view class='wxname'>{{item.nick_name}}</view>
+            <view class='umanager' wx:if="{{item.is_admin==true}}">管理员</view>
+          </view>
+          <!-- <view class='middle-bottom'>
+            <view class='wxid-name'>微信号: </view>
+            <view class='wxid-value'>none</view>
+          </view> -->
+        </view>
+      </view>
+      <view class='right'>{{item.updated_at}}</view>
+    </view>
+  </view>
+  <!-- <view class='logobject'>用户日志</view>
+  <view class='container-item logmain'>
+    <block wx:for="{{logs}}" wx:for-item="log" wx:key="*key">
+      <view class='log-line'>
+        <view class='log-time'>{{log.time}}</view>
+        <view class='log-operation'>{{log.operation}}</view>
+      </view>
+    </block>
+  </view> -->
+
+  <view class='bottom'>
+    <view class='bottom-content'>
+      <view class='bottom-text'>检测到用户非我公司内部人员，请</view>
+      <view class='bottom-opertaion' catchtap='bind_showModal'>清除该用户</view>
+    </view>
+  </view>
+
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+    <view class="modal-title">清除公司人员</view>
+    <view class="modal-content">
+      <block wx:for="{{users}}" wx:for-item="user" wx:key="user.openId">
+        <view class='check-box-item' catchtap='bind_changebox' data-wxid="{{user.openId}}" wx:if="{{!user.is_admin}}">
+          <view wx:if="{{user.checked}}" class='check-box-icon'>
+            <image src='../../../static/images/checked@3x.png'></image>
+          </view>
+          <view wx:else class='check-box-icon'>
+            <image src='../../../static/images/check@3x.png'></image>
+          </view>
+          <view class='check-box-value'>{{user.nick_name}}</view>
+        </view>
+      </block>
+      <view class='modal-content-bottom'>注：只有管理员有此权限</view>
+    </view>
+
+    <view class="modal-footer">
+      <view class="btn-confirm" bindtap="bind_cancel">取消</view>
+      <view class="btn-confirm" bindtap="bind_del">清除 </view>
+    </view>
+  </view>
+</view>

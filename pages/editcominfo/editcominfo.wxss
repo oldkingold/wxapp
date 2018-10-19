@@ -1,0 +1,97 @@
+page {
+  height: 100%;
+}
+.container {
+  background: #f5f5f5;
+  height: 100%;
+  padding-top: 20rpx;
+}
+
+.content {
+  background-color: #fff;
+  padding: 16rpx 6rpx 40rpx 23rpx;
+  overflow: hidden;
+}
+
+.content-line {
+  display: flex;
+  margin-left: 18rpx;
+  align-items: center;
+  height:68rpx;
+  border-bottom: 1rpx solid #f3f3f3;
+}
+.content-line input{
+  margin-left: 36rpx;
+ width:73%;
+}
+.object-name{
+  font-size: 30rpx;
+  width:156rpx;
+}
+.object-title {
+  width: 100%;
+  text-align: center;
+}
+
+.check-box-item{
+  display: flex;
+align-items:center;
+  height:76rpx;
+
+}
+.check-box-icon {
+display:flex;
+align-items:center;
+height:76rpx;
+margin-left:36rpx;
+
+}
+
+.check-box-icon image {
+  height: 36rpx;
+  width: 36rpx;
+  display: inline-flex
+}
+.check-box-value{
+  margin-left: 18rpx;
+    display: flex;
+  align-content: center;
+}
+
+.btn-content{
+  margin-top: 18rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center
+}
+
+.btn-item-default {
+  height: 82rpx;
+  width: 310rpx;
+  border-radius: 42rpx;
+  background-color: #e5e5e5;
+  text-align: center;
+  margin: 50rpx auto;
+  border: 1rpx solid #c6c7c9;
+  line-height: 82rpx;
+  font-weight: 600;
+  font-size: 31rpx;
+  letter-spacing: 6rpx;
+}
+
+.btn-item-selected {
+  height: 82rpx;
+  width: 310rpx;
+  border-radius: 42rpx;
+  background-color: #2185f7;
+  text-align: center;
+  margin: 50rpx auto;
+  margin-right: 24rpx;
+  border: 1rpx solid #c6c7c9;
+  line-height: 82rpx;
+  font-weight: 600;
+  font-size: 31rpx;
+  letter-spacing: 6rpx;
+  color: #fff;
+}
+
