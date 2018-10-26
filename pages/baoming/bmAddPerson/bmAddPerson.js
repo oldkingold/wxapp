@@ -109,8 +109,7 @@ Page({
         title: '提示',
         content: '姓名或职务必填',
       })
-    }
-    else if (!mobile.exec(varphone)) {
+    }else if (!mobile.exec(varphone)) {
       wx.showModal({
         showCancel: false,
         title: '提示',
@@ -123,7 +122,8 @@ Page({
         title: '提示',
         content: '重复添加',
       })
-    } else {
+    }else {
+      
       let varmeetPerson = { name: varname, job: varduty, tel: varphone, checked: false };
 
       let varmeetPersonlist = that.data.addmeetPersonlist;

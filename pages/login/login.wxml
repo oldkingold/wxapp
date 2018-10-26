@@ -70,7 +70,7 @@
       <view class='others'>
         <navigator url='/pages/reset/reset' open-type="navigate" hover-class="other-navigator-hover" class='left'>忘记密码</navigator>
         <navigator  class='register' url='/pages/sign/sign' open-type="navigate" hover-class="other-navigator-hover" >
-           <view  >没有账号?<text >去注册</text></view>
+           <view>没有账号?<text>去注册</text></view>
         </navigator>
       </view>
     

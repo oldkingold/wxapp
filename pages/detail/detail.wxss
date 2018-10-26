@@ -239,7 +239,7 @@ video {
 .baoming {
   position: fixed;
   bottom: 0rpx;
-  height: 120rpx;
+  height: 100rpx;
   width: 100%;
   background-color: #f3a401;
   display: flex;

@@ -15,9 +15,6 @@ Page({
     singleRoomNum: 0,
     doubleRoomNum: 0,
     isNotNeedRoom: true,
-    // mealList: [],
-    // isNotNeedMeal: 0,
-    // noMeal: false,
     arriveDateHolder: "请选择到达时间",
     isArriveDateHolder: false,
     arriveDate: "",
@@ -118,23 +115,12 @@ Page({
       success: function (res) {
         console.log(res)
         let varSelected = res.data;
-        if (varSelected.list.length > 0) {
-          let mlist = that.data.mealList;
-          let sum = 0;
-          for (let date in mlist) {
-            for (let type in mlist[date]['data']) {
-              mlist[date]['data'][type]['pnum'] = varSelected.list.length;
-              if (mlist[date]['data'][type]['status'] == 1) {
-                sum = sum + varSelected.list.length;
-              }
-            }
-          }
+        if (varSelected.list.length > 0) { 
           wx.removeStorage({
             key: 'meetPersonListSelected'
           })
           that.setData({
             meetPersonlist: varSelected.list,
-            mealList: mlist,
           })
         }
 
@@ -224,22 +210,9 @@ Page({
       confirmText: '是',
       cancelText: '否',
       success: function (res) {
-        if (res.confirm) {
-          let mlist = that.data.mealList;
-          let sum = 0;
-          for (let date in mlist) {
-            for (let type in mlist[date]['data']) {
-              mlist[date]['data'][type]['pnum'] = meetPersonlist.length;
-              if (mlist[date]['data'][type]['status'] == 1) {
-                sum = sum + meetPersonlist.length;
-              }
-            }
-          }
-
+        if (res.confirm) {  
           that.setData({
             meetPersonlist: meetPersonlist,
-            mealList: mlist,
-            isNotNeedMeal: sum,
           });
         } else if (res.cancel) {
 
@@ -624,7 +597,6 @@ Page({
         return false;
       }
     }
-    console.log(that.data.mealList);
     // app.globalData.token
     wx.request({
       url: api.ApiRootUrl + 'wxapp/wxbm',
@@ -636,8 +608,6 @@ Page({
         singleRoomNum: that.data.singleRoomNum,
         doubleRoomNum: that.data.doubleRoomNum,
         isNotNeedRoom: that.data.isNotNeedRoom,
-        // mealList: that.data.mealList,
-        // isNotNeedMeal: that.data.isNotNeedMeal,
         arriveDate: that.data.arriveDate,
         leaveDate: that.data.leaveDate,
         invoice: that.data.invoice,
@@ -654,7 +624,6 @@ Page({
           let receipt = {
             meeting: that.data.consoleMeetings,
             invoice: that.data.invoice,
-            meals: that.data.mealList,
             companyName: that.data.compName,
             meetdate: { start_date: that.data.arriveDate, end_date: that.data.leaveDate }
           }

@@ -1,6 +1,5 @@
 var util = require('../../utils/util.js');
 // var api = require('../../../config/api.js');
-// var storage = require('../../../services/storage.js');
 var app = getApp();
 
 Page({
@@ -42,7 +41,31 @@ Page({
   },
 
   onShow: function () {
-     
+    // 页面初始化 options为页面跳转所带来的参数
+    var that = this;
+    //判断是否微信授权登录
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          let userInfo = wx.getStorageSync('userInfo');
+          if (userInfo) {
+            that.setData({
+              userInfo: userInfo,
+              userInfo_status: 1
+            })
+          }
+          //判断是否公司账号登录
+          let company_setting = wx.getStorageSync('company_setting');
+          if (company_setting) {
+            that.setData({
+              loginStatus: 1,
+              com_name: company_setting.name,
+              account: company_setting.money,
+            });
+          }
+        }
+      }
+    })
   },
 
   //微信授权登录

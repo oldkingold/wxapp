@@ -1,31 +1,34 @@
 {
   "pages": [
-    "pages/home/home", 
-    "pages/baoming/bm/bm", 
-    "pages/baoming/bmAddPerson/bmAddPerson", 
-    "pages/baoming/receipt/receipt", 
-    "pages/index/index", 
-    "pages/wode/wode", 
-    "pages/login/login", 
-    "pages/reset/reset", 
-    "pages/sign/sign", 
-    "pages/bmlog/bmlog", 
-    "pages/bmlogdetail/bmlogdetail", 
-    "pages/aboutas/aboutas", 
-    "pages/setting/setting/setting", 
-    "pages/message/message", 
-    "pages/order/order", 
-    "pages/detail/detail", 
-    "pages/setting/changepwd/changepwd", 
-    "pages/setting/changephone/changephone", 
-    "pages/setting/changephonenext/changephonenext", 
-    "pages/personmanage/personmanage", 
-    "pages/signin/signin", 
-    "pages/signining/singining", 
-    "pages/judge/judge", 
-    "pages/infomanage/infomanage", 
-    "pages/editcominfo/editcominfo", 
-    "pages/addcominfo/addcominfo" 
+    "pages/baoming/bmAddPerson/bmAddPerson",
+    "pages/home/home",
+    "pages/baoming/bm/bm",
+    
+    "pages/baoming/receipt/receipt",
+    "pages/index/index",
+    "pages/wode/wode",
+    "pages/login/login",
+    "pages/reset/reset",
+    "pages/sign/sign",
+    "pages/bmlog/bmlog",
+    "pages/bmlogdetail/bmlogdetail",
+    "pages/aboutas/aboutas",
+    "pages/setting/setting/setting",
+    "pages/message/message",
+    "pages/order/order",
+    "pages/detail/detail",
+    "pages/setting/changepwd/changepwd",
+    "pages/setting/changephone/changephone",
+    "pages/setting/changephonenext/changephonenext",
+    "pages/personmanage/personmanage",
+    "pages/signin/signin",
+    "pages/signining/singining",
+    "pages/judge/judge",
+    "pages/infomanage/infomanage",
+    "pages/editcominfo/editcominfo",
+    "pages/addcominfo/addcominfo",
+    "pages/discountlog/index/index",
+    "pages/discount/discount"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,7 +39,7 @@
   "tabBar": {
     "color": "#777777",
     "selectedColor": "#f5a601",
-    "list": [
+    "list": [ 
       {
         "pagePath": "pages/home/home",
         "text": "首页",
@@ -44,7 +47,7 @@
         "selectedIconPath": "static/images/home_h.png"
       },
       {
-        "pagePath": "pages/order/order",
+        "pagePath": "pages/discount/discount",
         "text": "会员卡",
         "iconPath": "static/images/card.png",
         "selectedIconPath": "static/images/card_h.png"

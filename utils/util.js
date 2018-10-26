@@ -112,6 +112,6 @@ function getUserInfo() {
 module.exports = {
   formatTime: formatTime,
   split_array: split_array,
-  bouncer: bouncer,
-  wxlogin: wxlogin,
+  bouncer: bouncer, 
+  wxlogin: wxlogin, //登陆
 }

@@ -1,0 +1,402 @@
+page {
+  background-color: #ebf0f4;
+}
+
+.bg {
+  background-color: white;
+  padding-top: 40rpx;
+}
+
+.bg2 {
+  background-color: white;
+  margin-top: 30rpx;
+}
+
+.card {
+  background-color: white;
+  width: 650rpx;
+  height: 334rpx;
+  margin-left: 50rpx;
+  border-radius: 16rpx;
+  position: relative;
+  color: white;
+  font-size: 26rpx;
+  overflow: hidden;
+}
+
+.card image {
+  width: 650rpx;
+  height: 334rpx;
+}
+
+.card .top {
+  position: absolute;
+  top: 26rpx;
+  width: 650rpx;
+}
+
+.card .top .left {
+  float: left;
+  margin-left: 28rpx;
+}
+
+.card .top .left image{
+  width: 68rpx;
+  height: 68rpx;
+  float: left;
+}
+
+.card .top .left .text{
+  display: flex;
+  flex-direction: column;
+  padding-left: 25rpx;
+}
+
+.card .top .left .text1{
+  font-size: 32rpx;
+}
+
+.card .top .left .text2{
+  font-size: 22rpx;
+}
+
+
+.card .top .right {
+  float: right;
+  margin-right: 18rpx;
+}
+
+.card .bottom {
+  position: absolute;
+  bottom: 20rpx;
+}
+
+.card .bottom .text1 {
+  color: white;
+  font-size: 26rpx;
+  margin-left: 25rpx;
+}
+
+.card .bottom .text2 {
+  color: #d9990e;
+  font-size: 26rpx; 
+  margin-right: 15rpx;
+}
+
+.title {
+  float: left;
+  margin-left: 40rpx;
+  margin-top: 40rpx;
+  font-weight: bold;
+}
+
+.detail {
+  float: right;
+  margin-right: 40rpx;
+  font-size: 28rpx;
+  color: #1b79f8;
+  margin-top: 40rpx;
+  display: flex;
+  align-items: center;
+}
+
+.detail text {
+  font-size: 14rpx;
+  border-radius: 14rpx;
+  letter-spacing: 7rpx;
+  padding-left: 6rpx;
+  border: 1rpx solid #1b79f8;
+  margin-right: 8rpx;
+}
+
+.line {
+  overflow: hidden;
+  margin-top: 24rpx;
+}
+
+.flex_row {
+  display: flex;
+}
+
+.line .name {
+  font-size: 32rpx;
+  margin-left: 40rpx; 
+  white-space: nowrap;
+}
+
+.line .content {
+  margin-left: 24rpx;
+  font-size: 24rpx;
+}
+
+.line .contents {
+  margin-top: 5rpx;
+  margin-right: 40rpx;
+}
+
+.line .contents view{
+  margin-left: 24rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  margin-top: 5rpx;
+  letter-spacing: 2rpx;
+}
+
+.line .contents text{
+  color: #f4a600;
+  letter-spacing: 0rpx;
+}
+
+.line .content .prices {
+  border: 2rpx solid #d9d9d9;
+  border-radius: 10rpx;
+  text-align: center;
+  padding: 0 16rpx;
+  
+  width: 190rpx;
+}
+
+.prices .price {
+  line-height: 50rpx;
+  font-size: 32rpx;
+  color: #ff1f1f;
+}
+
+.prices .people {
+  font-size: 24rpx;
+}
+
+.line .content .nums {
+  display: flex;
+  border: 2rpx solid #d9d9d9;
+  border-radius: 10rpx;
+  height: 50rpx;
+  margin-left: 40rpx;
+}
+
+.nums view {
+  text-align: center;
+  line-height: 50rpx;
+  width: 60rpx;
+  color: #ababab;
+}
+
+.nums input {
+  width: 100rpx;
+  border-left: 2rpx solid #d9d9d9;
+  border-right: 2rpx solid #d9d9d9;
+  text-align: center;
+  color: #7a7a7a;
+}
+
+.contact {
+  padding: 0 40rpx;
+  margin-top: 28rpx;
+}
+
+.contact .item {
+  border-top: 2rpx solid #ebf0f5;
+  display: flex;
+  align-items: center;
+}
+
+.item .name{
+  font-size: 32rpx;
+  line-height: 80rpx;
+  width: 168rpx;
+}
+
+.item input {
+  margin-left: 20rpx;
+  width: 480rpx;
+}
+
+.invoice-item {
+  height: 45rpx;
+  font-size: 30rpx;
+  margin: 30rpx 40rpx 0 40rpx;
+}
+
+.invoice-item radio-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+radio {
+  transform: scale(0.8);
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 5rpx;
+}
+
+/*  重写 radio 样式  */
+
+/* 未选中的 背景样式 */
+
+radio .wx-radio-input {
+  border-radius: 50%; /* 圆角 */
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+
+radio .wx-radio-input.wx-radio-input-checked {
+  border: none;
+  background: #127cf4 !important;
+}
+
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  border-radius: 50%; /* 圆角 */
+  width: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+  height: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 30rpx; /* 对勾大小 30rpx */
+  color: #fff; /* 对勾颜色 白色 */
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+.label-4 {
+  display: flex;
+  align-items: center;
+}
+
+.invoice-desc {
+  margin-left: 42rpx;
+  color: #bfbfbf;
+  height: 62rpx;
+  vertical-align: center;
+}
+
+.invoice-desc text {
+  color: #bfbfbf;
+  vertical-align: center;
+  font-size: 26rpx;
+}
+
+.section2 {
+  display: flex;
+  margin-left: 42rpx;
+  margin-right: 40rpx;
+  height: 36px;
+  border-bottom: 1rpx solid #eeeff1;
+  background-color: #fff;
+  font-size: 28rpx;
+}
+
+.section__title2 {
+  line-height: 72rpx;
+  width: 140rpx;
+}
+
+.section2 input {
+  font-size: 28rpx;
+  display: block;
+  margin-top: 12rpx;
+  margin-left: 30rpx;
+  width: 490rpx;
+}
+
+.tishi {
+  font-size: 26rpx;
+  margin-top: 30rpx;
+  margin-left: 40rpx;
+  margin-right: 60rpx;
+}
+
+.tishi text {
+  color: #1b79f8;
+}
+
+.comapny {
+  font-size: 30rpx;
+  margin: 20rpx 40rpx 20rpx 40rpx;
+  border-radius: 20rpx;
+  padding:20rpx 40rpx;
+  background-color: #f5f7fa;
+  line-height: 50rpx;
+}
+
+.submitview {
+  position: fixed;
+  bottom: 0rpx;
+  background-color: white;
+  z-index: 1000;
+  width: 100%;  
+}
+
+.submitview text {
+  font-size: 20rpx;
+  line-height: 28rpx;
+}
+
+.submitview .tip{
+  background-color: #ebf0f5;
+  font-size: 18rpx;
+  line-height: 36rpx;
+  color: #1b79f8;
+  padding-left: 40rpx;
+}
+
+.submitview .content {
+  display: flex;
+  height: 120rpx;
+  justify-content: space-between;
+}
+
+.submitview .content .sl {
+  margin-left: 40rpx;
+}
+
+.submitview .content .ll{
+  height: 28rpx;
+}
+
+.submitview .content .ll3{
+  margin-top: 12rpx;
+}
+
+.ll .llx {
+  margin-left: 66rpx;
+  color: #ff1e1e;
+  font-weight: bold;
+}
+
+.submitview .give {
+  color: #ff1f1f;
+}
+
+.submitview .btn {
+  background-color: #f4a600;
+  color: white;
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 32rpx;
+  padding: 0 28rpx;
+}
+
+.submitview .new-price {
+  color: #ff2020;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.submitview .old-price {
+  color: #878787;
+  text-decoration:line-through;
+  font-size: 22rpx;
+}
+
+.submitview .cut-price {
+  color: #f4a600;
+}
+
+
+

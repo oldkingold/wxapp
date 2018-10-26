@@ -149,7 +149,9 @@ Page({
 
   bindweixin: function (e) {
     let that = this;
-    if (e.detail.userInfo) {
+    let userInfo = wx.getStorageSync("userInfo");
+    
+    if (e.detail.userInfo && !userInfo) {
       util.wxlogin().then((res) => {
         app.globalData.token = res.token;
         app.globalData.openId = res.openId;
@@ -157,8 +159,11 @@ Page({
           url: '/pages/baoming/bm/bm?id=' + that.data.meeting.id,
         })
       });
-      
-    } else {
+    } else if (e.detail.userInfo && userInfo) {
+      wx.navigateTo({
+        url: '/pages/baoming/bm/bm?id=' + that.data.meeting.id,
+      })
+    }else {
       wx.showModal({
         title: "用户未授权",
         content: '请授权允许微信登录后进行报名',

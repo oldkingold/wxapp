@@ -1,51 +1,44 @@
-<view class="page">
-  <view class='contains'>
-    <view class='addPerson'>
-      <view class='addPerson-content'>
-        <form bindsubmit="addSave" bindreset="addReset">
-          <view class="section2">
-            <view class="section__title2">姓名</view>
-            <input name="inputname" placeholder="请输入" value='{{inputname}}' />
-          </view>
-          <view class="section2">
-            <view class="section__title2">职务</view>
-            <input name="inputduty" placeholder="请输入" value='{{inputduty}}' />
-          </view>
-          <view class="section2">
-            <view class="section__title2">手机</view>
-            <input maxlength='11' name="inputphone" placeholder="请输入" value='{{inputphone}}' />
-          </view>
+<view class='contains'>
+  <view class='addPerson'>
+      <form bindsubmit="addSave" bindreset="addReset">
+        <view class="section2">
+          <view class="section__title2">姓名</view>
+          <input name="inputname" placeholder="请输入" value='{{inputname}}' />
+        </view>
+        <view class="section2">
+          <view class="section__title2">职务</view>
+          <input name="inputduty" placeholder="请输入" value='{{inputduty}}' />
+        </view>
+        <view class="section2">
+          <view class="section__title2">手机</view>
+          <input maxlength='11' name="inputphone" placeholder="请输入" value='{{inputphone}}' />
+        </view>
 
-          <view class='btn-content'>
-            <button class="btn-item-default" formType="submit">保存</button>
-            <button class="btn-item-default" formType="reset">清空</button>
-          </view>
+        <view class='btn-content'>
+          <button class="btn-item-default" formType="submit">保存</button>
+          <button class="btn-item-default" formType="reset">清空</button>
+        </view>
 
-        </form>
+      </form>
+  </view>
 
+  <block wx:for="{{addmeetPersonlist}}" wx:key="{{index}}">
+    <view class='item' bindtap='changeChecked' data-index="{{index}}"  >
+      <view class='left'>
+        <view class='name'>{{item.name}}</view>
+        <view class='phone'>{{item.tel}}</view>
+        <view class='duty'>{{item.job}}</view>
+      </view>
+      <view class='right'>
+        <view wx:if="{{item.checked}}" class='check-box-icon'>
+          <image src='/static/images/checked@3x.png'></image>
+        </view>
+        <view wx:else class='check-box-icon'>
+          <image src='/static/images/check@3x.png'></image>
+        </view>
       </view>
     </view>
+  </block>
 
-    <block wx:for="{{addmeetPersonlist}}" wx:key="{{index}}">
-      <view class='item' bindtap='changeChecked' data-index="{{index}}"  >
-        <view class='left'>
-          <view class='name'>{{item.name}}</view>
-          <view class='phone'>{{item.tel}}</view>
-          <view class='duty'>{{item.job}}</view>
-        </view>
-        <view class='right'>
-          <view wx:if="{{item.checked}}" class='check-box-icon'>
-            <image src='/static/images/checked@3x.png'></image>
-          </view>
-          <view wx:else class='check-box-icon'>
-            <image src='/static/images/check@3x.png'></image>
-          </view>
-        </view>
-      </view>
-    </block>
-
-
-    <view class="btn-buttom-default" bindtap="buttomSubbmit">提交</view>
-
-  </view>
 </view>
+<view class="btn-buttom-default" bindtap="buttomSubbmit">提交</view>

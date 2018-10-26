@@ -12,7 +12,7 @@ Page({
     cptCode:'',
     code:'',
     phoneCode: '',
-    phoneCodeID:'',
+    phoneCodeID:'971024040189850988^0',
     time: '获取验证码',
     timeOpen: true,
     timeNum : 60,
@@ -102,7 +102,6 @@ Page({
         });
         return false;
       }
-      console.log(app.globalData.token);
       wx.request({
         url: api.Company_Login,
         method:'post',
@@ -113,7 +112,6 @@ Page({
           token: app.globalData.token,
         },
         success:function(res) {
-          console.log(res);
           if (res.data.code == 200) {
             wx.showToast({
               icon: 'success',
@@ -126,7 +124,7 @@ Page({
               app.globalData.token = res.token;
               app.globalData.openId = res.openId;
               wx.switchTab({
-                url: "../wode/wode",
+                url: "/pages/wode/wode",
               })
             });           
           } else if (res.data.code == 201) {
@@ -148,7 +146,6 @@ Page({
         })
         return false;
       }
-      console.log(app.globalData.token);
       wx.request({
         url: api.Company_Loginsms,
         data: { 
@@ -160,7 +157,6 @@ Page({
           },
         method:'POST',
         success: function (res) {
-          console.log(res);
           if (res.data.code == 200) {
             wx.showToast({
               icon: 'success',
@@ -172,7 +168,7 @@ Page({
               app.globalData.token = res.token;
               app.globalData.openId = res.openId;
               wx.switchTab({
-                url: "../wode/wode",
+                url: "/pages/wode/wode",
               })
             });
           } else if (res.data.code == 199) {
@@ -225,7 +221,6 @@ function countdown(that) {
     method: 'POST',
     success:function(res) {
       var myreg = /[\^]/;
-      console.log(res);
       if (res.data.code == 200) {
         if (!myreg.test(res.data.data)) {
           wx.showModal({

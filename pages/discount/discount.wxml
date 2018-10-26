@@ -1,0 +1,152 @@
+<view class='container'>
+  <view class='bg'>
+    <view class='card'>
+      <image src='/static/images/membershipcard.png'></image>
+      <view class='top'>
+        <view class='left'>
+          <image src='/static/images/duchuancard.png'></image>
+          <view class='text'>
+            <view class='text1'>度川教育培训课程</view>
+            <view class='text2'>套餐</view>
+          </view>
+        </view>
+        <view class='right'>已登录</view>
+      </view>
+      <view class='bottom'>
+        <text class='text1'>剩余次数：</text><text class='text2'>5</text>
+        <text class='text1'>已购买：</text><text class='text2'>5</text>
+        <text class='text1'>使用中：</text><text class='text2'>5</text>
+      </view>
+    </view>
+    <view>
+      <view class='line'>
+        <text class='title'>套餐购买</text>
+        <text class='detail'><text>?</text>优惠详情</text>
+      </view>
+      <view class='line flex_row'>
+        <text class='name'>选择套餐：</text>
+        <view class='content'>
+          <view class='flex_row' style='margin-bottom: 30rpx;'>
+            <view class='prices'><text class='price'>￥11920</text>/<text class='people'>5人</text></view>
+            <view class='nums'><view>-</view><input type='number' value='1'></input><view>+</view></view>
+          </view>
+          <view class='flex_row'>
+            <view class='prices'><text class='price'>￥20860</text>/<text class='people'>10人</text></view>
+            <view class='nums'><view>-</view><input type='number' value='1'></input><view>+</view></view>
+          </view>
+        </view>
+      </view>
+      <view class='line flex_row'>
+        <text class='name'>套餐说明：</text>
+        <view class='contents'>
+          <view>培训原价：<text>￥2980</text>/人(含餐饮), 课程时长：2天，6h/天。</view>
+          <view>5人次套餐：<text>￥11920</text>(含餐饮), 可分此参加。</view>
+          <view>10人次套餐：<text>￥20860</text>(含餐饮), 可分此参加。</view>
+          <view>在以上优惠的基础上，一次性购买多分10人次套餐（餐标￥100.00/餐）,还赠送相应的名额。</view>
+        </view>
+      </view>
+      <view class='contact'>
+        <view class='item'>
+          <text class='name'>公司名称：</text>
+          <input placeholder='请输入'></input>
+        </view>
+        <view class='item'>
+          <text class='name'>联系人：</text>
+          <input placeholder='请输入'></input>
+        </view>
+        <view class='item'>
+          <text class='name'>联系方式：</text>
+          <input placeholder='请输入'></input>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='bg2'>
+    <view class='line'>
+      <text class='title'>开票信息</text>
+    </view>
+    <view class='invoice-item '>
+      <radio-group name="radio-group" bindchange="listenerRadioGroup">
+        <label class='label-4'>
+          <radio value="暂不填写" checked="{{invoice.invType=='暂不填写'?'checked':''}}" name="invoice" />暂不填写
+        </label>
+        <label class='label-4'>
+          <radio value="普票" checked="{{invoice.invType=='普票'?'checked':''}}" name="invoice" />普票
+        </label>
+        <label class='label-4'>
+          <radio value="专票" checked="{{invoice.invType=='专票'?'checked':''}}" name="invoice" />专票
+        </label>
+        <label class='label-4'>
+          <radio value="不开票" checked="{{invoice.invType=='不开票'?'checked':''}}" name="invoice" />不开票
+        </label>
+      </radio-group>
+    </view>
+    <block wx:if="{{invoice.invType=='暂不填写'}}">
+      <view class='invoice-desc'>
+        <text> 注：若后期需要开票，请与会务工作人员联系！</text>
+      </view>
+    </block>
+    <block wx:if="{{invoice.invType=='普票'}}">
+      <view class="section2">
+        <view class="section__title2">公司名称</view>
+        <input name="invCompName" value='{{invoice.invCompName}}' placeholder="请输入" bindinput='invCompName' />
+      </view>
+      <view class="section2">
+        <view class="section__title2">纳税识别号</view>
+        <input name="taxIdNum" value='{{invoice.taxIdNum}}' placeholder="请输入 (注:英文字母需大写)" bindinput='taxIdNum' />
+      </view>
+    </block>
+    <block class='invoice-detail' wx:if="{{invoice.invType=='专票'}}">
+      <view class="section2">
+        <view class="section__title2">公司名称</view>
+        <input name="invCompName" value='{{invoice.invCompName}}' placeholder="请输入" bindinput='invCompName' />
+      </view>
+      <view class="section2">
+        <view class="section__title2">纳税识别号</view>
+        <input name="taxIdNum" value='{{invoice.taxIdNum}}' placeholder="请输入 (注:英文字母需大写)" bindinput='taxIdNum' />
+      </view>
+      <view class="section2">
+        <view class="section__title2">公司地址</view>
+        <input name="compAddr" value='{{invoice.compAddr}}' placeholder="请输入" bindinput='compAddr' />
+      </view>
+
+      <view class="section2">
+        <view class="section__title2">电话号码</view>
+        <input name="compTel" value='{{invoice.compTel}}'  placeholder="请输入" bindinput='compTel' />
+      </view>
+      <view class="section2">
+        <view class="section__title2">开户银行</view>
+        <input name="compBank" value='{{invoice.compBank}}'  placeholder="请输入" bindinput='compBank' />
+      </view>
+      <view class="section2">
+        <view class="section__title2">银行账号</view>
+        <input name="compBankAccount" value='{{invoice.compBankAccount}}' placeholder="请输入" bindinput='compBankAccount' />
+      </view>
+    </block>
+    <view class='tishi'>
+      <text>提示：</text>由于微信支付限额，请选择合适的套餐并汇款至我司账户后点击已汇款，汇款请备注公司名称，对公账号如下：
+    </view>
+    <view class='comapny'>
+      <view>账户名：浙江度川网络科技有限公司</view>
+      <view>开户行：中国建设银行古翠支行</view>
+      <view>账　户：1234567899990</view>
+    </view>
+    <view style='margin-top:250rpx;'>　
+    </view>
+  </view>
+</view>
+<view class='submitview'>
+  <view class='tip'>请您在汇款成功以后点击确认汇款,谢谢！</view>
+  <view class='content'>
+    <view class='sl'>
+      <view class='ll'><text class='ll1'>已选择： 5 人团</text><text class='llx'> ×1</text></view>
+      <view class='ll'><text class='ll1'>　　　　20人团</text><text class='llx'> ×1</text></view>
+      <view class='ll3'><text>套餐人数：15人　赠送：</text><text class='give'>2人</text></view>
+    </view>
+    <view class='middle'>
+      <view style='height:36rpx;margin-top:16rpx;'><text>总计：</text><text class='new-price'>￥7152</text></view>
+      <view style='height:20rpx;margin-top:5rpx;'><text class='old-price'>￥71521</text><text>(已优惠<text class='cut-price'>￥7152</text>)</text></view>
+    </view>
+    <view class='btn'>确认汇款</view>
+  </view>
+</view>

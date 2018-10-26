@@ -2,9 +2,7 @@ page {
   background-color: #eeeff1;
 }
 
-
-.contains{
-  float: left;
+.contains{ 
   width: 100%
 }
 
@@ -12,36 +10,29 @@ page {
   margin-top: 15rpx;
   overflow: hidden;
   background-color: #fff;
-  float: left;
-}
-
-.addPerson-content {
-  overflow: hidden;
 }
 
 .section2 {
-  float: left;
   width: 100%;
-  padding-left: 15rpx;
+  padding-left: 28rpx;
   height: 41px;
   border-bottom: 1rpx solid #eeeff1;
   background-color: #fff;
-  font-size: 27rpx;
+  display: flex;
 }
 
 .section__title2 {
-  float: left;
   width: 13%;
-  line-height: 72rpx;
+  line-height: 41px;
+  font-size: 32rpx;
 }
 
 .section2 input {
-  font-size: 27rpx;
+  font-size: 32rpx;
   display: block;
-  margin-top: 12rpx;
   margin-left: 20rpx;
-  float: left;
   width: 70%;
+  height: 41px;
 }
 
 .btn-content {
@@ -49,25 +40,21 @@ page {
   margin:0 auto;
   overflow:hidden;
   display:flex;
-  justify-content:center;
+  justify-content:space-around;
 }
 
 .btn-item-default {
   height: 73rpx;
-  width: 42%;
-  border-radius: 42rpx;
+  width: 300rpx;
+  border-radius: 40rpx;
   background-color: #e5e5e5;
   text-align: center;
-  vertical-align: center;
-  float: left;
-  margin: 20rpx auto;
-  margin-right: 24rpx;
-  border: 3rpx solid #c6c7c9;
+  margin: 20rpx 0;
+  border: 2rpx solid #c6c7c9;
   line-height: 67rpx;
   font-weight: 600;
   font-size: 31rpx;
   letter-spacing: 6rpx;
-  margin-left: 18rpx;
 }
 
 .btn-item-selected { 
@@ -90,44 +77,36 @@ page {
 }
 
 .item{
-  float:left;
   overflow:hidden;
-  width:100%;
-  padding:30rpx;
+  padding:20rpx 30rpx;
   background-color:#FFF;
-  height:154rpx;
-  margin-top:32rpx;
+  margin-top:20rpx;
   border-radius:19rpx;
   padding-right:15rpx;
 }
+
 .name{
   float: inherit;
-  font-weight:500rpx;
+  font-weight:bold;
   font-size:34rpx;
   margin-bottom:15rpx;
-
 }
 
 .phone{
   float:inherit;
-  margin-top:5rpx;
   margin-left:52rpx;
-  font-weight:500rpx;
+  font-weight:bold;
   font-size:34rpx;
-
 }
+
 .duty{
   clear: left;
-  font-weight:500rpx;
-}
-
-.checked{
+  font-size:32rpx;
 }
 
 .check-box-icon {
   height:inherit;
-  padding-top:33rpx;
-
+  padding-top:30rpx;
 }
 
 .check-box-icon image {
@@ -135,7 +114,7 @@ page {
   height:36rpx;
   width:36rpx;
   right:74rpx;
-  margin-left:56px;
+  margin-left:70px;
 }
 
 .btn-buttom-default{
@@ -157,20 +136,11 @@ page {
   margin-left:10%;
 }
 
-::-webkit-scrollbar {
-  width: 0rpx; 
-  height:0rpx; 
-  color:#929292;
-}
-
 .left{
   float:left;
   width:65%;
-  height:inherit;
-
 }
 .right{
   float:right;
   width:30%;
-  height:99%;
 }
