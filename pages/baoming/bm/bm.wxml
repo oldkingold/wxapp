@@ -115,7 +115,7 @@
               {{arriveDateHolder}}
             </view>
             <view class="picker" wx:else>
-              {{meeting.end_show}}
+              {{arriveDate}}
             </view>
           </view>
         </view>
@@ -136,7 +136,7 @@
               {{leaveDateHolder}}
             </view>
             <view class="picker" wx:else>
-              {{meeting.end_date}}
+              {{leaveDate}}
             </view>
           </view>
         </view>

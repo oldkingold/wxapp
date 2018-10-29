@@ -1,7 +1,6 @@
 Page({
   data: {
     meeting: {},
-    mealList: '',
     invoice: {
       invType: "暂不填写",
       invCompName: "",
@@ -30,7 +29,8 @@ Page({
     that.data.method = options.method;
     that.data.usertype = options.usertype;
     let receipt = wx.getStorageSync('receipt', {});
-    wx.removeStorageSync('receipt');
+    // wx.removeStorageSync('receipt');
+    receipt['meeting'].hotel.jwd = receipt['meeting'].hotel.jwd.split(",");
 
     console.log(receipt);
     that.setData({
@@ -64,15 +64,15 @@ Page({
                 if (e.confirm) {
                   if (that.data.usertype == 'olduser') {
                     wx.navigateTo({
-                      url: 'pages/login/login?compName=' + that.data.companyName,
+                      url: '/pages/login/login?compName=' + that.data.companyName,
                     })
                   } else if (that.data.usertype == 'newolduser') {
                     wx.navigateTo({
-                      url: 'pages/sign/sign?compName=' + that.data.companyName,
+                      url: '/pages/sign/sign?compName=' + that.data.companyName,
                     })
                   } else if (that.data.usertype == 'newuser') {
                     wx.navigateTo({
-                      url: 'pages/sign/sign?compName=' + that.data.companyName,
+                      url: '/pages/sign/sign?compName=' + that.data.companyName,
                     })
                   }
                 }
@@ -84,10 +84,7 @@ Page({
     }
 
   },
-  onShow: function () {
 
-
-  },
   onUnload: function () {
     if (this.data.method == 'restart' || this.data.method == 'change') {
       let pages = getCurrentPages();//当前页面
@@ -101,15 +98,22 @@ Page({
       })
     } else {
       wx.switchTab({
-        url: "../../index/index",
+        url: "/pages/home/home",
       })
     }
+  },
 
+  goMap: function (e) {
+    let that = this;
+    var latitude = e.currentTarget.dataset.latitude;
+    var longitude = e.currentTarget.dataset.longitude;
+    wx.openLocation({
+      latitude: parseFloat(latitude),
+      longitude: parseFloat(longitude),
+      scale: 18,
+      name: that.data.meeting.hotel.name + "(" + that.data.meeting.hotel.star + ")",
+      address: that.data.meeting.hotel.address
+    })
   }
-  // getTopic: function () {
-  //   wx.setNavigationBarTitle({
-  //     title: '报名表'
-  //   })
-  // },
 
 })  

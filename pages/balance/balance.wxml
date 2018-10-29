@@ -1,0 +1,125 @@
+<view class="container" style='height:{{appHeight}}px'>
+  <view class='top'>
+    <view class='top-desc'>
+      <view class='desc-balance'>账户余额（元）</view>
+      <view class='desc-charge'>
+        <image src='/static/images/icon_info.png'></image>
+        <view bindtap='bind_showModal'>充值方式</view>
+      </view>
+    </view>
+
+    <view class='top-middle'>
+      {{balance}}
+    </view>
+
+    <view class='top-bottom'>
+      <view class='top-bottom-left'>
+        <view>充值总金额（元）</view>
+        <view>{{totalRecharge}}</view>
+      </view>
+
+      <view class='top-bottom-middle'>
+      </view>
+
+      <view class='top-bottom-right'>
+        <view>消费总金额（元）</view>
+        <view>{{totalSpent}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cate-nav">
+    <view class="tab-h">
+      <block wx:for="{{themeList}}" wx:key="*this" data-index="{{index}}">
+        <view class="tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" bindtap="swichNav">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">充值方式</view>
+  <view class="modal-content">
+    <view class="modal-desc">
+       备注你的公司名称,然后汇款至:
+    </view>
+        <view class="modal-line">
+       开户行：中国工商银行三墩支行
+    </view>    <view class="modal-line">
+       账号： 1202023309910094295
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view>
+</view>
+
+  <view class='main'>
+    <swiper class="swiper-content" current="{{currentTab}}" duration="300" catchchange="switchTab" style="height:{{appHeight-246}}px">
+      <swiper-item wx:for="{{list}}" wx:key="*this">
+        <scroll-view scroll-y="true" class="scoll-h">
+          <block wx:for="{{list[currentTab]}}" wx:key="*this" wx:for-item="iitem" wx:for-index="iindex">
+            <view wx:if="{{currentTab==0}}">
+              <view class='item'>
+                <view class='main-top'>
+                  <view class='circle'></view>
+                  <view class='time'>{{iitem.meeting.start_date}}</view>
+                </view>
+                <view class='main-bottom'>
+                  <view class='content'>
+
+                    <view class='title content-line'>{{iitem.meeting.name}}</view>
+                    <view class='priceobject'>
+                      <view>培训价格</view>
+                      <view class='original_price'>￥{{iitem.meeting.price}}/人</view>
+                      <view class='discounts_price'>￥{{iitem.meeting_price}}/人</view>
+                    </view>
+
+                    <view class='attendObject content-line'>
+                      <view>参会人数</view>
+                      <view>{{iitem.people_num}}人</view>
+                    </view>
+
+                    <view class='content-bottom content-line'>
+                      <view class='content-bottom-left'>
+                        <view>消费: </view>
+                        <view>￥{{iitem.amount}}</view>
+                      </view>
+                      <view class='content-bottom-right content-line'>
+                        <view>当前余额: </view>
+                        <view>￥{{iitem.balance}}</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+
+              </view>
+
+            </view>
+
+  <view wx:else>
+    <view class='item'>
+      <view class='main-top'>
+        <view class='circle'></view>
+        <view class='time'>{{iitem.date}}</view>
+      </view>
+      <view class='main-bottom'>
+        <view class='content'>
+          <view class='recharge_priceobject'>
+            <view>充值</view>
+            <view class='recharge_price'>￥{{iitem.amount}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  </block>
+  </scroll-view>
+  </swiper-item>
+  </swiper>
+</view>
+
+
+
+</view>

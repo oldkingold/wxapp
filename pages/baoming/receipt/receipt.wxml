@@ -12,7 +12,6 @@
       </view>
     </view>
 
-
     <view class='middle'>
       <view class='arrive-time-content'>
         <view class='middle-line'>
@@ -27,19 +26,11 @@
           <view class='middle-name'>
             <text>参会地址</text>
           </view>
-          <view class='middle-value'>
-            <text>{{meeting.h_tip}}</text>
+          <view class='middle-value' bindtap='goMap' data-longitude='{{meeting.hotel.jwd[0]}}' data-latitude='{{meeting.hotel.jwd[1]}}'>
+            <text>{{meeting.hotel.name}}/{{meeting.hotel.address}}</text>
           </view>
         </view>
-        <view class='middle-line'>
-          <view class='middle-name'>
-            <text>餐<text class='dinner-name-hidden'>餐饮</text>饮</text>
-          </view>
-          <view class='middle-value'>
-            <text>{{mealList}}</text>
-          </view>
-        </view>
-        <view class='middle-line'>
+        <view class='middle-line' style='border-bottom: none;'>
           <view class='middle-name'>
             <text>开票信息</text>
           </view>
@@ -163,54 +154,6 @@
   </view>
 
 </view>
-
-
-    <view class='contact'>
-      <view class='contact-main'>
-        <view class='staff-object item'>
-          <text> 会务联系方式</text>
-        </view>
-        <view class='staff-emp'>
-          <view class='staff-emp-desc'>通讯</view>
-          <view class='emp'>
-            <block class='staff-emp-item' wx:for="{{meeting.employees}}" wx:key="{{item.index}}">
-              <view class='staff-emp-item' wx:if="{{(index+1) >=2}}">
-                <view class='staff-teacher'>{{item.name}}</view>
-                <view class='staff-teacher-phone'>{{item.tel}}</view>
-              </view>
-              <view class='staff-emp-item' wx:else>
-                <view class='staff-teacher'>{{item.name}}</view>
-                <view class='staff-teacher-phone'>{{item.tel}}</view>
-              </view>
-            </block>
-          </view>
-        </view>
-        <view class='staff-tel item'>
-          <view class='staff-tel-name'>电话</view>
-          <view class='staff-tel-value'>{{Contact.Tel}}</view>
-        </view>
-        <view class='staff-fax target-object item'>
-          <view class='staff-fax-name'>传真</view>
-          <view class='staff-fax-value target-value'>{{Contact.fax}}</view>
-        </view>
-        <view class='staff-url target-object item'>
-          <view class='staff-url-name'>网址</view>
-          <view class='staff-url-value target-value'>{{Contact.url}}</view>
-        </view>
-        <view class='staff-email target-object item'>
-          <view class='staff-email-name'>邮箱</view>
-          <view class='staff-email-value target-value'>{{Contact.email}}</view>
-        </view>
-        <view class='staff-addr target-object item'>
-          <view class='staff-addr-name'>地址</view>
-          <view class=' target-value item staff-addr-value'>{{Contact.addr}}</view>
-        </view>
-        <view class='staff-postcode target-object item'>
-          <view class='staff-postcode-name'>邮编</view>
-          <view class=' target-value item staff-postcode-value'>{{Contact.postCode}}</view>
-        </view>
-
-      </view>
-    </view>
+    <contact id="contact" employeeTeacherList="{{meeting.employees}}"  bind:phoneCall="phoneCall"></contact>
   </view>
 </view>

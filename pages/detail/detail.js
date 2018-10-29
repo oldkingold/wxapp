@@ -115,14 +115,15 @@ Page({
   },
 
   goMap: function (e) {
+    let that = this;
     var latitude = e.currentTarget.dataset.latitude;
     var longitude = e.currentTarget.dataset.longitude;
     wx.openLocation({
       latitude: parseFloat(latitude),
       longitude: parseFloat(longitude),
       scale: 18,
-      name: '兰州·锦江阳光酒店（四星级）',
-      address: '兰州城关区东岗西路589号（近民航售票处）'
+      name: that.data.meeting.hotel.name + "(" + that.data.meeting.hotel.star + ")",
+      address: that.data.meeting.hotel.address
     })
   },
 

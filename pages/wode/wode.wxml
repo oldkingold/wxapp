@@ -31,7 +31,7 @@
             {{com_name}}
           </view>
         </view>
-        <navigator class='account' url='/pages/ucenter/balance/balance'>
+        <navigator class='account' url='/pages/balance/balance'>
           账户余额（元）|
           <text class="account-vale">{{account}}</text>
         </navigator>

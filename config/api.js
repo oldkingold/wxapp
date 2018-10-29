@@ -49,4 +49,6 @@ module.exports = {
   //sign.js
   Companysms_Register: ApiRootUrl + "wxapp/sms_register", //公司账号注册请求手机验证码
   CompanyRegister: ApiRootUrl + "wxapp/company_register", //公司账号注册
+  //balance.js
+  moneyChange: ApiRootUrl + 'wxapp/money_change', //充值的金钱改变
 }

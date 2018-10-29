@@ -35,7 +35,6 @@ Page({
 
     note: "",
     usedChart: 0,
-    consoleMeetings: {},
     selfCompanies: {},
     showCompanys: true,//是否显示公司提示
     showmodel: true,//弹出框是否现实
@@ -56,7 +55,9 @@ Page({
     let meeting = meet.meetingDetail(this.data.id);
     console.log(meeting);
     that.setData({
-      meeting: meeting
+      meeting: meeting,
+      arriveDate: meeting.end_show,
+      leaveDate: meeting.end_date
     });
 
     //页面从哪跳转过来的
@@ -93,7 +94,6 @@ Page({
           note: value.note,
           usedChart: value.usedChart,
           // Contact: value.Contact,
-          // consoleMeetings: value.consoleMeetings,
         });
         if (that.data.invoice['invCompName'] == "") {
           that.data.invoice['invCompName'] = that.data.compName;
@@ -622,7 +622,7 @@ Page({
         console.log(res);
         if (res.data.code == 200) {
           let receipt = {
-            meeting: that.data.consoleMeetings,
+            meeting: that.data.meeting,
             invoice: that.data.invoice,
             companyName: that.data.compName,
             meetdate: { start_date: that.data.arriveDate, end_date: that.data.leaveDate }

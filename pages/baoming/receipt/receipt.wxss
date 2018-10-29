@@ -1,6 +1,6 @@
 page {
   background-color: #eeeff1;
-  font-size: 27rpx;
+  font-size: 32rpx;
 }
 
 .receipt {
@@ -30,14 +30,15 @@ image {
 }
 
 .receipt-info {
-  font-weight: 600;
-  font-size: 30rpx;
+  font-weight: bold;
+  font-size: 36rpx;
   letter-spacing: 2rpx;
   margin-bottom: 12rpx;
 }
 
 .receipt-desc {
   font-weight: 500;
+  font-size: 32rpx;
 }
 
 .middle {
@@ -49,38 +50,45 @@ image {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 15rpx;
+  /* margin-top: 15rpx; */
 }
 
 .middle-line {
-  width: 96%;
+  width: 92%;
   display: flex;
   flex-direction: row;
+  border-bottom: 1rpx solid #eeeff1;
 }
 
 .middle-name {
-  line-height: 50rpx;
-  width: 16%;
-  margin-right: 5%;
+  /* line-height: 80rpx; */
+  width: 140rpx;
+  margin-right: 36rpx;
+  font-size: 36rpx;
+  white-space: nowrap;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 
 .middle-value {
-  line-height: 50rpx;
-  width: 79%;
+  /* line-height: 80rpx; */
+  margin-top: 22rpx;
+  font-size: 32rpx;
+  margin-bottom: 18rpx;
 }
 
-.dinner-name-hidden{
+.dinner-name-hidden {
   visibility: hidden
 }
 
 .middle-buttom {
-  width: 96%;
+  width: 86%;
   display: flex;
   flex-direction: column;
   align-items: left;
-  padding: 18rpx;
+  padding: 28rpx 28rpx 18rpx 28rpx;
   background-color: #edf1f2;
-  border-radius: 12rpx;
+  border-radius: 20rpx;
   margin-bottom: 20rpx;
   margin-top: 10rpx;
 }
@@ -99,7 +107,8 @@ image {
 .invoice-line {
   display: flex;
   border-bottom:1rpx solid #F2F2F2;
-
+  font-size: 32rpx;
+  
 }
 
 .invoice-comp-name {
@@ -130,23 +139,26 @@ image {
 }
 
 .desc-objetc {
-  width: 96%;
+  width: 92%;
   margin-top: 15rpx;
+  display: flex;
+  flex-direction: column;
 }
 
 .desc-title {
   height: 80rpx;
   line-height: 40rpx;
-  margin-bottom: 2%;
+  padding-bottom: 20rpx;
+  font-size: 30rpx;
 }
 
 .desc-content {
   display: flex;
   flex-direction: column;
   align-items: left;
-  padding: 12rpx;
+  padding: 20rpx;
   background-color: #edf1f2;
-  border-radius: 12rpx;
+  border-radius: 20rpx;
   margin-bottom: 20rpx;
 }
 

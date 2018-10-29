@@ -16,8 +16,6 @@ Page({
     //获取历史参会人员信息
     that.data.addmeetPersonlist = wx.getStorageSync('selfPersons');
 
-    console.log(that.data.addmeetPersonlist);
-
     let addmeetPersonlist = that.data.addmeetPersonlist;
     let orderPersonlist = that.data.orderPersonlist;
     let addList = [];
@@ -86,6 +84,7 @@ Page({
       data: detail,
     })
   },
+  
   //清空
   addReset: function (e) {
     let that = this;
@@ -123,7 +122,7 @@ Page({
         content: '重复添加',
       })
     }else {
-      
+
       let varmeetPerson = { name: varname, job: varduty, tel: varphone, checked: false };
 
       let varmeetPersonlist = that.data.addmeetPersonlist;
@@ -132,6 +131,7 @@ Page({
       orderPersonlist.push({ name: varmeetPerson['name'], duty: varmeetPerson['job'], phone: varmeetPerson['tel'], checked: false });
 
       varmeetPersonlist.unshift(varmeetPerson);
+
       that.setData({
         addmeetPersonlist: varmeetPersonlist,
         orderPersonlist: orderPersonlist,
@@ -139,6 +139,7 @@ Page({
         inputduty: "",
         inputphone: "",
       });
+
       var token = app.globalData.token;
       wx.request({
         url: api.addPeople,
@@ -189,15 +190,11 @@ Page({
       addmeetPersonlist: that.data.addmeetPersonlist
     })
   },
+
   //提交
   buttomSubbmit: function (e) {
     wx.navigateBack({
       url: '/pages/baoming/bm/bm',
-      success: function (res) {
-        console.log(
-          "数据存储成功"
-        )
-      },
     })
   },
 
