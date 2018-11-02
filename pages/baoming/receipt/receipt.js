@@ -30,7 +30,10 @@ Page({
     that.data.usertype = options.usertype;
     let receipt = wx.getStorageSync('receipt', {});
     // wx.removeStorageSync('receipt');
-    receipt['meeting'].hotel.jwd = receipt['meeting'].hotel.jwd.split(",");
+    if (receipt['meeting'].hotel) {
+      receipt['meeting'].hotel.jwd = receipt['meeting'].hotel.jwd.split(",");
+    }
+    
 
     console.log(receipt);
     that.setData({

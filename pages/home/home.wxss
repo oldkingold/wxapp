@@ -128,7 +128,15 @@ page {
   left: 25rpx;
   color: white;
   font-size: 28rpx;
+  /* height: 100rpx; */
 }
+
+/* .card_1_text{
+  display: -webkit-box; 
+  -webkit-box-orient: vertical; 
+  -webkit-line-clamp: 2; 
+  overflow: hidden; 
+} */
 
 .card_1_addr {
   background-color: #f4a600;

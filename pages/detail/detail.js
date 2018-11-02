@@ -34,15 +34,18 @@ Page({
     if(meeting) {
       
       meeting.course.introduction = meeting.course.introduction.replace(/<img/g,'<img style="max-width: 100%;height:auto"')
-      meeting.hotel.routes = JSON.parse(meeting.hotel.routes);
-      meeting.hotel.jwd = meeting.hotel.jwd.split(",");
+      if (meeting.hotel) {
+        meeting.hotel.routes = JSON.parse(meeting.hotel.routes);
+        meeting.hotel.jwd = meeting.hotel.jwd.split(",");
+      }
+      
       meeting.introduction = meeting.introduction.split("\n");
       let start_date = new Date(meeting.start_date.replace(/-/g,"/"));
       let bddate = start_date.getDate();
       let end_date = new Date(meeting.end_date.replace(/-/g, "/"));
       start_date.setTime(start_date.getTime() + 24 * 60 * 60 * 1000);
       end_date.setTime(end_date.getTime() - 24 * 60 * 60 * 1000);
-      meeting.pxdate = start_date.getFullYear() + "年" + (start_date.getMonth() + 1) + "年" + start_date.getDate() + "-" + end_date.getDate() + "日（" + bddate + "日报道）";
+      meeting.pxdate = start_date.getFullYear() + "年" + (start_date.getMonth() + 1) + "月" + start_date.getDate() + "-" + end_date.getDate() + "日（" + bddate + "日报道）";
 
       meeting.teach_introduction = [];
       meeting.teach_article = {};

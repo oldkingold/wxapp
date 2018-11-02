@@ -28,11 +28,19 @@
         <view class='content'>
           <view class='flex_row' style='margin-bottom: 30rpx;'>
             <view class='prices'><text class='price'>￥11920</text>/<text class='people'>5人</text></view>
-            <view class='nums'><view>-</view><input type='number' value='1'></input><view>+</view></view>
+            <view class='nums'>
+              <view catchtap='taocan_five' data-operator='-'>-</view>
+              <input disabled='disabled' type='number' value='1'></input>
+              <view catchtap='taocan_five' data-operator='+'>+</view>
+            </view>
           </view>
           <view class='flex_row'>
             <view class='prices'><text class='price'>￥20860</text>/<text class='people'>10人</text></view>
-            <view class='nums'><view>-</view><input type='number' value='1'></input><view>+</view></view>
+            <view class='nums'>
+              <view>-</view>
+              <input disabled='disabled' type='number' value='1'></input>
+              <view>+</view>
+            </view>
           </view>
         </view>
       </view>
@@ -139,13 +147,13 @@
   <view class='tip'>请您在汇款成功以后点击确认汇款,谢谢！</view>
   <view class='content'>
     <view class='sl'>
-      <view class='ll'><text class='ll1'>已选择： 5 人团</text><text class='llx'> ×1</text></view>
-      <view class='ll'><text class='ll1'>　　　　20人团</text><text class='llx'> ×1</text></view>
-      <view class='ll3'><text>套餐人数：15人　赠送：</text><text class='give'>2人</text></view>
+      <view class='ll'><text class='ll1'>已选择： 5 人团</text><text class='llx'> ×{{five_num}}</text></view>
+      <view class='ll'><text class='ll1'>　　　　10人团</text><text class='llx'> ×{{ten_num}}</text></view>
+      <view class='ll3'><text>套餐人数：{{total_num}}人　赠送：</text><text class='give'>{{gift_num}}人</text></view>
     </view>
     <view class='middle'>
-      <view style='height:36rpx;margin-top:16rpx;'><text>总计：</text><text class='new-price'>￥7152</text></view>
-      <view style='height:20rpx;margin-top:5rpx;'><text class='old-price'>￥71521</text><text>(已优惠<text class='cut-price'>￥7152</text>)</text></view>
+      <view style='height:36rpx;margin-top:16rpx;'><text>总计：</text><text class='new-price'>￥{{discountprice}}</text></view>
+      <view style='height:20rpx;margin-top:5rpx;'><text class='old-price'>￥{{originalprice}}</text><text>(已优惠<text class='cut-price'>￥{{originalprice - discountprice}}</text>)</text></view>
     </view>
     <view class='btn'>确认汇款</view>
   </view>

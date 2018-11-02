@@ -22,7 +22,7 @@
             <text>{{meetdate.start_date + "-" + meetdate.end_date}}</text>
           </view>
         </view>
-        <view class='middle-line'>
+        <view class='middle-line' wx:if="{{meeting.hotel}}">
           <view class='middle-name'>
             <text>参会地址</text>
           </view>

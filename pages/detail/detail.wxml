@@ -52,7 +52,7 @@
         </view>
       </view>
       
-      <view class='chxz-content'>
+      <view class='chxz-content' wx:if="{{meeting.hotel}}">
         <view class='chxz-img'>
           <image src='/static/images/detailimage/address@3x.png'></image>
         </view>
@@ -71,7 +71,7 @@
         </view>
       </view>
 
-      <view class='chxz-content'>
+      <view class='chxz-content' wx:if="{{meeting.hotel}}">
         <view class='chxz-img'>
           <image src='/static/images/detailimage/map@3x.png'></image>
         </view>

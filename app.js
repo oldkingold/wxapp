@@ -1,4 +1,3 @@
-//app.js
 var util = require('./utils/util.js');
 
 App({
@@ -10,7 +9,7 @@ App({
         console.log(e);
         that.globalData.systemInfo = {height: e.windowHeight};
       }
-    }); 
+    });
 
     wx.getSetting({
       success: function (res) {
