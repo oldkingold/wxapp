@@ -4,7 +4,7 @@
     </image>
   </view>
   <view class='middle'>
-    <view class='middle-content' wx:for="{{meeting.introduction}}">
+    <view class='middle-content' wx:for="{{meeting.introduction}}" wx:key="*this">
       {{item}}
     </view>
   </view>
@@ -218,7 +218,7 @@
           </view>
         </view>
       </view>
-      <view class='chxz-content' style='margin-right: 55rpx;'>
+      <view class='chxz-content' style='margin-right: 55rpx;' wx:if="{{meeting.teach_article}}">
         <view class='chxz-img'>
           <image src='/static/images/detailimage/article@3x.png'></image>
         </view>
@@ -229,7 +229,8 @@
           </view>
         </view>
       </view>
-      <view class='chxz-content' style='margin-right: 55rpx;'>
+
+      <view class='chxz-content' style='margin-right: 55rpx;' wx:if="{{meeting.teach_book}}">
         <view class='chxz-img'>
           <image src='/static/images/detailimage/book@3x.png'></image>
         </view>
@@ -239,7 +240,7 @@
         </view>
       </view>
 
-      <view class='chxz-content' style='margin-right: 55rpx;'>
+      <view class='chxz-content' style='margin-right: 55rpx;' wx:if="{{meeting.teach_assess}}">
         <view class='chxz-img'>
           <image src='/static/images/detailimage/comment@3x.png'></image>
         </view>
@@ -250,6 +251,7 @@
           </view>
         </view>
       </view>
+
     </view>
 
     <view class='detail-item' bindtap='detailClick' data-index='4' wx:if='{{chxz.title}}'>
