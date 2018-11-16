@@ -1,3 +1,5 @@
+const api = require('../../config/api.js');
+
 Page({
 
   data: {
@@ -11,8 +13,12 @@ Page({
           webSite: options.website
         })
       } else {
-        var is_wjx = options.website.indexOf("www.wjx.cn");
-        if (is_wjx == -1) {
+        if (options.website.indexOf("https://dcwlgroup.com/") != -1 || options.website.indexOf("https://www.58jz.com.cn/") != -1) {
+          
+          this.setData({
+            webSite: options.website + "?meeting=" +options.meeting
+          })
+        }else {
           wx.showModal({
             title: '提示',
             content: '错误',
@@ -22,9 +28,6 @@ Page({
             }
           })
         }
-        this.setData({
-          webSite: options.website
-        })
       }
     } else {
       wx.showModal({

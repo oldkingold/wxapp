@@ -2,7 +2,7 @@ var api = require('../config/api.js');
 /*
 *数组分割
 */
-const split_array = (arr,len) => {
+const split_array = (arr, len) => {
   let arrlen = arr.length;
   let newarr = [];
   for (let i = 0; i < arrlen; i += len) {
@@ -110,6 +110,23 @@ function getUserInfo() {
   });
 }
 
+/*加载字体*/
+function loadFontFace() {
+  wx.loadFontFace({
+    family: "PingFang Medium",
+    source: 'url("' + api.ApiRootUrl + 'fonts/PingFang Medium.ttf")',
+    success(res) {
+      console.log(res.status)
+    },
+    fail: function (res) {
+      console.log(res.status)
+    },
+    complete: function (res) {
+      console.log(res.status)
+    }
+  });
+}
+
 /*
 session处理
 */
@@ -118,10 +135,10 @@ var sessionId = "laravel_session";
 function saveSession(cookie) {
   console.log(cookie);
   let patt1 = new RegExp(sessionId + '\=(.*?);');
-  
+
   let match = cookie.match(patt1);
   let session = match[1];
-  
+
   console.log(session)
 }
 
@@ -136,6 +153,7 @@ function checkSession() {
 module.exports = {
   formatTime: formatTime,
   split_array: split_array,
-  bouncer: bouncer, 
+  bouncer: bouncer,
   wxlogin: wxlogin, //登陆
+  loadFontFace: loadFontFace //加载字体
 }

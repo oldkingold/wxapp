@@ -1,4 +1,6 @@
-// pages/discount/discount.js
+const api = require('../../config/api.js');
+const app = getApp();
+
 Page({
 
   /**
@@ -19,7 +21,10 @@ Page({
     total_num: 15,
     gift_num: 0,
     originalprice: 44700,
-    discountprice: 32780
+    discountprice: 32780,
+    company: '',
+    contact: '',
+    contactTel: ''
   },
 
   /**
@@ -46,6 +51,7 @@ Page({
     })
   },
 
+  //添加五人套餐
   taocan_five: function (e) {
     let that = this;
     let five_num = this.data.five_num;
@@ -62,7 +68,7 @@ Page({
     this.data.five_num = five_num;
     this.change();
   },
-
+  //添加十人套餐
   taocan_ten: function (e) {
     let ten_num = this.data.ten_num;
     let operator = e.currentTarget.dataset['operator'];
@@ -82,12 +88,156 @@ Page({
   change: function() {
     let five_num = this.data.five_num;
     let ten_num = this.data.ten_num;
-    
+    let gift_num = 0;
+    switch (ten_num) {
+      case 0: break;
+      case 1: break;
+      case 2: gift_num = 1; break;
+      case 3: gift_num = 3; break;
+      case 4: gift_num = 6; break;
+      default: gift_num = (ten_num - 3) * 5; break;
+    }
     this.setData({
       five_num: five_num,
       ten_num: ten_num,
-
+      gift_num: gift_num,
+      total_num: five_num * 5 + ten_num * 10,
+      discountprice: five_num * 11920 + ten_num * 20860,
+      originalprice: (five_num * 5 + ten_num * 10) * 2980
     });
+  },
+
+  bindCompany: function(e) {
+    this.setData({
+      company: e.detail['value']
+    });
+  },
+
+  bindContact: function(e) {
+    this.setData({
+      contact: e.detail['value']
+    });
+  },
+
+  bindContactTel: function(e) {
+    this.setData({
+      contactTel: e.detail['value']
+    });
+  },
+
+  invCompName: function(e) {
+    let invoice = this.data.invoice;
+    invoice['invCompName'] = e.detail['value'];
+    this.setData({
+      invoice: invoice
+    });
+  },
+
+  taxIdNum: function(e) {
+    let invoice = this.data.invoice;
+    invoice['taxIdNum'] = e.detail['value'];
+    this.setData({
+      invoice: invoice
+    });
+  },
+
+  compAddr: function(e) {
+    let invoice = this.data.invoice;
+    invoice['compAddr'] = e.detail['value'];
+    this.setData({
+      invoice: invoice
+    });
+  },
+
+  compTel: function(e) {
+    let invoice = this.data.invoice;
+    invoice['compTel'] = e.detail['value'];
+    this.setData({
+      invoice: invoice
+    });
+  },
+
+  compBank: function(e) {
+    let invoice = this.data.invoice;
+    invoice['compBank'] = e.detail['value'];
+    this.setData({
+      invoice: invoice
+    });
+  },
+
+  compBankAccount: function(e) {
+    let invoice = this.data.invoice;
+    invoice['compBankAccount'] = e.detail['value'];
+    this.setData({
+      invoice: invoice
+    });
+  },
+
+  showToast: function(str) {
+    wx.showToast({
+      title: str,
+      icon: 'none',
+      duration: 3000,
+    });
+  },
+
+  submit: function() {
+    var that = this;
+    var data = {};
+
+    //验证
+    if (that.data.company.length < 1) {
+      that.showToast('请输入公司名称');
+      return false;
+    }
+
+    if (that.data.contact.length < 1) {
+      that.showToast('请输入联系人');
+      return false;
+    }
+
+    var mobile = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!mobile.exec(that.data.contactTel)) {
+      that.showToast('手机号码有误');
+      return false;
+    }
+
+    if (that.data.invoice['invType'] == "普票") {
+      if (that.data.invoice.invCompName.length < 1 || that.data.invoice.taxIdNum.length < 1) {
+        that.showToast('请输入发票的公司名称||纳税识别号');
+        return false;
+      }
+    } else if (that.data.invoice['invType'] == "普票") {
+      if (that.data.invoice.invCompName.length < 1 || that.data.invoice.taxIdNum.length < 1
+        || that.data.invoice.compAddr.length < 1 || that.data.invoice.compTel.length < 1
+        || that.data.invoice.compBank.length < 1 || that.data.invoice.compBankAccount.length < 1) {
+          that.showToast('请输入发票的公司名称||纳税识别号||公司地址||电话号码||开户银行||银行账号');
+          return false;
+        }
+    }
+
+    data['ten_num'] = that.data.ten_num;
+    data['five_num'] = that.data.five_num;
+    data['company'] = that.data.company;
+    data['contact'] = that.data.contact;
+    data['contactTel'] = that.data.contactTel;
+    data['invoice'] = that.data.invoice;
+    if (app.globalData.token) {
+      data['token'] = app.globalData.token;
+      data['openID'] = app.globalData.openId;
+    }
+    
+    wx.request({
+      url: api.buyCard,
+      data: data,
+      method: "POST",
+      success: function() {
+        
+      },
+      fail: function() {
+        
+      }
+    })
   }
 
 })

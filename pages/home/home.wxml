@@ -37,12 +37,14 @@
     <swiper-item item-id="0" class="item" >
       <scroll-view scroll-y style='height:{{screenHeight - 42}}px'>
         <block wx:for="{{meetings}}" wx:key='*this'>
-          <view class='card_1' catchtap='toDetail' data-meeting='{{index}}' wx:if="{{ item.img }}">          
-            <image class='card_1_bg'  src='{{rooturl + item.img}}'></image>
+          <view class='card_1' catchtap='toDetail' data-meeting='{{index}}' wx:if="{{ item.img }}">   
+            <image class='card_1_mb'  src='../../static/images/mengban.png'></image>        
+            <image class='card_1_bg'  src='{{rooturl + item.img}}'></image> 
+             
             <image class='card_1_dc' src='../../static/images/duchuan.png'> </image>
             <view class='card_1_title'>
-              <text class='card_1_addr'>{{item.place}}</text>
-              <text class='card_1_text'>{{item.name}}</text>
+              <view class='card_1_addr'>{{item.place}}</view>
+              <view class='card_1_text'>{{item.name}}</view>
             </view>
             <block wx:if="{{item.teachers_num == 1}}">
               <view class='card_1_teacher'>
@@ -117,7 +119,7 @@
             </block>
             <view class='card_2_tp'>
               <view class='card_1_date'><image src='../../static/images/clock1.png'></image><text>{{item.meeting_start + "-" + item.meeting_end}}</text></view>
-              <view class='card_1_price'>￥<text>{{item.price}}</text>.00</view>
+              <view class='card_2_price'>￥<text>{{item.price}}</text>.00</view>
             </view>
           </view>
         </block>
@@ -129,6 +131,7 @@
       <scroll-view scroll-y style='height:{{screenHeight - 42}}px'>
         <block wx:for="{{menu_item.meeting}}" wx:key='*this' wx:for-item="item">
           <view class='card_1' catchtap='toDetail' data-meeting='{{item}}' wx:if="{{ meetings[item].img }}">
+          <image class='card_1_mb'  src='../../static/images/mengban.png'></image>
             <image class='card_1_bg'  src='{{rooturl + meetings[item].img}}'></image>
             <image class='card_1_dc' src='../../static/images/duchuan.png'> </image>
             <view class='card_1_title'>
@@ -208,7 +211,7 @@
             </block>
             <view class='card_2_tp'>
               <view class='card_1_date'><image src='../../static/images/clock1.png'></image><text>{{meetings[item].meeting_start + "-" + meetings[item].meeting_end}}</text></view>
-              <view class='card_1_price'>￥<text>{{meetings[item].price}}</text>.00</view>
+              <view class='card_2_price'>￥<text>{{meetings[item].price}}</text>.00</view>
             </view>
           </view>
         </block>

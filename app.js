@@ -5,9 +5,9 @@ App({
     var that = this;
     // 获取基本信息
     wx.getSystemInfo({
-      complete: function(e) {
+      complete: function (e) {
         console.log(e);
-        that.globalData.systemInfo = {height: e.windowHeight};
+        that.globalData.systemInfo = { height: e.windowHeight };
       }
     });
 
@@ -23,6 +23,7 @@ App({
       }
     })
 
+    util.loadFontFace();
   },
   globalData: {
     userInfo: null,

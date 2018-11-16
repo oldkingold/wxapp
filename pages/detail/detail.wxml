@@ -1,19 +1,23 @@
 <view>
   <view class='top'>
-    <image src='{{rooturl + meeting.themeimg}}' class='top-img'>
+    <image src="{{rooturl + meeting.theme['img']}}" class='top-img'>
     </image>
   </view>
   <view class='middle'>
-    <view class='middle-content' wx:for="{{meeting.introduction}}" wx:key="*this">
-      {{item}}
+    <!-- <view class='middle-content' wx:for="{{meeting.introduction}}" wx:key="*this">
+      {{item}}introduction
+    </view> -->
+    <view class='middle-content'>
+      <rich-text nodes="{{meeting.introduction}}" bindtap="tap"></rich-text>
     </view>
   </view>
 
   <view class='detail'>
-    <view class='detail-item' bindtap='detailClick' data-index='1' wx:if='{{chxz.title}}'>
+
+    <view class='detail-item' bindtap='detailClick' data-index='1' wx:if='{{kctg.title}}'>
       <view class='detail-item-left'>
         <view class='left-icon'></view>
-        <view class='left-content'>参会须知</view>
+        <view class='left-content'>课程背景</view>
       </view>
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
@@ -23,14 +27,32 @@
         </view>
       </view>
     </view>
-    <view class='chxz' wx:if='{{select_index == 1}}'>
+    <view class='chxz' wx:if='{{select_index == 1}}' style='padding:20rpx 20rpx 20rpx 20rpx'>
+
+      <rich-text nodes="{{meeting.course_background['content']}}" bindtap="tap"></rich-text>
+    </view>
+
+    <view class='detail-item' bindtap='detailClick' data-index='2' wx:if='{{chxz.title}}'>
+      <view class='detail-item-left'>
+        <view class='left-icon'></view>
+        <view class='left-content'>参会须知</view>
+      </view>
+      <view class='detail-item-right'>
+        <view class='right-content'>查看详情</view>
+        <view class='right-img'>
+          <image src='/static/images/detailimage/detail-top.png' wx:if='{{2 == select_index}}'></image>
+          <image src='/static/images/detailimage/detail-down.png' wx:if='{{2 != select_index}}'></image>
+        </view>
+      </view>
+    </view>
+    <view class='chxz' wx:if='{{select_index == 2}}'>
       <view class='chxz-content'>
         <view class='chxz-img'>
           <image src='/static/images/detailimage/collection.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>培训特色：</i>
-          <i class='chxz-content-info'>{{meeting.point}}</i>
+          <i class='chxz-content-info'>{{meeting.meeting_notice.point}}</i>
         </view>
       </view>
       <view class='chxz-content'>
@@ -39,7 +61,7 @@
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>参加对象：</i>
-          <i class='chxz-content-info'>{{meeting.targets}}</i>
+          <i class='chxz-content-info'>{{meeting.meeting_notice.targets}}</i>
         </view>
       </view>
       <view class='chxz-content'>
@@ -112,7 +134,7 @@
               <i class='time'>￥{{meeting.price}}/人 </i>
             </i>
             <view class='chxz-content no-margin'>
-              <i class='chxz-content-info'>包含：{{meeting.sale.introduction}}</i>
+              <i class='chxz-content-info'>包含：{{meeting.meeting_notice.contain}}</i>
             </view>
           </view>
 
@@ -161,28 +183,10 @@
 
     </view>
 
-    <view class='detail-item' bindtap='detailClick' data-index='2' wx:if='{{kctg.title}}'>
+    <view class='detail-item' bindtap='detailClick' data-index='3' wx:if='{{kctg.title}}'>
       <view class='detail-item-left'>
         <view class='left-icon'></view>
         <view class='left-content'>课程提纲</view>
-      </view>
-      <view class='detail-item-right'>
-        <view class='right-content'>查看详情</view>
-        <view class='right-img'>
-          <image src='/static/images/detailimage/detail-top.png' wx:if='{{2 == select_index}}'></image>
-          <image src='/static/images/detailimage/detail-down.png' wx:if='{{2 != select_index}}'></image>
-        </view>
-      </view>
-    </view>
-    <view class='chxz' wx:if='{{select_index == 2}}' style='padding:20rpx 20rpx 20rpx 20rpx'>
-
-      <rich-text nodes="{{meeting.course.introduction}}" bindtap="tap"></rich-text>
-    </view>
-
-    <view class='detail-item' bindtap='detailClick' data-index='3' wx:if='{{chxz.title}}'>
-      <view class='detail-item-left'>
-        <view class='left-icon'></view>
-        <view class='left-content'>老师介绍</view>
       </view>
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
@@ -192,7 +196,25 @@
         </view>
       </view>
     </view>
-    <view class='chxz' wx:if='{{select_index == 3}}'>
+    <view class='chxz' wx:if='{{select_index == 3}}' style='padding:20rpx 20rpx 20rpx 20rpx'>
+
+      <rich-text nodes="{{meeting.course.introduction}}" bindtap="tap"></rich-text>
+    </view>
+
+    <view class='detail-item' bindtap='detailClick' data-index='4' wx:if='{{chxz.title}}'>
+      <view class='detail-item-left'>
+        <view class='left-icon'></view>
+        <view class='left-content'>老师介绍</view>
+      </view>
+      <view class='detail-item-right'>
+        <view class='right-content'>查看详情</view>
+        <view class='right-img'>
+          <image src='/static/images/detailimage/detail-top.png' wx:if='{{4 == select_index}}'></image>
+          <image src='/static/images/detailimage/detail-down.png' wx:if='{{4 != select_index}}'></image>
+        </view>
+      </view>
+    </view>
+    <view class='chxz' wx:if='{{select_index == 4}}'>
       <view class='chxz-content' style='margin-right: 55rpx;'>
         <view class='chxz-img'>
           <image src='/static/images/detailimage/person@3x.png'></image>
@@ -254,7 +276,7 @@
 
     </view>
 
-    <view class='detail-item' bindtap='detailClick' data-index='4' wx:if='{{chxz.title}}'>
+    <view class='detail-item' bindtap='detailClick' data-index='5' wx:if='{{chxz.title}}'>
       <view class='detail-item-left'>
         <view class='left-icon'></view>
         <view class='left-content'>主办单位</view>
@@ -262,12 +284,12 @@
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
         <view class='right-img'>
-          <image src='/static/images/detailimage/detail-top.png' wx:if='{{4 == select_index}}'></image>
-          <image src='/static/images/detailimage/detail-down.png' wx:if='{{4 != select_index}}'></image>
+          <image src='/static/images/detailimage/detail-top.png' wx:if='{{5 == select_index}}'></image>
+          <image src='/static/images/detailimage/detail-down.png' wx:if='{{5 != select_index}}'></image>
         </view>
       </view>
     </view>
-    <view class='chxz' wx:if='{{select_index == 4}}'>
+    <view class='chxz' wx:if='{{select_index == 5}}'>
       <view class='chxz-content' style='margin-right: 55rpx;'>
         <view class='chxz-img'>
           <image src='/static/images/detailimage/company@3x.png'></image>
@@ -295,12 +317,24 @@
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>历史培训：</i>
           <view>
-            <view class='card'>
+
+            <view catchtap='tohistorydetail' class='card' wx:for="{{meeting.history}}" wx:key="*this" data-link="{{item['link']}}">
+              <view class='card-left'>
+               <image src="http://peixun-9.58jz.com.cn{{item['url']}}"></image>
+              </view>
+              <view class='card-right'>
+                <view class='card-title'>{{item['name']}}</view>
+                <view class='card-time'>{{item['time']}}</view>
+                <view class='card-content'>{{item['content']}}</view>
+              </view>
+            </view>
+
+            <!-- <view class='card'>
               <view class='card-left'>
                <image src='/static/images/detailimage/1.png'></image>
               </view>
               <view class='card-right'>
-                <view class='card-title'>第二期全球建筑业考察系列之日本建筑工业化参观考察学习班</view>
+                <view class='card-title'>第二期全球建筑业考察系列之日本建筑工业化参观考察学习</view>
                 <view class='card-time'>2018-06-29</view>
                 <view class='card-content'>我国建筑业传统生产方式存在着资...</view>
               </view>
@@ -314,17 +348,7 @@
                 <view class='card-time'>2018-06-29</view>
                 <view class='card-content'>我国建筑业传统生产方式存在着资...</view>
               </view>
-            </view>
-            <view class='card'>
-              <view class='card-left'>
-               <image src='/static/images/detailimage/1.png'></image>
-              </view>
-              <view class='card-right'>
-                <view class='card-title'>第二期全球建筑业考察系列之日本建筑工业化参观考察学习班</view>
-                <view class='card-time'>2018-06-29</view>
-                <view class='card-content'>我国建筑业传统生产方式存在着资...</view>
-              </view>
-            </view>
+            </view> -->
           </view>
         </view>
       </view>

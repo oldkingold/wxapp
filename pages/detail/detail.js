@@ -10,10 +10,10 @@ Page({
     chxz: {},
     kctg: {},
     select_index: '0',
-    meeting:[]
+    meeting: []
   },
   onLoad: function (options) {
-    
+
     var testData = [{
       'title': 'chxz',
     },
@@ -23,7 +23,7 @@ Page({
 
     var that = this;
 
-    meet.companyInfo().then(function(res) {
+    meet.companyInfo().then(function (res) {
       // that.data.companyInfo = res.split("\n");
       that.setData({
         companyInfo: res.split("\n")
@@ -31,16 +31,16 @@ Page({
     })
 
     let meeting = meet.meetingDetail(options['meeting']);
-    if(meeting) {
-      
-      meeting.course.introduction = meeting.course.introduction.replace(/<img/g,'<img style="max-width: 100%;height:auto"')
+    if (meeting) {
+
+      meeting.course.introduction = meeting.course.introduction.replace(/<img/g, '<img style="max-width: 100%;height:auto"')
       if (meeting.hotel) {
         meeting.hotel.routes = JSON.parse(meeting.hotel.routes);
         meeting.hotel.jwd = meeting.hotel.jwd.split(",");
       }
-      
-      meeting.introduction = meeting.introduction.split("\n");
-      let start_date = new Date(meeting.start_date.replace(/-/g,"/"));
+
+      // meeting.introduction = meeting.introduction.split("\n");
+      let start_date = new Date(meeting.start_date.replace(/-/g, "/"));
       let bddate = start_date.getDate();
       let end_date = new Date(meeting.end_date.replace(/-/g, "/"));
       start_date.setTime(start_date.getTime() + 24 * 60 * 60 * 1000);
@@ -55,13 +55,13 @@ Page({
         meeting.teach_introduction = meeting.teachers.introduction.split("\n");
         meeting.teach_book = meeting.teachers.books;
         meeting.teach_assess.push(meeting.teachers.assess);
-        
+
         let articles = JSON.parse(meeting.teachers.articles);
         for (let key in articles) {
           meeting.teach_article[key] = articles[key];
         }
-      }else {
-        for (let i = 0; i < meeting.teachers_num; i ++) {
+      } else {
+        for (let i = 0; i < meeting.teachers_num; i++) {
           let introductions = meeting.teachers[i].introduction.split("\n");
           for (let j = 0; j < introductions.length; j++) {
             meeting.teach_introduction.push(introductions[j]);
@@ -76,26 +76,27 @@ Page({
         }
       }
 
-      let saledetail = meeting.sale.sale.split("\n"); 
+      let saledetail = meeting.meeting_notice.sale.split("\n");
       for (let key in saledetail) {
         saledetail[key] = util.bouncer(saledetail[key].split(/([0-9]{1,3}人及以上)|([0-9]\.[0-9]{1,2}折)/));
       }
       for (let key in saledetail) {
         let sd = {};
         for (let i in saledetail[key]) {
-          sd[saledetail[key][i]] = /([0-9]{1,3}人及以上)|([0-9]\.[0-9]{1,2}折)/.test(saledetail[key][i]);  
+          sd[saledetail[key][i]] = /([0-9]{1,3}人及以上)|([0-9]\.[0-9]{1,2}折)/.test(saledetail[key][i]);
         }
         saledetail[key] = sd;
       }
 
       meeting.saledetail = saledetail;
+      meeting.history = JSON.parse(meeting.history['content']);
 
       console.log(meeting);
       that.setData({
         meeting: meeting
       });
     }
-    
+
     for (var i = 0; i < testData.length; i++) {
       if (testData[i].title == 'chxz') {
         that.setData({
@@ -154,7 +155,7 @@ Page({
   bindweixin: function (e) {
     let that = this;
     let userInfo = wx.getStorageSync("userInfo");
-    
+
     if (e.detail.userInfo && !userInfo) {
       util.wxlogin().then((res) => {
         app.globalData.token = res.token;
@@ -167,7 +168,7 @@ Page({
       wx.navigateTo({
         url: '/pages/baoming/bm/bm?id=' + that.data.meeting.id,
       })
-    }else {
+    } else {
       wx.showModal({
         title: "用户未授权",
         content: '请授权允许微信登录后进行报名',
@@ -175,4 +176,11 @@ Page({
       })
     }
   },
+
+  tohistorydetail:function (e) {
+    // console.log(e);
+    wx.navigateTo({
+      url: '/pages/judge/judge?website=' + e.currentTarget.dataset['link'] + "&meeting=" + this.data.meeting["id"],
+    })
+  }
 })

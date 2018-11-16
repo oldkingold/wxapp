@@ -30,16 +30,16 @@
             <view class='prices'><text class='price'>￥11920</text>/<text class='people'>5人</text></view>
             <view class='nums'>
               <view catchtap='taocan_five' data-operator='-'>-</view>
-              <input disabled='disabled' type='number' value='1'></input>
+              <input disabled='disabled' type='number' value='{{five_num}}'></input>
               <view catchtap='taocan_five' data-operator='+'>+</view>
             </view>
           </view>
           <view class='flex_row'>
             <view class='prices'><text class='price'>￥20860</text>/<text class='people'>10人</text></view>
             <view class='nums'>
-              <view>-</view>
-              <input disabled='disabled' type='number' value='1'></input>
-              <view>+</view>
+              <view catchtap='taocan_ten' data-operator='-'>-</view>
+              <input disabled='disabled' type='number' value='{{ten_num}}'></input>
+              <view catchtap='taocan_ten' data-operator='+'>+</view>
             </view>
           </view>
         </view>
@@ -56,15 +56,15 @@
       <view class='contact'>
         <view class='item'>
           <text class='name'>公司名称：</text>
-          <input placeholder='请输入'></input>
+          <input bindinput='bindCompany' placeholder='请输入'></input>
         </view>
         <view class='item'>
           <text class='name'>联系人：</text>
-          <input placeholder='请输入'></input>
+          <input bindinput='bindContact' placeholder='请输入'></input>
         </view>
         <view class='item'>
           <text class='name'>联系方式：</text>
-          <input placeholder='请输入'></input>
+          <input bindinput='bindContactTel' placeholder='请输入'></input>
         </view>
       </view>
     </view>
@@ -155,6 +155,6 @@
       <view style='height:36rpx;margin-top:16rpx;'><text>总计：</text><text class='new-price'>￥{{discountprice}}</text></view>
       <view style='height:20rpx;margin-top:5rpx;'><text class='old-price'>￥{{originalprice}}</text><text>(已优惠<text class='cut-price'>￥{{originalprice - discountprice}}</text>)</text></view>
     </view>
-    <view class='btn'>确认汇款</view>
+    <view class='btn' catchtap='submit'>确认汇款</view>
   </view>
 </view>

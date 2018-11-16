@@ -1,7 +1,9 @@
 var ApiRootUrl = 'http://peixun-9.58jz.com.cn/';
+var historyUrl = 'https://www.58jz.com.cn/';
 
 module.exports = {
   ApiRootUrl: ApiRootUrl,
+  historyUrl: historyUrl,
   Wxlogin: ApiRootUrl + "wxapp/wxlogin", //微信登录
   Theme: ApiRootUrl + "wxapp/theme",
   Meeting: ApiRootUrl + "wxapp/meeting",
@@ -51,4 +53,6 @@ module.exports = {
   CompanyRegister: ApiRootUrl + "wxapp/company_register", //公司账号注册
   //balance.js
   moneyChange: ApiRootUrl + 'wxapp/money_change', //充值的金钱改变
+  //discount.js
+  buyCard: ApiRootUrl + 'wxapp/buyCard', //购买套餐
 }

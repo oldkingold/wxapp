@@ -2,6 +2,7 @@
 page {
   background-color: #f1f2f6;
   height: 100%;
+  font-family: "PingFang Medium"; 
 }
 
 .menu {
@@ -95,18 +96,24 @@ page {
 }
 
 .swiper .item {
-  margin: 0 25rpx;
+  margin: 0 12rpx;
   
 }
 
 .card_1 {
-  width: 700rpx;
-  height: 395rpx;
+  width: 726rpx;
+  height: 409rpx;
   border-radius: 14rpx;
   /* background: url('http://peixun-9.58jz.com.cn/images/card_bg.png'); */
   overflow: hidden;
   position: relative;
   margin: 25rpx 0;
+}
+
+.card_1_mb {
+  position: absolute;
+  width: 726rpx;
+  height: 409rpx;
 }
 
 .card_1_bg {
@@ -124,59 +131,77 @@ page {
 
 .card_1_title {
   position: absolute;
-  top: 100rpx;
+  top: 85rpx;
   left: 25rpx;
   color: white;
   font-size: 28rpx;
+  width: 668rpx;
+  display: flex;
+  flex-direction: row;
   /* height: 100rpx; */
 }
 
-/* .card_1_text{
-  display: -webkit-box; 
+ .card_1_text{
+  /* display: -webkit-box; 
   -webkit-box-orient: vertical; 
   -webkit-line-clamp: 2; 
-  overflow: hidden; 
-} */
+  overflow: hidden;  */
+  font-size: 28rpx;
+  line-height: 40rpx;
+  width: 615rpx;
+
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+} 
 
 .card_1_addr {
   background-color: #f4a600;
   font-size: 22rpx;
   border-radius: 16rpx;
-  padding: 0px 14rpx;
-  margin-right: 30rpx;
+  /* padding: 0px 14rpx; */
+  margin-top: 6rpx;
+  margin-right: 25rpx;
+  width: 75rpx;
+  height: 28rpx;
+  text-align: center;
+  line-height: 28rpx;
 }
 
 .card_1_teacher {
   position: absolute;
   color: white;
-  top: 170rpx;
+  top: 175rpx;
   left: 25rpx;
 }
 
 .card_1_head {
-  width: 105rpx;
-  height: 105rpx;
+  width: 112rpx;
+  height: 112rpx;
   float: left;
   border:5rpx solid white;
-  border-radius: 55rpx;
+  border-radius: 60rpx;
   overflow: hidden;
 }
 
 .card_1_head image{
-  width: 105rpx;
-  height: 105rpx;
+  width: 112rpx;
+  height: 112rpx;
 }
 
 .card_1_name {
+  margin-top: 5rpx;
   font-size: 26rpx;
   margin-left: 130rpx;
 }
 
 .card_1_introduce {
   font-size: 22rpx;
-  line-height: 36rpx;
+  line-height: 34rpx;
   margin-left: 130rpx;
-  margin-top: 9rpx;
+  margin-top: 12rpx;
   width: 535rpx;
   /*限制两行*/
   overflow:hidden;
@@ -188,7 +213,7 @@ page {
 
 .card_1_tp {
   position: absolute;
-  top: 290rpx;
+  top: 295rpx;
   left: 25rpx;
   color: white;
   margin-top: 42rpx;
@@ -201,27 +226,32 @@ page {
 }
 
 .card_1_date image{
-  width: 30rpx;
-  height: 30rpx;
+  width: 28rpx;
+  height: 28rpx;
   margin-right: 18rpx;
+}
+
+.card_1_date text {
+  font-size: 26rpx;
+  line-height: 28rpx;
 }
 
 .card_1_price {
   color: #ff3131; 
   font-size: 23rpx;
   float: right;
-  margin-left: 335rpx;
-  margin-top: -8rpx;
+  margin-left: 360rpx;
+  margin-top: -3rpx;
 }
 
 .card_1_price text {
   font-size: 30rpx;
-  /* font-weight: bold; */  
+  font-weight: bold;   
 }
 
 .card_2 {
-  width: 700rpx;
-  height: 326rpx;
+  width: 726rpx;
+  height: 338rpx;
   border-radius: 14rpx;
   /* background: url('http://peixun-9.58jz.com.cn/images/card_bg.png'); */
   overflow: hidden;
@@ -235,27 +265,43 @@ page {
   left: 25rpx;
   color: white;
   font-size: 28rpx;
+  width: 668rpx;
+  display: flex;
+  flex-direction: row;
 }
 
 .card_2_teacher {
   position: absolute;
   color: white;
-  top: 95rpx;
+  top: 120rpx;
   left: 25rpx;
 }
 
 .card_2_tp {
   position: absolute;
-  top: 237rpx;
+  top: 248rpx;
   left: 25rpx;
   color: #2e2e2e;
   margin-top: 42rpx;
 }
 
+.card_2_price {
+  color: #ff3131; 
+  font-size: 23rpx;
+  float: right;
+  margin-left: 360rpx;
+   margin-top: -5rpx; 
+}
+
+.card_2_price text {
+  font-size: 30rpx;
+  font-weight: bold;   
+}
+
 .card_3_teacher {
   position: absolute;
   color: white;
-  top: 95rpx;
+  top: 112rpx;
   left: 25rpx;
   height: 150rpx;
   width: 660rpx;
@@ -266,8 +312,8 @@ page {
 }
 
 .card_3_head {
-  width: 70rpx;
-  height: 70rpx;
+  width: 75rpx;
+  height: 75rpx;
   float: left;
   border:5rpx solid white;
   border-radius: 55rpx;
@@ -275,20 +321,20 @@ page {
 }
 
 .card_3_head image{
-  width: 70rpx;
-  height: 70rpx;
+  width: 75rpx;
+  height: 75rpx;
 }
 
 .card_3_name {
   font-size: 26rpx;
-  margin-left: 95rpx;
+  margin-left: 102rpx;
   margin-top: 20rpx;
 }
 
 .card_3_introduce {
-  font-size: 20rpx;
-  line-height: 36rpx;
-  margin-top: 30rpx;
+  font-size: 21rpx;
+  line-height: 30rpx;
+  margin-top: 40rpx;
   margin-right: 30rpx;
   width: 300rpx;
   /*限制两行*/
