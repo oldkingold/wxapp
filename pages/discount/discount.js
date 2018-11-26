@@ -24,21 +24,38 @@ Page({
     discountprice: 32780,
     company: '',
     contact: '',
-    contactTel: ''
+    contactTel: '',
+    cardInfo: {usable: 0, remain: 0, using: 0, total: 0}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  onShow: function () {
+    let that = this;
+
+    if (app.globalData.token) {
+      let data = {};
+      data['token'] = app.globalData.token;
+      data['openID'] = app.globalData.openId;
+
+      wx.request({
+        url: api.CardInfo,
+        method: "POST",
+        data: data,
+        success: function (res) {
+          console.log(res.data);
+          that.setData({
+            cardInfo: res.data
+          });
+        }
+      })
+    }
+    
   },
 
   //切换发票信息
@@ -238,6 +255,12 @@ Page({
         
       }
     })
-  }
+  },
 
+  toDiscountlog: function() {
+    wx.navigateTo({
+      url: '/pages/discountlog/index/index',
+    })
+    
+  }
 })

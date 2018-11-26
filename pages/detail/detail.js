@@ -48,32 +48,52 @@ Page({
       meeting.pxdate = start_date.getFullYear() + "年" + (start_date.getMonth() + 1) + "月" + start_date.getDate() + "-" + end_date.getDate() + "日（" + bddate + "日报道）";
 
       meeting.teach_introduction = [];
-      meeting.teach_article = {};
-      meeting.teach_book = "";
       meeting.teach_assess = [];
+      
+      meeting.teach_book = "";
+      
       if (meeting.teachers_num == 1) {
         meeting.teach_introduction = meeting.teachers.introduction.split("\n");
         meeting.teach_book = meeting.teachers.books;
-        meeting.teach_assess.push(meeting.teachers.assess);
 
-        let articles = JSON.parse(meeting.teachers.articles);
-        for (let key in articles) {
-          meeting.teach_article[key] = articles[key];
+        if (meeting.teachers.assess) {
+          meeting.teach_assess.push(meeting.teachers.assess);
         }
+
+        if (meeting.teachers.articles) { 
+          meeting.teach_article = {};
+          let articles = JSON.parse(meeting.teachers.articles);
+          for (let key in articles) {
+            meeting.teach_article[key] = articles[key];
+          }
+        }else {
+          meeting.teach_article = false;
+        }
+        
       } else {
+        
         for (let i = 0; i < meeting.teachers_num; i++) {
           let introductions = meeting.teachers[i].introduction.split("\n");
           for (let j = 0; j < introductions.length; j++) {
             meeting.teach_introduction.push(introductions[j]);
           }
           meeting.teach_book += meeting.teachers[i].books;
-          meeting.teach_assess.push(meeting.teachers[i].assess);
 
-          let articles = JSON.parse(meeting.teachers[i].articles);
-          for (let key in articles) {
-            meeting.teach_article[key] = articles[key];
+          if (meeting.teachers[i].assess) {
+            meeting.teach_assess.push(meeting.teachers[i].assess);
+          }
+          if (meeting.teachers[i].articles) {
+            let articles = JSON.parse(meeting.teachers[i].articles);
+          
+            for (let key in articles) {
+              meeting.teach_article[key] = articles[key];
+            }
           }
         }
+        
+      }
+      if (meeting.teach_assess.length == 0) {
+        meeting.teach_assess = false;
       }
 
       let saledetail = meeting.meeting_notice.sale.split("\n");

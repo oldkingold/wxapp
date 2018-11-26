@@ -55,4 +55,5 @@ module.exports = {
   moneyChange: ApiRootUrl + 'wxapp/money_change', //充值的金钱改变
   //discount.js
   buyCard: ApiRootUrl + 'wxapp/buyCard', //购买套餐
+  CardInfo: ApiRootUrl + 'wxapp/wxCardInfo',//展示个人信息
 }

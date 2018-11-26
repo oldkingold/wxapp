@@ -1,0 +1,28 @@
+<view>
+  <view class='card'>
+    <view class='line'>
+      <image src='/static/images/clock2.png'></image>
+      <view class='date'>2018.09.12</view>
+    </view>
+    <view class='center_item'>
+      <view class='title'>参加会议:</view>
+      <view class='content'>人套餐人套餐人套餐人套餐人套餐人套餐人套餐</view>
+    </view>
+    <view class='center_item'>
+      <view class='title'>报名人数:</view>
+      <view class='content'>10人</view>
+    </view>
+    <view class='center_item'>
+      <view class='title'>参会人数:</view>
+      <view class='content'>未知</view>
+    </view>
+    <view class='center_item'>
+      <view class='title'>预计消耗套餐:</view>
+      <view class='content'>10人次</view>
+    </view>
+    <view class='center_item'>
+      <view class='title'>套餐剩余:</view>
+      <view class='content'>10人次</view>
+    </view>
+  </view>
+</view>

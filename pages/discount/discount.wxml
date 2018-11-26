@@ -1,6 +1,6 @@
 <view class='container'>
   <view class='bg'>
-    <view class='card'>
+    <view class='card' bindtap='toDiscountlog'>
       <image src='/static/images/membershipcard.png'></image>
       <view class='top'>
         <view class='left'>
@@ -9,13 +9,14 @@
             <view class='text1'>度川教育培训课程</view>
             <view class='text2'>套餐</view>
           </view>
-        </view>
+        </view> 
         <view class='right'>已登录</view>
       </view>
       <view class='bottom'>
-        <text class='text1'>剩余次数：</text><text class='text2'>5</text>
-        <text class='text1'>已购买：</text><text class='text2'>5</text>
-        <text class='text1'>使用中：</text><text class='text2'>5</text>
+        <text class='text1'>可用：</text><text class='text2'>{{cardInfo["usable"]}}</text>
+        <text class='text1'>剩余次数：</text><text class='text2'>{{cardInfo["remain"]}}</text>      
+        <text class='text1'>使用中：</text><text class='text2'>{{cardInfo["using"]}}</text>
+        <text class='text1'>已购买：</text><text class='text2'>{{cardInfo["total"]}}</text>
       </view>
     </view>
     <view>
