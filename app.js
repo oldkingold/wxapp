@@ -23,7 +23,7 @@ App({
       }
     })
 
-    util.loadFontFace();
+    // util.loadFontFace();
   },
   globalData: {
     userInfo: null,

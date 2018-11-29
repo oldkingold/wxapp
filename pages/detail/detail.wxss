@@ -35,7 +35,18 @@ page {
   flex-direction: row;
   background-color: white;
   height: 75rpx;
-  border-bottom: 1px solid #f0f2f5
+  border-bottom: 1px solid #f0f2f5;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight {
+  position: absolute;
+}
+
+.highlight image{
+  width: 750rpx;
+  height: 75rpx;
 }
 
 .detail-item-left {
@@ -46,13 +57,13 @@ page {
 
 .detail .detail-item:nth-of-type(odd) .left-icon{
   width: 15rpx;
-  height: 60%;
+  height: 50%;
   background-color: #49aab1;
 }
 
 .detail .detail-item:nth-of-type(even) .left-icon{
   width: 15rpx;
-  height: 60%;
+  height: 50%;
   background-color: #f4a600;
 }
 
@@ -83,13 +94,18 @@ page {
 
 .right-content {
   font-size: 28rpx;
-  color: #828282;
+  color: #4c4c4c;
   margin-right: 10rpx;
 }
 
-.right-img image{
-  width: 30rpx;
-  height: 30rpx;
+/* .right-img image{
+  width: 27rpx;
+  height: 15rpx;
+} */
+
+.right-img{
+  width: 27rpx;
+  height: 15rpx;
 }
 
 .chxz {
@@ -97,7 +113,7 @@ page {
 }
 
 .chxz-content{
-  padding-top: 15rpx;
+  padding-top: 5rpx;
   margin-left: 15rpx;
   margin-right: 15rpx;
   display: flex;
@@ -105,12 +121,14 @@ page {
 }
 
 .chxz-img {
-  margin-top: -2rpx;
+  /* margin-top: -2rpx; */
+  width: 35rpx;
+  height: 35rpx;
 }
 
 .chxz-img image{
-  width: 30rpx;
-  height: 30rpx;
+  width: 35rpx;
+  height: 35rpx;
 }
 
 .chxz-content-detail {
@@ -120,14 +138,14 @@ page {
 }
 
 .chxz-content-title {
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #2e2e2e;
+  font-size: 16px;
+  /* font-weight: bold; */
+  /* color: #2e2e2e; */
 }
 
 .chxz-content-info {
-  font-size: 32rpx;
-  color: #828282;
+  font-size: 16px;
+  color: #4c4c4c;
   line-height: 45rpx;
 }
 .time{

@@ -1,34 +1,12 @@
 var api = require('../../config/api.js');
+const meeting = require('../../utils/home/meeting.js');
 var app = getApp();
 Page({
   data: {
-    coms: [{
-      id: '1',
-      name: '',
-      nature: '',
-      ein: '',
-    },
-
-    ],
-    conferees: [{
-      id: '',
-      name: '',
-      tel: '',
-      job: '',
-    },
-
-    ],
-    addconferee: {
-      name: '',
-      tel: '',
-      job: '',
-    },
-    editconferee: {
-      id: '',
-      name: '',
-      tel: '',
-      job: '',
-    },
+    coms: [{id: '1',name: '',nature: '',ein: ''}],
+    conferees: [{id: '',name: '',tel: '',job: ''}],
+    addconferee: {name: '',tel: '',job: ''},
+    editconferee: {id: '',name: '',tel: '',job: ''},
     showModal: false,
   },
   onLoad: function (options) {
@@ -51,50 +29,26 @@ Page({
       }
     })
   },
-  onReady: function () {
-
-  },
   onShow: function () {
     // 页面显示
     this.onLoad();
   },
-  onHide: function () {
-    // 页面隐藏
 
-  },
-  onUnload: function () {
-    // 页面关闭
-
-  },
   bind_add_conferee: function (e) {
     // 添加参会人员
-    // 添加到本地 page
     var that = this;
-    if (!that.check_add_conferee(that.data.addconferee)) {
-      return false;
-    }
-    var varaddconferee = that.data.addconferee;
-    var token = app.globalData.token;
-    wx.request({
-      url: api.addPeople,
-      method: 'POST',
-      data: {
-        token: token,
-        name: varaddconferee.name,
-        job: varaddconferee.job,
-        tel: varaddconferee.tel,
-      },
-      success: function (r) {
-        console.log(r.data);
-        if (r.data.code == 200) {
-          that.onLoad();
-          let selfPersons = wx.getStorageSync('selfPersons');
-          let person = { name: varaddconferee.name, job: varaddconferee.job, tel: varaddconferee.tel };
-          selfPersons.unshift(person);
-          wx.setStorageSync('selfPersons', selfPersons);
-        }
+    meeting.add_self_person(that.data.addconferee, app.globalData.token).then(function (res) {
+      if (res) {
+        let selfPersons = wx.getStorageSync('selfPersons');
+        let person = { id: res.id, name: res.name, job: res.job, tel: res.tel };
+        selfPersons.push(person);
+        wx.setStorageSync('selfPersons', selfPersons);
+        that.setData({
+          conferees: selfPersons,
+          addconferee: {name: '',tel: '',job: ''}
+        })
       }
-    })
+    });
   },
   bind_conf_name: function (e) {
     // 添加参会人员姓名
@@ -156,52 +110,7 @@ Page({
       editconferee: varaddconferee
     })
   },
-  check_add_conferee: function (res) {
-    // 检验数据的合法性
-    var that = this;
-    var varaddconferee = res;
-    //校验姓名
-    if (!that.checek_name(varaddconferee.name)) {
-      wx.showModal({
-        showCancel: false,
-        title: '提示',
-        content: '姓名不能为空',
-      })
-      return false;
-    }
-    //校验职务
-    if (!that.checek_name(varaddconferee['job'])) {
-      wx.showModal({
-        showCancel: false,
-        title: '提示',
-        content: '职务不能为空',
-      })
-      return false;
-    }
-    //校验手机
-    if (!that.checek_phone(varaddconferee['tel'])) {
-      return false;
-    }
-    return true;
-  },
-  checek_name: function (name) {
-    //校验姓名
-    console.log("{{checek_name}}" + name);
-    return (name.length < 1) ? false : true
-  },
-  checek_phone: function (tel) {
-    var that = this;
-    var mobile = /^[1][3,4,5,7,8][0-9]{9}$/;
-    if (!mobile.exec(tel)) {
-      wx.showModal({
-        showCancel: false,
-        title: '提示',
-        content: '手机号码有误',
-      })
-      return false;
-    }
-    return true;
-  },
+
   bind_del_com: function (e) {
     var that = this;
     var varcoms = that.data.coms;
@@ -225,27 +134,26 @@ Page({
       }
     })
   },
+  
   bind_del_conferee: function (e) {
     var that = this;
-    var varconferees = that.data.conferees;
-    var varid = e.currentTarget.dataset.id;
     wx.showModal({
       title: '提示',
       content: '确定要删除吗？',
       success: function (res) {
         if (res.confirm) {
-          var token = app.globalData.token;
-          wx.request({
-            url: api.delPeople,
-            method: 'POST',
-            data: {
-              token: token,
-              id: varid
-            },
-            success: function (r) {
-              that.onLoad();
+          meeting.del_self_person(e.currentTarget.dataset.id, app.globalData.token).then(function (res) {
+            let selfPersons = wx.getStorageSync('selfPersons');
+            for (let key in selfPersons) {
+              if (selfPersons[key].id == e.currentTarget.dataset.id) {
+                selfPersons.splice(key, 1);
+              }
             }
-          })
+            wx.setStorageSync('selfPersons', selfPersons);
+            that.setData({
+              conferees: selfPersons,
+            })
+          });
         }
       }
     })
@@ -294,29 +202,25 @@ Page({
   },
   bind_edit_confirm: function (e) {
     var that = this;
-    if (!that.check_add_conferee(that.data.editconferee)) {
-      return false;
-    }
-    var editconferee = that.data.editconferee;
-    var token = app.globalData.token;
-    wx.request({
-      url: api.updatePeople,
-      method: 'POST',
-      data: {
-        token: token,
-        id: editconferee.id,
-        name: editconferee.name,
-        job: editconferee.job,
-        tel: editconferee.tel,
-      },
-      success: function (r) {
+    meeting.edit_self_person(that.data.editconferee, app.globalData.token).then(function (res) {
+      if (res) {
         that.setData({
           showModal: false
         });
-        that.onLoad();
+        let selfPersons = wx.getStorageSync('selfPersons');
+        for(let key in selfPersons) {
+          if(selfPersons[key].id == res.id) {
+            selfPersons[key].name = res.name;
+            selfPersons[key].job = res.job;
+            selfPersons[key].tel = res.tel;
+          }
+        }
+        wx.setStorageSync('selfPersons', selfPersons);
+        that.setData({
+          conferees: selfPersons,
+        })
       }
-    })
-
+    });
   },
 
 })

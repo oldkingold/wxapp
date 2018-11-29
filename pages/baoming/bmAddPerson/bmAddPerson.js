@@ -1,6 +1,6 @@
 var app = getApp();
 var api = require('../../../config/api.js');
-
+const meeting = require('../../../utils/home/meeting.js');
 Page({
   data: {
     inputname: "",
@@ -97,6 +97,28 @@ Page({
   //保存
   addSave: function (e) {
     let that = this;
+    if (!that.check_repeat(varphone, that.data.addmeetPersonlist)) {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '重复添加',
+      })
+      return false;
+    }
+
+    meeting.add_self_person(e.detail.value, app.globalData.token).then(function (res) {
+      if (res) {
+        // let selfPersons = wx.getStorageSync('selfPersons');
+        // let person = { id: res.id, name: res.name, job: res.job, tel: res.tel };
+        // selfPersons.push(person);
+        // wx.setStorageSync('selfPersons', selfPersons);
+        // that.setData({
+        //   conferees: selfPersons,
+        //   addconferee: { name: '', tel: '', job: '' }
+        // })
+      }
+    });
+
     let varname = e.detail.value.inputname;
     let varduty = e.detail.value.inputduty;
     let varphone = e.detail.value.inputphone;

@@ -19,26 +19,24 @@ page {
 }
 
 .meeting-name {
-  padding-left:20rpx;
+  padding:15rpx 20rpx 15rpx 20rpx;
   overflow:hidden;
   display: flex;
   flex-direction: row;
-  height: 90rpx;
+  /* height: 90rpx; */
   /* justify-content: space-around; */
 }
 
 .meeting-name1 {
   font-size:30rpx;
-  line-height:30rpx;
+  line-height:40rpx;
   font-weight:700;
-  margin-top: 30rpx;
+  /* margin-top: 30rpx; */
 }
 
 .meeting-name2 {
-  margin-top: 30rpx;
-  /* margin-bottom: 30rpx; */
   font-size:30rpx;
-  line-height:30rpx;
+  line-height:40rpx;
   font-weight:700;
   white-space: nowrap;
 }
@@ -197,16 +195,26 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 .tr {
   display: flex;
-  width: 100%;
-  justify-content: center;
+  width: 100%;  
   height: 1.5rem;
   align-items: center;
 }
 
 .td {
-  width: 30%;
+  width: 20%;
   justify-content: center;
   text-align: center;
+  font-size: 28rpx;
+}
+
+.th {
+  width: 20%;
+  justify-content: center;
+  background: #ededed;
+  display: flex;
+  height: 1.5rem;
+  align-items: center;
+  font-size: 28rpx;
 }
 
 .bg-w {
@@ -217,15 +225,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   background: #f5f5f5;
 }
 
-.th {
-  width: 40%;
-  justify-content: center;
-  background: #ededed;
-  display: flex;
-  height: 1.5rem;
-  align-items: center;
-  font-size: 28rpx;
-}
+
 
 .del {
   color: #4498fa;

@@ -9,7 +9,7 @@ Page({
     companyInfo: [],
     chxz: {},
     kctg: {},
-    select_index: '0',
+    select_index: 0,
     meeting: []
   },
   onLoad: function (options) {
@@ -153,7 +153,7 @@ Page({
 
   detailClick: function (e) {
     var that = this;
-    var index = e.currentTarget.dataset.index;
+    var index = parseInt(e.currentTarget.dataset.index);
     // var detail_img = "'" + index + '.detail_img' + "'";
     // var detail_direction = "'" + index + '.detail_direction' + "'";
     // that.setData({

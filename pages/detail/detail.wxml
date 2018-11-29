@@ -14,17 +14,16 @@
 
   <view class='detail'>
 
-    <view class='detail-item' bindtap='detailClick' data-index='1' wx:if='{{kctg.title}}'>
+    <view class='detail-item' bindtap='detailClick' data-index='1' wx:if='{{kctg.title}}' style='border-top: 1px solid #f0f2f5;'>
+      <view wx:if='{{1 == select_index}}' class='highlight'><image src='/static/images/blue.png'></image></view>
       <view class='detail-item-left'>
         <view class='left-icon'></view>
         <view class='left-content'>课程背景</view>
       </view>
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
-        <view class='right-img'>
-          <image src='/static/images/detailimage/detail-top.png' wx:if='{{1 == select_index}}'></image>
-          <image src='/static/images/detailimage/detail-down.png' wx:if='{{1 != select_index}}'></image>
-        </view>
+        <image class='right-img' src='/static/images/detailimage/detail-top.png' wx:if='{{1 == select_index}}'></image>
+        <image class='right-img' src='/static/images/detailimage/detail-down.png' wx:if='{{1 != select_index}}'></image>
       </view>
     </view>
     <view class='chxz' wx:if='{{select_index == 1}}' style='padding:20rpx 20rpx 20rpx 20rpx'>
@@ -32,20 +31,19 @@
       <rich-text nodes="{{meeting.course_background['content']}}" bindtap="tap"></rich-text>
     </view>
 
-    <view class='detail-item' bindtap='detailClick' data-index='2' wx:if='{{chxz.title}}'>
+    <view class='detail-item' bindtap='detailClick' data-index='2' wx:if='{{chxz.title}}' style='{{select_index + 1 == 2 ? "border-top: 1px solid #f0f2f5;" : ""}}'>
+      <view wx:if='{{2 == select_index}}' class='highlight'><image src='/static/images/yellow.png'></image></view>
       <view class='detail-item-left'>
         <view class='left-icon'></view>
         <view class='left-content'>参会须知</view>
       </view>
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
-        <view class='right-img'>
-          <image src='/static/images/detailimage/detail-top.png' wx:if='{{2 == select_index}}'></image>
-          <image src='/static/images/detailimage/detail-down.png' wx:if='{{2 != select_index}}'></image>
-        </view>
+        <image class='right-img' src='/static/images/detailimage/detail-top.png' wx:if='{{2 == select_index}}'></image>
+        <image class='right-img' src='/static/images/detailimage/detail-down.png' wx:if='{{2 != select_index}}'></image>
       </view>
     </view>
-    <view class='chxz' wx:if='{{select_index == 2}}'>
+    <view class='chxz' wx:if='{{select_index == 2}}' style='padding-top:20rpx;'>
       <view class='chxz-content'>
         <view class='chxz-img'>
           <image src='/static/images/detailimage/collection.png'></image>
@@ -57,7 +55,7 @@
       </view>
       <view class='chxz-content'>
         <view class='chxz-img'>
-          <image src='/static/images/detailimage/persons@3x.png'></image>
+          <image mode='aspectFit' src='/static/images/detailimage/persons@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>参加对象：</i>
@@ -66,7 +64,7 @@
       </view>
       <view class='chxz-content'>
         <view class='chxz-img'>
-          <image src='/static/images/detailimage/clock@3x.png'></image>
+          <image mode='aspectFit' src='/static/images/detailimage/clock@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>培训时间：</i>
@@ -76,7 +74,7 @@
       
       <view class='chxz-content' wx:if="{{meeting.hotel}}">
         <view class='chxz-img'>
-          <image src='/static/images/detailimage/address@3x.png'></image>
+          <image mode='aspectFit' src='/static/images/detailimage/address@3x.png'></image>
         </view>
 
         <view class='chxz-content-detail'>
@@ -95,12 +93,12 @@
 
       <view class='chxz-content' wx:if="{{meeting.hotel}}">
         <view class='chxz-img'>
-          <image src='/static/images/detailimage/map@3x.png'></image>
+          <image mode='aspectFit' src='/static/images/detailimage/map@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>交通路线：</i>
 
-          <view wx:for="{{meeting.hotel.routes}}" wx:key="*this">
+          <view style='margin-top:20rpx;' wx:for="{{meeting.hotel.routes}}" wx:key="*this">
             <i class='chxz-content-info'>{{index + 1}}.{{item.name}}（距离{{item.distance}}）</i>
             <view class='chxz-content no-margin'>
               <view class='chxz-img'>
@@ -129,18 +127,18 @@
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>学费优惠：</i>
-          <view>
-            <i class='chxz-content-info black'>1.培训费用：
+          <view style='margin-top:10rpx;'>
+            <i class='chxz-content-info black' >1.培训费用：
               <i class='time'>￥{{meeting.price}}/人 </i>
             </i>
-            <view class='chxz-content no-margin'>
+            <view class='chxz-content no-margin' style='padding-top:0rpx;'>
               <i class='chxz-content-info'>包含：{{meeting.meeting_notice.contain}}</i>
             </view>
           </view>
 
-          <view>
+          <view style='margin-top:10rpx;'>
             <i class='chxz-content-info black'>2.优惠价格：</i>
-            <view class='chxz-content no-margin block'>
+            <view class='chxz-content no-margin block' style='padding-top:0rpx;'>
 
               <view wx:for="{{meeting.saledetail}}">
                 <i class='chxz-content-info'>
@@ -158,42 +156,41 @@
             </view>
           </view>
 
-          <view>
+          <view style='margin-top:10rpx;'>
             <i class='chxz-content-info black'>3.缴费方式：</i>
-            <view class='chxz-content no-margin block'>
+            <view class='chxz-content no-margin block' style='padding-top:0rpx;'>
               <view>
                 <i class='chxz-content-info black'>
-                  户 名：{{meeting.pay_com.name}}
+                  户 名：<text class='chxz-content-info'>{{meeting.pay_com.name}}</text>
                 </i>
               </view>
               <view>
                 <i class='chxz-content-info black'>
-                  开户行：{{meeting.pay_com.bank}}
+                  开户行：<text class='chxz-content-info'>{{meeting.pay_com.bank}}</text>
                 </i>
               </view>
               <view>
                 <i class='chxz-content-info black'>
-                  账 号：{{meeting.pay_com.tax_id}}
+                  账 号：<text class='chxz-content-info'>{{meeting.pay_com.tax_id}}</text>
                 </i>
               </view>
             </view>
           </view>
         </view>
       </view>
-
+      <view style='height:40rpx;'> </view>
     </view>
 
-    <view class='detail-item' bindtap='detailClick' data-index='3' wx:if='{{kctg.title}}'>
+    <view class='detail-item' bindtap='detailClick' data-index='3' wx:if='{{kctg.title}}' style='{{select_index + 1 == 3? "border-top: 1px solid #f0f2f5;" : ""}}'>
+      <view wx:if='{{3 == select_index}}' class='highlight'><image src='/static/images/blue.png'></image></view>
       <view class='detail-item-left'>
         <view class='left-icon'></view>
         <view class='left-content'>课程提纲</view>
       </view>
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
-        <view class='right-img'>
-          <image src='/static/images/detailimage/detail-top.png' wx:if='{{3 == select_index}}'></image>
-          <image src='/static/images/detailimage/detail-down.png' wx:if='{{3 != select_index}}'></image>
-        </view>
+        <image class='right-img' src='/static/images/detailimage/detail-top.png' wx:if='{{3 == select_index}}'></image>
+        <image class='right-img' src='/static/images/detailimage/detail-down.png' wx:if='{{3 != select_index}}'></image>
       </view>
     </view>
     <view class='chxz' wx:if='{{select_index == 3}}' style='padding:20rpx 20rpx 20rpx 20rpx'>
@@ -201,28 +198,28 @@
       <rich-text nodes="{{meeting.course.introduction}}" bindtap="tap"></rich-text>
     </view>
 
-    <view class='detail-item' bindtap='detailClick' data-index='4' wx:if='{{chxz.title}}'>
+    <view class='detail-item' bindtap='detailClick' data-index='4' wx:if='{{chxz.title}}' style='{{select_index + 1 == 4? "border-top: 1px solid #f0f2f5;" : ""}}'>
+      <view wx:if='{{4 == select_index}}' class='highlight'><image src='/static/images/yellow.png'></image></view>
       <view class='detail-item-left'>
         <view class='left-icon'></view>
         <view class='left-content'>老师介绍</view>
       </view>
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
-        <view class='right-img'>
-          <image src='/static/images/detailimage/detail-top.png' wx:if='{{4 == select_index}}'></image>
-          <image src='/static/images/detailimage/detail-down.png' wx:if='{{4 != select_index}}'></image>
-        </view>
+        <image class='right-img' src='/static/images/detailimage/detail-top.png' wx:if='{{4 == select_index}}'></image>
+        <image class='right-img' src='/static/images/detailimage/detail-down.png' wx:if='{{4 != select_index}}'></image>
       </view>
     </view>
-    <view class='chxz' wx:if='{{select_index == 4}}'>
-      <view class='chxz-content' style='margin-right: 55rpx;'>
+    <view class='chxz' wx:if='{{select_index == 4}}' style='padding-top:20rpx;'>
+      <view class='chxz-content' style='margin-right: 40rpx;'>
         <view class='chxz-img'>
           <image src='/static/images/detailimage/person@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>个人简介：</i>
-          <view wx:for="{{meeting.teach_introduction}}" wx:key="*this">
-            <i class='chxz-content-info'>　　{{item}}</i>
+          <view style='height:15rpx;'>　</view>
+          <view wx:if="{{item.length > 1}}" wx:for="{{meeting.teach_introduction}}" wx:key="*this">
+            <i  class='chxz-content-info'>　　{{item}}</i>
           </view>
           <!-- <view>
             <i class='chxz-content-info'>　　何老师既具备深厚的理论功底和丰富的实践经验，又有精准的政策把握能力和敏锐的政策洞察力，深耕建安领域财税，多年来笔耕不辍，累计已发表文章三百余篇，其中关于增值税会计处理规定、建筑服务预收款纳税义务时间、商品和税收编码等学术观点，已在后续国家出台的政策中得到印证。</i>
@@ -240,7 +237,7 @@
           </view>
         </view>
       </view>
-      <view class='chxz-content' style='margin-right: 55rpx;' wx:if="{{meeting.teach_article}}">
+      <view class='chxz-content' style='margin-right: 40rpx;' wx:if="{{meeting.teach_article}}">
         <view class='chxz-img'>
           <image src='/static/images/detailimage/article@3x.png'></image>
         </view>
@@ -273,30 +270,30 @@
           </view>
         </view>
       </view>
-
+      <view style='height:50rpx;'> </view>
     </view>
 
-    <view class='detail-item' bindtap='detailClick' data-index='5' wx:if='{{chxz.title}}'>
+    <view class='detail-item' bindtap='detailClick' data-index='5' wx:if='{{chxz.title}}' style='{{select_index + 1 == 5 ? "border-top: 1px solid #f0f2f5;" : ""}}'>
+      <view wx:if='{{5 == select_index}}' class='highlight'><image src='/static/images/blue.png'></image></view>
       <view class='detail-item-left'>
         <view class='left-icon'></view>
         <view class='left-content'>主办单位</view>
       </view>
       <view class='detail-item-right'>
         <view class='right-content'>查看详情</view>
-        <view class='right-img'>
-          <image src='/static/images/detailimage/detail-top.png' wx:if='{{5 == select_index}}'></image>
-          <image src='/static/images/detailimage/detail-down.png' wx:if='{{5 != select_index}}'></image>
-        </view>
+        <image class='right-img' src='/static/images/detailimage/detail-top.png' wx:if='{{5 == select_index}}'></image>
+        <image class='right-img' src='/static/images/detailimage/detail-down.png' wx:if='{{5 != select_index}}'></image>
       </view>
     </view>
-    <view class='chxz' wx:if='{{select_index == 5}}'>
-      <view class='chxz-content' style='margin-right: 55rpx;'>
+    <view class='chxz' wx:if='{{select_index == 5}}' style='padding-top:20rpx;'>
+      <view class='chxz-content' style='margin-right: 40rpx;'>
         <view class='chxz-img'>
           <image src='/static/images/detailimage/company@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>公司简介：</i>
-          <view wx:for="{{companyInfo}}" wx:key="*this">
+          <view style='height:15rpx;'>　</view>
+          <view wx:if="{{item.length > 1}}"  wx:for="{{companyInfo}}" wx:key="*this">
             <i class='chxz-content-info'>　　{{item}}</i>
           </view>
           <!-- <view>
@@ -310,7 +307,7 @@
           </view> -->
         </view>
       </view>
-      <view class='chxz-content'style='margin-right: 55rpx;'>
+      <view class='chxz-content'style='margin-right: 40rpx;'>
         <view class='chxz-img'>
           <image src='/static/images/detailimage/hourglass@3x.png'></image>
         </view>
@@ -350,6 +347,7 @@
               </view>
             </view> -->
           </view>
+          <view style='height:50rpx;'> </view>
         </view>
       </view>
       

@@ -4,15 +4,28 @@ page {
 
 .card {
   background-color: white;
+  margin-top: 20rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  border-radius: 20rpx;
+  padding: 25rpx;
+  position: relative;
 }
 
 .line {
-
+  display: flex;
+  align-items: center;
 }
 
 .line image {
-  width: 30rpx;
-  height: 30rpx;
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 20rpx;
+}
+
+.line .date {
+  font-size: 26rpx;
+  color: #878787;
 }
 
 .center_item {
@@ -21,14 +34,35 @@ page {
 }
 
 .center_item .title {
-  color: #2e2e2e;
+
   font-size: 28rpx;
   line-height: 28rpx;
   margin-right: 18rpx;
+  white-space: nowrap;
 }
 
 .center_item .content {
   color: #878787;
   font-size: 26rpx;
   line-height: 26rpx;
+  /*限制两行*/
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient:vertical;
+}
+
+.sstype {
+  position: absolute;
+  right: 35rpx;
+  font-size: 27rpx;
+}
+
+.bmtype {
+  position: absolute;
+  right: 40rpx;
+  font-size: 20rpx;
+  top: 20rpx;
+  right: 25rpx;
 }

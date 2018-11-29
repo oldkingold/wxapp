@@ -116,9 +116,9 @@ Page({
         console.log(res)
         let varSelected = res.data;
         if (varSelected.list.length > 0) { 
-          wx.removeStorage({
-            key: 'meetPersonListSelected'
-          })
+          // wx.removeStorage({
+          //   key: 'meetPersonListSelected'
+          // })
           that.setData({
             meetPersonlist: varSelected.list,
           })

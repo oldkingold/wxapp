@@ -48,7 +48,7 @@ function wxlogin() {
         data: { 'code': code, 'encryptedData': userInfo.encryptedData, 'iv': userInfo.iv },
         success: function (res) {
           console.log(res)
-          saveSession(res.header["Set-Cookie"]);
+          // saveSession(res.header["Set-Cookie"]);
           if (res.data) {
             let bind_setting = { company: res.data.bind_company, name: res.data.bind_name, tel: res.data.bind_tel };
             wx.setStorageSync('bind_setting', bind_setting);

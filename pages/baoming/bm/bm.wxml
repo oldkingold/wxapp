@@ -39,22 +39,22 @@
         <view class="tr bg-w">
           <view class="th">姓名</view>
           <view class="th">职务</view>
-          <view class="th ">电话</view>
-          <view class="th ">操作</view>
-
+          <view class="th" style='width:28%'>电话</view>
+          <view class="th" style='width:14%'>操作</view>
+          <view class='th' style='width:18%'>主联系人</view>
         </view>
         <block wx:for="{{meetPersonlist}}" wx:key="{{code}}">
-          <view class="tr bg-g" wx:if="{{index % 2 == 1}}">
-            <view class="td">{{item.name}}</view>
-            <view class="td">{{item.duty}}</view>
-            <view class="td">{{item.phone}}</view>
-            <view class="td del" bindtap='delMeetPerson' data-item-index="{{index}}">删除</view>
-          </view>
-          <view class="tr" wx:else>
-            <view class="td">{{item.name}}</view>
-            <view class="td">{{item.duty}}</view>
-            <view class="td">{{item.phone}}</view>
-            <view class="td del" bindtap='delMeetPerson' data-item-index="{{index}}">删除</view>
+          <view class="tr {{index % 2 == 1 ? 'bg-g':''}}">
+            <view class="td" style='width:20%'>{{item.name}}</view>
+            <view class="td" style='width:20%'>{{item.duty}}</view>
+            <view class="td" style='width:28%'>{{item.phone}}</view>
+            <view class="td del" style='width:14%' bindtap='delMeetPerson' data-item-index="{{index}}">删除</view>
+            <view wx:if="{{isNotNeedRoom}}" class='td check-box-icon' style='width:18%'>
+              <image src='../../../static/images/checked@3x.png'></image>
+            </view>
+            <view wx:else class='check-box-icon'>
+              <image src='../../../static/images/check@3x.png'></image>
+            </view>
           </view>
         </block>
       </view>

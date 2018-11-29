@@ -39,6 +39,6 @@
       </view>
     </view>
   </block>
-
+  <view style='height:120rpx;'> </view>
 </view>
 <view class="btn-buttom-default" bindtap="buttomSubbmit">提交</view>
