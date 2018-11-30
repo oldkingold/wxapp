@@ -43,17 +43,15 @@
           <view class="th" style='width:14%'>操作</view>
           <view class='th' style='width:18%'>主联系人</view>
         </view>
-        <block wx:for="{{meetPersonlist}}" wx:key="{{code}}">
+        <block wx:for="{{meetPersonlist}}" wx:key="*this">
           <view class="tr {{index % 2 == 1 ? 'bg-g':''}}">
             <view class="td" style='width:20%'>{{item.name}}</view>
             <view class="td" style='width:20%'>{{item.duty}}</view>
             <view class="td" style='width:28%'>{{item.phone}}</view>
             <view class="td del" style='width:14%' bindtap='delMeetPerson' data-item-index="{{index}}">删除</view>
-            <view wx:if="{{isNotNeedRoom}}" class='td check-box-icon' style='width:18%'>
-              <image src='../../../static/images/checked@3x.png'></image>
-            </view>
-            <view wx:else class='check-box-icon'>
-              <image src='../../../static/images/check@3x.png'></image>
+            <view class='td check-box-icon td' data-item-index = "{{index}}" style='width:18%' catchtap='mainContact'>
+              <image wx:if="{{item.main_contact === 1}}" src='../../../static/images/checked@3x.png'></image>
+              <image wx:else src='../../../static/images/check@3x.png'></image>
             </view>
           </view>
         </block>

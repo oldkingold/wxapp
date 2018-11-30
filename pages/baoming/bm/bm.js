@@ -32,7 +32,6 @@ Page({
       compBank: "",
       compBankAccount: "",
     },
-
     note: "",
     usedChart: 0,
     selfCompanies: {},
@@ -43,6 +42,7 @@ Page({
       duty: '',
       phone: '',
     }
+
   },
 
   onLoad: function (options) {
@@ -116,9 +116,9 @@ Page({
         console.log(res)
         let varSelected = res.data;
         if (varSelected.list.length > 0) { 
-          // wx.removeStorage({
-          //   key: 'meetPersonListSelected'
-          // })
+          wx.removeStorage({
+            key: 'meetPersonListSelected'
+          })
           that.setData({
             meetPersonlist: varSelected.list,
           })
@@ -136,7 +136,7 @@ Page({
     // 页面关闭
     // 在页面离开前做数据的缓存
     if (this.data.method == 'restart' || this.data.method == 'change') {
-      wx.removeStorage('changebmdata');
+      wx.removeStorageSync('changebmdata');
     } else {
       var keyid = this.data.id + 'bm';
       var compName = this.data;
@@ -196,6 +196,39 @@ Page({
       compNature: e.detail.value
     })
   },
+
+  //设置主联系人
+  mainContact: function (e) {
+    var that = this;
+    var itemIndex = e.currentTarget.dataset.itemIndex; 
+    var meetPersonlist = that.data.meetPersonlist;  
+    
+    if (meetPersonlist[itemIndex].main_contact === 0) {
+      meetPersonlist[itemIndex]['main_contact'] = 2-1;
+    }else {
+      meetPersonlist[itemIndex].main_contact = 0;
+    }
+
+    let num = 0;
+    for(let i = 0;i < meetPersonlist.length; i++) {
+      if(meetPersonlist[i].main_contact === 1){
+        num++;
+      }
+    }
+    if(num > 3) {
+      wx.showToast({
+        title: '主联系人最多设置3个人！',
+        icon: 'none',
+        duration: 2000
+      })
+      meetPersonlist[itemIndex].main_contact = 0;
+    }
+    
+    this.setData({
+      meetPersonlist: meetPersonlist
+    })
+  },
+
   //删除人员
   delMeetPerson: function (e) {
     let that = this;

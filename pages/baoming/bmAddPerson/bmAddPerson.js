@@ -29,6 +29,7 @@ Page({
             for (let i = 0; i < addmeetPersonlist.length; i++) {
               if (varSelected[j].phone == addmeetPersonlist[i].tel && varSelected[j].name == addmeetPersonlist[i].name && varSelected[j].duty == addmeetPersonlist[i].job) {
                 addmeetPersonlist[i].checked = true;
+                varSelected[j].id = addmeetPersonlist[i].id;
                 break;
               } else if (i == addmeetPersonlist.length - 1) {
                 addList.unshift({ name: varSelected[j]['name'], tel: varSelected[j]['phone'], job: varSelected[j]['duty'], checked: true })
@@ -40,9 +41,7 @@ Page({
               addmeetPersonlist.unshift(addList[_i])
             }
           }
-          wx.removeStorage({
-            key: 'meetPersonListBefore'
-          })
+          wx.removeStorage({key: 'meetPersonListBefore'})
           that.setData({
             addmeetPersonlist: addmeetPersonlist,
             orderPersonlist: varSelected
@@ -59,9 +58,7 @@ Page({
       }
     });
   },
-  onShow: function () {
 
-  },
   onUnload: function () {
     let that = this;
     let varmeetPersonlist = that.data.addmeetPersonlist;
@@ -69,8 +66,6 @@ Page({
     let list = [];
     let detail = {};
     for (var i = 0; i < orderPersonlist.length; i++) {
-      if (i == orderPersonlist.length)
-        break;
       let varmeetPerson = orderPersonlist[i];
       if (varmeetPerson["checked"]) {
         delete varmeetPerson["checked"];
@@ -97,7 +92,7 @@ Page({
   //保存
   addSave: function (e) {
     let that = this;
-    if (!that.check_repeat(varphone, that.data.addmeetPersonlist)) {
+    if (!that.check_repeat(e.detail.value.inputphone, that.data.addmeetPersonlist)) {
       wx.showModal({
         showCancel: false,
         title: '提示',
@@ -106,101 +101,48 @@ Page({
       return false;
     }
 
-    meeting.add_self_person(e.detail.value, app.globalData.token).then(function (res) {
-      if (res) {
-        // let selfPersons = wx.getStorageSync('selfPersons');
-        // let person = { id: res.id, name: res.name, job: res.job, tel: res.tel };
-        // selfPersons.push(person);
-        // wx.setStorageSync('selfPersons', selfPersons);
-        // that.setData({
-        //   conferees: selfPersons,
-        //   addconferee: { name: '', tel: '', job: '' }
-        // })
-      }
-    });
 
     let varname = e.detail.value.inputname;
     let varduty = e.detail.value.inputduty;
     let varphone = e.detail.value.inputphone;
+    let person = { name: varname, job: varduty, tel: varphone }
 
-    var mobile = /^[1][3,4,5,7,8][0-9]{9}$/;
-    if (varname.length < 1 || varduty.length < 1) {
-      wx.showModal({
-        showCancel: false,
-        title: '提示',
-        content: '姓名或职务必填',
-      })
-    }else if (!mobile.exec(varphone)) {
-      wx.showModal({
-        showCancel: false,
-        title: '提示',
-        content: '手机号码有误',
-      })
-    }
-    else if (!that.check_repeat(varphone, that.data.addmeetPersonlist)) {
-      wx.showModal({
-        showCancel: false,
-        title: '提示',
-        content: '重复添加',
-      })
-    }else {
+    meeting.add_self_person(person, app.globalData.token).then(function (res) {
+      if (res) {
+        let selfPersons = wx.getStorageSync('selfPersons');
+        let person = { id: res.id, name: res.name, job: res.job, tel: res.tel };
+        selfPersons.unshift(person);
+        wx.setStorageSync('selfPersons', selfPersons);
+        let varmeetPersonlist = that.data.addmeetPersonlist;
+        person.checked = false;
+        varmeetPersonlist.unshift(person);
+        that.setData({
+          addmeetPersonlist: varmeetPersonlist,
+          inputname: "",
+          inputduty: "",
+          inputphone: "",
+        });
+      }
+    });
 
-      let varmeetPerson = { name: varname, job: varduty, tel: varphone, checked: false };
-
-      let varmeetPersonlist = that.data.addmeetPersonlist;
-      // 有序数列
-      let orderPersonlist = that.data.orderPersonlist;
-      orderPersonlist.push({ name: varmeetPerson['name'], duty: varmeetPerson['job'], phone: varmeetPerson['tel'], checked: false });
-
-      varmeetPersonlist.unshift(varmeetPerson);
-
-      that.setData({
-        addmeetPersonlist: varmeetPersonlist,
-        orderPersonlist: orderPersonlist,
-        inputname: "",
-        inputduty: "",
-        inputphone: "",
-      });
-
-      var token = app.globalData.token;
-      wx.request({
-        url: api.addPeople,
-        method: 'POST',
-        data: {
-          token: token,
-          name: varmeetPerson.name,
-          job: varmeetPerson.job,
-          tel: varmeetPerson.tel,
-        },
-        success: function (r) {
-          console.log(r.data);
-          if (r.data.code == 200) {
-            wx.setStorageSync('selfPersons', varmeetPersonlist);
-          }
-        }
-      })
-
-    }
   },
 
   changeChecked: function (e) {
     let that = this;
-    console.log("{{e}}" + e.currentTarget.dataset.index);
-    let itemIndex = e.currentTarget.dataset.index;
-    let varmeetPerson = that.data.addmeetPersonlist[itemIndex];
+    let varmeetPerson = that.data.addmeetPersonlist[e.currentTarget.dataset.index];
     // 有序数组，解决报名 排序问题
     let orderPersonlist = that.data.orderPersonlist;
-
     varmeetPerson.checked = !varmeetPerson.checked;
+
     if (varmeetPerson.checked) {
-      orderPersonlist.push({ 'name': varmeetPerson['name'], 'phone': varmeetPerson['tel'], 'duty': varmeetPerson['job'], checked: varmeetPerson.checked });
+      orderPersonlist.push({ id: varmeetPerson['id'], 'name': varmeetPerson['name'], 'phone': varmeetPerson['tel'], 'duty': varmeetPerson['job'], checked: varmeetPerson.checked, main_contact: 0});
       that.setData({
         orderPersonlist: orderPersonlist
       })
     } else {
       if (orderPersonlist.length > 0)
         for (let i = 0; i < orderPersonlist.length; i++) {
-          if (varmeetPerson.tel == orderPersonlist[i].phone && varmeetPerson.name == orderPersonlist[i].name) {
+          if (varmeetPerson.id == orderPersonlist[i].id) {
             orderPersonlist.splice(i, 1);
             that.setData({
               orderPersonlist: orderPersonlist
@@ -208,6 +150,7 @@ Page({
           }
         }
     }
+    
     that.setData({
       addmeetPersonlist: that.data.addmeetPersonlist
     })

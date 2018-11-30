@@ -111,7 +111,13 @@ function add_self_person(person,token) {
       success: function (res) {
         if (res.data.code == 200) {
           resolve(JSON.parse(res.data.data))
-        } else {
+        } else if (res.data.code == 202) {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.data,
+          })
+        }else {
           reject(res);
         }
       },
@@ -160,7 +166,13 @@ function edit_self_person(person, token) {
       success: function (res) {
         if (res.data.code == 200){
           resolve(JSON.parse(res.data.data))
-        }else {
+        } else if (res.data.code == 202) {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.data,
+          })
+        } else {
           reject(res);
         }
       },
