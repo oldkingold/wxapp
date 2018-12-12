@@ -28,7 +28,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    
+    //检查更新
+    util.updateProgram();
     //会议主题
     meeting.themes().then(function(res) {
       if (res.data.menu.length > 1) {

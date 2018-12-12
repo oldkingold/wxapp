@@ -56,9 +56,9 @@ page {
 }
 
 .card1 {
-  position: absolute;
+  position: relative;
   width: 650rpx;
-  height: 315rpx;
+  height: 328rpx;
   background-color: white;
   overflow: hidden;
   margin-top: 33rpx;
@@ -146,13 +146,13 @@ page {
 
 .bottom .title {
   color: #2d2d2e;
-  font-size: 22rpx;
+  font-size: 24rpx;
   margin-right: 18rpx;
 }
 
 .bottom .content { 
   color: #ff1f1f;
-  font-size: 22rpx;
+  font-size: 24rpx;
 }
 
 .btn-qx {

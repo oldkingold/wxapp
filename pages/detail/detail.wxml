@@ -198,7 +198,7 @@
       <rich-text nodes="{{meeting.course.introduction}}" bindtap="tap"></rich-text>
     </view>
 
-    <view class='detail-item' bindtap='detailClick' data-index='4' wx:if='{{chxz.title}}' style='{{select_index + 1 == 4? "border-top: 1px solid #f0f2f5;" : ""}}'>
+    <view id='teach' class='detail-item' bindtap='detailClick' data-index='4' wx:if='{{chxz.title}}' style='{{select_index + 1 == 4? "border-top: 1px solid #f0f2f5;" : ""}}'>
       <view wx:if='{{4 == select_index}}' class='highlight'><image src='/static/images/yellow.png'></image></view>
       <view class='detail-item-left'>
         <view class='left-icon'></view>
@@ -210,6 +210,7 @@
         <image class='right-img' src='/static/images/detailimage/detail-down.png' wx:if='{{4 != select_index}}'></image>
       </view>
     </view>
+
     <view class='chxz' wx:if='{{select_index == 4}}' style='padding-top:20rpx;'>
       <view class='chxz-content' style='margin-right: 40rpx;'>
         <view class='chxz-img'>
@@ -228,7 +229,7 @@
       </view>
       <view class='chxz-content'>
         <view class='chxz-img'>
-          <image src='/static/images/detailimage/headset@3x.png'></image>
+          <image mode='aspectFit' src='/static/images/detailimage/headset@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>课程试听：</i>
@@ -239,7 +240,7 @@
       </view>
       <view class='chxz-content' style='margin-right: 40rpx;' wx:if="{{meeting.teach_article}}">
         <view class='chxz-img'>
-          <image src='/static/images/detailimage/article@3x.png'></image>
+          <image mode='aspectFit' src='/static/images/detailimage/article@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>老师文章：</i>
@@ -251,7 +252,7 @@
 
       <view class='chxz-content' style='margin-right: 55rpx;' wx:if="{{meeting.teach_book}}">
         <view class='chxz-img'>
-          <image src='/static/images/detailimage/book@3x.png'></image>
+          <image mode='aspectFit' src='/static/images/detailimage/book@3x.png'></image>
         </view>
         <view class='chxz-content-detail'>
           <i class='chxz-content-title'>老师书籍：</i>

@@ -161,6 +161,7 @@ Page({
     //   'chxz.detail_direction': e.currentTarget.dataset.direction == 'down' ? 'top' : 'down',
     //   'chxz.detail_show': e.currentTarget.dataset.direction == 'down' ? true : false
     // })
+    
     if (this.data.select_index == index) {
       this.setData({
         'select_index': 0
@@ -168,8 +169,17 @@ Page({
     } else {
       this.setData({
         'select_index': index
+      }, ()=> {
+        const query = wx.createSelectorQuery()
+        query.select('#teach').boundingClientRect()
+        query.selectViewport().scrollOffset()
+        query.exec(function (res) {
+          console.log(res[0].top)        // #the-id节点的上边界坐标
+          console.log(res[1].scrollTop) // 显示区域的竖直滚动位置
+        })
       })
     }
+    
   },
 
   bindweixin: function (e) {
@@ -202,5 +212,6 @@ Page({
     wx.navigateTo({
       url: '/pages/judge/judge?website=' + e.currentTarget.dataset['link'] + "&meeting=" + this.data.meeting["id"],
     })
-  }
+  },
+
 })

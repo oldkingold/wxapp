@@ -127,6 +127,7 @@ function add_self_person(person,token) {
     })
   });
 }
+
 //修改参会人员信息
 function edit_self_person(person, token) {
   //校验姓名

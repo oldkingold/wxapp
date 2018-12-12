@@ -56,4 +56,7 @@ module.exports = {
   //discount.js
   buyCard: ApiRootUrl + 'wxapp/buyCard', //购买套餐
   CardInfo: ApiRootUrl + 'wxapp/wxCardInfo',//展示个人信息
+  //order.js
+  CardOrder: ApiRootUrl + "wxapp/myorder",//获取我的订单列表
+  
 }

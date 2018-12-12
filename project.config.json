@@ -20,7 +20,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.2",
+	"libVersion": "1.9.9",
 	"appid": "wxf09f92ab2843ecf2",
 	"projectname": "wx-app2.0",
 	"isGameTourist": false,

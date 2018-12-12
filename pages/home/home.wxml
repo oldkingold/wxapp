@@ -32,6 +32,7 @@
     </view>
   </view>
 </view>
+
 <swiper class='swiper' style='height:{{screenHeight - 42}}px' current-item-id="{{swipercurrentitemid}}" bindchange="swiperChange">
   <block>
     <swiper-item item-id="0" class="item" >
