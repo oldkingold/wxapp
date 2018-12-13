@@ -58,5 +58,5 @@ module.exports = {
   CardInfo: ApiRootUrl + 'wxapp/wxCardInfo',//展示个人信息
   //order.js
   CardOrder: ApiRootUrl + "wxapp/myorder",//获取我的订单列表
-  
+  UsedRecord: ApiRootUrl + "wxapp/myUsedRecord",//获取我的套餐使用记录
 }

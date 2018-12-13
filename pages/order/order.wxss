@@ -58,11 +58,11 @@ page {
 .card1 {
   position: relative;
   width: 650rpx;
-  height: 328rpx;
+  /* height: 328rpx; */
   background-color: white;
   overflow: hidden;
   margin-top: 33rpx;
-  padding: 22rpx 20rpx; 
+  padding: 22rpx 20rpx 0rpx 20rpx; 
   border-radius: 20rpx;
 }
 
@@ -129,7 +129,8 @@ page {
 .center_item .content {
   color: #878787;
   font-size: 26rpx;
-  line-height: 26rpx;
+  line-height: 28rpx;
+  width: 500rpx;
 }
 
 .bottom {
@@ -189,4 +190,25 @@ page {
   text-align: center;
   line-height: 41rpx;
   border-radius: 25rpx;
+}
+
+.nolog{
+  margin-top:30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 31rpx;
+}
+
+.nolog image{
+ width: 389rpx;
+ height: 287rpx;
+ display: block;
+ margin: 10rpx auto;
+}
+
+.nolog-text{
+  color: #A0A1A3;
+  font-size: 30rpx;
 }

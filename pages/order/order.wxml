@@ -1,7 +1,7 @@
 <orderhk id='orderhk' show='{{true}}'></orderhk>
 <view class='menu'>
-  <view wx:for='{{menu}}' wx:key='{{menu_id}}' id='menu{{index}}' data-id='{{index}}' class='nav_title' catchtap='nav_select'>
-    <block wx:if='{{"menu"+index == nav_selectId}}'>
+  <view wx:for='{{menu}}' wx:key='*this' id="menu{{item['menu_id']}}" data-id="{{item['menu_id']}}" class='nav_title' catchtap='nav_select'>
+    <block wx:if='{{"menu"+item["menu_id"] == nav_selectId}}'>
       <view class='nav_hover nav_select'>
         {{item.title}}
       </view>
@@ -17,11 +17,11 @@
   </view>
 </view>
 
-<swiper style='height:{{screenHeight + 6}}px'>
-  <swiper-item class="item">
+<swiper style='height:{{screenHeight + 6}}px' current-item-id="{{swipercurrentitemid}}" bindchange="swiperChange">
+  <swiper-item wx:for='{{menu}}' wx:key='*this' class="item" item-id="{{menu_item['menu_id']}}" wx:for-item="menu_item">
+    <block wx:if="{{menu_item['num'] > 0}}">
     <scroll-view scroll-y style='height:{{screenHeight + 7}}px'>
-
-      <view class='card1' wx:for="{{orders}}" wx:key="*this" >
+      <view class='card1' wx:for="{{orders}}" wx:key="*this" wx:if="{{item['status'] == menu_item['menu_id'] || menu_item['menu_id'] == 4}}">
         <view class='top'>
           <view class='dd'>订单号：{{item['order_id']}}</view>
           <image wx:if="{{item['status'] == 2}}" class='status' src='../../static/images/dd-success.png'></image>
@@ -37,7 +37,11 @@
         <view class='center'>
           <view class='center_item'>
             <view class='title'>已购产品:</view>
-            <view class='content'>10人套餐</view>
+            <view>
+              <view wx:if="{{item['cardInfo'][5] != 0}}" class='content'>5人套餐 <view style='float:right;'>x{{item['cardInfo'][5]}}</view></view>
+              <view wx:if="{{item['cardInfo'][5] == 0}}" class='content'>10人套餐 <view style='float:right;'>x{{item['cardInfo'][10]}}</view></view>
+              <view wx:if="{{item['cardInfo'][5] != 0 && item['cardInfo'][10] != 0}}" class='content' style='margin-top: 18rpx'>10人套餐<view style='float:right;'>x{{item['cardInfo'][10]}}</view></view>
+            </view>
           </view>
           <view class='center_item'>
             <view class='title'>赠送人次:</view>
@@ -57,14 +61,19 @@
             <view class='title'>总金额:</view>
             <view class='content'>¥{{item['discountprice']}}</view>
           </view>
-          <view class='flex'>
+          <view class='flex' wx:if="{{item['checkStatus'] == 0 && item['status'] == 3}}">
             <view class='btn-qx'>取消</view>
             <view class='btn-hk'>去汇款</view>
           </view>
-          <!-- <view class='btn-dd'>重新下单</view> -->
+          <view class='btn-dd' wx:if="{{item['status'] == 0}}">重新下单</view>
         </view>
       </view>
-
     </scroll-view>
+    </block>
+      
+    <view class='nolog' wx:else>
+      <image src='/static/images/nolog@3x.png'></image>
+      <view class='nolog-text'>暂无记录</view>
+    </view>
   </swiper-item>
 </swiper>

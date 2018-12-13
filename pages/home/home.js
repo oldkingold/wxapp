@@ -57,31 +57,8 @@ Page({
       }
     });
 
-    // console.log(app.globalData.systemInfo['height']);
-    // console.log(util.split_array(this.data.menu,6));
-  
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   nav_select: function (e) {
     var cnum = e.currentTarget.dataset['id'] -2 
     this.setData({
@@ -113,6 +90,7 @@ Page({
       menudownShow: menudownShow
     });
   },
+
   //跳转到详情页
   toDetail: function (e) {
     // console.log(e.currentTarget.dataset['meeting']);
@@ -120,9 +98,11 @@ Page({
       url: '../detail/detail?meeting=' + e.currentTarget.dataset['meeting'],
     })
   },
+
   toBaoming: function (e) {
     wx.navigateTo({
       url: '../baoming/bm/bm',
     })
   }
+  
 })
