@@ -15,6 +15,7 @@ Page({
       { menu_id: 1, title: "已失败", num: 0  },
       { menu_id: 0, title: "已取消", num: 0  },],
     orders:[],
+    orderhkShow:true,
   },
 
   onLoad: function (options) {
@@ -52,5 +53,11 @@ Page({
       nav_selectId: "menu" + e.detail.currentItemId,
     });
   },
+
+  remit: function() {
+    this.setData({
+      orderhkShow: false
+    });
+  }
 
 })

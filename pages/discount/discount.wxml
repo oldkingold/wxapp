@@ -10,19 +10,20 @@
             <view class='text2'>套餐</view>
           </view>
         </view> 
-        <view class='right'>已登录</view>
+        <view wx:if="{{isSignin}}" class='right' >已登录</view>
       </view>
-      <view class='bottom'>
+      <view class='bottom' wx:if="{{isSignin}}">
         <text class='text1'>可用：</text><text class='text2'>{{cardInfo["usable"]}}</text>
         <text class='text1'>剩余次数：</text><text class='text2'>{{cardInfo["remain"]}}</text>      
-        <text class='text1'>使用中：</text><text class='text2'>{{cardInfo["using"]}}</text>
+        <text class='text3'>(使用中：<text class='text4'>{{cardInfo["using"]}}</text>)</text>
         <text class='text1'>已购买：</text><text class='text2'>{{cardInfo["total"]}}</text>
       </view>
+      <view wx:if="{{!isSignin}}" style='right:20rpx;' class='bottom' bindtap='toSignin'>请登录/注册</view>
     </view>
     <view>
       <view class='line'>
         <text class='title'>套餐购买</text>
-        <text class='detail'><text>?</text>优惠详情</text>
+        <view class='detail'><image src='/static/images/wenhao.png'></image>优惠详情</view>
       </view>
       <view class='line flex_row'>
         <text class='name'>选择套餐：</text>

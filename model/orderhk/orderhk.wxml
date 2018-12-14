@@ -20,13 +20,18 @@
     <view></view>
   </view>
   <view class='hk_info'>若您未汇款或汇款失败将会导致订单失败！</view>
+  <view class='credential'>
+    <view class='title'>汇款凭据：</view>
+    <button class='upload' catchtap='upload'>上传</button>
+    <view class='red'>(必填)</view>
+  </view>
   <view class='hk_btn'>
-    <view class='hk_zw'>暂未汇款</view>
-    <view class='hk_qr'>确认已汇款</view>
+    <view class='hk_zw' catchtap='cancel'>暂未汇款</view>
+    <view class='hk_qr' catchtap='confirmPayment' >确认已汇款</view>
   </view>
 </view>
 <view class='cancel'>
   <view class='line'></view>
-  <view class='image'><image src='../../static/images/cancel.png'></image></view>  
+  <view class='image' catchtap='cancel'><image src='../../static/images/cancel.png'></image></view>  
 </view>
 </view>

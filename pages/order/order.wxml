@@ -1,4 +1,4 @@
-<orderhk id='orderhk' show='{{true}}'></orderhk>
+<orderhk id='orderhk' show='{{orderhkShow}}'></orderhk>
 <view class='menu'>
   <view wx:for='{{menu}}' wx:key='*this' id="menu{{item['menu_id']}}" data-id="{{item['menu_id']}}" class='nav_title' catchtap='nav_select'>
     <block wx:if='{{"menu"+item["menu_id"] == nav_selectId}}'>
@@ -13,7 +13,7 @@
       <view class='nav_hover'>
         {{item.title}}
       </view>
-    </block> 
+    </block>
   </view>
 </view>
 
@@ -62,10 +62,10 @@
             <view class='content'>¥{{item['discountprice']}}</view>
           </view>
           <view class='flex' wx:if="{{item['checkStatus'] == 0 && item['status'] == 3}}">
-            <view class='btn-qx'>取消</view>
-            <view class='btn-hk'>去汇款</view>
+            <view class='btn-qx' catchtap='cancel'>取消</view>
+            <view class='btn-hk' catchtap='remit'>去汇款</view>
           </view>
-          <view class='btn-dd' wx:if="{{item['status'] == 0}}">重新下单</view>
+          <view class='btn-dd' wx:if="{{item['status'] == 0}}" catchtap='reremit'>重新下单</view>
         </view>
       </view>
     </scroll-view>

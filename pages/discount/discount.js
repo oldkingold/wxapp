@@ -25,7 +25,8 @@ Page({
     company: '',
     contact: '',
     contactTel: '',
-    cardInfo: {usable: 0, remain: 0, using: 0, total: 0}
+    cardInfo: {usable: 0, remain: 0, using: 0, total: 0},
+    isSignin: false
   },
 
   /**
@@ -37,24 +38,36 @@ Page({
 
   onShow: function () {
     let that = this;
+    let company_setting = wx.getStorageSync('company_setting');
+    if (company_setting) {
+      if (app.globalData.token) {
+        let data = {};
+        data['token'] = app.globalData.token;
+        data['openID'] = app.globalData.openId;
 
-    if (app.globalData.token) {
-      let data = {};
-      data['token'] = app.globalData.token;
-      data['openID'] = app.globalData.openId;
-
-      wx.request({
-        url: api.CardInfo,
-        method: "POST",
-        data: data,
-        success: function (res) {
-          console.log(res.data);
-          that.setData({
-            cardInfo: res.data
-          });
-        }
-      })
+        wx.request({
+          url: api.CardInfo,
+          method: "POST",
+          data: data,
+          success: function (res) {
+            console.log(res.data);
+            that.setData({
+              cardInfo: res.data,
+              isSignin: true
+            });
+          }
+        })
+      } else {
+        that.setData({
+          isSignin: false
+        });
+      }
+    } else {
+      that.setData({
+        isSignin: false
+      });
     }
+    
     
   },
 
@@ -258,9 +271,17 @@ Page({
   },
 
   toDiscountlog: function() {
+    if (this.data.isSignin) {
+      wx.navigateTo({
+        url: '/pages/discountlog/index/index',
+      })
+    }
+  },
+
+  toSignin: function() {
     wx.navigateTo({
-      url: '/pages/discountlog/index/index',
+      url: '/pages/login/login',
     })
-    
   }
+
 })

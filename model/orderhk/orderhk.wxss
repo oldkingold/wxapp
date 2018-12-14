@@ -11,7 +11,7 @@
   position: fixed;
   background-color: white;
   width: 650rpx;
-  height: 616rpx;
+  height: 669rpx;
   margin: 38rpx 50rpx 0 50rpx;
   opacity: 1;
   z-index: 1001;
@@ -78,7 +78,7 @@
   font-size: 30rpx;
   line-height: 74rpx;
   text-align: center;
-  margin: 73rpx 36rpx 0 36rpx;
+  margin: 40rpx 36rpx 0 36rpx;
 }
 
 .hk_zw {
@@ -104,7 +104,7 @@
   display:flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 626rpx;
+  margin-top: 698rpx;
   margin-left: 343rpx;
 }
 
@@ -126,4 +126,37 @@
   height: 40rpx;
   margin-left: 10rpx;
   margin-top: 10rpx;
+}
+
+.credential {
+  display: flex;
+  align-items: center;
+  height: 90rpx;
+}
+
+.credential .title{
+  font-size:29rpx;
+  line-height:29rpx;
+  font-weight:bold;
+  margin-left:36rpx;
+
+}
+
+.upload {
+  color: #f4a600;
+  border: 2rpx solid #f4a600;
+  border-radius: 30rpx;
+  height: 60rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  padding-left:54rpx;
+  padding-right: 54rpx;
+  font-size: 29rpx;
+  line-height: 60rpx;
+  background-color: #ffffff;
+}
+
+.red {
+  font-size: 26rpx;
+  color: red;
 }

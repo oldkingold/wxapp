@@ -69,6 +69,8 @@ page {
 .card .bottom {
   position: absolute;
   bottom: 20rpx;
+  display: flex;
+  align-items: center;
 }
 
 .card .bottom .text1 {
@@ -80,7 +82,18 @@ page {
 .card .bottom .text2 {
   color: #d9990e;
   font-size: 26rpx; 
+  margin-right: 6rpx;
+}
+
+.card .bottom .text3 {
+  color: white;
+  font-size: 24rpx; 
   margin-right: 15rpx;
+}
+
+.card .bottom .text4 {
+  color: red;
+  font-size: 24rpx; 
 }
 
 .title {
@@ -100,13 +113,11 @@ page {
   align-items: center;
 }
 
-.detail text {
-  font-size: 14rpx;
-  border-radius: 14rpx;
-  letter-spacing: 7rpx;
+.detail image {
+  width: 28rpx;
+  height: 28rpx;
   padding-left: 6rpx;
-  border: 1rpx solid #1b79f8;
-  margin-right: 8rpx;
+  margin-right: 3rpx;
 }
 
 .line {
