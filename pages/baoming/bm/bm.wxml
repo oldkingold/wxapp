@@ -141,6 +141,17 @@
       </view>
     </picker>
 
+    <view class='companyCard' wx:if="{{cardInfo}}">
+      <view class='line1'>
+        <view class='blod'>套餐剩余</view>
+        <view class='red' wx:if="{{meetPersonlist.length > cardInfo['usable']}}">次数不足，去购买</view>
+      </view>
+      <view class='line2'>
+        <view class='item'>报名人次：{{meetPersonlist.length}}人</view>
+        <view class='item'>剩余次数：{{cardInfo['usable']}}人次</view>
+      </view>
+    </view>
+
     <view class='invoice'>
 
       <view class='invoice-content'>
@@ -208,7 +219,6 @@
         </block>
       </view>
     </view>
-
 
     <view class='suggest'>
       <view class='suggest-main'>

@@ -1,5 +1,6 @@
 const api = require('../../config/api.js');
 const app = getApp();
+const order = require("../../utils/home/order.js");
 
 Page({
 
@@ -26,7 +27,8 @@ Page({
     contact: '',
     contactTel: '',
     cardInfo: {usable: 0, remain: 0, using: 0, total: 0},
-    isSignin: false
+    isSignin: false,
+    isSubmit: false,
   },
 
   /**
@@ -38,25 +40,32 @@ Page({
 
   onShow: function () {
     let that = this;
+    that.data.isSubmit = false;
     let company_setting = wx.getStorageSync('company_setting');
     if (company_setting) {
       if (app.globalData.token) {
-        let data = {};
-        data['token'] = app.globalData.token;
-        data['openID'] = app.globalData.openId;
-
-        wx.request({
-          url: api.CardInfo,
-          method: "POST",
-          data: data,
-          success: function (res) {
-            console.log(res.data);
-            that.setData({
-              cardInfo: res.data,
+        order.CardInfo().then((res)=>{
+          that.setData({
+              cardInfo: res,
               isSignin: true
             });
-          }
-        })
+        });
+        // let data = {};
+        // data['token'] = app.globalData.token;
+        // data['openID'] = app.globalData.openId;
+
+        // wx.request({
+        //   url: api.CardInfo,
+        //   method: "POST",
+        //   data: data,
+        //   success: function (res) {
+        //     console.log(res.data);
+        //     that.setData({
+        //       cardInfo: res.data,
+        //       isSignin: true
+        //     });
+        //   }
+        // })
       } else {
         that.setData({
           isSignin: false
@@ -212,7 +221,13 @@ Page({
   },
 
   submit: function() {
+    
     var that = this;
+    if (that.data.isSubmit) {
+      return;
+    }
+    that.data.isSubmit = true;
+    
     var data = {};
 
     //验证

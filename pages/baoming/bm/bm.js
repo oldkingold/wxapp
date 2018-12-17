@@ -2,6 +2,7 @@ const app = getApp();
 const util = require('../../../utils/util.js');
 const api = require('../../../config/api.js');
 const meet = require('../../../utils/home/meeting.js');
+const order = require("../../../utils/home/order.js");
 
 Page({
   data: {
@@ -41,8 +42,8 @@ Page({
       name: '',
       duty: '',
       phone: '',
-    }
-
+    },
+    cardInfo:false
   },
 
   onLoad: function (options) {
@@ -58,6 +59,14 @@ Page({
       meeting: meeting,
       arriveDate: meeting.end_show,
       leaveDate: meeting.end_date
+    });
+    
+    order.CardInfo().then((res) => {
+      if (res) {
+        that.setData({
+          cardInfo: res,
+        });
+      }
     });
 
     //页面从哪跳转过来的

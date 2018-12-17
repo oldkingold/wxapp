@@ -1,5 +1,5 @@
 {
-  "pages": [ 
+  "pages": [
     "pages/home/home",
     "pages/baoming/bm/bm",
     "pages/baoming/bmAddPerson/bmAddPerson",
@@ -28,7 +28,8 @@
     "pages/editcominfo/editcominfo",
     "pages/addcominfo/addcominfo",
     "pages/discountlog/index/index",
-    "pages/discount/discount"
+    "pages/discount/discount",
+    "pages/discountreceipt/discountreceipt"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -39,7 +40,7 @@
   "tabBar": {
     "color": "#777777",
     "selectedColor": "#f5a601",
-    "list": [ 
+    "list": [
       {
         "pagePath": "pages/home/home",
         "text": "首页",

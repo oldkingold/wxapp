@@ -729,3 +729,38 @@ justify-content:space-between;
   letter-spacing: 6rpx;
   color: #fff;
 }
+
+.companyCard {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 25rpx;
+  font-size: 27rpx;
+  line-height: 80rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.companyCard .line1{
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  border-bottom: 1rpx solid #eeeff1;
+}
+
+.companyCard .line2{
+  display: flex;
+  height: 80rpx;
+}
+
+.blod {
+  font-weight: bold;
+}
+
+.red {
+  color: red;
+}
+
+.line2 .item {
+  width: 350rpx;
+}

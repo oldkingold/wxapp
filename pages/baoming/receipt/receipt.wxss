@@ -146,7 +146,7 @@ image {
 }
 
 .desc-title {
-  height: 80rpx;
+  /* height: 80rpx; */
   line-height: 40rpx;
   padding-bottom: 20rpx;
   font-size: 30rpx;
