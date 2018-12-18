@@ -1,5 +1,5 @@
 {
-  "pages": [
+  "pages": [ 
     "pages/home/home",
     "pages/baoming/bm/bm",
     "pages/baoming/bmAddPerson/bmAddPerson",

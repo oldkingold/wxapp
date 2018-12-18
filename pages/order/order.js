@@ -16,6 +16,8 @@ Page({
       { menu_id: 0, title: "已取消", num: 0  },],
     orders:[],
     orderhkShow:true,
+    orderhkMoney: 0,
+    orderhkId: 0,
   },
 
   onLoad: function (options) {
@@ -54,9 +56,12 @@ Page({
     });
   },
 
-  remit: function() {
+  remit: function(e) {
+    console.log(e);
     this.setData({
-      orderhkShow: false
+      orderhkShow: false,
+      orderhkMoney: e.currentTarget.dataset['money'],
+      orderhkId: e.currentTarget.dataset['id'],
     });
   }
 

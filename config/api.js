@@ -59,4 +59,6 @@ module.exports = {
   //order.js
   CardOrder: ApiRootUrl + "wxapp/myorder",//获取我的订单列表
   UsedRecord: ApiRootUrl + "wxapp/myUsedRecord",//获取我的套餐使用记录
+  //order.js
+  checkOrderCard: ApiRootUrl + "wxapp/checkedOrderCard",//套餐购买确认汇款
 }

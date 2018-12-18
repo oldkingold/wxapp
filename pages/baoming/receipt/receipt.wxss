@@ -43,6 +43,7 @@ image {
 
 .middle {
   background-color: #fff;
+  margin-bottom: 28rpx;
 }
 
 .arrive-time-content {
@@ -133,7 +134,7 @@ image {
 
 .desc {
   background-color: #fff;
-  margin: 28rpx 0;
+  margin-bottom: 28rpx;
   display: flex;
   justify-content: center;
 }
@@ -262,4 +263,65 @@ image {
   height: 0rpx;
   /* color:#929292; */
   color: transparent;
+}
+
+.companyCard {
+  background-color: white;
+  margin-bottom: 28rpx;
+  padding: 0 20rpx 40rpx 20rpx;
+}
+
+.companyCard .line_pay {
+  display: flex;
+  line-height: 80rpx;
+  height: 80rpx;
+  border-bottom: 1rpx solid #eeeff1;
+}
+
+.companyCard .line_pay view {
+  margin-right: 30rpx;
+}
+
+.companyCard .line_remain {
+  display: flex;
+  line-height: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+.companyCard .line_remain view {
+  margin-right: 30rpx;
+}
+
+.zhushi {
+  font-size: 28rpx;
+  padding-top: 10rpx; 
+  padding-bottom: 30rpx;
+}
+
+.zhushi .zhu{
+  float: left;
+  color: #479df7;
+  line-height: 28rpx;
+}
+
+.zhushi .shi{
+  float: left;
+  color: #c1c1c1;
+  line-height: 28rpx;
+}
+
+.more{
+  float: right;
+  font-size: 28rpx;
+  color: #479df7;
+  line-height: 28rpx;
+  display: flex;
+  align-items: center;
+}
+
+.more image{
+  height: 28rpx;
+  width: 28rpx;
+  margin-left: 8rpx;
 }

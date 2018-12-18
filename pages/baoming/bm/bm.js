@@ -664,6 +664,7 @@ Page({
         console.log(res);
         if (res.data.code == 200) {
           let receipt = {
+            companyCard: res.data.companyCard,
             meeting: that.data.meeting,
             invoice: that.data.invoice,
             companyName: that.data.compName,

@@ -20,7 +20,8 @@ Page({
     },
     method: "method",
     usertype: "",
-    companyName: ''
+    companyName: '',
+    companyCard:{},
   },
 
   onLoad: function (options) {
@@ -41,6 +42,7 @@ Page({
       invoice: receipt['invoice'],
       companyName: receipt['companyName'],
       meetdate: receipt['meetdate'],
+      companyCard: receipt['companyCard']
     });
     if (that.data.usertype != 'typeuser') {
       let content = {
@@ -116,6 +118,12 @@ Page({
       scale: 18,
       name: that.data.meeting.hotel.name + "(" + that.data.meeting.hotel.star + ")",
       address: that.data.meeting.hotel.address
+    })
+  },
+
+  more: function () {
+    wx.switchTab({
+      url: '/pages/discount/discount',
     })
   }
 
