@@ -105,7 +105,7 @@
                 <view class='invoice-bankaccount-name invoice-line-name-common'>
                   <text class='text-font'>银行账号</text>
                 </view>
-                <view class='invoice-bankaccount-value invoice-line-value-common'>
+                <view class='invoice-line-value-common'>
                   <text class='text-font'>{{invoice.compBankAccount}}</text>
                 </view>
               </view>
@@ -125,7 +125,7 @@
         <view class='desc-title'wx:if="{{companyCard['status'] == 0}}">为了便于做好住宿、餐饮等各项接待工作，请将培训费（￥{{meeting.price}}/人）汇入到收款公司账户，账户信息如下：
         </view>
         <view class='desc-title' wx:if="{{companyCard['status'] == 1 && companyCard['remainder'] < companyCard['using']}}">您当前已支付{{companyCard['remainder'] > 0 ? companyCard['remainder'] : 0}}人的费用，还剩余{{companyCard['using'] - companyCard['remainder']}}人费用待支付，您可以直接转账￥{{meeting.price}}/人至我司对公账户，也可以会员去购买套餐支付，套餐支付更优惠。
-          <view class='more' style='margin-top:8rpx;'>查看详情<image mode='aspectFit' src='/static/images/go.png'></image></view>
+          <view class='more' catchtap='more' style='margin-top:8rpx;'>查看详情<image mode='aspectFit' src='/static/images/go.png'></image></view>
         </view>
         <view class='desc-content' >
           <image class='trangle' src='/static/images/icon_trangle.png'></image>
@@ -133,7 +133,7 @@
             <view class=' invoice-line-name-common'>
               <text class='text-font'>户名</text>
             </view>
-            <view class='invoice-bankaccount-value invoice-line-value-common'>
+            <view class='invoice-line-value-common'>
               <text class='text-font'>{{meeting.pay_com.name}}</text>
             </view>
           </view>
@@ -141,7 +141,7 @@
             <view class=' invoice-line-name-common'>
               <text class='text-font'>开户行</text>
             </view>
-            <view class='invoice-bankaccount-value invoice-line-value-common'>
+            <view class='invoice-line-value-common'>
               <text class='text-font'>{{meeting.pay_com.bank}}</text>
             </view>
           </view>
@@ -149,7 +149,7 @@
             <view class=' invoice-line-name-common'>
               <text class='text-font'>账号</text>
             </view>
-            <view class='invoice-bankaccount-value invoice-line-value-common'>
+            <view class='invoice-line-value-common'>
               <text class='text-font'>{{meeting.pay_com.tax_id}}</text>
             </view>
           </view>
@@ -177,7 +177,7 @@
       <view class='zhushi'>
         <view class='zhu'>注：</view>
         <view class='shi'>购买套餐报名更划算</view>
-        <view class='more'>查看更多套餐<image mode='aspectFit' src='/static/images/go.png'></image></view>
+        <view class='more' catchtap='more'>查看更多套餐<image mode='aspectFit' src='/static/images/go.png'></image></view>
       </view>
     </view>
 

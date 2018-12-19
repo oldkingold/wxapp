@@ -83,7 +83,7 @@
             </view>
           </view>
           <view class='card_2' catchtap='toDetail' data-meeting='{{index}}' wx:else>
-            <image class='card_1_bg'  src='http://peixun-9.58jz.com.cn/images/wxxcx/card_bg2.png'></image>
+            <image class='card_1_bg'  src='{{rooturl}}images/wxxcx/card_bg2.png'></image>
             <view class='card_2_title'>
               <text class='card_1_addr'>{{item.place}}</text>
               <text class='card_1_text'>{{item.name}}</text>

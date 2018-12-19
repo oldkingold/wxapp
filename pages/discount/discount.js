@@ -221,7 +221,11 @@ Page({
   },
 
   submit: function() {
+    wx.navigateTo({
+      url: '/pages/discountreceipt/discountreceipt',
+    })
     
+    return;
     var that = this;
     if (that.data.isSubmit) {
       return;

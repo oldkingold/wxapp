@@ -63,6 +63,29 @@ Page({
       orderhkMoney: e.currentTarget.dataset['money'],
       orderhkId: e.currentTarget.dataset['id'],
     });
+    
+  },
+  confirmPayment: function(e) {
+    var oId = e.detail.oId;
+    var orders = this.data.orders;
+    for (let i in orders) {
+      if (orders[i]["id"] == oId) {
+        orders[i]["checkStatus"] = 1;
+      }
+    }
+    this.setData({
+      orders: orders,
+    });
+  },
+
+  cancel: function() {
+    
+  },
+
+  reremit: function() {
+    wx.switchTab({
+      url: '/pages/discount/discount',
+    })
   }
 
 })

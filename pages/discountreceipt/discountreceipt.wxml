@@ -1,2 +1,134 @@
-<!--pages/discountreceipt/discountreceipt.wxml-->
-<text>pages/discountreceipt/discountreceipt.wxml</text>
+<view>
+  <view class='desc'>
+    <view class='desc-objetc'>
+      <view class='desc-title1'>尊敬的用户：</view>
+      <view class='desc-title' >请您确认是否已将￥11920.00汇款至以下账户，谢谢您的支持。
+      </view>
+      
+      <view class='desc-content' >
+
+        <view class='invoice-line'>
+          <view class=' invoice-line-name-common'>
+            <text class='text-font'>户名</text>
+          </view>
+          <view class='invoice-line-value-common'>
+            <text class='text-font'>浙江度川企业管理咨询有限公司</text>
+          </view>
+        </view>
+        <view class='invoice-line'>
+          <view class=' invoice-line-name-common'>
+            <text class='text-font'>开户行</text>
+          </view>
+          <view class='invoice-line-value-common'>
+            <text class='text-font'>中国工商银行股份有限公司杭州三墩支行</text>
+          </view>
+        </view>
+        <view class='invoice-line'>
+          <view class=' invoice-line-name-common'>
+            <text class='text-font'>账号</text>
+          </view>
+          <view class='invoice-line-value-common'>
+            <text class='text-font'>1202023309910119345</text>
+          </view>
+        </view>
+      </view>
+
+      <view class='desc-title2'>若您未汇款或汇款失败将会导致订单失效！</view>
+    </view>
+  </view>
+  <view>
+  
+    <view class='title'>火热报名中的会议</view>
+    <view>
+      <block wx:for="{{meetings}}" wx:key='*this'>
+        <view class='card_1' catchtap='toDetail' data-meeting='{{index}}' wx:if="{{ item.img }}">   
+          <image class='card_1_mb'  src='../../static/images/mengban.png'></image>        
+          <image class='card_1_bg'  src='{{rooturl + item.img}}'></image> 
+            
+          <image class='card_1_dc' src='../../static/images/duchuan.png'> </image>
+          <view class='card_1_title'>
+            <view class='card_1_addr'>{{item.place}}</view>
+            <view class='card_1_text'>{{item.name}}</view>
+          </view>
+          <block wx:if="{{item.teachers_num == 1}}">
+            <view class='card_1_teacher'>
+              <view class='card_1_head'>
+                <image src='{{rooturl + item.teachers.img}}'></image>
+              </view>
+              <view class='card_1_name'>
+                {{item.teachers.name}}
+              </view>
+              <view class='card_1_introduce'>
+                {{item.teachers.abstract}}
+              </view>
+            </view>
+          </block>
+          <block wx:else>
+            <scroll-view scroll-x class='card_3_teacher' style='top:165rpx'>
+              <view style='display: flex;flex-direction: row;'>
+                <view class='card_3_teach' wx:for="{{ item.teachers }}" wx:key='*this' wx:for-item="teacher">
+                  <view class='card_3_head'>
+                    <image src='{{rooturl + teacher.img}}'></image>
+                  </view>
+                  <view class='card_3_name'>
+                    {{teacher.name}}
+                  </view>
+                  <view class='card_3_introduce'>
+                    {{teacher.abstract}}
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+          </block>
+          <view class='card_1_tp'>
+            <view class='card_1_date'><image src='../../static/images/clock.png'></image><text>{{item.meeting_start + "-" + item.meeting_end}}</text></view>
+            <view class='card_1_price'>￥<text>{{item.price}}</text>.00</view>
+          </view>
+        </view>
+        <view class='card_2' catchtap='toDetail' data-meeting='{{index}}' wx:else>
+          <image class='card_1_bg'  src='{{rooturl}}images/wxxcx/card_bg2.png'></image>
+          <view class='card_2_title'>
+            <text class='card_1_addr'>{{item.place}}</text>
+            <text class='card_1_text'>{{item.name}}</text>
+          </view>
+          <block wx:if="{{item.teachers_num == 1}}">
+            <view class='card_2_teacher'>
+              <view class='card_1_head'>
+                <image src='{{rooturl + item.teachers.img}}'></image>
+              </view>
+              <view class='card_1_name'>
+                {{item.teachers.name}}
+              </view>
+              <view class='card_1_introduce'>
+                {{item.teachers.abstract}}
+              </view>
+            </view>
+          </block>
+          <block wx:else>
+            <scroll-view scroll-x class='card_3_teacher'>
+              <view style='display: flex;flex-direction: row;'>
+                <view class='card_3_teach' wx:for="{{ item.teachers }}" wx:key='*this' wx:for-item="teacher">
+                  <view class='card_3_head'>
+                    <image src='{{rooturl + teacher.img}}'></image>
+                  </view>
+                  <view class='card_3_name'>
+                    {{teacher.name}}
+                  </view>
+                  <view class='card_3_introduce'>
+                    {{teacher.abstract}}
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+          </block>
+          <view class='card_2_tp'>
+            <view class='card_1_date'><image src='../../static/images/clock1.png'></image><text>{{item.meeting_start + "-" + item.meeting_end}}</text></view>
+            <view class='card_2_price'>￥<text>{{item.price}}</text>.00</view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+  </view>
+  <view class='button'>查看订单</view>
+</view>
