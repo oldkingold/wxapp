@@ -325,3 +325,65 @@ image {
   width: 28rpx;
   margin-left: 8rpx;
 }
+
+.advertisement {
+  position: fixed;
+  height: 728rpx;
+  width: 589rpx;
+  top:150rpx;
+  left: 80.5rpx;
+}
+
+.advertisement image {
+  height: 728rpx;
+  width: 589rpx;
+}
+
+.adver_buy {
+  position: absolute;
+  background-color: #f3df52; 
+  width: 188rpx;
+  left: 200rpx;
+  top: 543rpx;
+  line-height: 62rpx;
+  height: 62rpx;
+  border-radius: 31rpx;
+  color: #bc2a26;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.adver_cancel {
+  position: absolute;
+  width: 56rpx;
+  height: 56rpx;
+  top: 16rpx;
+  right: 16rpx;
+}
+
+.adver_cancel image {
+  width: 56rpx;
+  height: 56rpx;
+}
+
+.adver_tip {
+  position: absolute;
+  width: 188rpx;
+  left: 200rpx;
+  bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.adver_tip text {
+  color: white;
+  font-size: 25rpx;
+  line-height: 30rpx;
+  height: 30rpx;
+  margin-left: 15rpx;
+}
+
+.adver_tip image {
+  width: 30rpx;
+  height: 30rpx;
+}

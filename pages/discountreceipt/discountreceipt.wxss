@@ -4,6 +4,12 @@ page {
   background-color: #ebf0f5;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 .desc {
   background-color: #fff;
   display: flex;
@@ -89,6 +95,63 @@ page {
   line-height: 80rpx;
   font-size: 30rpx;
   margin-left: 20rpx;
+  margin-right: 20rpx;
   font-weight: bold;
+  margin-bottom: -25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.more{
+  font-size: 28rpx;
+  color: #479df7;
+  line-height: 28rpx;
+  display: flex;
+  align-items: center;  
+}
+
+.more image{
+  height: 28rpx;
+  width: 28rpx;
+  margin-left: 8rpx;
+}
+
+.meetings {
+  display: flex;
+  flex-direction: column;
+  align-items:  center;
+}
+
+.bmcard {
+  background-color: white;
+  width:726rpx;
+  border-radius:14rpx;
+  margin-top: 25rpx;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  line-height: 50rpx;
+}
+
+.bmcard view {
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+  height: 50rpx;
+}
+
+.bmcard .bmtitle {
+  font-weight: bold;
+
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient:vertical;
+}
+
+
+
+
+
+
 

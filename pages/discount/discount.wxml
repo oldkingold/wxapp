@@ -157,6 +157,6 @@
       <view style='height:36rpx;margin-top:16rpx;'><text>总计：</text><text class='new-price'>￥{{discountprice}}</text></view>
       <view style='height:20rpx;margin-top:5rpx;'><text class='old-price'>￥{{originalprice}}</text><text>(已优惠<text class='cut-price'>￥{{originalprice - discountprice}}</text>)</text></view>
     </view>
-    <view class='btn' catchtap='submit'>提交订单</view>
+    <button class='btn' open-type="getUserInfo" bindgetuserinfo="submit">提交订单</button>
   </view>
 </view>

@@ -1,6 +1,7 @@
 const api = require('../../config/api.js');
 const app = getApp();
 const order = require("../../utils/home/order.js");
+const util = require('../../utils/util.js');
 
 Page({
 
@@ -220,20 +221,37 @@ Page({
     });
   },
 
-  submit: function() {
+  submit: function(e) {
+    let that = this;
+    let userInfo = wx.getStorageSync("userInfo");
+
+    if (e.detail.userInfo && !userInfo) {
+      util.wxlogin().then((res) => {
+        app.globalData.token = res.token;
+        app.globalData.openId = res.openId;
+      });
+    } else if (e.detail.userInfo && userInfo) {
+      //
+    } else {
+      wx.showModal({
+        title: "用户未授权",
+        content: '请授权允许微信登录后进行套餐购买',
+        showCancel: false,
+      })
+      return ;
+    }
     wx.navigateTo({
       url: '/pages/discountreceipt/discountreceipt',
     })
     
     return;
-    var that = this;
     if (that.data.isSubmit) {
       return;
     }
     that.data.isSubmit = true;
     
-    var data = {};
 
+    var data = {};
     //验证
     if (that.data.company.length < 1) {
       that.showToast('请输入公司名称');

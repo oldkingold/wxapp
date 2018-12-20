@@ -34,4 +34,23 @@ Page({
   onShow: function () {
     
   },
+  
+  //跳转我的订单页
+  toOrder :function () {
+    wx.navigateTo({
+      url: '/pages/order/order',
+    })
+  },
+  //跳转会议详情页
+  toDetail: function (e) {
+    wx.navigateTo({
+      url: '/pages/detail/detail?meeting=' + e.currentTarget.dataset['meeting'],
+    })
+  },
+  //跳转报名记录
+  more: function () {
+    wx.navigateTo({
+      url: '/pages/bmlog/bmlog',
+    })
+  },
 })

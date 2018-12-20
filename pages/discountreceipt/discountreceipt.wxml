@@ -37,9 +37,21 @@
     </view>
   </view>
   <view>
-  
+    <view class='title'>已报名的会议 
+      <view class='more' catchtap='more'>查看更多
+        <image mode='aspectFit' src='/static/images/go.png'></image>
+      </view>
+    </view>
+    <view class='meetings'>
+      <view class='bmcard' >
+        <view class='bmtitle'>建筑业全流程全税种实操及风险防范培训班建筑业全流程全税种实操及风险防范培训班建筑业全流程全税种实操及风险防范培训班</view>
+        <view>时间地址　2018.03.21-03.23　杭州</view>
+        <view>会议讲师　张三</view>
+        <view>参会人数　3人</view>
+      </view>
+    </view>
     <view class='title'>火热报名中的会议</view>
-    <view>
+    <view class='meetings'>
       <block wx:for="{{meetings}}" wx:key='*this'>
         <view class='card_1' catchtap='toDetail' data-meeting='{{index}}' wx:if="{{ item.img }}">   
           <image class='card_1_mb'  src='../../static/images/mengban.png'></image>        
@@ -128,7 +140,8 @@
         </view>
       </block>
     </view>
-
+    <view style='height:120rpx;'></view>
   </view>
-  <view class='button'>查看订单</view>
+  <view class='button' catchtap='toOrder'>查看订单</view>
 </view>
+

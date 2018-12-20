@@ -1,5 +1,7 @@
+const api = require('../../../config/api.js');
 Page({
   data: {
+    rooturl: api.ApiRootUrl,
     meeting: {},
     invoice: {
       invType: "暂不填写",
