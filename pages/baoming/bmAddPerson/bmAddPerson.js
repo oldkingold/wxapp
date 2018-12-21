@@ -1,6 +1,7 @@
 var app = getApp();
 var api = require('../../../config/api.js');
 const meeting = require('../../../utils/home/meeting.js');
+
 Page({
   data: {
     inputname: "",

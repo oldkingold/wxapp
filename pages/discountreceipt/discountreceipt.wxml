@@ -44,10 +44,10 @@
     </view>
     <view class='meetings'>
       <view class='bmcard' >
-        <view class='bmtitle'>建筑业全流程全税种实操及风险防范培训班建筑业全流程全税种实操及风险防范培训班建筑业全流程全税种实操及风险防范培训班</view>
-        <view>时间地址　2018.03.21-03.23　杭州</view>
-        <view>会议讲师　张三</view>
-        <view>参会人数　3人</view>
+        <view class='bmtitle'>{{latestCompany["meeting_name"]}}</view>
+        <view>时间地址　{{latestCompany["meeting_date"]}}　{{latestCompany["meeting_place"]}}</view>
+        <view>会议讲师　{{latestCompany["meeting_teachers"]}}</view>
+        <view>参会人数　{{latestCompany["meeting_num"]}}人</view>
       </view>
     </view>
     <view class='title'>火热报名中的会议</view>

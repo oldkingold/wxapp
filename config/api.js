@@ -61,4 +61,6 @@ module.exports = {
   UsedRecord: ApiRootUrl + "wxapp/myUsedRecord",//获取我的套餐使用记录
   //order.js
   checkOrderCard: ApiRootUrl + "wxapp/checkedOrderCard",//套餐购买确认汇款
+  //discountreceipt.js
+  mylatestpeixun: ApiRootUrl + "wxapp/mylatestpeixun",//获取最近一场会议的报名
 }

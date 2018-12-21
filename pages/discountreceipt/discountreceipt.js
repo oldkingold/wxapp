@@ -1,5 +1,6 @@
 const api = require('../../config/api.js');
 const meeting = require('../../utils/home/meeting.js');
+const app = getApp();
 
 Page({
 
@@ -9,6 +10,7 @@ Page({
   data: {
     rooturl: api.ApiRootUrl,
     meetings:[],
+    latestCompany:[],
   },
 
   onLoad: function (options) {
@@ -32,7 +34,23 @@ Page({
   },
 
   onShow: function () {
-    
+    let that = this;
+    //获取最近一场会议的报名
+    wx.request({
+      url: api.mylatestpeixun,
+      method: "POST",
+      data:{
+        token: app.globalData.token
+      },
+      success: function (res) {
+        console.log(res);
+        if (res.data.code == 200) {
+          that.setData({
+            latestCompany : res.data.data
+          });
+        }
+      }
+    })
   },
   
   //跳转我的订单页

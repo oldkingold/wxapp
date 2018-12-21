@@ -183,10 +183,15 @@
 
     <contact id="contact" employeeTeacherList="{{meeting.employees}}"  bind:phoneCall="phoneCall"></contact>
   </view>
-  <view class='advertisement'>
+
+  <view class='advertisement' hidden='{{adverShow}}' bindtap='more'>
     <image mode='scaleToFill' src="{{rooturl}}images/advertisement.png"></image>
-    <view class='adver_buy'>去购买</view>
-    <view class='adver_cancel'><image src='../../static/images/cancel1.png'></image></view>
-    <view class='adver_tip'><image src='../../static/images/advcheckout.png'></image><text>不再提示</text></view>
+    <!-- <view class='adver_buy' >去购买</view> -->
+    <view class='adver_cancel' catchtap='cancel'><image src='../../../static/images/cancel1.png'></image></view>
+    <view class='adver_tip' catchtap='tipconfirm'>
+      <image mode='scaleToFill' wx:if="{{!adverRedio}}" src='../../../static/images/advcheckout.png'></image>
+      <image mode='scaleToFill' wx:else src='../../../static/images/advcheck.png'></image>
+      <text>不再提示</text>
+    </view>
   </view>
 </view>

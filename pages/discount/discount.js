@@ -243,14 +243,7 @@ Page({
     wx.navigateTo({
       url: '/pages/discountreceipt/discountreceipt',
     })
-    
-    return;
-    if (that.data.isSubmit) {
-      return;
-    }
-    that.data.isSubmit = true;
-    
-
+    return ;
     var data = {};
     //验证
     if (that.data.company.length < 1) {
@@ -283,6 +276,11 @@ Page({
         }
     }
 
+    if (that.data.isSubmit) {
+      return;
+    }
+    that.data.isSubmit = true;
+
     data['ten_num'] = that.data.ten_num;
     data['five_num'] = that.data.five_num;
     data['company'] = that.data.company;
@@ -298,7 +296,12 @@ Page({
       url: api.buyCard,
       data: data,
       method: "POST",
-      success: function() {
+      success: function(res) {
+        if(res.data.code == 200) {
+          wx.navigateTo({
+            url: '/pages/discountreceipt/discountreceipt',
+          })
+        }
         
       },
       fail: function() {

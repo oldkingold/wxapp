@@ -24,6 +24,8 @@ Page({
     usertype: "",
     companyName: '',
     companyCard:{},
+    adverShow: true,
+    adverRedio: false,
   },
 
   onLoad: function (options) {
@@ -37,7 +39,6 @@ Page({
       receipt['meeting'].hotel.jwd = receipt['meeting'].hotel.jwd.split(",");
     }
     
-
     console.log(receipt);
     that.setData({
       meeting: receipt['meeting'],
@@ -46,7 +47,22 @@ Page({
       meetdate: receipt['meetdate'],
       companyCard: receipt['companyCard']
     });
-    if (that.data.usertype != 'typeuser') {
+
+    if (receipt['companyCard']['status'] == 0 
+      || (receipt['companyCard']['status'] == 1 && receipt['companyCard']['remainder'] < receipt['companyCard']['using'])) {
+      let adverShow = wx.getStorageSync("adverShow");
+      if (adverShow) {
+        this.setData({
+          adverShow: adverShow
+        });
+      } else {
+        this.setData({
+          adverShow: false
+        });
+      }
+    }
+
+    if (that.data.usertype != 'typeuser' && that.data.adverShow) {
       let content = {
         newolduser: {
           'cnt': "系统检测到你是度川老用户，注册公司账号可管理报名信息。",
@@ -88,6 +104,7 @@ Page({
           }
         }
       });
+
     }
 
   },
@@ -127,6 +144,26 @@ Page({
     wx.switchTab({
       url: '/pages/discount/discount',
     })
+  },
+
+  cancel: function () {
+    this.setData({
+      adverShow:true,
+    });
+  },
+
+  tipconfirm: function () {
+    if (!this.data.adverRedio) {
+      wx.setStorageSync("adverShow", true);
+      this.setData({
+        adverRedio: true,
+      });
+    }else {
+      wx.removeStorageSync("adverShow");
+      this.setData({
+        adverRedio: false,
+      });
+    }
   }
 
 })  
