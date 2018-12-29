@@ -21,6 +21,8 @@ Page({
     meetings: [],
     menu_meetings: [],
     swipercurrentitemid: 0,
+    scrolltop:0,
+    topview:0,
   },
 
   /**
@@ -56,7 +58,11 @@ Page({
         wx.setStorageSync("meetings", res.data);
       }
     });
-
+   
+  },
+  
+  onShow: function() {
+  
   },
 
   nav_select: function (e) {
@@ -83,6 +89,7 @@ Page({
       nav_selectId: "menu" + e.detail.currentItemId,
     });
   },
+
   menuDown: function (e) {
     console.log(e);
     var menudownShow = !this.data.menudownShow;
@@ -103,6 +110,22 @@ Page({
     wx.navigateTo({
       url: '../baoming/bm/bm',
     })
-  }
+  },
+
+  topperUpdate: function(e) {
+    
+  },
   
+  scrollstart: function() {
+    if (this.data.topview == 0) {
+      this.setData({
+        scrolltop: 1,
+        topview:40
+      });
+    }
+  },
+
+  scrollend: function () {
+    
+  }
 })

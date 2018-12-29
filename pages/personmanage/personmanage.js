@@ -103,12 +103,10 @@ Page({
             wx.showToast({
               title: '成功',
               icon: 'success',
-              duration: 5000,
+              duration: 2000,
               complete: function () {
                 that.bind_cancel();
-                wx.navigateBack({
-                  delta: 1
-                })
+                that.onLoad();
               }
             })
           } else {
@@ -118,9 +116,7 @@ Page({
               duration: 2000,
               complete: function () {
                 that.bind_cancel();
-                wx.navigateBack({
-                  delta: 1
-                })
+                that.onLoad();
               }
             })
 

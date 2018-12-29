@@ -26,6 +26,7 @@ Page({
     companyCard:{},
     adverShow: true,
     adverRedio: false,
+    toMore: false,
   },
 
   onLoad: function (options) {
@@ -65,13 +66,13 @@ Page({
     if (that.data.usertype != 'typeuser' && that.data.adverShow) {
       let content = {
         newolduser: {
-          'cnt': "系统检测到你是度川老用户，注册公司账号可管理报名信息。",
+          'cnt': "系统检测到您是度川老用户，注册公司账号可管理报名信息。",
           'cbtn': '去注册',
         }, olduser: {
-          'cnt': "系统检测到你是度川老用户，请绑定公司账号管理公司报名信息。",
+          'cnt': "系统检测到您是度川老用户，请绑定公司账号管理公司报名信息。",
           'cbtn': "去绑定",
         }, newuser: {
-          'cnt': "系统检测到你是度川新用户，请注册公司账号管理公司报名信息。",
+          'cnt': "系统检测到您是度川新用户，请注册公司账号管理公司报名信息。",
           'cbtn': "去注册",
         }
       };
@@ -110,20 +111,23 @@ Page({
   },
 
   onUnload: function () {
-    if (this.data.method == 'restart' || this.data.method == 'change') {
-      let pages = getCurrentPages();//当前页面
-      console.log(pages);
-      let prevPage = pages[1];//上一页面
-      prevPage.setData({//直接给上移页面赋值
-        refresh: 'refresh',
-      });
-      wx.navigateBack({
+    if (!this.data.toMore) {
+      if (this.data.method == 'restart' || this.data.method == 'change') {
+        let pages = getCurrentPages();//当前页面
+        console.log(pages);
+        let prevPage = pages[1];//上一页面
+        prevPage.setData({//直接给上移页面赋值
+          refresh: 'refresh',
+        });
+        wx.navigateBack({
 
-      })
-    } else {
-      wx.switchTab({
-        url: "/pages/home/home",
-      })
+        })
+      } else { 
+        wx.switchTab({
+          url: "/pages/home/home",
+        })
+        
+      }
     }
   },
 
@@ -141,6 +145,7 @@ Page({
   },
 
   more: function () {
+    this.data.toMore = true;
     wx.switchTab({
       url: '/pages/discount/discount',
     })

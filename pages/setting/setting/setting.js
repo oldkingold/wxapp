@@ -1,5 +1,5 @@
 var api = require('../../../config/api.js');
-// var util = require('../../../utils/util.js');
+var util = require('../../../utils/util.js');
 // var storage = require('../../../services/storage.js');
 var app = getApp();
 Page({
@@ -19,10 +19,10 @@ Page({
 
     this.setData({
       companySetting: company_setting,
-      companyAdmin: company_setting == null ? false : company_setting['admin'],
-      bindCompany: bind_setting == null ? '' : bind_setting['company'],
-      bindName: bind_setting == null ? '' : bind_setting['name'],
-      bindTel: bind_setting == null ? '' : bind_setting['tel'],
+      companyAdmin: company_setting ? company_setting['admin'] : false,
+      bindCompany: bind_setting ? bind_setting['company'] : '',
+      bindName: bind_setting ? bind_setting['name'] : '',
+      bindTel: bind_setting ? bind_setting['tel'] : '',
     })
 
   },
@@ -62,12 +62,14 @@ Page({
   },
 
   bind_unbundling: function () {
+    wx.showLoading({mask: true});
     if (this.data.companyAdmin) {
       wx.showModal({
         showCancel: false,
         title: '提示',
         content: '管理员不能解绑'
       })
+      wx.hideLoading();
     } else {
       wx.showModal({
         showCancel: false,
@@ -84,6 +86,7 @@ Page({
                 token: token,
               },
               success: function (r) {
+                wx.hideLoading();
                 if (r.data.code == 200) {
                   wx.showToast({
                     title: '解绑成功',
@@ -94,7 +97,11 @@ Page({
                   util.wxlogin().then((res) => {
                     app.globalData.token = res.token;
                     app.globalData.openId = res.openId;
+                    wx.navigateBack({
+
+                    })
                   });
+                  
                 }
               }
             })
@@ -103,7 +110,7 @@ Page({
       })
 
     }
-
+    
   },
 
   bind_comName: function (e) {

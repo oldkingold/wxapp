@@ -52,13 +52,13 @@
           <view>培训原价：<text>￥2980</text>/人(含餐饮), 课程时长：2天，6h/天。</view>
           <view>5人次套餐：<text>￥11920</text>(含餐饮), 可分此参加。</view>
           <view>10人次套餐：<text>￥20860</text>(含餐饮), 可分此参加。</view>
-          <view>在以上优惠的基础上，一次性购买多分10人次套餐（餐标￥100.00/餐）,还赠送相应的名额。</view>
+          <view>在以上优惠的基础上，一次性购买多份10人次套餐（餐标￥100.00/餐）,还赠送相应的名额。</view>
         </view>
       </view>
       <view class='contact'>
         <view class='item'>
           <text class='name'>公司名称：</text>
-          <input bindinput='bindCompany' placeholder='请输入'></input>
+          <input bindinput='bindCompany' placeholder='请输入公司全称' value='{{company}}' disabled='{{company_setting}}'></input>
         </view>
         <view class='item'>
           <text class='name'>联系人：</text>

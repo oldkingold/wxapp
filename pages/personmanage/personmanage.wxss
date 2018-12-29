@@ -152,13 +152,13 @@ page{
 }
 
 .modal-dialog {
-  width:86%;
+  width:84%;
   overflow:hidden;
   position:fixed;
   top:9%;
   z-index:9999;
   background:#FFFFFF;
-  border-radius:36rpx;
+  border-radius:20rpx;
   margin:auto 8%;
 }
 
@@ -181,14 +181,14 @@ margin-bottom:14rpx;
 }
 
 .modal-content {
-padding:50rpx 32rpx;
-padding-top:16rpx;
-display:flex;
-flex-direction:column;
-justify-content: flex-start;
-padding-bottom:16rpx;
-    width: 100%;
-    height: 80%;
+  padding:50rpx 32rpx;
+  padding-top:16rpx;
+  display:flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  padding-bottom:16rpx;
+  width: 100%;
+  height: 80%;
 }
 
 .modal-line {
@@ -225,7 +225,7 @@ padding-bottom:16rpx;
 }
 .check-box-item{
   display: flex;
-  align-content: center;
+  align-items: center;
   height:76rpx;
 
 }

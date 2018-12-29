@@ -2,7 +2,7 @@
   <view class='desc'>
     <view class='desc-objetc'>
       <view class='desc-title1'>尊敬的用户：</view>
-      <view class='desc-title' >请您确认是否已将￥11920.00汇款至以下账户，谢谢您的支持。
+      <view class='desc-title' >请您确认是否已将￥{{discountprice}}.00汇款至以下账户，谢谢您的支持。
       </view>
       
       <view class='desc-content' >
@@ -37,19 +37,21 @@
     </view>
   </view>
   <view>
-    <view class='title'>已报名的会议 
-      <view class='more' catchtap='more'>查看更多
-        <image mode='aspectFit' src='/static/images/go.png'></image>
+    <block wx:if="{{latestCompany}}">
+      <view class='title'>已报名的会议 
+        <view class='more' catchtap='more'>查看更多
+          <image mode='aspectFit' src='/static/images/go.png'></image>
+        </view>
       </view>
-    </view>
-    <view class='meetings'>
-      <view class='bmcard' >
-        <view class='bmtitle'>{{latestCompany["meeting_name"]}}</view>
-        <view>时间地址　{{latestCompany["meeting_date"]}}　{{latestCompany["meeting_place"]}}</view>
-        <view>会议讲师　{{latestCompany["meeting_teachers"]}}</view>
-        <view>参会人数　{{latestCompany["meeting_num"]}}人</view>
+      <view class='meetings'>
+        <view class='bmcard' >
+          <view class='bmtitle'>{{latestCompany["meeting_name"]}}</view>
+          <view>时间地址　{{latestCompany["meeting_date"]}}　{{latestCompany["meeting_place"]}}</view>
+          <view>会议讲师　{{latestCompany["meeting_teachers"]}}</view>
+          <view>参会人数　{{latestCompany["meeting_num"]}}人</view>
+        </view>
       </view>
-    </view>
+    </block>
     <view class='title'>火热报名中的会议</view>
     <view class='meetings'>
       <block wx:for="{{meetings}}" wx:key='*this'>

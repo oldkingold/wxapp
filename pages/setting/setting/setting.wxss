@@ -22,7 +22,6 @@ page{
   height:88rpx;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .border-line{
@@ -36,6 +35,7 @@ page{
 
 .line-name {
   margin-left: 18rpx;
+  margin-right: 50rpx;
 }
 
 .icon_go {
@@ -54,7 +54,10 @@ page{
 .line-value{
   display:flex;
   justify-content:flex-end;
-  
+}
+
+.line-value input{
+  width: 500rpx;
 }
 
 .add-conferee-button{

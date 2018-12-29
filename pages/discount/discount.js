@@ -30,6 +30,7 @@ Page({
     cardInfo: {usable: 0, remain: 0, using: 0, total: 0},
     isSignin: false,
     isSubmit: false,
+    company_setting: false,
   },
 
   /**
@@ -44,34 +45,16 @@ Page({
     that.data.isSubmit = false;
     let company_setting = wx.getStorageSync('company_setting');
     if (company_setting) {
-      if (app.globalData.token) {
-        order.CardInfo().then((res)=>{
-          that.setData({
-              cardInfo: res,
-              isSignin: true
-            });
-        });
-        // let data = {};
-        // data['token'] = app.globalData.token;
-        // data['openID'] = app.globalData.openId;
-
-        // wx.request({
-        //   url: api.CardInfo,
-        //   method: "POST",
-        //   data: data,
-        //   success: function (res) {
-        //     console.log(res.data);
-        //     that.setData({
-        //       cardInfo: res.data,
-        //       isSignin: true
-        //     });
-        //   }
-        // })
-      } else {
+      order.CardInfo().then((res)=>{
         that.setData({
-          isSignin: false
-        });
-      }
+            cardInfo: res,
+            isSignin: true
+          });
+      });
+      that.setData({
+        company: company_setting.name,
+        company_setting: true
+      })
     } else {
       that.setData({
         isSignin: false
@@ -229,9 +212,11 @@ Page({
       util.wxlogin().then((res) => {
         app.globalData.token = res.token;
         app.globalData.openId = res.openId;
+        that.submitdata();
       });
     } else if (e.detail.userInfo && userInfo) {
       //
+      that.submitdata();
     } else {
       wx.showModal({
         title: "用户未授权",
@@ -240,10 +225,15 @@ Page({
       })
       return ;
     }
-    wx.navigateTo({
-      url: '/pages/discountreceipt/discountreceipt',
-    })
-    return ;
+    // wx.navigateTo({
+    //   url: '/pages/discountreceipt/discountreceipt',
+    // })
+    // return ;
+    
+  },
+
+  submitdata: function() {
+    let that = this;
     var data = {};
     //验证
     if (that.data.company.length < 1) {
@@ -271,9 +261,9 @@ Page({
       if (that.data.invoice.invCompName.length < 1 || that.data.invoice.taxIdNum.length < 1
         || that.data.invoice.compAddr.length < 1 || that.data.invoice.compTel.length < 1
         || that.data.invoice.compBank.length < 1 || that.data.invoice.compBankAccount.length < 1) {
-          that.showToast('请输入发票的公司名称||纳税识别号||公司地址||电话号码||开户银行||银行账号');
-          return false;
-        }
+        that.showToast('请输入发票的公司名称||纳税识别号||公司地址||电话号码||开户银行||银行账号');
+        return false;
+      }
     }
 
     if (that.data.isSubmit) {
@@ -291,21 +281,21 @@ Page({
       data['token'] = app.globalData.token;
       data['openID'] = app.globalData.openId;
     }
-    
+
     wx.request({
       url: api.buyCard,
       data: data,
       method: "POST",
-      success: function(res) {
-        if(res.data.code == 200) {
+      success: function (res) {
+        if (res.data.code == 200) {
           wx.navigateTo({
-            url: '/pages/discountreceipt/discountreceipt',
+            url: '/pages/discountreceipt/discountreceipt?discountprice=' + that.data.discountprice,
           })
         }
-        
+
       },
-      fail: function() {
-        
+      fail: function () {
+
       }
     })
   },

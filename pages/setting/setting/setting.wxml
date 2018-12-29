@@ -19,7 +19,7 @@
     <view class='line border-line'>
       <view class='line-name'>公司</view>
       <view class='line-value'>
-        <input type="text" value='{{bindCompany}}' placeholder="" maxlength="16" bindinput="bind_comName" />
+        <input type="text" value='{{bindCompany}}' placeholder=""  bindinput="bind_comName" />
         <view class='comname-line'>
         </view>
       </view>
@@ -28,7 +28,7 @@
     <view class='line border-line'>
       <view class='line-name'>姓名</view>
       <view class='line-value'>
-        <input type="text" value='{{bindName}}' placeholder="" maxlength="6" bindinput="bind_confereeName" />
+        <input type="text" value='{{bindName}}' placeholder="" bindinput="bind_confereeName" />
       </view>
     </view>
     <view class='line'>

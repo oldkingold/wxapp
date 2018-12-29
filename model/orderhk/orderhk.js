@@ -44,7 +44,10 @@ Component({
         sourceType: ['album', 'camera'],
         success(res) {
           // tempFilePath可以作为img标签的src属性显示图片
-          that.data.tempFilePaths = res.tempFilePaths
+          // that.data.tempFilePaths = res.tempFilePaths
+          that.setData({
+            tempFilePaths : res.tempFilePaths
+          });
         }
       })
     },
@@ -88,7 +91,7 @@ Component({
           }
           rdata.oId = data['oId'];
           that.triggerEvent('confirmPayment', rdata)
-          this.setData({
+          that.setData({
             show: true
           });
         },

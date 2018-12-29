@@ -58,6 +58,10 @@ page {
   white-space: nowrap;
 }
 
+.scroll-view {
+  height: 100%;
+}
+
 ::-webkit-scrollbar {
   width: 0;
   height: 0;

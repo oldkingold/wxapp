@@ -12,7 +12,7 @@ Page({
     cptCode:'',
     code:'',
     phoneCode: '',
-    phoneCodeID:'971024040189850988^0',
+    phoneCodeID:'',
     time: '获取验证码',
     timeOpen: true,
     timeNum : 60,
@@ -91,6 +91,9 @@ Page({
   },
   
   login: function (event) {
+    wx.showLoading({
+      mask: true
+    });
     var that = this;
     if (this.data._num == 1) {
       //本地判断验证码是否正确
@@ -100,6 +103,7 @@ Page({
           content: '验证码输入错误',
           showCancel: false
         });
+        wx.hideLoading();
         return false;
       }
       wx.request({
@@ -112,6 +116,7 @@ Page({
           token: app.globalData.token,
         },
         success:function(res) {
+          wx.hideLoading();
           if (res.data.code == 200) {
             wx.showToast({
               icon: 'success',
@@ -134,6 +139,7 @@ Page({
               showCancel: false
             });
           }
+          
         }
       })
 
@@ -144,6 +150,7 @@ Page({
           duration: 1500,
           title: '请点击获取验证码',
         })
+        wx.hideLoading();
         return false;
       }
       wx.request({
@@ -157,6 +164,7 @@ Page({
           },
         method:'POST',
         success: function (res) {
+          wx.hideLoading();
           if (res.data.code == 200) {
             wx.showToast({
               icon: 'success',
@@ -184,6 +192,7 @@ Page({
               showCancel: false
             });
           } 
+          
         }
       })
     }
@@ -255,9 +264,7 @@ function countdown(that) {
 
         }, 1000)
         
-      } else if (res.data.code == 198) {
-        return false;
-      } else if (res.data.code == 201) {
+      }else if (res.data.code == 201) {
         wx.showModal({
           title: '错误提示',
           content: res.data.data,

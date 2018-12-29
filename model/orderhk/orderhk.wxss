@@ -11,7 +11,7 @@
   position: fixed;
   background-color: white;
   width: 650rpx;
-  height: 669rpx;
+  /* height: 669rpx; */
   margin: 38rpx 50rpx 0 50rpx;
   opacity: 1;
   z-index: 1001;
@@ -131,7 +131,8 @@
 .credential {
   display: flex;
   align-items: center;
-  height: 90rpx;
+  /* height: 90rpx; */
+  margin-top: 15rpx;
 }
 
 .credential .title{
@@ -159,4 +160,15 @@
 .red {
   font-size: 26rpx;
   color: red;
+}
+
+.uploadimg {
+  height: 200rpx;
+  width: 200rpx;
+  margin-left: 15rpx;
+}
+
+.uploadimg image {
+  height: 200rpx;
+  width: 200rpx;
 }

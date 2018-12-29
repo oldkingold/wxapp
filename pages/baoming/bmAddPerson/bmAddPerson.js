@@ -102,12 +102,11 @@ Page({
       return false;
     }
 
-
     let varname = e.detail.value.inputname;
     let varduty = e.detail.value.inputduty;
     let varphone = e.detail.value.inputphone;
     let person = { name: varname, job: varduty, tel: varphone }
-
+    
     meeting.add_self_person(person, app.globalData.token).then(function (res) {
       if (res) {
         let selfPersons = wx.getStorageSync('selfPersons');
@@ -123,7 +122,9 @@ Page({
           inputduty: "",
           inputphone: "",
         });
+        
       }
+    
     });
 
   },

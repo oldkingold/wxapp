@@ -10,7 +10,8 @@ Page({
   data: {
     rooturl: api.ApiRootUrl,
     meetings:[],
-    latestCompany:[],
+    latestCompany:{},
+    discountprice: 0,
   },
 
   onLoad: function (options) {
@@ -21,6 +22,7 @@ Page({
         if (res.data) {
           that.setData({
             meetings: res.data,
+            discountprice: options.discountprice
           });
           wx.setStorageSync("meetings", res.data);
         }
@@ -28,6 +30,7 @@ Page({
     }else {
       that.setData({
         meetings: meetings,
+        discountprice: options.discountprice
       });
     }
     

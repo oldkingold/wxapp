@@ -42,6 +42,7 @@ Page({
 
   onShow: function () {
     // 页面初始化 options为页面跳转所带来的参数
+    console.log("onshow---------------------onshow")
     var that = this;
     //判断是否微信授权登录
     wx.getSetting({
@@ -53,6 +54,10 @@ Page({
               userInfo: userInfo,
               userInfo_status: 1
             })
+          } else {
+            that.setData({
+              userInfo_status: 0,
+            });
           }
           //判断是否公司账号登录
           let company_setting = wx.getStorageSync('company_setting');
@@ -61,6 +66,10 @@ Page({
               loginStatus: 1,
               com_name: company_setting.name,
               account: company_setting.money,
+            });
+          }else {
+            that.setData({
+              loginStatus: 0,
             });
           }
         }
@@ -158,5 +167,25 @@ Page({
         console.log("执行了complete")
       }
     })
+  },
+  
+  onPullDownRefresh: function () {
+    let that = this;
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          //账号登录
+          util.wxlogin().then((res) => {
+            app.globalData.token = res.token;
+            app.globalData.openId = res.openId;
+            that.onLoad();
+            wx.stopPullDownRefresh()
+          });
+        }else {
+          wx.stopPullDownRefresh()
+        }
+      }
+    })
+    
   },
 })

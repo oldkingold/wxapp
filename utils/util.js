@@ -108,8 +108,8 @@ function wxlogin() {
             } else {
               wx.removeStorageSync('company_setting');
             }
-            wx.setStorageSync('selfCompanies', res.data.selfCompanies);
-            wx.setStorageSync('selfPersons', res.data.selfPersons);
+            wx.setStorageSync('selfCompanies', res.data.selfCompanies ? res.data.selfPersons : []);
+            wx.setStorageSync('selfPersons', res.data.selfPersons ? res.data.selfPersons : []);
             wx.setStorageSync('companyBindTel', res.data.companyBindTel);
             resolve(res.data);
           } else {

@@ -12,6 +12,7 @@
         </button>
       </view>
     </view>
+    
   </block>
   <block wx:else>
     <view wx:if="{{loginStatus==0}}" class='loginStatus' catchtap="goLogin">

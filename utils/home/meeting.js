@@ -75,30 +75,34 @@ function companyInfo() {
 
 //添加公司人员
 function add_self_person(person,token) {
-  //校验姓名
-  if (person.name.length < 1) {
-    wx.showModal({
-      showCancel: false,
-      title: '提示',
-      content: '姓名不能为空',
-    })
-    return false;
-  }
-  //校验职务
-  if (person.job.length < 1) {
-    wx.showModal({
-      showCancel: false,
-      title: '提示',
-      content: '职务不能为空',
-    })
-    return false;
-  }
-  //校验手机
-  if (!checek_phone(person.tel)) {
-    return false;
-  }
-
+  wx.showLoading({ mask: true });
   return new Promise(function (resolve, reject) {
+    //校验姓名
+    if (person.name.length < 1) {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '姓名不能为空',
+      })
+      reject(false);
+      wx.hideLoading();
+    }
+    //校验职务
+    if (person.job.length < 1) {
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '职务不能为空',
+      })
+      reject(false);
+      wx.hideLoading();
+    }
+    //校验手机
+    if (!checek_phone(person.tel)) {
+      reject(false);
+      wx.hideLoading();
+    }
+
     wx.request({
       url: api.addPeople,
       method: 'POST',
@@ -120,9 +124,11 @@ function add_self_person(person,token) {
         }else {
           reject(res);
         }
+        wx.hideLoading();
       },
       fail: function (res) {
         reject(res);
+        wx.hideLoading();
       }
     })
   });

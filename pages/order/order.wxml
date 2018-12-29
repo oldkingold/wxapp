@@ -21,7 +21,8 @@
   <swiper-item wx:for='{{menu}}' wx:key='*this' class="item" item-id="{{menu_item['menu_id']}}" wx:for-item="menu_item">
     <block wx:if="{{menu_item['num'] > 0}}">
     <scroll-view scroll-y style='height:{{screenHeight + 7}}px'>
-      <view class='card1' wx:for="{{orders}}" wx:key="*this" wx:if="{{item['status'] == menu_item['menu_id'] || menu_item['menu_id'] == 4}}">
+      <view class='card1' wx:for="{{orders}}" wx:key="*this" 
+      wx:if="{{(item['status'] == menu_item['menu_id'] && !(menu_item['menu_id'] == 1 && item['status'] == 3)) || menu_item['menu_id'] == 4}}">
         <view class='top'>
           <view class='dd'>订单号：{{item['order_id']}}</view>
           <image wx:if="{{item['status'] == 2}}" class='status' src='../../static/images/dd-success.png'></image>

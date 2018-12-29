@@ -544,6 +544,7 @@ Page({
   },
 
   bmReset: function (e) {
+    
     let that = this;
     that.setData({
       compName: "",
@@ -576,7 +577,9 @@ Page({
   },
 
   bmSubbmit: function (e) {
-
+    wx.showLoading({
+      mask: true
+    });
     // 提交报名表
     let that = this;
 
