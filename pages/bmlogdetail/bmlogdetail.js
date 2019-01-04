@@ -1,6 +1,7 @@
 var api = require('../../config/api.js');
-
+const util = require('../../utils/util.js');
 var app = getApp();
+
 Page({
   data: {
     bmMeetingLog:{},
@@ -44,7 +45,7 @@ Page({
       }
     })
   },
-  changebm:function(e) {
+  changebm: util.throttle(function(e) {
     let coms = this.data.bmMeetingLog;
     let changebmdata = {};
     changebmdata['id'] = coms['meet'];
@@ -77,38 +78,6 @@ Page({
     wx.navigateTo({
       url: "/pages/baoming/bm/bm?id=" + coms['meet'] +"&method=" + e.target.dataset['id'],
     })
-  }
+  }, 2000),
 
 })
-// function meals(id, meals) {
-//   for (let i = 0; i < app.globalData.meetingInfo.length; i++) {
-//     if (id == app.globalData.meetingInfo[i].id) {
-//       let varmeals = app.globalData.meetingInfo[i].meals;
-//       let mlist = {};
-//       for (let j = 0; j < varmeals.length; j++) {
-//         mlist[varmeals[j]['meal_date'].substring(5)] = { name: varmeals[j]['meal_date'].substring(5), data: {} };
-//       }
-//       for (let j = 0; j < varmeals.length; j++) {
-//         let mt = mlist[varmeals[j]['meal_date'].substring(5)]['data'];
-
-//         mt[varmeals[j]['type']] = { status: varmeals[j]['status'], pnum: parseInt(meals[varmeals[j]['meal_date']][varmeals[j]['type']]) };
-//       }
-
-//       if (Object.keys(mlist).length == 3) {
-//         let n = 1;
-//         for (let k in mlist) {
-//           if (n == 1) {
-//             mlist[k]['name'] = '报到';
-//             n = n + 1;
-//           } else if (n == 2) {
-//             mlist[k]['name'] = '首日';
-//             n = n + 1;
-//           } else if (n == 3) {
-//             mlist[k]['name'] = '次日';
-//           }
-//         }
-//       }
-//       return mlist;
-//     }
-//   }
-// }

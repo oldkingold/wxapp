@@ -36,7 +36,7 @@ page {
 .center_item .title {
 
   font-size: 28rpx;
-  line-height: 28rpx;
+  line-height: 30rpx;
   margin-right: 18rpx;
   white-space: nowrap;
 }
@@ -44,7 +44,7 @@ page {
 .center_item .content {
   color: #878787;
   font-size: 26rpx;
-  line-height: 28rpx;
+  line-height: 30rpx;
   /*限制一行*/
   overflow:hidden;
   text-overflow:ellipsis;

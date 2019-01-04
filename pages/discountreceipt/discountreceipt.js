@@ -1,4 +1,5 @@
 const api = require('../../config/api.js');
+const util = require('../../utils/util.js');
 const meeting = require('../../utils/home/meeting.js');
 const app = getApp();
 
@@ -57,21 +58,21 @@ Page({
   },
   
   //跳转我的订单页
-  toOrder :function () {
+  toOrder: util.throttle(function () {
     wx.navigateTo({
       url: '/pages/order/order',
     })
-  },
+  },2000),
   //跳转会议详情页
-  toDetail: function (e) {
+  toDetail: util.throttle(function (e) {
     wx.navigateTo({
       url: '/pages/detail/detail?meeting=' + e.currentTarget.dataset['meeting'],
     })
-  },
+  },2000),
   //跳转报名记录
-  more: function () {
+  more: util.throttle(function () {
     wx.navigateTo({
       url: '/pages/bmlog/bmlog',
     })
-  },
+  },2000),
 })

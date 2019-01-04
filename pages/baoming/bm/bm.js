@@ -384,7 +384,7 @@ Page({
   },
 
   //跳转人员添加页面
-  addMemtPersonUrl: function () {
+  addMemtPersonUrl: util.throttle(function () {
     let that = this;
     wx.getSetting({
       success: function (res) {
@@ -415,7 +415,7 @@ Page({
         }
       }
     })
-  },
+  }, 2000),
 
   closeshow: function () {
     this.setData({

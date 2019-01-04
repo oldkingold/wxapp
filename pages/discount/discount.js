@@ -29,7 +29,6 @@ Page({
     contactTel: '',
     cardInfo: {usable: 0, remain: 0, using: 0, total: 0},
     isSignin: false,
-    isSubmit: false,
     company_setting: false,
   },
 
@@ -42,7 +41,6 @@ Page({
 
   onShow: function () {
     let that = this;
-    that.data.isSubmit = false;
     let company_setting = wx.getStorageSync('company_setting');
     if (company_setting) {
       order.CardInfo().then((res)=>{
@@ -204,7 +202,7 @@ Page({
     });
   },
 
-  submit: function(e) {
+  submit: util.throttle(function(e) {
     let that = this;
     let userInfo = wx.getStorageSync("userInfo");
 
@@ -230,9 +228,10 @@ Page({
     // })
     // return ;
     
-  },
+  },2000),
 
   submitdata: function() {
+
     let that = this;
     var data = {};
     //验证
@@ -266,11 +265,6 @@ Page({
       }
     }
 
-    if (that.data.isSubmit) {
-      return;
-    }
-    that.data.isSubmit = true;
-
     data['ten_num'] = that.data.ten_num;
     data['five_num'] = that.data.five_num;
     data['company'] = that.data.company;
@@ -300,18 +294,18 @@ Page({
     })
   },
 
-  toDiscountlog: function() {
+  toDiscountlog: util.throttle(function() {
     if (this.data.isSignin) {
       wx.navigateTo({
         url: '/pages/discountlog/index/index',
       })
     }
-  },
+  }, 2000),
 
-  toSignin: function() {
+  toSignin: util.throttle(function() {
     wx.navigateTo({
       url: '/pages/login/login',
     })
-  }
+  },2000),
 
 })

@@ -108,7 +108,7 @@ function wxlogin() {
             } else {
               wx.removeStorageSync('company_setting');
             }
-            wx.setStorageSync('selfCompanies', res.data.selfCompanies ? res.data.selfPersons : []);
+            wx.setStorageSync('selfCompanies', res.data.selfCompanies ? res.data.selfCompanies : []);
             wx.setStorageSync('selfPersons', res.data.selfPersons ? res.data.selfPersons : []);
             wx.setStorageSync('companyBindTel', res.data.companyBindTel);
             resolve(res.data);
@@ -199,6 +199,23 @@ function checkSession() {
 
 }
 
+//函数节流
+function throttle(fn, gapTime) {
+  if (gapTime == null || gapTime == undefined) {
+    gapTime = 1500
+  }
+
+  let _lastTime = null
+  // 返回新的函数
+  return function () {
+    let _nowTime = + new Date()
+    if (_nowTime - _lastTime > gapTime || !_lastTime) {
+      fn.apply(this, arguments)   //将this和参数传给原函数
+      _lastTime = _nowTime
+    }
+  }
+}
+
 module.exports = {
   formatTimeToSevenDay: formatTimeToSevenDay,
   formatTime: formatTime,
@@ -207,4 +224,5 @@ module.exports = {
   wxlogin: wxlogin, //登陆
   loadFontFace: loadFontFace, //加载字体
   updateProgram: updateProgram, //更新小程序
+  throttle: throttle, //函数节流
 }

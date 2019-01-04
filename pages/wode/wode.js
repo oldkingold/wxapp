@@ -25,6 +25,10 @@ Page({
               userInfo: userInfo,
               userInfo_status: 1
             })
+          }else {
+            that.setData({
+              userInfo_status: 0
+            });
           }
           //判断是否公司账号登录
           let company_setting = wx.getStorageSync('company_setting');
@@ -33,6 +37,10 @@ Page({
               loginStatus: 1,
               com_name: company_setting.name,
               account: company_setting.money,
+            });
+          }else {
+            that.setData({
+              loginStatus: 0,
             });
           }
         }

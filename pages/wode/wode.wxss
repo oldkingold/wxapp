@@ -34,8 +34,8 @@ page {
 
 .top-middle {
   position: absolute;
-  left: 268rpx;
-  top: 32rpx;
+  left: 246rpx;
+  top: 68rpx;
   display: flex;
   flex-direction: column;
   margin-right: 100rpx;

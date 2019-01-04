@@ -56,6 +56,10 @@
             <view class='title'>支付时间:</view>
             <view class='content'>{{item['payTime']}}</view>
           </view>
+          <view class='center_item' wx:if="{{item['status'] == 1}}">
+            <view class='title'>备　　注:</view>
+            <view class='content'>{{item['remark']}}</view>
+          </view>
         </view>
         <view class='bottom'>
           <view class='flex'>

@@ -1,6 +1,7 @@
 var api = require('../../config/api.js');
-
+const util = require('../../utils/util.js');
 var app = getApp();
+
 Page({
   data: {
     themeList: [{ 'name': '已报名' }, { 'name': '已取消' }],
@@ -64,6 +65,7 @@ Page({
       this.data.refresh = '';
     }
   },
+
   // 滚动切换标签样式
   switchTab: function (e) {
     var that = this;
@@ -72,6 +74,7 @@ Page({
     });
     this.checkCor();
   },
+
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var cur = e.target.dataset.current;
@@ -82,6 +85,7 @@ Page({
       })
     }
   },
+
   //判断当前滚动超过一屏时，设置tab标题滚动条。
   checkCor: function () {
     if (this.data.currentTab > 2) {
@@ -95,7 +99,7 @@ Page({
     }
   },
   //重新报名，更改报名
-  changebm:function(e) {
+  changebm: util.throttle(function(e) {
     let id = e.target.id;
     let coms = this.data.bmMeetingLog[this.data.currentTab][id];
     let changebmdata = {};
@@ -131,9 +135,9 @@ Page({
     wx.navigateTo({
       url: e.target.dataset['id'],
     })
-  },
+  }, 2000),
   //取消报名
-  canclebm:function(e) {
+  canclebm: util.throttle(function(e) {
     let that = this;
     let id = e.target.id;
     let coms = this.data.bmMeetingLog[0][id]['com']
@@ -158,48 +162,15 @@ Page({
         }
       }
     })
-  },
+  }, 2000),
   //跳转报名详情页
-  tobmlogdetail:function(e) {
+  tobmlogdetail: util.throttle(function(e) {
     let num = this.data.currentTab;
     let tobmlogdetail = this.data.bmMeetingLog[num][e.currentTarget.id];
     wx.setStorageSync('tobmlogdetail', tobmlogdetail);
     wx.navigateTo({
       url: '/pages/bmlogdetail/bmlogdetail',
     })
-  },
+  },2000),
   
 })
-
-// function meals (id,meals) {
-//   for (let i = 0; i < app.globalData.meetingInfo.length; i++) {
-//     if (id == app.globalData.meetingInfo[i].id) {
-//       let varmeals = app.globalData.meetingInfo[i].meals;
-//       let mlist = {};
-//       for (let j = 0; j < varmeals.length; j++) {
-//         mlist[varmeals[j]['meal_date'].substring(5)] = { name: varmeals[j]['meal_date'].substring(5), data: {} };
-//       }
-//       for (let j = 0; j < varmeals.length; j++) {
-//         let mt = mlist[varmeals[j]['meal_date'].substring(5)]['data'];
-        
-//         mt[varmeals[j]['type']] = { status: varmeals[j]['status'], pnum: parseInt(meals[varmeals[j]['meal_date']][varmeals[j]['type']]) };
-//       }
-
-//       if (Object.keys(mlist).length == 3) {
-//         let n = 1;
-//         for (let k in mlist) {
-//           if (n == 1) {
-//             mlist[k]['name'] = '报到';
-//             n = n + 1;
-//           } else if (n == 2) {
-//             mlist[k]['name'] = '首日';
-//             n = n + 1;
-//           } else if (n == 3) {
-//             mlist[k]['name'] = '次日';
-//           }
-//         }
-//       }
-//       return mlist;
-//     }
-//   }
-// }
