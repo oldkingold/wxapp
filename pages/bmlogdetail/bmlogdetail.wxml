@@ -4,9 +4,11 @@
       <!-- 过期 -->
       <block wx:if="{{bmMeetingLog.isOvertime}}">
         <view class='title content-line is-over-time'>{{bmMeetingLog.name}}</view>
-          <view class='m-status-img'>
-            <image src='/static/images/overdue@3x.png'></image>
-          </view> 
+
+        <view class='m-status-img'>
+          <image src='/static/images/overdue@3x.png'></image>
+        </view>
+        
         <view class='place-object content-line'>
           <view class='object-name is-over-time'>时间地点</view>
           <view class='is-over-time '>{{bmMeetingLog.startime}}-{{bmMeetingLog.endtime}}</view>

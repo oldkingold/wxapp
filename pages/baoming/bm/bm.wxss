@@ -98,13 +98,14 @@ page {
   background-color: #c6c7c9
 }
 
-.section radio-group {
+.section .radio-group {
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 73rpx;
 }
 
-.section radio-group label {
+.section .radio-group label {
   margin-right: 60rpx;
   font-size: 28rpx;
   display: flex;
@@ -112,7 +113,7 @@ page {
   align-items: center;
 }
 
-radio-group radio {
+.radio-group radio {
   margin-right: 18rpx;
 }
 
@@ -602,7 +603,7 @@ justify-content:space-between;
   font-size: 27rpx;
 }
 
-.invoice-item radio-group {
+.invoice-item .radio-group {
   display: flex;
   flex-direction: row;
   align-items: center;

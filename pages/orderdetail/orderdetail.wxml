@@ -1,0 +1,159 @@
+<view class="container">
+  <view class='content'>
+    <view class='item'>
+  
+      <!-- <view class='title content-line'>{{bmMeetingLog.name}}</view> -->
+      <view class='place-object content-line'>
+        <view class='object-name'>订单编号</view>
+        <view class=''>{{order.order_id}}</view>
+      </view>
+      <view class='place-object content-line'>
+        <view class='object-name'>公司名称</view>
+        <view class=''>{{order.companyname}}</view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name'>已购产品</view>
+        <view class=''>
+          <view wx:if="{{order['cardInfo'][5] != 0}}" >5人套餐 <view style='float:right;'>　x{{order['cardInfo'][5]}}</view></view>
+          <view wx:if="{{order['cardInfo'][5] == 0}}" >10人套餐 <view style='float:right;'>　x{{order['cardInfo'][10]}}</view></view>
+          <view wx:if="{{order['cardInfo'][5] != 0 && order['cardInfo'][10] != 0}}">10人套餐 <view style='float:right;'>　x{{order['cardInfo'][10]}}</view></view>
+        </view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name'>赠送人次</view>
+        <view class=''>{{order.pgift}}人</view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name'>提交时间</view>
+        <view class=''>{{order.created_at}}</view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name'>微信昵称</view>
+        <view class='' wx:if="{{order.wx_person_name}}">{{order.wx_person_name}}</view>
+        <view class='outsignin' wx:else>未登录</view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name'>公司账号</view>
+        <view class='' wx:if="{{order.wx_company_name}}">{{order.wx_company_name}}</view>
+        <view class='outsignin' wx:else>未登录</view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name'>姓名</view>
+        <view class=''>{{order.contacts}}</view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name'>联系方式</view>
+        <view class=''>{{order.tel}}</view>
+      </view>
+
+      <view class='place-object content-line'  wx:if="{{order.checkImage}}">
+        <view class='object-name'>汇款凭证</view>
+        <view class='hkImg' data-url='{{rootUrl + order.checkImage}}' bindtap='showImage'>
+          <image mode='aspectFill' src='{{rootUrl + order.checkImage}}'></image>
+        </view>
+      </view>
+
+<!-- 
+      <view class='attend-object content-line'>
+        <view class='object-name'>参会人员</view>
+        <view class='attend-right'>
+          <view class='' wx:for="{{bmMeetingLog.attendees}}" wx:for-item="aitem" wx:key="*this" wx:for-index="aindex">
+            <block wx:if="{{aindex==(bmMeetingLog.attendees.length-1)}}">
+              {{aitem.name}}
+            </block>
+            <block wx:else>
+              {{aitem.name}}、
+            </block>
+          </view>
+        </view>
+      </view> -->
+
+      <view class='fee-object content-line'>
+        <view class='object-name '>金额</view>
+        <view class=''>￥{{order.discountprice}}</view>
+      </view>
+
+      <view class='fee-object content-line'>
+        <view class='object-name '>备注</view>
+        <view class='' wx:if="{{order.remark}}">{{order.remark}}</view>
+      </view>
+
+      <view class='fee-object content-line'>
+        <view class='object-name '>订单状态</view>
+        <view class='' wx:if="{{order.status == 3}}">待审核</view>
+        <view class='' wx:if="{{order.status == 2}}">已完成</view>
+        <view class='' wx:if="{{order.status == 1}}">已失败</view>
+        <view class='' wx:if="{{order.status == 0}}">已取消</view>
+        <view class='' wx:if="{{order.status == -1}}">已过期</view>
+      </view>
+
+      <view class='fee-object content-line' wx:if="{{order.status == 2}}">
+        <view class='object-name '>完成时间</view>
+        <view class=''>{{order.payTime}}</view>
+      </view>
+
+      <view class='fee-object content-line' wx:if="{{order.status == 1}}">
+        <view class='object-name '>驳回时间</view>
+        <view class=''>{{order.payTime}}</view>
+      </view>
+
+      <view class='fee-object content-line' wx:if="{{order.status == 0}}">
+        <view class='object-name '>取消时间</view>
+        <view class=''>{{order.payTime}}</view>
+      </view>
+
+      <view class='invoice-object content-line'>
+        <view class='object-name '>开票信息</view>
+        <view class='' wx:if="{{order.tax}}">{{order.tax.invType}}</view>
+        <view class='' wx:else>暂不开票</view>
+      </view>
+
+      <block wx:if="{{order.tax.invType!='不开票'}}">
+          <view class='middle'>
+            <view class='invoice-image-object'>
+              <image class='trangle' src='/static/images/icon_trangle.png'></image>
+            </view>
+          <block wx:if="{{order.tax.invType=='专票' || order.tax.invType=='普票'}}">
+            <view class='invoice-comp-name-object content-line'>
+              <view class='object-name '>公司名称</view>
+              <view class=''>{{order.tax.invCompName}}</view>
+            </view>
+
+            <view class='invoice-id-object content-line'>
+              <view class='object-name'>纳税识别号</view>
+              <view class=''>{{order.tax.taxIdNum}}</view>
+            </view>
+            <block wx:if="{{order.tax.invType=='专票'}}">
+              <view class='invoice-addr-object content-line'>
+                <view class='object-name '>公司地址</view>
+                <view class=''>{{order.tax.compAddr}}</view>
+              </view>
+              <view class='invoice-tel-object content-line'>
+                <view class='object-name '>电话号码</view>
+                <view class=''>{{order.tax.compTel}}</view>
+              </view>
+              <view class='invoice-openbank-object content-line'>
+                <view class='object-name '>开户银行</view>
+                <view class=''>{{order.tax.compBank}}</view>
+              </view>
+              <view class='invoice-bankaccount-object content-line'>
+                <view class='object-name '>银行账号</view>
+                <view class=''>{{order.tax.compBankAccount}}</view>
+              </view>
+            </block>
+          </block>
+          <block wx:else>
+            注：若后期需要开票，请与会务工作人员联系！
+          </block>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

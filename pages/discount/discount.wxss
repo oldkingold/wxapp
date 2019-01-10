@@ -228,7 +228,7 @@ page {
   margin: 30rpx 40rpx 0 40rpx;
 }
 
-.invoice-item radio-group {
+.invoice-item .radio-group {
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -114,6 +114,15 @@
         <image class='go' src='/static/images/go.png'></image>
       </view>
     </navigator>
+    <block wx:if="{{loginStatus==1}}"> 
+      <navigator url='/pages/discountlog/index/index' class='line'>
+        <image mode="aspectFit" src='/static/images/used.png'></image>
+        <view class='line-name'>使用记录</view>
+        <view class='icon_go'>
+          <image class='go' src='/static/images/go.png'></image>
+        </view>
+      </navigator>
+    </block>
     <navigator url='/pages/message/message' class='line'>
       <image mode="aspectFit" src='/static/images/m_message.png'></image>
       <view class='line-name'>我的消息</view>

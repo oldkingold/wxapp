@@ -6,9 +6,11 @@ Page({
   data: {
     bmMeetingLog:{},
   },
-    onLoad: function (options) {
+
+  onLoad: function (options) {
        
   },
+  
   onShow: function () {
     // 页面显示
     let bmMeetingLog = wx.getStorageSync('tobmlogdetail');

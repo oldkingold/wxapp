@@ -15,7 +15,7 @@ const formatTimeToSevenDay = datestr => {
   let date = new Date(datestr);
   let now = new Date();
   let distance = now.getTime() - date.getTime();
-  let hours = 7 * 24 - distance / (3600 *1000);
+  let hours = 7 * 24 - parseInt(distance / (3600 *1000));
   let day = hours / 24;
   let hour = hours % 24; 
   return parseInt(day) + "天" + parseInt(hour) + "小时";

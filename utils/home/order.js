@@ -61,8 +61,28 @@ function myUsedRecord() {
   });
 }
 
+function cancelOrder(OId) {
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url: api.cancelOrder,
+      method: "POST",
+      data: {
+        OId: OId,
+        token: app.globalData.token,
+      }, 
+      success: function (res) {
+        resolve(res.data)
+      },
+      fail: function (res) {
+        reject(res);
+      }
+    })
+  });
+}
+
 module.exports = {
   myCardOrder: myCardOrder,
   myUsedRecord: myUsedRecord,
   CardInfo: CardInfo,
+  cancelOrder: cancelOrder,
 }

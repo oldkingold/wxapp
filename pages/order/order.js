@@ -27,13 +27,14 @@ Page({
         res[i]['remainDate'] = util.formatTimeToSevenDay(res[i]['created_at']);
         res[i]['cardInfo'] = JSON.parse(res[i]['cardInfo']);
         for(let j in that.data.menu) {
-          if (that.data.menu[j]['menu_id'] == res[i]['status']) {
+          if (that.data.menu[j]['menu_id'] == res[i]['status'] || (res[i]['status'] == -1 && that.data.menu[j]['menu_id'] == 0)) {
             that.data.menu[j]['num']++;
             that.data.menu[0]['num']++;
           }
         }
       }
       console.log(that.data.menu);
+      console.log(res);
       that.setData({
         orders:res,
         menu: that.data.menu
@@ -78,8 +79,26 @@ Page({
     });
   },
 
-  cancel: function() {
-    
+  toOrderdetail: function(e) {
+    var OId = e.currentTarget.dataset['id'];
+    wx.navigateTo({
+      url: '/pages/orderdetail/orderdetail?OId=' + OId,
+    })
+  },
+
+  cancel: function(e) {
+    var OId = e.currentTarget.dataset['id'];
+    wx.showModal({
+      content: '确定取消订单？',
+      success: function(res) {
+        if(res.confirm) {
+          order.cancelOrder(OId).then((res)=>{
+            console.log(res);
+          });
+        }
+      }
+      
+    })
   },
 
   reremit: function() {

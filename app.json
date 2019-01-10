@@ -1,5 +1,5 @@
 {
-  "pages": [ 
+  "pages": [
     "pages/home/home",
     "pages/baoming/bm/bm",
     "pages/baoming/bmAddPerson/bmAddPerson",
@@ -29,7 +29,9 @@
     "pages/addcominfo/addcominfo",
     "pages/discountlog/index/index",
     "pages/discount/discount",
-    "pages/discountreceipt/discountreceipt"
+    "pages/discountreceipt/discountreceipt",
+    "pages/orderdetail/orderdetail",
+    "pages/discountlog/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -21,10 +21,10 @@
       <view class="section section_gap">
         <view class="section__title">企业性质</view>
         <radio-group name="radio-group" bindchange="changeNatureRadio">
-          <label>
-            <radio value="民营" name="compNature" checked="{{compNature=='民营'? 'checked':''}}" />民营</label>
-          <label>
-            <radio value="国企" name="compNature" checked="{{compNature=='国企'? 'checked':''}}" />国企</label>
+          <view class='radio-group'>
+            <label><radio value="民营" name="compNature" checked="{{compNature=='民营'? 'checked':''}}" />民营</label>
+            <label><radio value="国企" name="compNature" checked="{{compNature=='国企'? 'checked':''}}" />国企</label>
+          </view> 
         </radio-group>
       </view>
     </view>
@@ -161,18 +161,20 @@
 
         <view class='invoice-item '>
           <radio-group name="radio-group" bindchange="listenerRadioGroup">
-            <label class='label-4'>
-              <radio value="暂不填写" checked="{{invoice.invType=='暂不填写'?'checked':''}}" name="invoice" />暂不填写
-            </label>
-            <label class='label-4'>
-              <radio value="普票" checked="{{invoice.invType=='普票'?'checked':''}}" name="invoice" />普票
-            </label>
-            <label class='label-4'>
-              <radio value="专票" checked="{{invoice.invType=='专票'?'checked':''}}" name="invoice" />专票
-            </label>
-            <label class='label-4'>
-              <radio value="不开票" checked="{{invoice.invType=='不开票'?'checked':''}}" name="invoice" />不开票
-            </label>
+            <view class='radio-group'>
+              <label class='label-4'>
+                <radio value="暂不填写" checked="{{invoice.invType=='暂不填写'?'checked':''}}" name="invoice" />暂不填写
+              </label>
+              <label class='label-4'>
+                <radio value="普票" checked="{{invoice.invType=='普票'?'checked':''}}" name="invoice" />普票
+              </label>
+              <label class='label-4'>
+                <radio value="专票" checked="{{invoice.invType=='专票'?'checked':''}}" name="invoice" />专票
+              </label>
+              <label class='label-4'>
+                <radio value="不开票" checked="{{invoice.invType=='不开票'?'checked':''}}" name="invoice" />不开票
+              </label>
+            </view>
           </radio-group>
         </view>
         <block wx:if="{{invoice.invType=='暂不填写'}}">
