@@ -1,1 +1,12 @@
 /* pages/discountlog/detail/detail.wxss */
+
+@import "/pages/bmlogdetail/bmlogdetail.wxss";
+
+.object-name {
+  width:182rpx;
+  margin-right:18rpx;
+}
+
+.red {
+  color: red;
+}

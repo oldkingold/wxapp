@@ -104,8 +104,8 @@
   display:flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 698rpx;
-  margin-left: 343rpx;
+  /* margin-top: 676rpx; */
+  margin-left: 293rpx;
 }
 
 .cancel .line {

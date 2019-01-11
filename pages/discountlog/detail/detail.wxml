@@ -1,2 +1,69 @@
-<!--pages/discountlog/detail/detail.wxml-->
-<text>pages/discountlog/detail/detail.wxml</text>
+<view class="container">
+  <view class='content'>
+    <view class='item'>
+  
+      <view class='title content-line'>{{usedRecords.meeting_name}}</view>
+      <!-- <view class='place-object content-line'>
+        <view class='object-name'>会议名称</view>
+        <view class=''>{{usedRecords.meeting_name}}</view>
+      </view> -->
+
+      <view class='place-object content-line'>
+        <view class='object-name'>时间地址</view>
+        <view class=''>{{usedRecords.meeting_time + "　" + usedRecords.meeting_place}}</view>
+      </view>
+
+      <!-- <view class='place-object content-line'>
+        <view class='object-name'>会议讲师</view>
+        <view class=''>{{order.pgift}}人</view>
+      </view> -->
+
+      <view class='place-object content-line'>
+        <view class='object-name'>报名人数</view>
+        <view class=''>{{usedRecords.bmpeoplenum}}人</view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name' wx:if="{{usedRecords.bmpeoplenum == usedRecords.bm_num}}">参会人数</view>
+        <view class='object-name red' wx:else>参会人数</view>
+        <view class=''>{{usedRecords.bm_num}}人</view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name'>报名时间</view>
+        <view class=''>{{usedRecords.bm_date}}</view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name'>报名人微信</view>
+        <view class='' wx:if="{{usedRecords.wx_person_name}}">{{usedRecords.wx_person_name}}</view>
+        <view class='outsignin' wx:else>未登录</view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name'>公司账号</view>
+        <view class='' wx:if="{{usedRecords.wx_company_name}}">{{usedRecords.wx_company_name}}</view>
+        <view class='outsignin' wx:else>未登录</view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name' wx:if="{{usedRecords.use_type == 1}}">预计转账人次</view>
+        <view class='object-name' wx:else>转账人次</view>
+        <view class=''>{{usedRecords.ch_num}}</view>
+      </view>
+
+      <view class='place-object content-line'>
+        <view class='object-name' wx:if="{{usedRecords.use_type == 1}}">预计消耗套餐</view>
+        <view class='object-name' wx:else>消耗套餐</view>
+        <view class=''>{{usedRecords.tc_num}}</view>
+      </view>
+
+      <view class='fee-object content-line'>
+        <view class='object-name '>备注</view>
+        <view class='' wx:if="{{usedRecords.remark}}">{{usedRecords.remark}}</view>
+      </view>
+
+    </view>
+  </view>
+</view>
+

@@ -66,6 +66,7 @@ Page({
     });
     
   },
+
   confirmPayment: function(e) {
     var oId = e.detail.oId;
     var orders = this.data.orders;
@@ -79,21 +80,22 @@ Page({
     });
   },
 
-  toOrderdetail: function(e) {
+  toOrderdetail: util.throttle(function(e) {
     var OId = e.currentTarget.dataset['id'];
     wx.navigateTo({
       url: '/pages/orderdetail/orderdetail?OId=' + OId,
     })
-  },
+  }, 2000),
 
   cancel: function(e) {
+    let that = this;
     var OId = e.currentTarget.dataset['id'];
     wx.showModal({
       content: '确定取消订单？',
       success: function(res) {
         if(res.confirm) {
           order.cancelOrder(OId).then((res)=>{
-            console.log(res);
+            that.onLoad();
           });
         }
       }

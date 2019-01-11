@@ -128,10 +128,10 @@ Page({
             util.wxlogin().then((res) => {
               app.globalData.token = res.token;
               app.globalData.openId = res.openId;
-              wx.switchTab({
-                url: "/pages/wode/wode",
-              })
-            });           
+            });
+            wx.switchTab({
+              url: "/pages/wode/wode",
+            })           
           } else if (res.data.code == 201) {
             wx.showModal({
               title: '错误信息',
@@ -175,10 +175,10 @@ Page({
             util.wxlogin().then((res) => {
               app.globalData.token = res.token;
               app.globalData.openId = res.openId;
-              wx.switchTab({
-                url: "/pages/wode/wode",
-              })
             });
+            wx.switchTab({
+              url: "/pages/wode/wode",
+            })
           } else if (res.data.code == 199) {
             wx.showModal({
               title: '错误信息',

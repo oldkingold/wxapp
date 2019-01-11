@@ -28,12 +28,10 @@ Component({
     show:true,
     tempFilePaths: []
   },
-
   /**
    * 组件的方法列表
    */
   methods: {
-    
     //上传图片
     upload: function() {
       let that = this;
@@ -107,7 +105,8 @@ Component({
 
     cancel: function() {
       this.setData({
-        show:true
+        show:true,
+        tempFilePaths: []
       });
     }
   }

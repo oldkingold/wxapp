@@ -6,7 +6,7 @@
   <view class='hk_table'>
     <view class='hk_td'>
       <view class='title'>户名</view>
-      <view>浙江度川企业管理咨询有线公司</view>
+      <view>浙江度川企业管理咨询有限公司</view>
     </view>
     <view class='hk_td'>
       <view class='title'>开户行</view>
@@ -33,9 +33,10 @@
     <view class='hk_qr' data-id='{{orderId}}' catchtap='confirmPayment' >确认已汇款</view>
   </view>
   <view style='height:60rpx;'> </view>
+  <view class='cancel'>
+    <view class='line'></view>
+    <view class='image' catchtap='cancel'><image src='../../static/images/cancel.png'></image></view>  
+  </view>
 </view>
-<view class='cancel'>
-  <view class='line'></view>
-  <view class='image' catchtap='cancel'><image src='../../static/images/cancel.png'></image></view>  
-</view>
+
 </view>

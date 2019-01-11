@@ -1,7 +1,7 @@
 <view>
-  <view class='card' wx:for="{{usedRecords}}">
+  <view class='card' wx:for="{{usedRecords}}" bindtap='todetail' data-OId='{{index}}'>
     <block wx:if="{{item['use_type'] == 1}}">
-    <view class='bmtype'>已报名</view>
+    <view class='bmtype' style='color:#f5c04e'>已报名</view>
     <view class='line'>
       <image src='/static/images/clock2.png'></image>
       <view class='date'>{{item["bm_date"]}}</view>
