@@ -1,6 +1,4 @@
 {
-  "navigationBarBackgroundColor": "#19559E",
-  "navigationBarTextStyle": "white",
   "enablePullDownRefresh": false,
-  "navigationBarTitleText":""
+  "navigationBarTitleText":"账户登录"
 }

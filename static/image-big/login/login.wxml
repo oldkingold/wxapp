@@ -1,0 +1,86 @@
+<view class="container text-center" >
+  <view class='top'>
+    <image class="logo" src="/static/images/logo.png"></image>
+    <view class="login-title ">
+      <view data-num="1" class="login-btn {{_num==1?'activ':''}}" bindtap="passwordBtn">账号登录</view>
+      <view data-num="2" class="login-btn {{_num==2?'activ':''}}" bindtap="passwordBtn">免密登录</view>
+    </view>
+  </view>
+  <form>
+    <view wx:if="{{_num==1}}">
+      <view class="section">
+        <view class='header'>
+          <image mode='aspectFit' src='/static/images/phone@3x.png'></image>
+        </view>
+        <input placeholder="公司账号" maxlength="30" bindinput="bind_companyname" />
+      </view>
+
+      <view class="section">
+        <view class='header'>
+          <image  mode='aspectFit' src='/static/images/pwd@3x.png'></image>
+        </view>
+        <block wx:if="{{inputType}}">
+          <input type='text' password="true" value='{{pwd}}' placeholder="密码" maxlength="30" bindinput="bind_pwd" />
+        </block>
+        <block wx:else>
+          <input type='text' value='{{pwd}}' placeholder="密码" maxlength="30" bindinput="bind_pwd" />
+        </block>
+        <view name="switch" wx:if="{{_num==1}}" class="block" bindtap="pasortext">
+          <view class='viewimage' wx:if="{{!_eye}}">
+            <image mode='aspectFit' src='/static/images/eye.png'></image>
+          </view>
+          <view class='viewimage' wx:if="{{_eye}}">
+            <image mode='aspectFit' src='/static/images/eyecut.png'></image>
+          </view>
+        </view>
+      </view>
+
+      <view class="section">
+        <view class='header'>
+          <image mode='aspectFit' src='/static/images/code@3x.png'></image>
+        </view>
+        <input type="text" placeholder="" maxlength="4" value='{{cptCode}}' bindinput="bind_cptCode"/>
+        <view class='img'>
+            <canvas bindtouchend="onTap" style="width:{{cvs.width}}px;height:{{cvs.height}}px;" canvas-id="canvas"></canvas>  
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{_num==2}}">
+      <view class="section">
+        <view class='header'>
+          <image mode='aspectFit' src='/static/images/phone@3x.png'></image>
+        </view>
+        <input type="tel" placeholder="手机号" maxlength="11" bindinput="bind_phone" />
+      </view>
+
+      <view class="section">
+        <view class='header'>
+          <image mode='aspectFit' src='/static/images/code@3x.png'></image>
+        </view>  
+        <input type="tel" placeholder="验证码" maxlength="11" bindinput="bind_phone_code" />
+        <button bindtap="downtime">{{time}}</button>
+      </view>
+
+       <view class='showmsg'>{{showmsg}}</view>
+    </view>
+
+    <view class="btn-area">
+      <button bindtap="login">登录</button>
+      <view class='others'>
+        <navigator url='/pages/reset/reset' open-type="navigate" hover-class="other-navigator-hover" class='left'>忘记密码</navigator>
+        <navigator  class='register' url='/pages/sign/sign' open-type="navigate" hover-class="other-navigator-hover" >
+           <view>没有账号?<text>去注册</text></view>
+        </navigator>
+      </view>
+    
+    </view>
+  </form>
+  <view class="login-text">
+      <image src='/static/images/bigwarn@3x.png'></image>
+      <view>
+        温馨提示：一个公司下只能有一个企业账号。多人可以共享账号信息，若密码遗失需要注册该账号时的手机进行验证
+      </view>
+      
+    </view>
+</view>

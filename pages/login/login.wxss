@@ -1,30 +1,22 @@
- page {
+page {
   height: 100%;
-} 
-
-.top {
-  background-color: #19559e;
 }
 
 .top image{
   width: 150rpx;
   height: 150rpx;
 }
+
 .container{
   height: 100%;
-  background-color: #f5f5f5;
 }
+
 .logo {
   width: 280rpx;
   height: 112rpx;
   margin: 0 auto;
-  margin-bottom: 40rpx;
-}
-
-.login-title {
-  margin-bottom:35rpx;
-  display:flex;
-  justify-content:space-around;
+  margin-bottom: 72rpx;
+  margin-top: 62rpx;
 }
 
 .text-center {
@@ -33,48 +25,30 @@
   flex-direction: column;
 }
 
-form {
-  width: 600rpx;
-  text-align: center;
-  margin: 0 auto;
-}
-
 input {
-  height: 96rpx;
-  line-height: 96rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   text-align: left;
   box-sizing: border-box;
   padding-left: 30rpx;
-  font-size: 26rpx;
+  font-size: 32rpx;
   border: 0px;
   display: inline-flex;
-   width: 100%;  
+  width: 100%;  
 }
 
-.login-btn {
-  border: none;
-  width: 40%;
-  font-size: 31rpx;
-  padding: 0;
-  color: whitesmoke;
-  letter-spacing: 2rpx;
-  display:flex;
-  justify-content:center;
-
-}
-
-.login-btn:after {
-  border: none;
+.yzm {
+  width: 50%;
 }
 
 .btn-area button {
   display:block;
   height:84rpx;
-  margin-top:60rpx;
+  margin-top:45rpx;
   margin-left: 20rpx;
   margin-right: 20rpx;
   border-radius:40rpx;
-  background:#007AFF;
+  background:#195ba9;
   color:#fff;
   cursor:pointer;
   text-align:center;
@@ -83,22 +57,20 @@ input {
 }
 
 .section {
-  position: relative;
   border-bottom: 1rpx solid #e0e0e0;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .section button {
-  position:absolute;
-  right:0;
-  top:24rpx;
   background:transparent;
   font-size:26rpx;
   color:#007AFF;
-  padding-top:3rpx;
-  z-index:99;
   border:1rpx solid #007AFF;
+  margin-right: 0;
+  height: 60rpx;
+  line-height: 58rpx;
 }
 
 .section button:after {
@@ -108,7 +80,6 @@ input {
 .login-text {
   display: flex;
   flex-direction: row;
-
   position: fixed;
   bottom: 40rpx;
   margin-left:28rpx;
@@ -116,9 +87,9 @@ input {
 }
 
 .login-text image{
-  width: 48rpx;
+  width: 40rpx;
   height: 28rpx;
-  margin-top: 5rpx;
+  margin-top: 6rpx;
   margin-right: 10rpx;
 }
 
@@ -129,52 +100,19 @@ input {
   text-align: left;
 }
 
-.activ {
-  text-align: center;
-  color: whitesmoke;
-  position:relative;
-}
-
-.activ:after {
-  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAANCAYAAABCZ/VdAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQwIDc5LjE2MDQ1MSwgMjAxNy8wNS8wNi0wMTowODoyMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTg2OUU2NkY1Njg2MTFFODk1NDVGRDg2N0M3Mzk1M0IiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTg2OUU2NzA1Njg2MTFFODk1NDVGRDg2N0M3Mzk1M0IiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxODY5RTY2RDU2ODYxMUU4OTU0NUZEODY3QzczOTUzQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxODY5RTY2RTU2ODYxMUU4OTU0NUZEODY3QzczOTUzQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtdJ3FgAAADFSURBVHjaYnz36RMDkYANiOuAuAmIfxGjgYlIgxmBeB4QVwPxIiBmpqbh7UAcDWWHA/FkahleAcTlaGKZUHGKDAe5tg2HXBuSb0g23Akazox44mEhEPuRarg5EK+HphB8ABSxy6HqiTJcBYg3AzEfkZHNBVWvQshwUSDeDqVJASD1u4BYBpfh/EC8BZsLiASKQLwNag6K4aCwXQfEZgyUAV2oOWwww2G5z4mBOgBkzgJQZLMAiUgg1gDiswzUA2pAnAwQYABRUhpwkGysIgAAAABJRU5ErkJggg==');
-  width: 56rpx;
-  /* height: 28rpx; *//* border: 8px solid transparent;  *//* border-left: 8px solid #AFABAB; */
-  position: absolute;
-  top: 48rpx;
-  left: 120rpx;
-}
-
 .hide {
   display: none;
 }
 
-.block {
-  position: absolute;
-  display: block;
-  right: 0;
-  top: 30rpx;
-  z-index: 99;
-}
-
-.viewimage {
-  margin-right: 18rpx;
-  display: flex;
-}
-
-.block image {
-  width: 40rpx;
-  height: 50rpx;
-}
-
 form {
-  width: 96%;
-  padding:0 15rpx 0 15rpx;
-  background-color: #f5f5f5;
+  width: calc(100% - 50rpx);
+  text-align: center;
+  margin: 0 auto;
 }
 
 .section .header {
-  width:32rpx;
-  height:37rpx;
+  width:36rpx;
+  height:42rpx;
   margin: auto 18rpx;
 }
 
@@ -183,9 +121,8 @@ form {
   height:37rpx;
 }
 
-
 .others{
-  margin-top:35rpx;
+  margin-top:20rpx;
 }
 
 .left{
@@ -197,10 +134,12 @@ form {
 .register{
   position: absolute;
   right: 40rpx;
+  font-size: 26rpx;
 }
 
 .register text{
   color: #007AFF
+
 }
 
 .showmsg{
@@ -210,14 +149,6 @@ form {
 }
 
 .img{
-  float: right; 
-  
+  float: right;  
   margin-top:16rpx;
 }
-
-
-/* .img image{
-   width: 140rpx; 
-  height: 100%;
-  margin:0
-} */

@@ -15,6 +15,7 @@ Page({
       { menu_id: 1, title: "已失败", num: 0  },
       { menu_id: 0, title: "已取消", num: 0  },],
     orders:[],
+    current_ordernum: 0,
     orderhkShow:true,
     orderhkMoney: 0,
     orderhkId: 0,
@@ -22,23 +23,30 @@ Page({
 
   onLoad: function (options) {
     let that = this;
-    order.myCardOrder().then(function(res){
-      for(let i in res) {
-        res[i]['remainDate'] = util.formatTimeToSevenDay(res[i]['created_at']);
-        res[i]['cardInfo'] = JSON.parse(res[i]['cardInfo']);
-        for(let j in that.data.menu) {
-          if (that.data.menu[j]['menu_id'] == res[i]['status'] || (res[i]['status'] == -1 && that.data.menu[j]['menu_id'] == 0)) {
-            that.data.menu[j]['num']++;
-            that.data.menu[0]['num']++;
+    order.myCardOrder({
+      token: app.globalData.token,
+      pages: 0,
+      type: 4,
+    }).then(function(res){
+      if(res.data) {
+        res = res.data;
+        for (let i in res) {
+          res[i]['remainDate'] = util.formatTimeToSevenDay(res[i]['created_at']);
+          res[i]['cardInfo'] = JSON.parse(res[i]['cardInfo']);
+          for (let j in that.data.menu) {
+            if (that.data.menu[j]['menu_id'] == res[i]['status'] || (res[i]['status'] == -1 && that.data.menu[j]['menu_id'] == 0)) {
+              that.data.menu[j]['num']++;
+              that.data.menu[0]['num']++;
+            }
           }
         }
+
+        that.setData({
+          orders: res,
+          menu: that.data.menu
+        });
       }
-      console.log(that.data.menu);
-      console.log(res);
-      that.setData({
-        orders:res,
-        menu: that.data.menu
-      });
+      
     });
 
   },
@@ -51,11 +59,11 @@ Page({
     })
   },
 
-  swiperChange: function (e) {
-    this.setData({
-      nav_selectId: "menu" + e.detail.currentItemId,
-    });
-  },
+  // swiperChange: function (e) {
+  //   this.setData({
+  //     nav_selectId: "menu" + e.detail.currentItemId,
+  //   });
+  // },
 
   remit: function(e) {
     console.log(e);
@@ -64,7 +72,6 @@ Page({
       orderhkMoney: e.currentTarget.dataset['money'],
       orderhkId: e.currentTarget.dataset['id'],
     });
-    
   },
 
   confirmPayment: function(e) {
@@ -107,6 +114,36 @@ Page({
     wx.switchTab({
       url: '/pages/discount/discount',
     })
+  },
+
+  requestOrder: function(type) {
+    var that = this;
+    order.myCardOrder({
+      token: app.globalData.token,
+      pages: 0,
+      type: type,
+    }).then(function (res) {
+      if (res.data) {
+        res = res.data;
+        for (let i in res) {
+          res[i]['remainDate'] = util.formatTimeToSevenDay(res[i]['created_at']);
+          res[i]['cardInfo'] = JSON.parse(res[i]['cardInfo']);
+          for (let j in that.data.menu) {
+            if (that.data.menu[j]['menu_id'] == res[i]['status'] || (res[i]['status'] == -1 && that.data.menu[j]['menu_id'] == 0)) {
+              that.data.menu[j]['num']++;
+              that.data.menu[0]['num']++;
+            }
+          }
+          that.data.order.push(res[i]);
+        }
+        
+        that.setData({
+          orders: res,
+          menu: that.data.menu
+        });
+      }
+
+    });
   }
 
 })

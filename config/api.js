@@ -12,7 +12,7 @@ module.exports = {
   updateBind: ApiRootUrl + 'wxapp/self_update_bind',
   companyUnbind: ApiRootUrl + 'wxapp/company_unbind',
   //changpwd.js
-  companyChangePsw: ApiRootUrl + 'wxapp/company_change_psw',
+  // companyChangePsw: ApiRootUrl + 'wxapp/company_change_psw',
   //changephone.js
   telValidateCheck: ApiRootUrl + 'wxapp/tel_validate_check',
   telValidateSend: ApiRootUrl + 'wxapp/tel_validate_send',
@@ -52,7 +52,7 @@ module.exports = {
   Companysms_Register: ApiRootUrl + "wxapp/sms_register", //公司账号注册请求手机验证码
   CompanyRegister: ApiRootUrl + "wxapp/company_register", //公司账号注册
   //balance.js
-  moneyChange: ApiRootUrl + 'wxapp/money_change', //充值的金钱改变
+  // moneyChange: ApiRootUrl + 'wxapp/money_change', //充值的金钱改变
   //discount.js
   buyCard: ApiRootUrl + 'wxapp/buyCard', //购买套餐
   CardInfo: ApiRootUrl + 'wxapp/wxCardInfo',//展示个人信息

@@ -17,10 +17,12 @@
   </view>
 </view>
 
-<swiper style='height:{{screenHeight + 6}}px' current-item-id="{{swipercurrentitemid}}" bindchange="swiperChange">
-  <swiper-item wx:for='{{menu}}' wx:key='*this' class="item" item-id="{{menu_item['menu_id']}}" wx:for-item="menu_item">
+<view style='height:40px;'></view>
+<view style='height:{{screenHeight + 6}}px' current-item-id="{{swipercurrentitemid}}" bindchange="swiperChange">
+  <view wx:for='{{menu}}' wx:key='*this' class="item" item-id="{{menu_item['menu_id']}}" wx:for-item="menu_item">
     <block wx:if="{{menu_item['num'] > 0}}">
-    <scroll-view scroll-y style='height:{{screenHeight + 7}}px'>
+    <!-- <scroll-view scroll-y style='height:{{screenHeight + 7}}px'> -->
+    
       <view class='card1' wx:for="{{orders}}" wx:key="*this" wx:for-index="OIndex" bindtap='toOrderdetail' data-id='{{OIndex}}'
       wx:if="{{(item['status'] == menu_item['menu_id'] && !(menu_item['menu_id'] == 3 && item['status'] == 3 && item['checkStatus'] == 1) || (menu_item['menu_id'] == 0 && item['status'] == -1)) || menu_item['menu_id'] == 4}}">
         <view class='top'>
@@ -73,12 +75,14 @@
           <!-- <view class='btn-dd' wx:if="{{item['status'] == 0 || item['status'] == -1}}" catchtap='reremit'>重新下单</view> -->
         </view>
       </view>
-    </scroll-view>
+      
+    <!-- </scroll-view> -->
     </block>
       
     <view class='nolog' wx:else>
       <image src='/static/images/nolog@3x.png'></image>
       <view class='nolog-text'>暂无记录</view>
     </view>
-  </swiper-item>
-</swiper>
+
+  </view>
+</view>

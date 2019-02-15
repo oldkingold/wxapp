@@ -1,0 +1,45 @@
+<view class="container">
+  <view class="form-box">
+
+    <view class='form-item-border'>
+      <view class="form-item " style='margin-top: 20rpx;'>
+        <view class='item-name'>公司全称</view>
+        <input class="username" value="{{compName}}" bindinput="bindCompNameInput" placeholder="请输入" auto-focus/> 
+      </view>
+    </view>
+
+    <view class='form-item-border'>
+      <view class="form-item">
+        <view class='item-name'>密码</view>
+        <input class="password" password="true" value="{{new_psd}}" bindinput="bindnew_psd" placeholder="请输入" />
+      </view>
+    </view>
+
+    <view class='form-item-border'>
+      <view class="form-item">
+        <view class='item-name'>重复密码</view>
+        <input class="password" password="true" value="{{old_psd}}" bindinput="bindold_psd" placeholder="请输入" />
+      </view>
+    </view>
+
+    <view class='form-item-border'>
+      <view class="form-item">
+        <view class='item-name'>手机号</view>
+        <input class="password" value="{{phone}}"  bindinput="bindphone" placeholder="请输入" />
+      </view>
+    </view>
+
+    <view class="form-item-code">
+      <view class="form-item code-item">
+        <view class='item-name'>验证码</view>
+        <input class="code" value="{{code}}" bindinput="bindCodeInput" />
+        <button bindtap="downtime">{{time}}</button>
+      </view>
+      
+    </view>
+  </view>
+
+  <view>{{msg}}</view>
+
+   <button class="login-btn" bindtap="startRegister">注册</button>
+</view>

@@ -1,45 +1,48 @@
-<view class="container">
-  <view class="form-box">
-
-    <view class='form-item-border'>
-      <view class="form-item " style='margin-top: 20rpx;'>
-        <view class='item-name'>公司全称</view>
-        <input class="username" value="{{compName}}" bindinput="bindCompNameInput" placeholder="请输入" auto-focus/> 
+<view class="container text-center" >
+  <view class='top'>
+    <image class="logo" src="/static/images/dcjy_logo.png"></image>
+  </view>
+  <form>
+    <view>
+      <view class="section">
+        <view class='header'>
+          <image mode='aspectFit' src='/static/images/gongsi.png'></image>
+        </view>
+        <input placeholder="请输入公司账号" maxlength="30" bindinput="bind_companyname" />
       </view>
-    </view>
 
-    <view class='form-item-border'>
-      <view class="form-item">
-        <view class='item-name'>密码</view>
-        <input class="password" password="true" value="{{new_psd}}" bindinput="bindnew_psd" placeholder="请输入" />
+      <view class="section">
+        <view class='header'>
+          <image mode='aspectFit' src='/static/images/phone.png'></image>
+        </view>
+        <input type="number" placeholder="请输入手机号" maxlength="11" bindinput="bind_phone" />
       </view>
-    </view>
 
-    <view class='form-item-border'>
-      <view class="form-item">
-        <view class='item-name'>重复密码</view>
-        <input class="password" password="true" value="{{old_psd}}" bindinput="bindold_psd" placeholder="请输入" />
-      </view>
-    </view>
-
-    <view class='form-item-border'>
-      <view class="form-item">
-        <view class='item-name'>手机号</view>
-        <input class="password" value="{{phone}}"  bindinput="bindphone" placeholder="请输入" />
-      </view>
-    </view>
-
-    <view class="form-item-code">
-      <view class="form-item code-item">
-        <view class='item-name'>验证码</view>
-        <input class="code" value="{{code}}" bindinput="bindCodeInput" />
+      <view class="section">
+        <view class='header'>
+          <image mode='aspectFit' src='/static/images/code@3x.png'></image>
+        </view>
+        <input class='yzm' type="number" placeholder="验证码" maxlength="6" bindinput="bind_phone_code" />
         <button bindtap="downtime">{{time}}</button>
       </view>
-      
+
+       <view class='showmsg'>{{showmsg}}</view>
+    </view>
+
+    <view class="btn-area">
+      <button bindtap="login" >注册</button>
+      <view class='others'>
+        <!-- <navigator url='/pages/reset/reset' open-type="navigate" hover-class="other-navigator-hover" class='left'>忘记密码</navigator> -->
+        <navigator  class='register' url='/pages/login/login' open-type="redirect" hover-class="other-navigator-hover" >
+           <view>没有账号?去<text>登录</text></view>
+        </navigator>
+      </view>
+    </view>
+  </form>
+  <view class="login-text">
+    <image mode='aspectFit' src='/static/images/bigwarn@3x.png'></image>
+    <view>
+      温馨提示：一个公司下只能有一个企业账号,多人可以共享账号信息
     </view>
   </view>
-
-  <view>{{msg}}</view>
-
-   <button class="login-btn" bindtap="startRegister">注册</button>
 </view>

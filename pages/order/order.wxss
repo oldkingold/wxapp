@@ -2,20 +2,18 @@ page {
   background-color: #ebf0f5;
 }
 
-/*
- 页面导航栏 
- */
-
 .menu {
   height: 40px;
   width: 96%;
-  margin-top: 1rpx;
   padding: 0 2%;
   overflow: hidden;
   white-space: nowrap;
   background-color: white;
   display: flex;
-  justify-content: space-around
+  justify-content: space-around;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
 }
 
 .nav_title {

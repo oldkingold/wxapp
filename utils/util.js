@@ -216,6 +216,25 @@ function throttle(fn, gapTime) {
   }
 }
 
+//request
+function request(url, method,data) {
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url:url,
+      method: method,
+      data:data,
+      success: function (res) {
+        // console.log(res)
+        resolve(res)
+      },
+      fail: function (res) {
+        // console.log(res);
+        reject(res);
+      }
+    });
+  });
+}
+
 module.exports = {
   formatTimeToSevenDay: formatTimeToSevenDay,
   formatTime: formatTime,
@@ -225,4 +244,5 @@ module.exports = {
   loadFontFace: loadFontFace, //加载字体
   updateProgram: updateProgram, //更新小程序
   throttle: throttle, //函数节流
+  request: request,
 }
