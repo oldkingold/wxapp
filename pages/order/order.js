@@ -9,13 +9,14 @@ Page({
     nav_selectId: 'menu4',
     nav_list_selectId: 'menu4',
     swipercurrentitemid: 4,
-    menu: [{ menu_id: 4, title: "全部", num: 0  },
-      { menu_id: 3, title: "待支付", num: 0 },
-      { menu_id: 2, title: "已完成", num: 0  },
-      { menu_id: 1, title: "已失败", num: 0  },
-      { menu_id: 0, title: "已取消", num: 0  },],
+    menu: [{ menu_id: 4, title: "全部",},
+      { menu_id: 3, title: "待支付"},
+      { menu_id: 2, title: "已完成"},
+      { menu_id: 1, title: "已失败"},
+      { menu_id: 0, title: "已取消"},],
     orders:[],
-    current_ordernum: 0,
+    current_ordernum: [0,0,0,0,0],
+    loadingMoreHidden: true,
     orderhkShow:true,
     orderhkMoney: 0,
     orderhkId: 0,
@@ -26,24 +27,18 @@ Page({
     order.myCardOrder({
       token: app.globalData.token,
       pages: 0,
-      type: 4,
+      type: that.data.swipercurrentitemid,
     }).then(function(res){
       if(res.data) {
         res = res.data;
         for (let i in res) {
           res[i]['remainDate'] = util.formatTimeToSevenDay(res[i]['created_at']);
           res[i]['cardInfo'] = JSON.parse(res[i]['cardInfo']);
-          for (let j in that.data.menu) {
-            if (that.data.menu[j]['menu_id'] == res[i]['status'] || (res[i]['status'] == -1 && that.data.menu[j]['menu_id'] == 0)) {
-              that.data.menu[j]['num']++;
-              that.data.menu[0]['num']++;
-            }
-          }
+          that.data.orders.push(res[i]);
         }
 
         that.setData({
-          orders: res,
-          menu: that.data.menu
+          orders: that.data.orders,
         });
       }
       
@@ -55,8 +50,10 @@ Page({
     var cnum = e.currentTarget.dataset['id']
     this.setData({
       nav_selectId: e.currentTarget.id,
-      swipercurrentitemid: cnum,
     })
+    this.data.swipercurrentitemid=cnum;
+
+    this.onPullDownRefresh();
   },
 
   // swiperChange: function (e) {
@@ -66,7 +63,6 @@ Page({
   // },
 
   remit: function(e) {
-    console.log(e);
     this.setData({
       orderhkShow: false,
       orderhkMoney: e.currentTarget.dataset['money'],
@@ -116,31 +112,54 @@ Page({
     })
   },
 
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
+    this.data.current_ordernum[this.data.swipercurrentitemid] = 0;
+    this.setData({
+      orders:[],
+      loadingMoreHidden: true
+    });
+    this.requestOrder(this.data.swipercurrentitemid);
+  },
+
+  onReachBottom: function() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true,
+    })
+    this.data.current_ordernum[this.data.swipercurrentitemid] += 1;
+    this.requestOrder(this.data.swipercurrentitemid);
+  },
+
   requestOrder: function(type) {
     var that = this;
     order.myCardOrder({
       token: app.globalData.token,
-      pages: 0,
+      pages: that.data.current_ordernum[that.data.swipercurrentitemid],
       type: type,
     }).then(function (res) {
+      wx.hideLoading();
+      wx.stopPullDownRefresh();
       if (res.data) {
         res = res.data;
-        for (let i in res) {
-          res[i]['remainDate'] = util.formatTimeToSevenDay(res[i]['created_at']);
-          res[i]['cardInfo'] = JSON.parse(res[i]['cardInfo']);
-          for (let j in that.data.menu) {
-            if (that.data.menu[j]['menu_id'] == res[i]['status'] || (res[i]['status'] == -1 && that.data.menu[j]['menu_id'] == 0)) {
-              that.data.menu[j]['num']++;
-              that.data.menu[0]['num']++;
-            }
+        if (res.length > 0) {
+          for (let i in res) {
+            res[i]['remainDate'] = util.formatTimeToSevenDay(res[i]['created_at']);
+            res[i]['cardInfo'] = JSON.parse(res[i]['cardInfo']);
+
+            that.data.orders.push(res[i]);
           }
-          that.data.order.push(res[i]);
+
+          that.setData({
+            orders: that.data.orders,
+          });
+        }else {
+          that.data.current_ordernum[that.data.swipercurrentitemid] -= 1;
+          that.setData({
+            loadingMoreHidden: false
+          });
         }
         
-        that.setData({
-          orders: res,
-          menu: that.data.menu
-        });
       }
 
     });

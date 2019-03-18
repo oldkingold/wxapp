@@ -9,7 +9,7 @@
         <view class='section_input'>
           <input name="compName" placeholder="请输入" bindfocus="showCompanys" bindblur='hideCompanys' bindinput="bindCompNameInput" value='{{compName}}' />
           <block wx:if="{{selfCompanies != null}}">
-            <view wx:for="{{selfCompanies}}" class='section_company' hidden='{{showCompanys}}'>
+            <view wx:for="{{selfCompanies}}" wx:key="{{index}}" class='section_company' hidden='{{showCompanys}}'>
               <view data-index='{{index}}' class='com' catchtap='choseCompany'>
                 {{item.name}}
               </view>
@@ -43,7 +43,7 @@
           <view class="th" style='width:14%'>操作</view>
           <view class='th' style='width:18%'>主联系人</view>
         </view>
-        <block wx:for="{{meetPersonlist}}" wx:key="*this">
+        <block wx:for="{{meetPersonlist}}" wx:key="{{index}}">
           <view class="tr {{index % 2 == 1 ? 'bg-g':''}}">
             <view class="td" style='width:20%'>{{item.name}}</view>
             <view class="td" style='width:20%'>{{item.duty}}</view>
@@ -141,7 +141,7 @@
       </view>
     </picker>
 
-    <view class='companyCard' wx:if="{{cardInfo}}">
+    <!-- <view class='companyCard' wx:if="{{cardInfo}}">
       <view class='line1'>
         <view class='blod'>套餐剩余</view>
         <view class='red' wx:if="{{meetPersonlist.length > cardInfo['usable']}}">次数不足，去购买</view>
@@ -150,7 +150,7 @@
         <view class='item'>报名人次：{{meetPersonlist.length}}人</view>
         <view class='item'>剩余次数：{{cardInfo['usable']}}人次</view>
       </view>
-    </view>
+    </view> -->
 
     <view class='invoice'>
 
@@ -219,6 +219,42 @@
             <input name="compBankAccount" value='{{invoice.compBankAccount}}' placeholder="请输入" bindinput='compBankAccount' />
           </view>
         </block>
+      </view>
+    </view>
+
+    <view class='tab'>
+      <view class='tab_title'>
+        <image wx:if='{{Vip1_tab.img != ""}}' class='huiyuan' src='../../../static/images/Vip1/{{Vip1_tab.img}}.png'></image>
+        <view>{{Vip1_tab.level_name}}</view>
+      </view>
+      <view class='tab_line'>
+        <view class='tab_line_title'>报名人数</view> 
+        <image bindtap="bm_num_cut"class="cut"src="../../../static/images/cut.png"></image>
+        <text class='tab_text'>3</text>
+        <image bindtap="bm_num_add"class="add"src="../../../static/images/add.png"></image>
+      </view>
+      <view class='tab_line'>
+        <view class='tab_line_title'>付款金额</view>
+        <view class='Vip1_price'>¥{{bm_num * Vip1_tab.level_price}}</view>
+        <view class='original_price'>¥{{meeting.price}}</view>
+      </view>
+      <view class='tab_area'>
+        <view class='tab_line_title'>付款方式</view>
+        <view>
+          <view class='tab_line_vip'>
+            <view class='unuse_button'>余额</view>
+            <view class='vip_tip'>{{Vip1_tab.ye_tip}}</view>
+            <view class='vip_cz' hidden='{{Vip1_tab.ye_cz_show}}'>去充值</view>
+          </view>
+          <view class='tab_line_vip'>
+            <view class='{{Vip1_tab.zz_btn ? "highlight_button" : "button"}}'>转账</view>
+            <view class='vip_tip'>公对公或私对公</view>
+          </view>
+          <view class='tab_line_vip'>
+            <view class='{{Vip1_tab.qt_btn ? "highlight_button" : "button"}}'>其他</view>
+            <view class='vip_tip'>请联系客服</view>
+          </view>
+        </view>
       </view>
     </view>
 

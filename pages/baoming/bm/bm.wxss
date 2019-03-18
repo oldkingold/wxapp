@@ -479,9 +479,6 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   color: #479df7;
 }
 
-.meal-item-margin {
-
-}
 .meal-item-line{
   display:flex;
 justify-content:space-between;
@@ -520,7 +517,6 @@ justify-content:space-between;
   background-repeat: no-repeat;
   color: #479df7;
 }
-
 
 .meal-name-default2 {
   color: #bebebe;
@@ -765,3 +761,123 @@ justify-content:space-between;
 .line2 .item {
   width: 350rpx;
 }
+
+/* tab统一 */
+.tab {
+  margin-top: 25rpx;
+  padding-left:20rpx;
+  padding-right:20rpx;
+  background-color: white;
+}
+
+.tab_title {
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  line-height:80rpx;
+  border-bottom:1rpx solid #eeeff1;
+  font-weight:bold;
+  letter-spacing:2rpx;
+  font-size:27rpx;
+}
+
+.tab_line {
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  line-height:80rpx;
+  border-bottom:1rpx solid #eeeff1;
+  letter-spacing:2rpx;
+  font-size:27rpx;
+}
+
+.tab_area {
+  line-height:80rpx;
+  border-bottom:1rpx solid #eeeff1;
+  letter-spacing:2rpx;
+  font-size:27rpx;
+}
+
+.tab_line image {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+
+.tab_line_title {
+  margin-right: 30rpx;
+}
+
+.Vip1_price {
+  color: red;
+  margin: 0 30rpx;
+}
+
+.original_price {
+  color: #bfbfbf;
+  margin: 0 30rpx;
+  text-decoration:line-through;
+}
+
+.tab_area {
+  display: flex;
+}
+
+.tab_line_vip {
+  display: flex;
+  margin-left: 29rpx;
+  align-items: center;
+}
+
+.tab_line_vip .button{
+  height: 40rpx;
+  letter-spacing:2rpx;
+  font-size:27rpx;
+  line-height: 40rpx;
+  border-radius: 21rpx;
+  border: 1rpx solid #2185f7;
+  padding: 0 35rpx;
+  color: #2185f7;
+}
+
+.unuse_button {
+  height: 40rpx;
+  letter-spacing:2rpx;
+  font-size:27rpx;
+  line-height: 40rpx;
+  border-radius: 21rpx;
+  padding: 0 35rpx;
+  border: 1rpx solid #bfbfbf;
+  color: #bfbfbf;
+}
+
+.highlight_button {
+  height: 40rpx;
+  letter-spacing:2rpx;
+  font-size:27rpx;
+  line-height: 40rpx;
+  border-radius: 21rpx;
+  padding: 0 35rpx;
+  border: 1rpx solid #2185f7;
+  background-color: #2185f7;
+  color: white;
+}
+
+.vip_tip {
+  color: #bfbfbf;
+  font-size:22rpx;
+  margin-left: 30rpx;
+}
+
+.vip_cz {
+  font-size: 22rpx;
+  color: #2185f7;
+}
+
+.huiyuan {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 12rpx;
+}
+
+
+

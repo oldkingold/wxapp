@@ -62,6 +62,7 @@ module.exports = {
   //order.js
   checkOrderCard: ApiRootUrl + "wxapp/checkedOrderCard",//套餐购买确认汇款
   cancelOrder: ApiRootUrl +  "wxapp/cancelOrder",//取消套餐购买
+  myVip1Info: ApiRootUrl + "wxapp/Vip1/userVip1Info",
   //discountreceipt.js
   mylatestpeixun: ApiRootUrl + "wxapp/mylatestpeixun",//获取最近一场会议的报名
 }

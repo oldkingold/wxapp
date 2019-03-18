@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "我的订单",
-  "enablePullDownRefresh": false,
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "orderhk": "/model/orderhk/orderhk"
   }

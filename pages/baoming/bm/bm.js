@@ -1,5 +1,6 @@
 const app = getApp();
 const util = require('../../../utils/util.js');
+const decode = require('../../../utils/decode.js');
 const api = require('../../../config/api.js');
 const meet = require('../../../utils/home/meeting.js');
 const order = require("../../../utils/home/order.js");
@@ -43,7 +44,11 @@ Page({
       duty: '',
       phone: '',
     },
-    cardInfo:false
+    // cardInfo:false
+    // Vip1
+    bm_num: 0, //报名人数
+    Vip1_tab: {} ,
+    
   },
 
   onLoad: function (options) {
@@ -61,13 +66,13 @@ Page({
       leaveDate: meeting.end_date
     });
     
-    order.CardInfo().then((res) => {
-      if (res) {
-        that.setData({
-          cardInfo: res,
-        });
-      }
-    });
+    // order.CardInfo().then((res) => {
+    //   if (res) {
+    //     that.setData({
+    //       cardInfo: res,
+    //     });
+    //   }
+    // });
 
     //页面从哪跳转过来的
     if (options.method) {
@@ -115,6 +120,65 @@ Page({
   },
   
   onShow: function () {
+    //vip1模块处理
+    order.myVip1Info().then((res) => {
+      console.log(res.data);
+      console.log(decode.base64_decode(res.data));
+      var data = JSON.parse(decodeURIComponent(decode.base64_decode(res.data)));
+      var icons = {
+        6: "common",
+        7: "silver",
+        8: "gold",
+      };
+
+      var Vip1_tab = {
+        img: "",
+        level_name: data['level'],
+        level_id: data['id'],
+        level_price: 0,
+        ye_btn: "",
+        zz_btn: "",
+        qt_btn: "",
+        ye_tip: "",
+        ye_cz_show:""
+      };
+
+      for (let i = 0; i < this.data.meeting["vip1"].length;i++) {
+        if (this.data.meeting["vip1"][i]["level"] == data['id']) {
+          Vip1_tab.level_price = this.data.meeting["vip1"][i]["price"];
+        }
+      }
+
+      if (data['id'] > 5) {
+        Vip1_tab.img = icons[data['id']];
+        if (data["price"] > this.data.bm_num * Vip1_tab.level_price) {
+          Vip1_tab.ye_btn = true;  //不能点击
+          Vip1_tab.zz_btn = false;
+          Vip1_tab.qt_btn = false;
+          Vip1_tab.ye_tip = "剩余¥" + data["price"];
+          Vip1_tab.ye_cz_show = true;
+        }else {
+          Vip1_tab.ye_btn = false;  //不能点击
+          Vip1_tab.zz_btn = true;
+          Vip1_tab.qt_btn = false;
+          Vip1_tab.ye_tip = "剩余¥" + data["price"]+"，余额不足，";
+          Vip1_tab.ye_cz_show = false;
+        }
+      }else {
+        Vip1_tab.ye_btn = false;  //不能点击
+        Vip1_tab.zz_btn = true;
+        Vip1_tab.qt_btn = false;
+        Vip1_tab.ye_tip = "余额不足";
+        Vip1_tab.ye_cz_show = false;
+      }
+
+      this.setData({
+        Vip1_tab: Vip1_tab
+      })
+
+    });
+
+
     console.log(this.data);
     let that = this;
     let meetPersonlist = that.data.meetPersonlist;
@@ -141,6 +205,7 @@ Page({
 
 
   },
+
   onUnload: function () {
     // 页面关闭
     // 在页面离开前做数据的缓存
@@ -190,6 +255,7 @@ Page({
     });
     console.log(company);
   },
+
   bindCompNameInput: function (e) {
     this.data.compName = e.detail.value;
     if (!this.data.invCompNamechange) {
@@ -200,6 +266,7 @@ Page({
       });
     }
   },
+
   changeNatureRadio: function (e) {
     this.setData({
       compNature: e.detail.value
@@ -308,7 +375,7 @@ Page({
     });
     this.clearIsNotNeedRoom();
   },
-  //标间 加
+  //标间 减
   cutDoubleNumber: function () {
     this.setData({
       doubleRoomNum: (this.data.doubleRoomNum - 1 >= 1) ? this.data.doubleRoomNum - 1 : 0,
@@ -321,6 +388,14 @@ Page({
       doubleRoomNum: Number(this.data.doubleRoomNum) + 1,
     });
     this.clearIsNotNeedRoom();
+  },
+  //报名人数 减
+  bm_num_cut: function () {
+
+  },
+  //报名人数 加
+  bm_num_add: function () {
+
   },
 
   BindIsNotNeedRoom: function () {

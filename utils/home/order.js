@@ -83,10 +83,19 @@ function cancelOrder(OId) {
     })
   });
 }
-
+/***************************************************** */
+function myVip1Info() {
+  return util.request(api.myVip1Info,"post",{
+    token: app.globalData.token,
+    openId: app.globalData.openId,
+  });
+}
 module.exports = {
+  //套餐方法,暂时弃用
   myCardOrder: myCardOrder,
   myUsedRecord: myUsedRecord,
   CardInfo: CardInfo,
   cancelOrder: cancelOrder,
+  //Vip1方法
+  myVip1Info: myVip1Info,
 }

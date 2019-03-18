@@ -47,19 +47,13 @@ page {
   margin: 0 31rpx;
 }
 
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
-}
-
 .card1 {
   position: relative;
   width: 650rpx;
   /* height: 328rpx; */
   background-color: white;
   overflow: hidden;
-  margin-top: 33rpx;
+  margin-bottom: 33rpx;
   padding: 22rpx 20rpx 0rpx 20rpx; 
   border-radius: 20rpx;
 }
@@ -209,4 +203,18 @@ page {
 .nolog-text{
   color: #A0A1A3;
   font-size: 30rpx;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no-more-goods{
+  text-align: center;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  padding-bottom:48rpx; 
+  color: #999;
 }
