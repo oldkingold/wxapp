@@ -5,6 +5,9 @@ page {
 .bg {
   background-color: white;
   padding-top: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bg2 {
@@ -14,30 +17,40 @@ page {
 
 .card {
   background-color: white;
-  width: 650rpx;
-  height: 334rpx;
-  margin-left: 50rpx;
-  border-radius: 16rpx;
+  width: 677rpx;
+  height: 360rpx;
   position: relative;
-  color: white;
+  
   font-size: 26rpx;
   overflow: hidden;
 }
 
+.white {
+  color: white;
+}
+
+.red {
+  color: #ff1f1f;
+}
+
+.blue {
+  color: #1b79f8;
+}
+
 .card image {
-  width: 650rpx;
-  height: 334rpx;
+  width: 677rpx;
+  height: 360rpx;
 }
 
 .card .top {
   position: absolute;
-  top: 26rpx;
-  width: 650rpx;
+  top: 30rpx;
+  width: 677rpx;
 }
 
 .card .top .left {
   float: left;
-  margin-left: 28rpx;
+  margin-left: 38rpx;
 }
 
 .card .top .left image{
@@ -60,40 +73,43 @@ page {
   font-size: 22rpx;
 }
 
-
 .card .top .right {
   float: right;
-  margin-right: 18rpx;
+  margin-right: 30rpx;
+}
+
+.card .top .right image{
+  width: 30rpx;
+  height: 30rpx;
 }
 
 .card .bottom {
   position: absolute;
-  bottom: 20rpx;
+  bottom: 50rpx;
+  width: 677rpx;
+}
+
+.card .bottom .login_btn {
+  float: right;
+  margin-right: 30rpx;
+  margin-top: 30rpx;
+}
+
+.card .bottom .left {
+  float: left;
+  margin-left: 50rpx;
+  width: 300rpx;
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
 .card .bottom .text1 {
-  color: white;
-  font-size: 26rpx;
-  margin-left: 25rpx;
+  color: #ff1f1f;
+  font-size: 36rpx;
 }
 
 .card .bottom .text2 {
-  color: #d9990e;
   font-size: 26rpx; 
-  margin-right: 6rpx;
-}
-
-.card .bottom .text3 {
-  color: white;
-  font-size: 24rpx; 
-  margin-right: 15rpx;
-}
-
-.card .bottom .text4 {
-  color: red;
-  font-size: 24rpx; 
 }
 
 .title {
@@ -136,68 +152,28 @@ page {
 }
 
 .line .content {
-  margin-left: 24rpx;
+  margin-left: 10rpx;
   font-size: 24rpx;
+  line-height: 38rpx;
 }
 
-.line .contents {
-  margin-top: 5rpx;
-  margin-right: 40rpx;
+.line .content .price{
+  color: #f5a601; 
+  margin-left: 6rpx;
 }
 
-.line .contents view{
-  margin-left: 24rpx;
-  font-size: 24rpx;
-  line-height: 32rpx;
-  margin-top: 5rpx;
-  letter-spacing: 2rpx;
-}
-
-.line .contents text{
-  color: #f4a600;
-  letter-spacing: 0rpx;
-}
-
-.line .content .prices {
-  border: 2rpx solid #d9d9d9;
-  border-radius: 10rpx;
-  text-align: center;
-  padding: 0 16rpx;
-  
-  width: 190rpx;
-}
-
-.prices .price {
-  line-height: 50rpx;
-  font-size: 32rpx;
-  color: #ff1f1f;
-}
-
-.prices .people {
-  font-size: 24rpx;
-}
-
-.line .content .nums {
+.line .content .item {
   display: flex;
-  border: 2rpx solid #d9d9d9;
-  border-radius: 10rpx;
-  height: 50rpx;
-  margin-left: 40rpx;
+  align-items: center;
+  font-size: 32rpx;
+  height: 80rpx;
+  line-height: 80rpx;
 }
 
-.nums view {
-  text-align: center;
-  line-height: 50rpx;
-  width: 60rpx;
-  color: #ababab;
-}
-
-.nums input {
-  width: 100rpx;
-  border-left: 2rpx solid #d9d9d9;
-  border-right: 2rpx solid #d9d9d9;
-  text-align: center;
-  color: #7a7a7a;
+.line .content .price1 {
+  font-size:26rpx;
+  color:#ff2020;
+  line-height: 40rpx;
 }
 
 .contact {
@@ -206,7 +182,7 @@ page {
 }
 
 .contact .item {
-  border-top: 2rpx solid #ebf0f5;
+  border-top: 2rpx solid #f0f7f2;
   display: flex;
   align-items: center;
 }
@@ -214,18 +190,56 @@ page {
 .item .name{
   font-size: 32rpx;
   line-height: 80rpx;
-  width: 168rpx;
+  width: 162rpx;
 }
 
 .item input {
-  margin-left: 20rpx;
   width: 480rpx;
+}
+
+.item .money {
+  width: 300rpx;
+}
+
+.item .tip {
+  font-size: 22rpx;
+  color: #ff1f1f;
 }
 
 .invoice-item {
   height: 45rpx;
   font-size: 30rpx;
   margin: 30rpx 40rpx 0 40rpx;
+}
+
+.radio-vip1 {
+  margin-left: 40rpx;
+}
+
+.radio-vip1 image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
+}
+
+.radio-vip1 radio {
+  transform: scale(1);
+  width: 40rpx;
+  height: 75rpx;
+  margin-right: 36rpx;
+}
+
+.radio-vip1 label{
+  display:flex;
+  align-items:center;
+  line-height: 70rpx;
+  font-size: 30rpx;
+}
+
+.radio-vip1 .price {
+  line-height: 70rpx;
+  font-size: 26rpx;
+  margin-left: 30rpx;
 }
 
 .invoice-item .radio-group {
@@ -343,11 +357,6 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   width: 100%;  
 }
 
-.submitview text {
-  font-size: 20rpx;
-  line-height: 28rpx;
-}
-
 .submitview .tip{
   background-color: #ebf0f5;
   font-size: 18rpx;
@@ -364,24 +373,18 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 .submitview .content .sl {
   margin-left: 40rpx;
-}
-
-.submitview .content .ll{
-  height: 28rpx;
-}
-
-.submitview .content .ll3{
   margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 45rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.ll .llx {
-  margin-left: 66rpx;
-  color: #ff1e1e;
-  font-weight: bold;
-}
-
-.submitview .give {
+.submitview .content .sl .price text{
   color: #ff1f1f;
+  font-size: 32rpx;
+  font-weight: bold;
 }
 
 .submitview .btn {
@@ -394,22 +397,6 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   margin: 0;
   position: unset;
   border-radius: 0;
-}
-
-.submitview .new-price {
-  color: #ff2020;
-  font-size: 28rpx;
-  font-weight: bold;
-}
-
-.submitview .old-price {
-  color: #878787;
-  text-decoration:line-through;
-  font-size: 22rpx;
-}
-
-.submitview .cut-price {
-  color: #f4a600;
 }
 
 

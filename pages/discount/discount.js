@@ -2,12 +2,10 @@ const api = require('../../config/api.js');
 const app = getApp();
 const order = require("../../utils/home/order.js");
 const util = require('../../utils/util.js');
+const decode = require('../../utils/decode.js');
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     invoice: {
       invType: "暂不填写",
@@ -18,50 +16,81 @@ Page({
       compBank: "",
       compBankAccount: "",
     },
-    five_num: 1,
-    ten_num: 1,
-    total_num: 15,
-    gift_num: 0,
-    originalprice: 44700,
-    discountprice: 32780,
     company: '',
     contact: '',
     contactTel: '',
-    cardInfo: {usable: 0, remain: 0, using: 0, total: 0},
+
+    
     isSignin: false,
     company_setting: false,
+
+    vip_type: 0,  //当前用户等级
+    discountprice: 32780,  //需支付费用
+    balance: 0,   //余额
+    vip1:[
+      {"name": "注册用户", "icon": "", "bg": ""},
+      {"name": "普通用户", "icon": "", "bg": ""},
+      { "name": "普通会员", "icon": "common.png", "bg": "common_bg.png" },
+      { "name": "银牌会员", "icon": "silver.png", "bg": "silver_bg.png" },
+      { "name": "金牌会员", "icon": "gold.png", "bg": "gold_bg.png" },
+    ]
+
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
+  onLoad: function () {
+    let that = this;
+    order.myVip1Type().then((res)=>{
+      console.log(res.data)
+      for (let i = 1; i < 5; i++) {
+        for (let j = 0; j < res.data.length; j++) {
+          if (that.data.vip1[i]["name"] == res.data[j].level) {
+            that.data.vip1[i]["pay_in_advance"] = res.data[j].pay_in_advance;
+            that.data.vip1[i]["recharge_point"] = res.data[j].recharge_point;
+            break;
+          }
+        }
+        
+      }
+
+      that.setData({
+        vip1: that.data.vip1,
+      });
+    });
   },
 
   onShow: function () {
     let that = this;
     let company_setting = wx.getStorageSync('company_setting');
     if (company_setting) {
-      order.CardInfo().then((res)=>{
-        that.setData({
-            cardInfo: res,
-            isSignin: true
+      order.myVip1Info().then((res) => {
+        if (res.data.code == 200) {
+          var data = JSON.parse(decodeURIComponent(decode.base64_decode(res.data.data)));
+          var vip_type = 1;
+          for(let i = 1; i < 5; i++) {
+            if (that.data.vip1[i]["name"] == data.level) {
+              vip_type = i;
+              break;
+            }
+          }
+          this.setData({
+            vip_type: vip_type,
+            balance: data.remainder
+          })
+        }else {
+          that.setData({
+            vip_type: 0
           });
+        }
       });
-      that.setData({
-        company: company_setting.name,
-        company_setting: true
-      })
     } else {
-      that.setData({
-        isSignin: false
-      });
+      
     }
     
-    
   },
-
+  //监听vip选择
+  chooseVip: function (e) {
+    console.log(e);
+  },
   //切换发票信息
   listenerRadioGroup: function (e) {
     let that = this;
@@ -70,62 +99,6 @@ Page({
     that.setData({
       invoice: invoice
     })
-  },
-
-  //添加五人套餐
-  taocan_five: function (e) {
-    let that = this;
-    let five_num = this.data.five_num;
-    let operator = e.currentTarget.dataset['operator'];
-    switch (operator) {
-      case "-": 
-        five_num = five_num - 1 > 0 ? five_num - 1 : 0; 
-        break;
-      case "+": 
-        five_num = five_num + 1;
-        break;
-      default: ;
-    }
-    this.data.five_num = five_num;
-    this.change();
-  },
-  //添加十人套餐
-  taocan_ten: function (e) {
-    let ten_num = this.data.ten_num;
-    let operator = e.currentTarget.dataset['operator'];
-    switch (operator) {
-      case "-":
-        ten_num = ten_num - 1 > 0 ? ten_num - 1 : 0;
-        break;
-      case "+":
-        ten_num = ten_num + 1;
-        break;
-      default: ;
-    }
-    this.data.ten_num = ten_num;
-    this.change();
-  },
-
-  change: function() {
-    let five_num = this.data.five_num;
-    let ten_num = this.data.ten_num;
-    let gift_num = 0;
-    switch (ten_num) {
-      case 0: break;
-      case 1: break;
-      case 2: gift_num = 1; break;
-      case 3: gift_num = 3; break;
-      case 4: gift_num = 6; break;
-      default: gift_num = (ten_num - 3) * 5; break;
-    }
-    this.setData({
-      five_num: five_num,
-      ten_num: ten_num,
-      gift_num: gift_num,
-      total_num: five_num * 5 + ten_num * 10,
-      discountprice: five_num * 11920 + ten_num * 20860,
-      originalprice: (five_num * 5 + ten_num * 10) * 2980
-    });
   },
 
   bindCompany: function(e) {
@@ -265,8 +238,6 @@ Page({
       }
     }
 
-    data['ten_num'] = that.data.ten_num;
-    data['five_num'] = that.data.five_num;
     data['company'] = that.data.company;
     data['contact'] = that.data.contact;
     data['contactTel'] = that.data.contactTel;

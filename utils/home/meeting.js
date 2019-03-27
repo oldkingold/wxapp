@@ -191,6 +191,7 @@ function edit_self_person(person, token) {
     })
   });
 }
+
 //删除公司人员
 function del_self_person(personid, token) {
   return new Promise(function (resolve, reject) {
@@ -214,6 +215,7 @@ function del_self_person(personid, token) {
     })
   });
 }
+
 //检验手机格式
 function checek_phone(tel) {
   var that = this;

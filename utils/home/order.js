@@ -83,6 +83,7 @@ function cancelOrder(OId) {
     })
   });
 }
+
 /***************************************************** */
 function myVip1Info() {
   return util.request(api.myVip1Info,"post",{
@@ -90,6 +91,11 @@ function myVip1Info() {
     openId: app.globalData.openId,
   });
 }
+
+function myVip1Type() {
+  return util.request(api.myVip1Type,"get",null);
+}
+
 module.exports = {
   //套餐方法,暂时弃用
   myCardOrder: myCardOrder,
@@ -98,4 +104,5 @@ module.exports = {
   cancelOrder: cancelOrder,
   //Vip1方法
   myVip1Info: myVip1Info,
+  myVip1Type: myVip1Type,
 }

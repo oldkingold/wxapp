@@ -229,29 +229,29 @@
       </view>
       <view class='tab_line'>
         <view class='tab_line_title'>报名人数</view> 
-        <image bindtap="bm_num_cut"class="cut"src="../../../static/images/cut.png"></image>
-        <text class='tab_text'>3</text>
-        <image bindtap="bm_num_add"class="add"src="../../../static/images/add.png"></image>
+        <image bindtap="bm_num_cut" class="cut" src="../../../static/images/cut.png"></image>
+        <text class='tab_text'>{{bm_num}}</text>
+        <image bindtap="bm_num_add" class="add" src="../../../static/images/add.png"></image>
       </view>
       <view class='tab_line'>
         <view class='tab_line_title'>付款金额</view>
         <view class='Vip1_price'>¥{{bm_num * Vip1_tab.level_price}}</view>
-        <view class='original_price'>¥{{meeting.price}}</view>
+        <view class='original_price'>¥{{bm_num * meeting.price}}</view>
       </view>
       <view class='tab_area'>
         <view class='tab_line_title'>付款方式</view>
         <view>
           <view class='tab_line_vip'>
-            <view class='unuse_button'>余额</view>
+            <view bindtap='pay_mode' data-mode='ye' class='{{Vip1_tab.ye_btn == 3 ? "unuse_button":""}}{{Vip1_tab.ye_btn == 1 ? "highlight_button":""}}{{Vip1_tab.ye_btn == 2 ? "button":""}}'>余额</view>
             <view class='vip_tip'>{{Vip1_tab.ye_tip}}</view>
-            <view class='vip_cz' hidden='{{Vip1_tab.ye_cz_show}}'>去充值</view>
+            <view bindtap='to_buy_Vip1' class='vip_cz' hidden='{{Vip1_tab.ye_cz_show}}'>去充值</view>
           </view>
           <view class='tab_line_vip'>
-            <view class='{{Vip1_tab.zz_btn ? "highlight_button" : "button"}}'>转账</view>
+            <view bindtap='pay_mode' data-mode='zz' class='{{Vip1_tab.zz_btn ? "highlight_button" : "button"}}'>转账</view>
             <view class='vip_tip'>公对公或私对公</view>
           </view>
           <view class='tab_line_vip'>
-            <view class='{{Vip1_tab.qt_btn ? "highlight_button" : "button"}}'>其他</view>
+            <view bindtap='pay_mode' data-mode='qt' class='{{Vip1_tab.qt_btn ? "highlight_button" : "button"}}'>其他</view>
             <view class='vip_tip'>请联系客服</view>
           </view>
         </view>

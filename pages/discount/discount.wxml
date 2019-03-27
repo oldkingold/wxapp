@@ -1,64 +1,101 @@
 <view class='container'>
   <view class='bg'>
-    <view class='card' bindtap='toDiscountlog'>
-      <image src='/static/images/membershipcard.png'></image>
+    <view class='card {{vip_type > 1 ? "":"white"}}' bindtap='toDiscountlog'>
+
+      <image wx:if="{{vip_type > 1}}" src='/static/images/Vip1/{{vip1[vip_type].bg}}'></image>
+      <image wx:else src='/static/images/Vip1/card.png'></image>
+      
       <view class='top'>
         <view class='left'>
           <image src='/static/images/duchuancard.png'></image>
           <view class='text'>
             <view class='text1'>度川教育培训课程</view>
-            <view class='text2'>套餐</view>
+            <view class='text2'>会员卡</view>
           </view>
         </view> 
-        <view wx:if="{{isSignin}}" class='right' >已登录</view>
+
+        <view class='right' wx:if="{{vip_type > 0}}">
+          <image wx:if="{{vip_type > 1}}" src='/static/images/Vip1/{{vip1[vip_type].icon}}'></image>
+          {{vip1[vip_type].name}}     
+        </view>
+  
       </view>
-      <view class='bottom' wx:if="{{isSignin}}">
-        <text class='text1'>可用：</text><text class='text2'>{{cardInfo["usable"]}}</text>
-        <text class='text1'>剩余次数：</text><text class='text2'>{{cardInfo["remain"]}}</text>      
-        <text class='text3'>(使用中：<text class='text4'>{{cardInfo["using"]}}</text>)</text>
-        <text class='text1'>已购买：</text><text class='text2'>{{cardInfo["total"]}}</text>
+      <view class='bottom'>
+        <view class='left' wx:if="{{vip_type > 1}}">
+          <text class='text1'>{{balance}}</text>
+          <text class='text2'>账户金额</text>
+        </view>
+
+        <view wx:if="{{vip_type == 0}}" class='login_btn' bindtap='toSignin'>请登录/注册</view>
       </view>
-      <view wx:if="{{!isSignin}}" style='right:20rpx;' class='bottom' bindtap='toSignin'>请登录/注册</view>
+      
     </view>
     <view>
       <view class='line'>
-        <text class='title'>套餐购买</text>
-        <view class='detail'><image src='/static/images/wenhao.png'></image>优惠详情</view>
+        <text class='title'>会员升级</text>
+        <view class='detail'><image src='/static/images/wenhao.png'></image>会员服务详情</view>
       </view>
-      <view class='line flex_row'>
-        <text class='name'>选择套餐：</text>
-        <view class='content'>
-          <view class='flex_row' style='margin-bottom: 30rpx;'>
-            <view class='prices'><text class='price'>￥11920</text>/<text class='people'>5人</text></view>
-            <view class='nums'>
-              <view catchtap='taocan_five' data-operator='-'>-</view>
-              <input disabled='disabled' type='number' value='{{five_num}}'></input>
-              <view catchtap='taocan_five' data-operator='+'>+</view>
-            </view>
+      <view class='line'>
+        <radio-group name="vip-radio" class="radio-vip1">
+          <view class="radio-group" bindchange="chooseVip">
+            <label wx:if="{{vip_type <= 2}}">
+              <radio value="普通会员" checked="{{vip_type < 2 ? 'checked':''}}" name="invoice" />
+              <image src='../../static/images/Vip1/common.png'></image>
+              <text>普通会员</text>
+              <text wx:if="{{vip_type <= 1}}" class='red price'>￥{{vip1[2].pay_in_advance}}.00</text>
+              <text wx:if="{{vip_type == 2}}" class='price'>可充值任意金额</text>
+            </label >
+            <label wx:if="{{vip_type <= 3}}">
+              <radio value="银牌会员" checked="{{vip_type == 2 ? 'checked':''}}" name="invoice" />
+              <image src='../../static/images/Vip1/silver.png'></image>
+              <text>银牌会员</text>
+              <text wx:if="{{vip_type <= 1}}" class='price red'>￥{{vip1[2].pay_in_advance}}.00</text>
+              <text wx:if="{{vip_type == 2}}" class='price'>还差<text class='red'>￥{{vip1[3].pay_in_advance - balance}}.00</text></text>
+              <text wx:if="{{vip_type == 3}}" class='price'>可充值任意金额</text>
+            </label>
+            <label wx:if="{{vip_type <= 4}}">
+              <radio value="金牌会员" checked="{{vip_type >= 3 ? 'checked':''}}" name="invoice" />
+              <image src='../../static/images/Vip1/gold.png'></image>
+              <text>金牌会员</text>
+              <text wx:if="{{vip_type <= 1}}" class='price red'>￥{{vip1[2].pay_in_advance}}.00</text>
+              <text wx:if="{{vip_type == 2 || vip_type == 3 }}" class='price'>还差<text class='red'>￥{{vip1[4].pay_in_advance - balance}}.00</text></text>
+              <text wx:if="{{vip_type == 4}}" class='price'>可充值任意金额</text>
+            </label>
           </view>
-          <view class='flex_row'>
-            <view class='prices'><text class='price'>￥20860</text>/<text class='people'>10人</text></view>
-            <view class='nums'>
-              <view catchtap='taocan_ten' data-operator='-'>-</view>
-              <input disabled='disabled' type='number' value='{{ten_num}}'></input>
-              <view catchtap='taocan_ten' data-operator='+'>+</view>
-            </view>
-          </view>
-        </view>
+        </radio-group>
       </view>
-      <view class='line flex_row'>
+
+      <view class='line flex_row' wx:if="{{vip_type > 1}}">
         <text class='name'>套餐说明：</text>
-        <view class='contents'>
-          <view>培训原价：<text>￥2980</text>/人(含餐饮), 课程时长：2天，6h/天。</view>
-          <view>5人次套餐：<text>￥11920</text>(含餐饮), 可分此参加。</view>
-          <view>10人次套餐：<text>￥20860</text>(含餐饮), 可分此参加。</view>
-          <view>在以上优惠的基础上，一次性购买多份10人次套餐（餐标￥100.00/餐）,还赠送相应的名额。</view>
+        <view class='content'>
+          <view>升级普通会员，余额需达到<text class='price'>￥{{vip1[2].pay_in_advance}}.00</text></view>
+          <view>升级银牌会员，余额需达到<text class='price'>￥{{vip1[3].pay_in_advance}}.00</text></view>
+          <view>升级金牌会员，余额需达到<text class='price'>￥{{vip1[4].pay_in_advance}}.00</text></view>
+          <view>若余额为<text class='red'>￥0</text>,则回复至<text class='blue'>普通用户</text></view>
         </view>
       </view>
+
+      <view class='line flex_row' wx:if="{{vip_type > 1 && vip_type < 4}}">
+        <text class='name'>所需金额：</text>
+        <view class='content'>
+          <text class='price1'>￥20860.00</text>
+          <view class='item'>
+            <input class='money' bindinput='bindCompany' placeholder='请输入其他金额' value='{{company}}'></input>
+            <text class='tip'>*金额不得低于3万元</text>
+          </view>
+        </view>
+      </view>
+      
       <view class='contact'>
+        <view class='item' wx:if="{{vip_type == 4}}">
+          <text class='name'>充值金额：</text>
+          <input class='money' bindinput='bindCompany' placeholder='请输入' value='{{company}}'></input>
+          <text class='tip'>*金额不得低于3万元</text>
+        </view>
+
         <view class='item'>
           <text class='name'>公司名称：</text>
-          <input bindinput='bindCompany' placeholder='请输入公司全称' value='{{company}}' disabled='{{company_setting}}'></input>
+          <input bindinput='bindCompany' placeholder='请输入公司全称' value='{{company}}'></input>
         </view>
         <view class='item'>
           <text class='name'>联系人：</text>
@@ -151,14 +188,10 @@
   <view class='tip'>请您在汇款成功以后点击确认汇款,谢谢！</view>
   <view class='content'>
     <view class='sl'>
-      <view class='ll'><text class='ll1'>已选择： 5 人团</text><text class='llx'> ×{{five_num}}</text></view>
-      <view class='ll'><text class='ll1'>　　　　10人团</text><text class='llx'> ×{{ten_num}}</text></view>
-      <view class='ll3'><text>套餐人数：{{total_num}}人　赠送：</text><text class='give'>{{gift_num}}人</text></view>
+      <view>已选择：普通会员</view>
+      <view class='price'>总计:<text>￥20860.00</text></view>
     </view>
-    <view class='middle'>
-      <view style='height:36rpx;margin-top:16rpx;'><text>总计：</text><text class='new-price'>￥{{discountprice}}</text></view>
-      <view style='height:20rpx;margin-top:5rpx;'><text class='old-price'>￥{{originalprice}}</text><text>(已优惠<text class='cut-price'>￥{{originalprice - discountprice}}</text>)</text></view>
-    </view>
+    
     <button class='btn' open-type="getUserInfo" bindgetuserinfo="submit">提交订单</button>
   </view>
 </view>
