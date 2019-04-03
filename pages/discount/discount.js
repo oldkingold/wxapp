@@ -25,7 +25,7 @@ Page({
     company_setting: false,
 
     vip_type: 0,  //当前用户等级
-    discountprice: 32780,  //需支付费用
+    discountprice: 0,  //需支付费用
     balance: 0,   //余额
     vip1:[
       {"name": "注册用户", "icon": "", "bg": ""},
@@ -33,14 +33,14 @@ Page({
       { "name": "普通会员", "icon": "common.png", "bg": "common_bg.png" },
       { "name": "银牌会员", "icon": "silver.png", "bg": "silver_bg.png" },
       { "name": "金牌会员", "icon": "gold.png", "bg": "gold_bg.png" },
-    ]
+    ],
+    select_vip_type: 2, //当前选中的会员
 
   },
 
   onLoad: function () {
     let that = this;
     order.myVip1Type().then((res)=>{
-      console.log(res.data)
       for (let i = 1; i < 5; i++) {
         for (let j = 0; j < res.data.length; j++) {
           if (that.data.vip1[i]["name"] == res.data[j].level) {
@@ -49,9 +49,7 @@ Page({
             break;
           }
         }
-        
       }
-
       that.setData({
         vip1: that.data.vip1,
       });
@@ -72,25 +70,62 @@ Page({
               break;
             }
           }
+          
+          if (vip_type < 2) {
+            that.data.select_vip_type = 2;
+          } else if (vip_type == 2) {
+            that.data.select_vip_type = 3;
+            that.data.discountprice = that.data.vip1[3].pay_in_advance - data.remainder;
+          } else if (vip_type == 3){
+            that.data.select_vip_type = 4;
+            that.data.discountprice = that.data.vip1[4].pay_in_advance - data.remainder;
+          }else {
+            that.data.select_vip_type = 4;
+          }
           this.setData({
             vip_type: vip_type,
-            balance: data.remainder
+            select_vip_type: that.data.select_vip_type,
+            balance: data.remainder,
+            discountprice: that.data.discountprice
           })
         }else {
           that.setData({
-            vip_type: 0
+            vip_type: 0,
+            discountprice: 20860,
+            balance : 0,
+            select_vip_type: 2,
           });
         }
       });
     } else {
-      
+
+      that.setData({
+        vip_type: 0,
+        discountprice: 20860,
+        balance: 0,
+        select_vip_type: 2,
+      });
     }
     
   },
+
   //监听vip选择
   chooseVip: function (e) {
-    console.log(e);
+    //需要支付价格
+    if (this.data.vip_type < 2) {
+      this.data.discountprice = this.data.vip1[parseInt(e.detail.value)].pay_in_advance;
+    } else if ((this.data.vip_type == 2 && parseInt(e.detail.value) > 2) || (this.data.vip_type == 3 && parseInt(e.detail.value) > 3)) {
+      this.data.discountprice = this.data.vip1[parseInt(e.detail.value)].pay_in_advance - this.data.balance;
+    } else {
+      this.data.discountprice = 0;
+    }
+
+    this.setData({
+      select_vip_type: parseInt(e.detail.value),
+      discountprice: this.data.discountprice,
+    });
   },
+
   //切换发票信息
   listenerRadioGroup: function (e) {
     let that = this;
@@ -101,69 +136,24 @@ Page({
     })
   },
 
-  bindCompany: function(e) {
+  //用户信息
+  bindMyInput: function(e) {
+    var name = e.currentTarget.dataset["name"];
     this.setData({
-      company: e.detail['value']
+      [name]: e.detail['value']
+    }); 
+  },
+  //发票信息
+  bindInvInput: function(e) {
+    this.data.invoice[e.currentTarget.dataset["name"]] = e.detail['value'];
+    this.setData({
+      invoice: this.data.invoice
     });
   },
-
-  bindContact: function(e) {
+  //充值金额
+  bindDiscountprice: function(e) {
     this.setData({
-      contact: e.detail['value']
-    });
-  },
-
-  bindContactTel: function(e) {
-    this.setData({
-      contactTel: e.detail['value']
-    });
-  },
-
-  invCompName: function(e) {
-    let invoice = this.data.invoice;
-    invoice['invCompName'] = e.detail['value'];
-    this.setData({
-      invoice: invoice
-    });
-  },
-
-  taxIdNum: function(e) {
-    let invoice = this.data.invoice;
-    invoice['taxIdNum'] = e.detail['value'];
-    this.setData({
-      invoice: invoice
-    });
-  },
-
-  compAddr: function(e) {
-    let invoice = this.data.invoice;
-    invoice['compAddr'] = e.detail['value'];
-    this.setData({
-      invoice: invoice
-    });
-  },
-
-  compTel: function(e) {
-    let invoice = this.data.invoice;
-    invoice['compTel'] = e.detail['value'];
-    this.setData({
-      invoice: invoice
-    });
-  },
-
-  compBank: function(e) {
-    let invoice = this.data.invoice;
-    invoice['compBank'] = e.detail['value'];
-    this.setData({
-      invoice: invoice
-    });
-  },
-
-  compBankAccount: function(e) {
-    let invoice = this.data.invoice;
-    invoice['compBankAccount'] = e.detail['value'];
-    this.setData({
-      invoice: invoice
+      discountprice: e.detail['value']
     });
   },
 
@@ -183,11 +173,11 @@ Page({
       util.wxlogin().then((res) => {
         app.globalData.token = res.token;
         app.globalData.openId = res.openId;
-        that.submitdata();
+        that.onShow();
+        that.submitdata(); //提交购买数据
       });
     } else if (e.detail.userInfo && userInfo) {
-      //
-      that.submitdata();
+      that.submitdata(); //提交购买数据
     } else {
       wx.showModal({
         title: "用户未授权",
@@ -196,11 +186,6 @@ Page({
       })
       return ;
     }
-    // wx.navigateTo({
-    //   url: '/pages/discountreceipt/discountreceipt',
-    // })
-    // return ;
-    
   },2000),
 
   submitdata: function() {
@@ -224,6 +209,11 @@ Page({
       return false;
     }
 
+    if (that.data.discountprice <= 0) {
+      that.showToast('请输入充值金额');
+      return false;
+    }
+
     if (that.data.invoice['invType'] == "普票") {
       if (that.data.invoice.invCompName.length < 1 || that.data.invoice.taxIdNum.length < 1) {
         that.showToast('请输入发票的公司名称||纳税识别号');
@@ -237,18 +227,18 @@ Page({
         return false;
       }
     }
-
+    
     data['company'] = that.data.company;
     data['contact'] = that.data.contact;
     data['contactTel'] = that.data.contactTel;
     data['invoice'] = that.data.invoice;
-    if (app.globalData.token) {
-      data['token'] = app.globalData.token;
-      data['openID'] = app.globalData.openId;
-    }
-
+    data['discountprice'] = that.data.discountprice;
+    data['token'] = app.globalData.token;
+    data['openID'] = app.globalData.openId;
+    data["VipType"] = that.data.vip1[that.data.select_vip_type].name;
+    
     wx.request({
-      url: api.buyCard,
+      url: api.buyVip1,
       data: data,
       method: "POST",
       success: function (res) {
@@ -257,12 +247,10 @@ Page({
             url: '/pages/discountreceipt/discountreceipt?discountprice=' + that.data.discountprice,
           })
         }
-
-      },
-      fail: function () {
-
       }
     })
+
+
   },
 
   toDiscountlog: util.throttle(function() {

@@ -21,9 +21,7 @@ Page({
       postCode: "310013",
     },
     method: "method",
-    usertype: "",
     companyName: '',
-    companyCard:{},
     adverShow: true,
     adverRedio: false,
     toMore: false,
@@ -33,7 +31,6 @@ Page({
     console.log(options);
     let that = this;
     that.data.method = options.method;
-    that.data.usertype = options.usertype;
     let receipt = wx.getStorageSync('receipt', {});
     // wx.removeStorageSync('receipt');
     if (receipt['meeting'].hotel) {
@@ -46,68 +43,7 @@ Page({
       invoice: receipt['invoice'],
       companyName: receipt['companyName'],
       meetdate: receipt['meetdate'],
-      companyCard: receipt['companyCard']
     });
-
-    if (receipt['companyCard']['status'] == 0 
-      || (receipt['companyCard']['status'] == 1 && receipt['companyCard']['remainder'] < receipt['companyCard']['using'])) {
-      let adverShow = wx.getStorageSync("adverShow");
-      if (adverShow) {
-        this.setData({
-          adverShow: adverShow
-        });
-      } else {
-        this.setData({
-          adverShow: false
-        });
-      }
-    }
-
-    if (that.data.usertype != 'typeuser' && that.data.adverShow) {
-      let content = {
-        newolduser: {
-          'cnt': "系统检测到您是度川老用户，注册公司账号可管理报名信息。",
-          'cbtn': '去注册',
-        }, olduser: {
-          'cnt': "系统检测到您是度川老用户，请绑定公司账号管理公司报名信息。",
-          'cbtn': "去绑定",
-        }, newuser: {
-          'cnt': "系统检测到您是度川新用户，请注册公司账号管理公司报名信息。",
-          'cbtn': "去注册",
-        }
-      };
-
-      wx.getSetting({
-        success: function (res) {
-          if (res.authSetting['scope.userInfo']) {
-            wx.showModal({
-              content: content[that.data.usertype]['cnt'],
-              confirmText: content[that.data.usertype]['cbtn'],
-              // confirmColor: "",
-              success: function (e) {
-                if (e.confirm) {
-                  if (that.data.usertype == 'olduser') {
-                    wx.navigateTo({
-                      url: '/pages/login/login?compName=' + that.data.companyName,
-                    })
-                  } else if (that.data.usertype == 'newolduser') {
-                    wx.navigateTo({
-                      url: '/pages/sign/sign?compName=' + that.data.companyName,
-                    })
-                  } else if (that.data.usertype == 'newuser') {
-                    wx.navigateTo({
-                      url: '/pages/sign/sign?compName=' + that.data.companyName,
-                    })
-                  }
-                }
-              }
-            })
-          }
-        }
-      });
-
-    }
-
   },
 
   onUnload: function () {

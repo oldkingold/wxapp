@@ -71,7 +71,7 @@ Page({
     this.data.id = parseInt(options.id);
     
     let meeting = meet.meetingDetail(this.data.id);
-    console.log(meeting);
+    
     that.setData({
       meeting: meeting,
       arriveDate: meeting.end_show,
@@ -408,11 +408,12 @@ Page({
       Vip1_tab: this.data.Vip1_tab
     })
   },
+
   //购买vip1
   to_buy_Vip1: function () {
-    // wx.switchTab({
-    //   url: '',
-    // })
+    wx.switchTab({
+      url: '/pages/discount/discount',
+    })
   },
 
   BindIsNotNeedRoom: function () {
@@ -841,8 +842,8 @@ function Vip1(bm_num, meeting, vip1_info, Vip1_tab) {
     } else {
       Vip1_tab.ye_btn = 3;  //不能点击
       if (!Vip1_tab.qt_btn) {
-        Vip1_tab.zz_btn = true;
-        Vip1_tab.qt_btn = false;
+        Vip1_tab.zz_btn = false;
+        Vip1_tab.qt_btn = true;
       }
       Vip1_tab.ye_tip = "剩余¥" + vip1_info["remainder"] + ",余额不足,";
       Vip1_tab.ye_cz_show = false;

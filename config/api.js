@@ -64,6 +64,7 @@ module.exports = {
   cancelOrder: ApiRootUrl +  "wxapp/cancelOrder",//取消套餐购买
   myVip1Info: ApiRootUrl + "wxapp/Vip1/userVip1Info", //获取用户会员信息
   myVip1Type: ApiRootUrl + "wxapp/Vip1/userVip1Type", //获取会员类型
+  buyVip1: ApiRootUrl + 'wxapp/Vip1/buyVip1', //购买套餐
   //discountreceipt.js
   mylatestpeixun: ApiRootUrl + "wxapp/mylatestpeixun",//获取最近一场会议的报名
   

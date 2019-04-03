@@ -86,42 +86,101 @@ function updateProgram() {
 function wxlogin() {
   return new Promise(function (resolve, reject) {
     let code = null;
-    login().then((res) => {
-      code = res.code;
-      return getUserInfo();
-    }).then((userInfo) => {
-      wx.setStorageSync('userInfo', userInfo.userInfo);
-      wx.request({
-        url: api.Wxlogin,
-        method: 'POST',
-        data: { 'code': code, 'encryptedData': userInfo.encryptedData, 'iv': userInfo.iv },
-        success: function (res) {
-          console.log(res)
-          // saveSession(res.header["Set-Cookie"]);
-          if (res.data) {
-            let bind_setting = { company: res.data.bind_company, name: res.data.bind_name, tel: res.data.bind_tel };
-            wx.setStorageSync('bind_setting', bind_setting);
-            if (res.data.companyName && res.data.companyBindTel) {
-              let money = res.data.companyAdd - res.data.companyReduce > 0 ? res.data.companyAdd - res.data.companyReduce : 0;
-              let company_setting = { name: res.data.companyName, tel: res.data.companyBindTel, money: money, admin: res.data.companyAdmin };
-              wx.setStorageSync('company_setting', company_setting);
-            } else {
-              wx.removeStorageSync('company_setting');
+    console.log("wx.login +++++++++++++++++++++++++++++++ wx.login");
+    console.log((new Date()).valueOf());
+    wx.login({
+      success: function (ress) {
+        console.log("wx.login +++++++++++++++++++++++++++++++ wx.login");
+        console.log((new Date()).valueOf());
+        if (ress.code) {
+          wx.getUserInfo({
+            withCredentials: true,
+            success: function (userInfo) {
+              console.log("wx.login2222 +++++++++++++++++++++++++++++++ wx.login2222");
+              console.log((new Date()).valueOf());
+              wx.setStorageSync('userInfo', userInfo.userInfo);
+              wx.request({
+                url: api.Wxlogin,
+                method: 'POST',
+                data: { 'code': ress.code, 'encryptedData': userInfo.encryptedData, 'iv': userInfo.iv },
+                success: function (res) {
+                  console.log("wx.login2222 +++++++++++++++++++++++++++++++ wx.login2222");
+                  console.log((new Date()).valueOf());
+                  console.log(res);
+                  // saveSession(res.header["Set-Cookie"]);
+                  wx.setStorageSync("token", res.data.token);
+                  wx.setStorageSync("openId", res.data.openId);
+                  if (res.data) {
+                    let bind_setting = { company: res.data.bind_company, name: res.data.bind_name, tel: res.data.bind_tel };
+                    wx.setStorageSync('bind_setting', bind_setting);
+                    if (res.data.companyName && res.data.companyBindTel) {
+                      let money = res.data.companyAdd - res.data.companyReduce > 0 ? res.data.companyAdd - res.data.companyReduce : 0;
+                      let company_setting = { name: res.data.companyName, tel: res.data.companyBindTel, money: money, admin: res.data.companyAdmin };
+                      wx.setStorageSync('company_setting', company_setting);
+                    } else {
+                      wx.removeStorageSync('company_setting');
+                    }
+                    wx.setStorageSync('selfCompanies', res.data.selfCompanies ? res.data.selfCompanies : []);
+                    wx.setStorageSync('selfPersons', res.data.selfPersons ? res.data.selfPersons : []);
+                    wx.setStorageSync('companyBindTel', res.data.companyBindTel);
+                    resolve(res.data);
+                  } else {
+                    reject(false);
+                  }
+                },
+                fail: function (err) {
+                  reject(err);
+                }
+              })
             }
-            wx.setStorageSync('selfCompanies', res.data.selfCompanies ? res.data.selfCompanies : []);
-            wx.setStorageSync('selfPersons', res.data.selfPersons ? res.data.selfPersons : []);
-            wx.setStorageSync('companyBindTel', res.data.companyBindTel);
-            resolve(res.data);
-          } else {
-            reject(false);
-          }
-        },
-        fail: function (err) {
-          reject(err);
+          })
         }
-      })
+      }
     });
+    // login().then((res) => {
+    //   code = res.code;
+    //   return getUserInfo();
+    // }).then((userInfo) => {
+    //   console.log("wx.login2222 +++++++++++++++++++++++++++++++ wx.login2222");
+    //   console.log(Date());
+    //   wx.setStorageSync('userInfo', userInfo.userInfo);
+    //   wx.request({
+    //     url: api.Wxlogin,
+    //     method: 'POST',
+    //     data: { 'code': code, 'encryptedData': userInfo.encryptedData, 'iv': userInfo.iv },
+    //     success: function (res) {
+    //       console.log("wx.login2222 +++++++++++++++++++++++++++++++ wx.login2222");
+    //       console.log(Date());
+    //       console.log(res);
+    //       // saveSession(res.header["Set-Cookie"]);
+    //       wx.setStorageSync("token", res.data.token);
+    //       wx.setStorageSync("openId", res.data.openId);
+    //       if (res.data) {
+    //         let bind_setting = { company: res.data.bind_company, name: res.data.bind_name, tel: res.data.bind_tel };
+    //         wx.setStorageSync('bind_setting', bind_setting);
+    //         if (res.data.companyName && res.data.companyBindTel) {
+    //           let money = res.data.companyAdd - res.data.companyReduce > 0 ? res.data.companyAdd - res.data.companyReduce : 0;
+    //           let company_setting = { name: res.data.companyName, tel: res.data.companyBindTel, money: money, admin: res.data.companyAdmin };
+    //           wx.setStorageSync('company_setting', company_setting);
+    //         } else {
+    //           wx.removeStorageSync('company_setting');
+    //         }
+    //         wx.setStorageSync('selfCompanies', res.data.selfCompanies ? res.data.selfCompanies : []);
+    //         wx.setStorageSync('selfPersons', res.data.selfPersons ? res.data.selfPersons : []);
+    //         wx.setStorageSync('companyBindTel', res.data.companyBindTel);
+    //         resolve(res.data);
+    //       } else {
+    //         reject(false);
+    //       }
+    //     },
+    //     fail: function (err) {
+    //       reject(err);
+    //     }
+    //   })
+    // });
   })
+
+  
 }
 
 /**
@@ -129,8 +188,13 @@ function wxlogin() {
  */
 function login() {
   return new Promise(function (resolve, reject) {
+    console.log("wx.login +++++++++++++++++++++++++++++++ wx.login");
+    console.log(Date());
     wx.login({
+      
       success: function (res) {
+        console.log("wx.login +++++++++++++++++++++++++++++++ wx.login");
+        console.log(Date());
         if (res.code) {
           //登录远程服务器
           resolve(res);

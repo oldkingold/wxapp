@@ -11,7 +11,11 @@
         报名信息可在报名记录里查看，再次感谢您的支持!
       </view>
     </view>
-
+    <view class='desc'>
+        <view>尊敬的用户：</view>
+        <view>请联系客服人员及时支付您的订单</view>
+        <view>同时我们提供了会员服务，可以更优惠</view>
+    </view>
     <view class='middle'>
       <view class='arrive-time-content'>
         <view class='middle-line'>
@@ -120,12 +124,9 @@
       </view>
     </view>
 
-    <view class='desc' wx:if="{{(companyCard['status'] == 1 && companyCard['remainder'] < companyCard['using']) || companyCard['status'] == 0}}">
+    <view class='desc'>
       <view class='desc-objetc'>
-        <view class='desc-title'wx:if="{{companyCard['status'] == 0}}">为了便于做好住宿、餐饮等各项接待工作，请将培训费（￥{{meeting.price}}/人）汇入到收款公司账户，账户信息如下：
-        </view>
-        <view class='desc-title' wx:if="{{companyCard['status'] == 1 && companyCard['remainder'] < companyCard['using']}}">您当前已支付{{companyCard['remainder'] > 0 ? companyCard['remainder'] : 0}}人的费用，还剩余{{companyCard['using'] - companyCard['remainder']}}人费用待支付，您可以直接转账￥{{meeting.price}}/人至我司对公账户，也可以会员去购买套餐支付，套餐支付更优惠。
-          <view class='more' catchtap='more' style='margin-top:8rpx;'>查看详情<image mode='aspectFit' src='/static/images/go.png'></image></view>
+        <view class='desc-title'>为了便于做好住宿、餐饮等各项接待工作，请将培训费（￥{{meeting.price}}/人）汇入到收款公司账户，账户信息如下：
         </view>
         <view class='desc-content' >
           <image class='trangle' src='/static/images/icon_trangle.png'></image>
@@ -155,7 +156,7 @@
           </view>
         </view>
 
-        <view class='zhushi' wx:if="{{companyCard['status'] == 0}}">
+        <view class='zhushi'>
           <view class='zhu'>注：</view>
           <view class='shi'>购买参会套餐最低不足5折</view>
           <view class='more' catchtap='more'>查看详情<image mode='aspectFit' src='/static/images/go.png'></image></view>

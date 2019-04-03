@@ -11,17 +11,11 @@ App({
       }
     });
 
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.userInfo']) {
-          //账号登录
-          util.wxlogin().then((res) => {
-            that.globalData.token = res.token;
-            that.globalData.openId = res.openId;
-          });
-        }
-      }
-    })
+    //账号登录
+    util.wxlogin().then((res) => {
+      that.globalData.token = res.token;
+      that.globalData.openId = res.openId;
+    });
 
     // util.loadFontFace();
   },
