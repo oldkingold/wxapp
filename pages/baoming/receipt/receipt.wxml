@@ -11,11 +11,29 @@
         报名信息可在报名记录里查看，再次感谢您的支持!
       </view>
     </view>
-    <view class='desc'>
+    <view class='desc' wx:if="{{pay_mode == 'qt'}}">
+      <view class='desc-objetc'>
         <view>尊敬的用户：</view>
-        <view>请联系客服人员及时支付您的订单</view>
-        <view>同时我们提供了会员服务，可以更优惠</view>
+        <view class='desc-title'>
+          　　请联系客服人员{{meeting.customer_service.name}}<text class='phone' bindtap='phoneCall' data-tel="{{meeting.customer_service.tel}}">{{meeting.customer_service.tel}}</text>及时支付您的订单。
+        </view>
+        <view class='desc-title'>
+          同时我们提供了会员服务，可以更优惠。
+          <view class='more1' catchtap='more'>查看详情<image mode='aspectFit' src='/static/images/go.png'></image></view>
+        </view>
+      </view>
     </view>
+
+    <view class='desc' wx:if="{{pay_mode == 'ye'}}">
+      <view class='desc-objetc'>
+        <view>尊敬的用户：</view>
+        <view style='margin-bottom: 12rpx;'>
+          您当前已支付{{pay["used"]}},账户余额为{{pay["remainder"]}}。购买会员服务报名更划算！ 
+          <view class='more1' catchtap='more'>查看更多会员服务<image mode='aspectFit' src='/static/images/go.png'></image></view>
+        </view>
+      </view>
+    </view>
+
     <view class='middle'>
       <view class='arrive-time-content'>
         <view class='middle-line'>
@@ -124,7 +142,7 @@
       </view>
     </view>
 
-    <view class='desc'>
+    <view class='desc' wx:if="{{pay_mode == 'zz'}}">
       <view class='desc-objetc'>
         <view class='desc-title'>为了便于做好住宿、餐饮等各项接待工作，请将培训费（￥{{meeting.price}}/人）汇入到收款公司账户，账户信息如下：
         </view>
@@ -185,12 +203,12 @@
     <contact id="contact" employeeTeacherList="{{meeting.employees}}"  bind:phoneCall="phoneCall"></contact>
   </view>
 
-  <view class='advertisement' hidden='{{adverShow}}' bindtap='more'>
-    <image mode='scaleToFill' src="{{rooturl}}images/advertisement.png"></image>
-    <!-- <view class='adver_buy' >去购买</view> -->
+  <view class='advertisement' hidden='{{adverShow}}' >
+    <image mode='widthFix' src="https://duchuanoss.oss-cn-hangzhou.aliyuncs.com/wxapp/advertisement.png"></image>
+    <view class='adver_buy' bindtap='more'></view>
     <view class='adver_cancel' catchtap='cancel'><image src='../../../static/images/cancel1.png'></image></view>
     <view class='adver_tip' catchtap='tipconfirm'>
-      <image mode='scaleToFill' wx:if="{{!adverRedio}}" src='../../../static/images/advcheckout.png'></image>
+      <view class='advcheckout' wx:if="{{!adverRedio}}" ></view>
       <image mode='scaleToFill' wx:else src='../../../static/images/advcheck.png'></image>
       <text>不再提示</text>
     </view>

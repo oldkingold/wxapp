@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/baoming/receipt/receipt",
+    
     "pages/home/home",
     "pages/baoming/bm/bm",
     "pages/baoming/bmAddPerson/bmAddPerson",
-    
+    "pages/baoming/receipt/receipt",
     "pages/index/index",
     "pages/wode/wode",
     "pages/login/login",

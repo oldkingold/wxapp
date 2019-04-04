@@ -22,9 +22,11 @@ Page({
     },
     method: "method",
     companyName: '',
-    adverShow: true,
+    adverShow: false,
     adverRedio: false,
     toMore: false,
+    pay_mode: "",
+    pay: {}
   },
 
   onLoad: function (options) {
@@ -36,13 +38,20 @@ Page({
     if (receipt['meeting'].hotel) {
       receipt['meeting'].hotel.jwd = receipt['meeting'].hotel.jwd.split(",");
     }
-    
+
+    if (options.pay_mode == "ye" || wx.getStorageSync("adverShow")) {
+      that.data.adverShow = true
+    }
+
     console.log(receipt);
     that.setData({
       meeting: receipt['meeting'],
       invoice: receipt['invoice'],
       companyName: receipt['companyName'],
       meetdate: receipt['meetdate'],
+      pay: receipt['pay'],
+      pay_mode: options.pay_mode,
+      adverShow: that.data.adverShow,
     });
   },
 
@@ -105,6 +114,13 @@ Page({
         adverRedio: false,
       });
     }
+  },
+
+  phoneCall: function (e) {
+    let tel = e.currentTarget.dataset.tel;
+    wx.makePhoneCall({
+      phoneNumber: tel
+    })
   }
 
 })  

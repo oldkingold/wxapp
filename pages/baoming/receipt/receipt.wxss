@@ -213,8 +213,7 @@ image {
   align-items: center;
 }
 
-.staff-teacher-phone {
-  margin-left:35rpx; 
+.phone {
   color: #479df7;
 }
 
@@ -326,16 +325,31 @@ image {
   margin-left: 8rpx;
 }
 
+.more1{
+  float: right;
+  font-size: 28rpx;
+  color: #479df7;
+  line-height: 40rpx;
+  display: flex;
+  align-items: center;
+}
+
+.more1 image{
+  height: 28rpx;
+  width: 28rpx;
+  margin-left: 8rpx;
+}
+
 .advertisement {
   position: fixed;
-  height: 728rpx;
+  /* height: 728rpx; */
   width: 589rpx;
   top:150rpx;
   left: 80.5rpx;
 }
 
 .advertisement image {
-  height: 728rpx;
+  /* height: 728rpx; */
   width: 589rpx;
 }
 
@@ -357,8 +371,8 @@ image {
   position: absolute;
   width: 56rpx;
   height: 56rpx;
-  top: 16rpx;
-  right: 16rpx;
+  top: 20rpx;
+  right: 20rpx;
 }
 
 .adver_cancel image {
@@ -366,13 +380,23 @@ image {
   height: 56rpx;
 }
 
+.adver_buy {
+  position: absolute;
+  width: 400rpx;
+  height: 100rpx;
+  left: 100rpx;
+  bottom: 115rpx;
+  /* background-color: #479df7; */
+}
+
 .adver_tip {
   position: absolute;
   width: 188rpx;
   left: 200rpx;
-  bottom: 20rpx;
+  bottom: 15rpx;
   display: flex;
   justify-content: center;
+  padding: 24rpx 0;
 }
 
 .adver_tip text {
@@ -380,10 +404,19 @@ image {
   font-size: 25rpx;
   line-height: 30rpx;
   height: 30rpx;
-  margin-left: 15rpx;
+  margin-left: 10rpx;
 }
 
 .adver_tip image {
   width: 30rpx;
   height: 30rpx;
+  margin-left: 10rpx;
+}
+
+.advcheckout {
+  width: 27rpx;
+  height: 27rpx;
+  margin-left: 10rpx;
+  border: 1rpx solid white;
+  border-radius: 15rpx;
 }

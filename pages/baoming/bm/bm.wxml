@@ -222,7 +222,7 @@
       </view>
     </view>
 
-    <view class='tab'>
+    <view class='tab'  wx:if="{{Vip1_tab.level_id > 4}}">
       <view class='tab_title'>
         <image wx:if='{{Vip1_tab.img != ""}}' class='huiyuan' src='../../../static/images/Vip1/{{Vip1_tab.img}}.png'></image>
         <view>{{Vip1_tab.level_name}}</view>

@@ -771,7 +771,7 @@ Page({
         bmtype: that.data.method,
         com: that.data.com,
         bm_num: that.data.bm_num,
-        pay_mode: pay_mode(this.data.Vip1_tab)
+        pay_mode: pay_mode(that.data.Vip1_tab)
       },
       method: 'POST',
       success: function (res) {
@@ -783,11 +783,12 @@ Page({
             meeting: that.data.meeting,
             invoice: that.data.invoice,
             companyName: that.data.compName,
-            meetdate: { start_date: that.data.arriveDate, end_date: that.data.leaveDate }
+            meetdate: { start_date: that.data.arriveDate, end_date: that.data.leaveDate },
+            pay: res.data.pay
           }
           wx.setStorageSync('receipt', receipt);
           wx.navigateTo({
-            url: '/pages/baoming/receipt/receipt?method=' + that.data.method + "&usertype=" + res.data.usertype,
+            url: '/pages/baoming/receipt/receipt?method=' + that.data.method + "&pay_mode=" + pay_mode(that.data.Vip1_tab),
           })
         } else if (res.data.code == 400){
           wx.showToast({
