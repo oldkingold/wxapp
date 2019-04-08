@@ -73,6 +73,7 @@ Page({
           
           if (vip_type < 2) {
             that.data.select_vip_type = 2;
+            that.data.discountprice = that.data.vip1[2].pay_in_advance;
           } else if (vip_type == 2) {
             that.data.select_vip_type = 3;
             that.data.discountprice = that.data.vip1[3].pay_in_advance - data.remainder;

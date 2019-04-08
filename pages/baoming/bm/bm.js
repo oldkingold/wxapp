@@ -377,7 +377,9 @@ Page({
   pay_mode: function (e) {
     console.log(e.currentTarget.dataset.mode)
     var mode = e.currentTarget.dataset.mode;
-
+    if (this.data.Vip1_tab.level_id < 5) {
+      return;
+    }
     if (mode == "ye") {
       if (this.data.Vip1_tab.ye_btn == 2) {
         this.data.Vip1_tab.ye_btn = 1;
@@ -868,11 +870,9 @@ function pay_mode(vip_tab) {
     return "ye";
   }
 
-  if (vip_tab.zz_btn == true) {
-    return "zz";
-  }
-
   if (vip_tab.qt_btn == true) {
     return "qt";
   }
+
+  return "zz";
 }
