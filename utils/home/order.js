@@ -30,21 +30,6 @@ function CardInfo(data) {
 
 function myCardOrder(data) {
   return util.request(api.CardOrder, "post", data);
-  // return new Promise(function (resolve, reject) {
-  //   wx.request({
-  //     url: api.CardOrder,
-  //     method: "POST",
-  //     data: {
-  //       token: app.globalData.token,
-  //     },
-  //     success:function(res) {
-  //       resolve(res.data)
-  //     },
-  //     fail: function (res) {
-  //       reject(res);
-  //     }
-  //   })
-  // });
 }
 
 function myUsedRecord() {
@@ -96,6 +81,10 @@ function myVip1Type() {
   return util.request(api.myVip1Type,"get",null);
 }
 
+function myVip1Order(data) {
+  return util.request(api.Vip1Order, "post", data);
+}
+
 module.exports = {
   //套餐方法,暂时弃用
   myCardOrder: myCardOrder,
@@ -105,4 +94,5 @@ module.exports = {
   //Vip1方法
   myVip1Info: myVip1Info,
   myVip1Type: myVip1Type,
+  myVip1Order: myVip1Order,
 }

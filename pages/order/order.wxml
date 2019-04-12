@@ -1,80 +1,144 @@
 <orderhk id='orderhk' show='{{orderhkShow}}' money='{{orderhkMoney}}' orderId='{{orderhkId}}' bindconfirmPayment='confirmPayment'></orderhk>
-<view class='menu'>
-  <view wx:for='{{menu}}' wx:key="{{index}}" id="menu{{item['menu_id']}}" data-id="{{item['menu_id']}}" class='nav_title' catchtap='nav_select'>
-    <block wx:if='{{"menu"+item["menu_id"] == nav_selectId}}'>
-      <view class='nav_hover nav_select'>
-        {{item.title}}
-      </view>
-      <view class='nav_active'>
 
-      </view>
-    </block>
-    <block wx:else>
-      <view class='nav_hover'>
-        {{item.title}}
-      </view>
-    </block>
+<view class='menu top0'>
+  <view class='nav_title'>
+    <view catchtap='nav' data-id='0' class="nav_hover {{ nav == 0 ? 'nav_select' : ''}}"> 充值订单 </view>
+    <view wx:if="{{nav == 0}}" class="nav_active"></view>
+  </view>
+  <view class='nav_title'>
+    <view catchtap='nav' data-id='1' class="nav_hover {{ nav == 1 ? 'nav_select' : ''}}"> 报名订单 </view>
+    <view wx:if="{{nav == 1}}" class="nav_active"></view>
   </view>
 </view>
 
-<view style='height:40px;margin-bottom: 33rpx;'></view>
-<view class='contact'>
-  <block wx:if="{{orders.length > 0}}">
-    <view class='card1' wx:for="{{orders}}" wx:key="{{index}}" bindtap='toOrderdetail' data-id='{{index}}'>
-      <view class='top'>
-        <view class='dd'>订单号：{{item['order_id']}}</view>
-        <image wx:if="{{item['status'] == 2}}" class='status' src='../../static/images/dd-success.png'></image>
-        <view wx:if="{{item['checkStatus'] == 1 && item['status'] == 3}}" class='hk'>汇款确认中</view>
-        <view wx:if="{{item['checkStatus'] == 0 && item['status'] == 3}}" class='hk'>
-          <view class='clock'>
-            <image src='../../static/images/clock3.png'></image>{{item['remainDate']}}
-          </view>待汇款
+<block wx:if="{{nav == 0}}">
+  <view class='top38'>
+    <view class='menu'>
+      <view class='nav_price'>余额：<text class='red'>￥36000</text></view>
+      <view class='nav_price'>总额：￥54000</view>
+      <view class='nav_price'>已使用：￥18000</view>
+    </view>
+    <view class='bg_ebf0f5' style='height:60rpx'></view>
+  </view>
+
+  <view class='top98'>
+    <view class='menu'>
+      <view wx:for='{{menu}}' wx:key="{{index}}" data-id="{{index}}" class='nav_title' catchtap='nav_select'>
+        <view class='nav_hover {{index == nav_selectId ? "nav_select" : "" }}'>
+          {{item}}
         </view>
-        <image wx:if="{{item['status'] == 1}}" class='status' src='../../static/images/dd-fail.png'></image>
-        <view wx:if="{{item['status'] == 0 || item['status'] == -1}}" class='hk'>已取消</view>
-      </view>
-      <view class='center'>
-        <view class='center_item'>
-          <view class='title'>已购产品:</view>
-          <view>
-            <view wx:if="{{item['cardInfo'][5] != 0}}" class='content'>5人套餐 <view style='float:right;'>x{{item['cardInfo'][5]}}</view></view>
-            <view wx:if="{{item['cardInfo'][5] == 0}}" class='content'>10人套餐 <view style='float:right;'>x{{item['cardInfo'][10]}}</view></view>
-            <view wx:if="{{item['cardInfo'][5] != 0 && item['cardInfo'][10] != 0}}" class='content' style='margin-top: 18rpx'>10人套餐<view style='float:right;'>x{{item['cardInfo'][10]}}</view></view>
-          </view>
-        </view>
-        <view class='center_item'>
-          <view class='title'>赠送人次:</view>
-          <view class='content'>{{item['pgift']}}人</view>
-        </view>
-        <view class='center_item' >
-          <view class='title'>提交时间:</view>
-          <view class='content'>{{item['created_at']}}</view>
-        </view>
-        <view class='center_item' wx:if="{{item['status'] == 2}}">
-          <view class='title'>支付时间:</view>
-          <view class='content'>{{item['payTime']}}</view>
-        </view>
-        <view class='center_item' wx:if="{{item['status'] == 1}}">
-          <view class='title'>备　　注:</view>
-          <view class='content'>{{item['remark']}}</view>
-        </view>
-      </view>
-      <view class='bottom'>
-        <view class='flex'>
-          <view class='title'>总金额:</view>
-          <view class='content'>¥{{item['discountprice']}}</view>
-        </view>
-        <view class='flex' wx:if="{{item['checkStatus'] == 0 && item['status'] == 3}}">
-          <view class='btn-qx' data-id='{{item["id"]}}' catchtap='cancel'>取消</view>
-          <view class='btn-hk' data-id='{{item["id"]}}' data-money='{{item["discountprice"]}}' catchtap='remit'>去汇款</view>
-        </view>
-        <!-- <view class='btn-dd' wx:if="{{item['status'] == 0 || item['status'] == -1}}" catchtap='reremit'>重新下单</view> -->
+        <view wx:if='{{index == nav_selectId}}' class='nav_active'></view>   
       </view>
     </view>
-    <view hidden='{{loadingMoreHidden}}' class="no-more-goods">没有更多啦</view>
-  </block>  
-  <view class='nolog' wx:else>
-    <image src='/static/images/nolog@3x.png'></image>
-    <view class='nolog-text'>暂无记录</view>
   </view>
-</view>
+  <view class='bg_h156' > </view>
+  <view class='contact'>
+    <block wx:if="{{orders.length > 0}}">
+      <view class='card1' wx:for="{{orders}}" wx:key="{{index}}" bindtap='toOrderdetail' data-id='{{index}}'>
+        <view class='top'>
+          <view >
+            <view class='dd'>订单号：{{item['order_id']}}</view>
+            <view class='ddd'>
+              <text>会员服务：</text>
+              <image class='member_icon' mode='aspectFit' src='../../static/images/Vip1/{{item["order_type_img"]}}.png'></image>
+              <text>{{item['order_type']}}</text>
+            </view>
+          </view>
+          <image wx:if="{{item['pay_status'] == 2}}" class='status' src='../../static/images/success.png'></image>
+          <view wx:if="{{item['pay_status'] == 1}}" class='hk'>汇款确认中</view>
+          <view wx:if="{{item['pay_status'] == 0}}" class='hk'>
+            <view class='clock'>
+              <image src='../../static/images/clock3.png'></image>{{item['remainDate']}}
+            </view>待支付
+          </view>
+          <image wx:if="{{item['pay_status'] == 4}}" class='status' src='../../static/images/refund.png'></image>
+          <view wx:if="{{item['pay_status'] == 5}}" class='hk'>已取消</view>
+        </view>
+        <view class='bottom'>
+          <view class='flex'>订单金额：
+            <text class='content'>¥{{item['price']}}</text>
+          </view>
+          <view class='flex'>提交时间：
+            <text class='content'>{{item['created_at']}}</text>
+          </view >
+
+          <view wx:if="{{item['pay_status'] == 1 || item['pay_status'] == 2 || item['pay_status'] == 4}}" class='flex'>支付时间：
+            <text class='content'>{{item['pay_date']}}</text>
+          </view >
+          <view wx:if="{{item['pay_status'] == 2 || item['pay_status'] == 4}}" class='flex'>确认时间：
+            <text class='content'>{{item['updated_at']}}</text>
+          </view >
+          <view wx:if="{{item['pay_status'] == 4}}" class='flex'>退款时间：
+            <text class='content'></text>
+          </view>
+          <view wx:if="{{item['pay_status'] == 5}}" class='flex'>取消时间：
+            <text class='content'>{{item['updated_at']}}</text>
+          </view>
+
+          <view>
+            <view wx:if="{{item['pay_status'] == 0}}" class='btn-hk' data-id='{{item["id"]}}' data-money='{{item["price"]}}' catchtap='remit'>确认汇款</view>
+          </view>
+          <!-- <view class='btn-dd' wx:if="{{item['status'] == 0 || item['status'] == -1}}" catchtap='reremit'>重新下单</view> -->
+        </view>
+      </view>
+      <view hidden='{{loadingMoreHidden}}' class="no-more-goods">没有更多啦</view>
+    </block>  
+
+    <view class='nolog' wx:else>
+      <image src='/static/images/nolog@3x.png'></image>
+      <view class='nolog-text'>暂无记录</view>
+    </view>
+  </view>
+
+</block>
+<block wx:if="{{nav == 1}}">
+  <view class='top38'>
+    <view class='menu'>
+      <view wx:for='{{menu}}' wx:key="{{index}}" data-id="{{index}}" class='nav_title' catchtap='nav_select'>
+        <view class='nav_hover {{index == nav_selectId ? "nav_select" : "" }}'>
+          {{item.title}}
+        </view>
+        <view wx:if='{{index == nav_selectId}}' class='nav_active'></view>   
+      </view>
+    </view>
+  </view>
+  <view class='bg_h96 bg_ebf0f5' > </view>
+  <view class='contact bg_ebf0f5' style='min-height:{{screenHeight - 20}}px'>
+    <block wx:if="{{orders.length > 0}}">
+      <view class='card1' wx:for="{{orders}}" wx:key="{{index}}" bindtap='toOrderdetail' data-id='{{index}}'>
+        <view class='top'>
+          <view >
+            <view class='dd'>订单号：{{item['order_id']}}</view>
+            <view class='ddd'>2018.10.10 05:15:30</view>
+          </view>
+          <image wx:if="{{item['status'] == 2}}" class='status' src='../../static/images/dd-success.png'></image>
+          <view wx:if="{{item['checkStatus'] == 1 && item['status'] == 3}}" class='hk'>汇款确认中</view>
+          <view wx:if="{{item['checkStatus'] == 0 && item['status'] == 3}}" class='hk'>
+            <view class='clock'>
+              <image src='../../static/images/clock3.png'></image>{{item['remainDate']}}
+            </view>待汇款
+          </view>
+          <image wx:if="{{item['status'] == 1}}" class='status' src='../../static/images/dd-fail.png'></image>
+          <view wx:if="{{item['status'] == 0 || item['status'] == -1}}" class='hk'>已取消</view>
+        </view>
+        <view class='bottom'>
+          <view class='flex'>参加会议：
+            <text class='content'>¥{{item['discountprice']}}</text>
+          </view>
+          <view class='flex'>会议时间：
+            <text class='content'></text>
+          </view >
+          <view class='flex'>订单金额：
+            <text class='content'></text>
+          </view >
+        </view>
+      </view>
+      <view hidden='{{loadingMoreHidden}}' class="no-more-goods">没有更多啦</view>
+    </block>  
+
+    <view class='nolog' wx:else>
+      <image src='/static/images/nolog@3x.png'></image>
+      <view class='nolog-text'>暂无记录</view>
+    </view>
+  </view>
+</block>

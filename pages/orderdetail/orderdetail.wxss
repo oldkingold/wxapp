@@ -1,18 +1,73 @@
-@import "/pages/bmlogdetail/bmlogdetail.wxss";
+@import "/pages/order/order.wxss";
 
-.hkImg {
-  padding: 10rpx 0;
-  width: 150rpx;
-  height: 150rpx;
+page {
+  background-color: #ebf0f4;
 }
 
-.hkImg image{
-  width: 150rpx;
-  height: 150rpx;
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40rpx;
 }
 
-.outsignin {
-  font-size:22rpx;
-  color:red;
-  height: 24rpx;
+.top .date {
+  font-size: 26rpx;
+  color: #c0c0c0;
+  line-height: 40rpx;
+}
+
+.red {
+  color: red;
+  font-size: 28rpx;
+}
+
+.blue {
+  color: #72a9f7;
+}
+
+.tip {
+  width: 86%;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.tips {
+  font-size: 20rpx;
+  line-height: 60rpx;
+}
+
+.top .statuss {
+  position:absolute;
+  width:150rpx;
+  height:150rpx;
+  right:30rpx;
+  top:26rpx;
+}
+
+.detail_btn {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  width: 40%;
+  background-color: #f2f2f2;
+  border: 1rpx solid #e0e1e2;
+  color: #838383;
+  text-align: center;
+  border-radius: 40rpx;
+}
+
+.origen_btn {
+  color: white;
+  background-color: #f4a500;
+}
+
+.detail_bottom {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50rpx;
+  margin-left: 5%;
+  margin-right: 5%;
 }

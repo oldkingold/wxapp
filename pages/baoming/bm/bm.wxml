@@ -152,7 +152,7 @@
       </view>
     </view> -->
 
-    <view class='invoice'>
+    <view class='invoice' >
 
       <view class='invoice-content'>
         <view class='invoice-object'>
@@ -160,19 +160,19 @@
         </view>
 
         <view class='invoice-item '>
-          <radio-group name="radio-group" bindchange="listenerRadioGroup">
+          <radio-group name="radio-group" bindchange="listenerRadioGroup" >
             <view class='radio-group'>
               <label class='label-4'>
-                <radio value="暂不填写" checked="{{invoice.invType=='暂不填写'?'checked':''}}" name="invoice" />暂不填写
+                <radio value="暂不填写" checked="{{invoice.invType=='暂不填写'?'checked':''}}" disabled='{{Vip1_tab.ye_btn == 1 ? "disabled" : ""}}' name="invoice" />暂不填写
               </label>
               <label class='label-4'>
-                <radio value="普票" checked="{{invoice.invType=='普票'?'checked':''}}" name="invoice" />普票
+                <radio value="普票" checked="{{invoice.invType=='普票'?'checked':''}}" disabled='{{Vip1_tab.ye_btn == 1 ? "disabled" : ""}}' name="invoice" />普票
               </label>
               <label class='label-4'>
-                <radio value="专票" checked="{{invoice.invType=='专票'?'checked':''}}" name="invoice" />专票
+                <radio value="专票" checked="{{invoice.invType=='专票'?'checked':''}}" disabled='{{Vip1_tab.ye_btn == 1 ? "disabled" : ""}}' name="invoice" />专票
               </label>
               <label class='label-4'>
-                <radio value="不开票" checked="{{invoice.invType=='不开票'?'checked':''}}" name="invoice" />不开票
+                <radio value="不开票" checked="{{invoice.invType=='不开票'?'checked':''}}" disabled='{{Vip1_tab.ye_btn == 1 ? "disabled" : ""}}' name="invoice" />不开票
               </label>
             </view>
           </radio-group>
@@ -243,7 +243,7 @@
         <view>
           <view class='tab_line_vip' >
             <view bindtap='pay_mode' data-mode='ye' class='{{Vip1_tab.ye_btn == 3 ? "unuse_button":""}}{{Vip1_tab.ye_btn == 1 ? "highlight_button":""}}{{Vip1_tab.ye_btn == 2 ? "button":""}}'>余额</view>
-            <view class='vip_tip'>{{Vip1_tab.ye_tip}}</view>
+            <view class='vip_tip' >{{ Vip1_tab.level_id > 4 ? Vip1_tab.ye_tip : ""}}</view>
             <view bindtap='to_buy_Vip1' class='vip_cz' hidden='{{Vip1_tab.ye_cz_show}}'>去充值</view>
           </view>
           <view class='tab_line_vip'>

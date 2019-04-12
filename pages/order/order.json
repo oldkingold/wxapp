@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "我的订单",
+  "navigationBarTitleText": "会员服务",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "orderhk": "/model/orderhk/orderhk"

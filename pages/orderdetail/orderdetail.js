@@ -14,14 +14,6 @@ Page({
       order: order
     });
   },
- 
-  onShow: function () {
-  
-  },
-
-  onHide: function () {
-  
-  },
 
   showImage: function(e) {
     wx.showLoading({
@@ -32,6 +24,6 @@ Page({
       current: url, 
       urls: [url] 
     })
-  }
+  },
 
 })

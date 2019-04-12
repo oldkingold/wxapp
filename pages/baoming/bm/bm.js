@@ -54,8 +54,8 @@ Page({
       level_name: "",
       level_id: "",
       level_price: 0,
-      ye_btn: 2,
-      zz_btn: false,
+      ye_btn: 3,
+      zz_btn: true,
       qt_btn: false,
       ye_tip: "",
       ye_cz_show: ""
@@ -164,6 +164,17 @@ Page({
         this.setData({
           Vip1_tab: Vip1(this.data.bm_num, this.data.meeting, data, this.data.Vip1_tab),
           Vip1_info: data
+        })
+        if (this.data.Vip1_tab.ye_btn == 1) {
+          this.data.invoice.invType = "不开票";
+          this.setData({
+            invoice: this.data.invoice
+          })
+        }
+      }else {
+        that.data.Vip1_tab.level_price = that.data.meeting.price;
+        this.setData({
+          Vip1_tab: that.data.Vip1_tab
         })
       }
     });
@@ -362,6 +373,12 @@ Page({
       Vip1_tab: Vip1(bm_num, this.data.meeting, this.data.Vip1_info, this.data.Vip1_tab),
       bm_num: bm_num
     })
+    if (this.data.Vip1_tab.ye_btn == 1) {
+      this.data.invoice.invType = "不开票";
+      this.setData({
+        invoice: this.data.invoice
+      })
+    }
   },
   //报名人数 加
   bm_num_add: function () {
@@ -372,6 +389,12 @@ Page({
       Vip1_tab: Vip1(bm_num, this.data.meeting, this.data.Vip1_info, this.data.Vip1_tab),
       bm_num: bm_num
     })
+    if (this.data.Vip1_tab.ye_btn == 1) {
+      this.data.invoice.invType = "不开票";
+      this.setData({
+        invoice: this.data.invoice
+      })
+    }
   },
   //vip1付款方式
   pay_mode: function (e) {
@@ -385,6 +408,7 @@ Page({
         this.data.Vip1_tab.ye_btn = 1;
         this.data.Vip1_tab.zz_btn = false;
         this.data.Vip1_tab.qt_btn = false;
+        this.data.invoice.invType = "不开票";
       }
 
     } else if (mode == "zz") {
@@ -406,8 +430,10 @@ Page({
       }
     }
 
+    
     this.setData({
-      Vip1_tab: this.data.Vip1_tab
+      Vip1_tab: this.data.Vip1_tab,
+      invoice: this.data.invoice
     })
   },
 
@@ -462,11 +488,14 @@ Page({
   //切换发票信息
   listenerRadioGroup: function (e) {
     let that = this;
-    let invoice = that.data.invoice;
-    invoice.invType = e.detail.value;
-    that.setData({
-      invoice: invoice
-    })
+    if (this.data.Vip1_tab.ye_btn != 1) {
+      let invoice = that.data.invoice;
+      invoice.invType = e.detail.value;
+      that.setData({
+        invoice: invoice
+      })
+    }
+    
   },
 
   //意见与建议
@@ -677,6 +706,12 @@ Page({
         Vip1_tab: Vip1(this.data.bm_num, this.data.meeting, data, this.data.Vip1_tab),
         Vip1_info: data
       })
+      if (this.data.Vip1_tab.ye_btn == 1) {
+        this.data.invoice.invType = "不开票";
+        this.setData({
+          invoice: this.data.invoice
+        })
+      }
     });
     wx.showToast({
       title: '重置成功',
@@ -687,10 +722,6 @@ Page({
   }, 2000),
 
   bmSubbmit: util.throttle(function (e) {
-    wx.showLoading({
-      mask: true
-    });
-    
     // 提交报名表
     let that = this;
 
@@ -753,6 +784,9 @@ Page({
         return false;
       }
     }
+    wx.showLoading({
+      mask: true
+    });
     // app.globalData.token
     wx.request({
       url: api.ApiRootUrl + 'wxapp/wxbm',
@@ -817,7 +851,7 @@ Page({
 
 })
 
-//vip模块控制
+//vip模块控制 
 function Vip1(bm_num, meeting, vip1_info, Vip1_tab) {
   var icons = {
     6: "common",
@@ -842,6 +876,7 @@ function Vip1(bm_num, meeting, vip1_info, Vip1_tab) {
       Vip1_tab.qt_btn = false;
       Vip1_tab.ye_tip = "剩余¥" + vip1_info["remainder"];
       Vip1_tab.ye_cz_show = true;
+      
     } else {
       Vip1_tab.ye_btn = 3;  //不能点击
       if (!Vip1_tab.qt_btn) {

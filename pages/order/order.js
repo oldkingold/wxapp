@@ -6,14 +6,9 @@ Page({
 
   data: {
     screenHeight: app.globalData.systemInfo['height'],
-    nav_selectId: 'menu4',
-    nav_list_selectId: 'menu4',
-    swipercurrentitemid: 4,
-    menu: [{ menu_id: 4, title: "全部",},
-      { menu_id: 3, title: "待支付"},
-      { menu_id: 2, title: "已完成"},
-      { menu_id: 1, title: "已失败"},
-      { menu_id: 0, title: "已取消"},],
+    nav: 0, // 0充值订单   1报名订单
+    nav_selectId: 0,
+    menu: ["全部","待支付","已完成","已取消","已退款"],
     orders:[],
     current_ordernum: [0,0,0,0,0],
     loadingMoreHidden: true,
@@ -22,45 +17,30 @@ Page({
     orderhkId: 0,
   },
 
-  onLoad: function (options) {
+  onLoad: function () {
     let that = this;
-    order.myCardOrder({
-      token: app.globalData.token,
-      pages: 0,
-      type: that.data.swipercurrentitemid,
-    }).then(function(res){
-      if(res.data) {
-        res = res.data;
-        for (let i in res) {
-          res[i]['remainDate'] = util.formatTimeToSevenDay(res[i]['created_at']);
-          res[i]['cardInfo'] = JSON.parse(res[i]['cardInfo']);
-          that.data.orders.push(res[i]);
-        }
-
-        that.setData({
-          orders: that.data.orders,
-        });
-      }
-      
-    });
-
+    that.onPullDownRefresh();
   },
 
+  //切换充值订单 和 报名订单
+  nav: function (e) {
+    var nav = e.currentTarget.dataset['id'];
+    console.log(nav);
+    console.log(!nav);
+    this.setData({
+      nav: nav
+    })
+  },
+
+  //
   nav_select: function (e) {
     var cnum = e.currentTarget.dataset['id']
     this.setData({
-      nav_selectId: e.currentTarget.id,
+      nav_selectId: cnum,
     })
-    this.data.swipercurrentitemid=cnum;
 
     this.onPullDownRefresh();
   },
-
-  // swiperChange: function (e) {
-  //   this.setData({
-  //     nav_selectId: "menu" + e.detail.currentItemId,
-  //   });
-  // },
 
   remit: function(e) {
     this.setData({
@@ -71,11 +51,14 @@ Page({
   },
 
   confirmPayment: function(e) {
+    console.log(e)
     var oId = e.detail.oId;
     var orders = this.data.orders;
     for (let i in orders) {
       if (orders[i]["id"] == oId) {
-        orders[i]["checkStatus"] = 1;
+        orders[i]["pay_status"] = 1;
+        orders[i]["pay_date"] = e.detail.date;
+        orders[i]["pay_img"] = e.detail.img;
       }
     }
     this.setData({
@@ -114,12 +97,12 @@ Page({
 
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh();
-    this.data.current_ordernum[this.data.swipercurrentitemid] = 0;
+    this.data.current_ordernum[this.data.nav_selectId] = 0;
     this.setData({
       orders:[],
       loadingMoreHidden: true
     });
-    this.requestOrder(this.data.swipercurrentitemid);
+    this.requestOrder(this.data.nav_selectId);
   },
 
   onReachBottom: function() {
@@ -127,26 +110,35 @@ Page({
       title: '加载中',
       mask: true,
     })
-    this.data.current_ordernum[this.data.swipercurrentitemid] += 1;
-    this.requestOrder(this.data.swipercurrentitemid);
+    this.data.current_ordernum[this.data.nav_selectId] += 1;
+    this.requestOrder(this.data.nav_selectId);
   },
 
   requestOrder: function(type) {
     var that = this;
-    order.myCardOrder({
+    order.myVip1Order({
+      openId: app.globalData.openId,
       token: app.globalData.token,
-      pages: that.data.current_ordernum[that.data.swipercurrentitemid],
-      type: type,
+      pages: that.data.current_ordernum[type],
+      type: that.data.menu[type],
     }).then(function (res) {
       wx.hideLoading();
       wx.stopPullDownRefresh();
-      if (res.data) {
-        res = res.data;
+      console.log(res.data)
+      if (res.data.code == 200) {
+        res = res.data.data;
+        console.log(res.length > 0);
         if (res.length > 0) {
           for (let i in res) {
             res[i]['remainDate'] = util.formatTimeToSevenDay(res[i]['created_at']);
-            res[i]['cardInfo'] = JSON.parse(res[i]['cardInfo']);
-
+            // res[i]['cardInfo'] = JSON.parse(res[i]['cardInfo']);
+            if (res[i]['order_type'] == "普通会员") {
+              res[i]['order_type_img'] = "common"
+            } else if (res[i]['order_type'] == "银牌会员") {
+              res[i]['order_type_img'] = "silver"
+            } else if (res[i]['order_type'] == "金牌会员") {
+              res[i]['order_type_img'] = "gold"
+            }
             that.data.orders.push(res[i]);
           }
 
@@ -154,14 +146,13 @@ Page({
             orders: that.data.orders,
           });
         }else {
-          that.data.current_ordernum[that.data.swipercurrentitemid] -= 1;
+          console.log("dd");
+          that.data.current_ordernum[type] -= 1;
           that.setData({
             loadingMoreHidden: false
           });
         }
-        
       }
-
     });
   }
 

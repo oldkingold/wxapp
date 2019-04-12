@@ -2,7 +2,7 @@
 <view class='hk_bg' catchtap='cancel'></view>
 <view class='hk_main'>
   <view class='hk_title'>尊敬的用户：</view>
-  <view class='hk_content'>请您确认是否已将{{money}}汇款至以下账户，谢谢您的支持。</view>
+  <view class='hk_content'>请您确认是否已将<text class='red'>￥{{money}}</text>汇款至以下账户，谢谢您的支持。</view>
   <view class='hk_table'>
     <view class='hk_td'>
       <view class='title'>户名</view>
@@ -24,9 +24,18 @@
     <view class='title'>汇款凭据：</view>
     <block wx:if="{{tempFilePaths.length == 0}}">
       <button class='upload' catchtap='upload'>上传</button>
-      <view class='red'>(必填)</view>
+      <view class='blue'>(选填)</view>
     </block>
     <view class='uploadimg' catchtap='upload' wx:else><image mode='aspectFit' src='{{tempFilePaths[0]}}'></image></view>
+  </view>
+  <view class='credential'>
+    <view class='title'>汇款日期：</view>
+    <image class='date_img' src='../../static/images/date@3x.png'></image>
+    <picker mode="date" value="{{date}}" start="2019-04-01" end="2022-12-01" bindchange="bindDateChange" >
+      <view class="picker">
+        {{date}}
+      </view>
+    </picker>
   </view>
   <view class='hk_btn'>
     <view class='hk_zw' catchtap='cancel'>暂未汇款</view>

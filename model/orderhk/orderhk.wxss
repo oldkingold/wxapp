@@ -4,7 +4,7 @@
   background-color: #000000;
   opacity: 0.5;
   position: fixed;
-  z-index: 1000;
+  z-index: 1010;
 }
 
 .hk_main {
@@ -14,7 +14,7 @@
   /* height: 669rpx; */
   margin: 160rpx 50rpx 0 50rpx;
   opacity: 1;
-  z-index: 1001;
+  z-index: 1011;
   border-radius: 20rpx;
 }
 
@@ -100,7 +100,7 @@
 
 .cancel {
   position: fixed; 
-  z-index: 1005;
+  z-index: 1015;
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -162,6 +162,11 @@
   color: red;
 }
 
+.blue {
+  font-size: 26rpx;
+  color: rgb(39, 135, 245);
+}
+
 .uploadimg {
   height: 200rpx;
   width: 200rpx;
@@ -171,4 +176,15 @@
 .uploadimg image {
   height: 200rpx;
   width: 200rpx;
+}
+
+.picker {
+  font-size: 30rpx;
+}
+
+.date_img {
+  margin-left: 10rpx;
+  margin-right: 16rpx;
+  width: 30rpx;
+  height: 30rpx;
 }

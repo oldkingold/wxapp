@@ -1,6 +1,6 @@
 const app = getApp();
 const api = require('../../config/api.js');
-
+const util = require('../../utils/util.js');
 // model/orderhk/orderhk.js
 Component({
   /**
@@ -26,7 +26,8 @@ Component({
    */
   data: {
     show:true,
-    tempFilePaths: []
+    tempFilePaths: [],
+    date: new Date().toLocaleDateString(),
   },
   /**
    * 组件的方法列表
@@ -54,21 +55,38 @@ Component({
       console.log("confirmPayment");
       console.log(e);
       let that = this;
-      if (this.data.tempFilePaths.length == 0) {
-        wx.showToast({
-          title: "请先上传凭据",
-          icon: 'none',
-          duration: 3000,
-        });
-
-        return;
-      }
       var data = {};
       data['oId'] = e.currentTarget.dataset['id'];
-      data['token'] = app.globalData.token; 
+      data['token'] = app.globalData.token;
+      data['openId'] = app.globalData.openId;
+      data['date'] = this.data.date; 
+      if (this.data.tempFilePaths.length == 0) {
+        util.request(api.checkOrderVip1, "post", data).then((res)=>{
+          var rdata = res.data;
+          if (rdata.code == 200) {
+            wx.showToast({
+              title: "提交成功",
+              icon: 'none',
+              duration: 3000,
+            });
+            rdata.oId = data['oId'];
+            that.triggerEvent('confirmPayment', rdata)
+          } else {
+            wx.showToast({
+              title: "提交失败",
+              icon: 'none',
+              duration: 3000,
+            });
+          }
+          that.setData({
+            show: true
+          });
+        })
+        return;
+      }
       // this.triggerEvent('confirmPayment', data)
       wx.uploadFile({
-        url: api.checkOrderCard, 
+        url: api.checkOrderVip1, 
         filePath: this.data.tempFilePaths[0],
         name: 'img',
         formData: data,
@@ -102,7 +120,12 @@ Component({
         }
       })
     },
-
+    //时间选择器
+    bindDateChange: function (e) {
+      this.setData({
+        date: e.detail.value
+      })
+    },
     cancel: function() {
       this.setData({
         show:true,

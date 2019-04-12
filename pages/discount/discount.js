@@ -40,7 +40,13 @@ Page({
 
   onLoad: function () {
     let that = this;
-    order.myVip1Type().then((res)=>{
+    that.onShow();
+  },
+
+  onShow: function () {
+    let that = this;
+
+    order.myVip1Type().then((res) => {
       for (let i = 1; i < 5; i++) {
         for (let j = 0; j < res.data.length; j++) {
           if (that.data.vip1[i]["name"] == res.data[j].level) {
@@ -54,10 +60,7 @@ Page({
         vip1: that.data.vip1,
       });
     });
-  },
 
-  onShow: function () {
-    let that = this;
     let company_setting = wx.getStorageSync('company_setting');
     if (company_setting) {
       order.myVip1Info().then((res) => {
@@ -153,9 +156,24 @@ Page({
   },
   //充值金额
   bindDiscountprice: function(e) {
-    this.setData({
-      discountprice: e.detail['value']
-    });
+    // if ((this.data.vip_type == 2 && this.data.select_vip_type > 2) || (this.data.vip_type == 3 && this.data.select_vip_type > 3)) {
+    //   if ((this.data.vip1[this.data.select_vip_type].pay_in_advance - this.data.balance > this.data.vip1[this.data.select_vip_type].recharge_point ? this.data.vip1[this.data.select_vip_type].pay_in_advance - this.data.balance : this.data.vip1[this.data.select_vip_type].recharge_point) < e.detail['value']) {
+
+        
+    //     this.setData({
+    //       discountprice: e.detail['value']
+    //     });
+    //   }else {
+    //     this.setData({
+    //       discountprice: this.data.discountprice
+    //     });
+    //   }
+    // }else {
+      this.setData({
+        discountprice: e.detail['value']
+      });
+    // }
+    
   },
 
   showToast: function(str) {
@@ -193,6 +211,7 @@ Page({
 
     let that = this;
     var data = {};
+
     //验证
     if (that.data.company.length < 1) {
       that.showToast('请输入公司名称');
@@ -225,6 +244,13 @@ Page({
         || that.data.invoice.compAddr.length < 1 || that.data.invoice.compTel.length < 1
         || that.data.invoice.compBank.length < 1 || that.data.invoice.compBankAccount.length < 1) {
         that.showToast('请输入发票的公司名称||纳税识别号||公司地址||电话号码||开户银行||银行账号');
+        return false;
+      }
+    }
+    
+    if ((this.data.vip_type == 2 && this.data.select_vip_type > 2) || (this.data.vip_type == 3 && this.data.select_vip_type > 3)) {
+      if ((this.data.vip1[this.data.select_vip_type].pay_in_advance - this.data.balance > this.data.vip1[this.data.select_vip_type].recharge_point ? this.data.vip1[this.data.select_vip_type].pay_in_advance - this.data.balance : this.data.vip1[this.data.select_vip_type].recharge_point) > this.data.discountprice) {
+        that.showToast('充值金额不足');
         return false;
       }
     }
@@ -262,10 +288,43 @@ Page({
     }
   }, 2000),
 
-  toSignin: util.throttle(function() {
-    wx.navigateTo({
-      url: '/pages/login/login',
-    })
-  },2000),
+
+  toSignin: util.throttle(function (e) {
+    console.log(e)
+    let that = this;
+    let userInfo = wx.getStorageSync("userInfo");
+
+    if (e.detail.userInfo && !userInfo) {
+      util.wxlogin().then((res) => {
+        app.globalData.token = res.token;
+        app.globalData.openId = res.openId;
+        that.onShow();
+        if (!res.companyName) {
+          wx.navigateTo({
+            url: '/pages/login/login',
+          })
+        }
+        
+      });
+    } else if (e.detail.userInfo && userInfo) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    } else {
+      wx.showModal({
+        title: "用户未授权",
+        content: '请授权允许微信登录后进行套餐购买',
+        showCancel: false,
+      })
+      return;
+    }
+  }, 2000),
+  
+  
+  // util.throttle(function() {
+    // wx.navigateTo({
+    //   url: '/pages/login/login',
+    // })
+  // },2000),
 
 })

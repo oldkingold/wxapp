@@ -89,7 +89,7 @@
       </view>
       
       <view class='contact' >
-        <view class='item' wx:if="{{(vip_type == select_vip_type && select_vip_type > 2)}}">
+        <view class='item' wx:if="{{(vip_type == select_vip_type && select_vip_type >= 2)}}">
           <text class='name'>充值金额：</text>
           <input class='money' type='number' bindinput='bindDiscountprice' placeholder='请输入' value='{{discountprice}}'></input>
           <text wx:if="{{vip1[select_vip_type].recharge_point > 0}}" class='tip'>*金额不得低于{{vip1[select_vip_type].recharge_point}}元</text>
@@ -193,7 +193,7 @@
       <view>已选择：{{vip1[select_vip_type].name}}</view>
       <view class='price'>总计:<text>￥{{discountprice}}.00</text></view>
     </view>
-    
-    <button class='btn' open-type="getUserInfo" bindgetuserinfo="submit">提交订单</button>
+    <button wx:if="{{vip_type == 0}}" class='btn' open-type="getUserInfo" bindgetuserinfo='toSignin'>请登录/注册</button>
+    <button wx:else class='btn' open-type="getUserInfo" bindgetuserinfo="submit">提交订单</button>
   </view>
 </view>
