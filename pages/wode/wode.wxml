@@ -65,10 +65,10 @@
       <image src='/static/images/2.png'></image>
       <text>评价</text>
     </button>
-    <button data-url='/pages/bmlog/bmlog' class='log nobutton'
+    <button data-url='/pages/order/order' class='log nobutton'
     wx:if="{{canIUseGetUserInfo}}" open-type="getUserInfo" bindgetuserinfo='bindcheckloginwx'>
       <image src='/static/images/3.png'></image>
-      <text>记录</text>
+      <text>订单</text>
     </button>
   </block>
   <block wx:else>
@@ -80,9 +80,9 @@
       <image src='/static/images/2.png'></image>
       <text>评价</text>
     </view>
-    <navigator url='/pages/bmlog/bmlog' class='log'>
+    <navigator url='/pages/order/order' class='log'>
       <image src='/static/images/3.png'></image>
-      <text>记录</text>
+      <text>订单</text>
     </navigator>
   </block>
 </view>
@@ -107,13 +107,13 @@
     </button>
   </block>
   <block wx:else>
-    <navigator url='/pages/order/order' class='line'>
+    <!-- <navigator url='/pages/order/order' class='line'>
       <image mode="aspectFit" src='/static/images/m_order.png'></image>
-      <view class='line-name'>会员服务</view>
+      <view class='line-name'>订单</view>
       <view class='icon_go'>
         <image class='go' src='/static/images/go.png'></image>
       </view>
-    </navigator>
+    </navigator> -->
     <!-- <block wx:if="{{loginStatus==1}}"> 
       <navigator url='/pages/discountlog/index/index' class='line'>
         <image mode="aspectFit" src='/static/images/used.png'></image>
@@ -148,7 +148,7 @@
   <block wx:if="{{loginStatus==1}}"> 
     <navigator url='/pages/personmanage/personmanage' class='line'>
       <image mode="aspectFit" src='/static/images/m_person.png'></image>
-      <view class='line-name'>以绑定用户</view>
+      <view class='line-name'>已绑定用户</view>
       <view class='icon_go'>
         <image class='go' src='/static/images/go.png'></image>
       </view>

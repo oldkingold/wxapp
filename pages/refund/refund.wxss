@@ -1,0 +1,41 @@
+page {
+  background-color: #ebf0f4;
+}
+
+.white {
+  background-color: white;
+  margin-top: 20rpx;
+}
+
+.line {
+  line-height: 90rpx;
+  margin: 0 30rpx;
+  font-size: 36rpx;
+}
+
+.border_line {
+  border-bottom: 1rpx solid #fdfdfd;
+}
+
+.tip {
+  padding: 25rpx 0 100rpx 0;
+  text-indent:2em;
+  margin: 0 30rpx;
+  font-size: 30rpx;
+  color: #146fee;
+}
+
+.red {
+  color: red;
+}
+
+.btn {
+  margin: 0 auto;
+  width: 45%;
+  background-color: white;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  border-radius: 40rpx;
+  border: 1rpx solid #d3d0d0;
+}

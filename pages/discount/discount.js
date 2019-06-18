@@ -24,7 +24,7 @@ Page({
     isSignin: false,
     company_setting: false,
 
-    vip_type: 0,  //当前用户等级
+    vip_type: -1,  //当前用户等级
     discountprice: 0,  //需支付费用
     balance: 0,   //余额
     vip1:[
@@ -67,7 +67,7 @@ Page({
         if (res.data.code == 200) {
           var data = JSON.parse(decodeURIComponent(decode.base64_decode(res.data.data)));
           var vip_type = 1;
-          for(let i = 1; i < 5; i++) {
+          for(let i = 0; i < 5; i++) {
             if (that.data.vip1[i]["name"] == data.level) {
               vip_type = i;
               break;
@@ -104,7 +104,7 @@ Page({
     } else {
 
       that.setData({
-        vip_type: 0,
+        vip_type: -1,
         discountprice: 20860,
         balance: 0,
         select_vip_type: 2,
@@ -320,7 +320,11 @@ Page({
     }
   }, 2000),
   
-  
+  vip1Policy: function() {
+    wx.navigateTo({
+      url: '/pages/judge/judge?website=' + "https://58jz.com.cn/FavouredPolicy",
+    })
+  }
   // util.throttle(function() {
     // wx.navigateTo({
     //   url: '/pages/login/login',

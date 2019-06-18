@@ -71,7 +71,6 @@ page {
   margin: 20rpx 0;
   border: 2rpx solid #c6c7c9;
   line-height: 67rpx;
-  font-weight: 600;
   font-size: 31rpx;
   letter-spacing: 6rpx;
 }

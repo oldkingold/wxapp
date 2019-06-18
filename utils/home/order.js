@@ -85,6 +85,18 @@ function myVip1Order(data) {
   return util.request(api.Vip1Order, "post", data);
 }
 
+function myVip1Balance() {
+  return util.request(api.myVip1Balance, "post" , {
+    token: wx.getStorageSync('token'),
+    openId: wx.getStorageSync('openId'),
+  });
+}
+
+/***************************************************** */
+function myBmOrders(data) {
+  return util.request(api.bmOrders, "post", data);
+}
+
 module.exports = {
   //套餐方法,暂时弃用
   myCardOrder: myCardOrder,
@@ -95,4 +107,7 @@ module.exports = {
   myVip1Info: myVip1Info,
   myVip1Type: myVip1Type,
   myVip1Order: myVip1Order,
+  myVip1Balance: myVip1Balance,
+  //bm
+  myBmOrders: myBmOrders,
 }

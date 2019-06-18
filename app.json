@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/home/home",
     "pages/baoming/bm/bm",
     "pages/baoming/bmAddPerson/bmAddPerson",
@@ -30,7 +29,8 @@
     "pages/discount/discount",
     "pages/discountreceipt/discountreceipt",
     "pages/orderdetail/orderdetail",
-    "pages/discountlog/detail/detail"
+    "pages/discountlog/detail/detail",
+    "pages/refund/refund"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -61,5 +61,6 @@
         "selectedIconPath": "static/images/mine_h.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

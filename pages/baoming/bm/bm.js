@@ -145,9 +145,10 @@ Page({
           wx.removeStorage({
             key: 'meetPersonListSelected'
           })
+          
           that.setData({
             meetPersonlist: varSelected.list,
-            bm_num: varSelected.list.length
+            bm_num: varSelected.list.length > that.data.bm_num ? varSelected.list.length : that.data.bm_num,
           })
         }
 
@@ -296,7 +297,7 @@ Page({
         if (res.confirm) {  
           that.setData({
             meetPersonlist: meetPersonlist,
-            bm_num: meetPersonlist.length,
+            bm_num: meetPersonlist.length > that.data.bm_num ? meetPersonlist.length : that.data.bm_num,
           });
         } else if (res.cancel) {
 
@@ -820,7 +821,7 @@ Page({
             invoice: that.data.invoice,
             companyName: that.data.compName,
             meetdate: { start_date: that.data.arriveDate, end_date: that.data.leaveDate },
-            pay: res.data.pay
+            pay: res.data.pay ? res.data.pay : { "used" : that.data.bm_num * that.data.Vip1_tab.level_price}
           }
           wx.setStorageSync('receipt', receipt);
           wx.navigateTo({

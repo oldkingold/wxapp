@@ -72,7 +72,7 @@ Page({
   //跳转报名记录
   more: util.throttle(function () {
     wx.navigateTo({
-      url: '/pages/bmlog/bmlog',
+      url: '/pages/order/order',
     })
   },2000),
 })

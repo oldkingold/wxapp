@@ -14,7 +14,7 @@
           </view>
         </view> 
 
-        <view class='right' wx:if="{{vip_type > 0}}">
+        <view class='right' wx:if="{{vip_type >= 0}}">
           <image wx:if="{{vip_type > 1}}" src='/static/images/Vip1/{{vip1[vip_type].icon}}'></image>
           {{vip1[vip_type].name}}     
         </view>
@@ -26,14 +26,14 @@
           <text class='text2'>账户金额</text>
         </view>
 
-        <view wx:if="{{vip_type == 0}}" class='login_btn' bindtap='toSignin'>请登录/注册</view>
+        <button wx:if="{{vip_type == -1}}" class='login_btn' open-type="getUserInfo" bindgetuserinfo='toSignin'>请登录/注册</button>
       </view>
       
     </view>
     <view>
       <view class='line'>
         <text class='title'>会员升级</text>
-        <view class='detail'><image src='/static/images/wenhao.png'></image>会员服务详情</view>
+        <view class='detail' bindtap='vip1Policy'><image src='/static/images/wenhao.png'></image>会员服务详情</view>
       </view>
       <view class='line'>
         <radio-group name="vip-radio" class="radio-vip1" bindchange="chooseVip">
@@ -65,13 +65,13 @@
         </radio-group>
       </view>
 
-      <view class='line flex_row' wx:if="{{vip_type > 1}}">
+      <view class='line flex_row'>
         <text class='name'>套餐说明：</text>
         <view class='content'>
           <view>升级{{vip1[2].name}}，余额需达到<text class='price'>￥{{vip1[2].pay_in_advance}}.00</text></view>
           <view>升级{{vip1[3].name}}，余额需达到<text class='price'>￥{{vip1[3].pay_in_advance}}.00</text></view>
           <view>升级{{vip1[4].name}}，余额需达到<text class='price'>￥{{vip1[4].pay_in_advance}}.00</text></view>
-          <view>若余额为<text class='red'>￥0</text>,则回复至<text class='blue'>普通用户</text></view>
+          <view>若余额为<text class='red'>￥0</text>,则恢复至<text class='blue'>普通用户</text></view>
         </view>
       </view>
 
@@ -193,7 +193,7 @@
       <view>已选择：{{vip1[select_vip_type].name}}</view>
       <view class='price'>总计:<text>￥{{discountprice}}.00</text></view>
     </view>
-    <button wx:if="{{vip_type == 0}}" class='btn' open-type="getUserInfo" bindgetuserinfo='toSignin'>请登录/注册</button>
+    <button wx:if="{{vip_type == -1}}" class='btn' open-type="getUserInfo" bindgetuserinfo='toSignin'>请登录/注册</button>
     <button wx:else class='btn' open-type="getUserInfo" bindgetuserinfo="submit">提交订单</button>
   </view>
 </view>

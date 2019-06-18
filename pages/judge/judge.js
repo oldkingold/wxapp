@@ -8,12 +8,12 @@ Page({
 
   onLoad: function (options) {
     if (options.website) {
-      if (options.website == 'https://www.58jz.com.cn') {
+      if (options.website == 'https://www.58jz.com.cn' || options.website == 'https://58jz.com.cn') {
         this.setData({
           webSite: options.website
         })
       } else {
-        if (options.website.indexOf("https://dcwlgroup.com/") != -1 || options.website.indexOf("https://www.58jz.com.cn/") != -1) {
+        if (options.website.indexOf("https://dcwlgroup.com/") != -1 || options.website.indexOf("https://58jz.com.cn/") != -1) {
           
           this.setData({
             webSite: options.website + "?meeting=" +options.meeting

@@ -7,19 +7,56 @@ Page({
   data: {
     screenHeight: app.globalData.systemInfo['height'],
     nav: 0, // 0充值订单   1报名订单
+    login: 0,
+
     nav_selectId: 0,
-    menu: ["全部","待支付","已完成","已取消","已退款"],
+    menu: ["全部", "待支付","汇款确认中","已完成","已取消"],
     orders:[],
     current_ordernum: [0,0,0,0,0],
     loadingMoreHidden: true,
+
+    bm_nav_selectId: 0,
+    bm_menu: ["全部", "待支付", "已完成", "已取消","已退款"],
+    bm_orders: [],
+    bm_current_ordernum: [0, 0, 0, 0, 0],
+    bm_loadingMoreHidden: true,
+
     orderhkShow:true,
     orderhkMoney: 0,
     orderhkId: 0,
+
+    balance: {"remainder": 0, "total": 0, "used": 0}
   },
 
   onLoad: function () {
     let that = this;
-    that.onPullDownRefresh();
+    let company_setting = wx.getStorageSync('company_setting');
+    if (company_setting) {
+      this.onPullDownRefresh();
+      order.myVip1Balance().then((res) => {
+        if (res.data.code = 200) {
+          that.setData({
+            balance: { "remainder": res.data.remainder, "total": res.data.total, "used": res.data.used }
+          })
+        }
+      })
+    } else { 
+      that.setData({
+        nav: 1,
+        login: 1, // 未登录公司账号
+      })
+      this.onPullDownRefresh();
+    }
+    
+  },
+
+  onShow: function () {
+    let that = this;
+    
+    this.setData ({
+      orders: this.data.orders,
+      bm_orders: this.data.bm_orders
+    })
   },
 
   //切换充值订单 和 报名订单
@@ -30,15 +67,22 @@ Page({
     this.setData({
       nav: nav
     })
+    this.onPullDownRefresh();
   },
 
   //
   nav_select: function (e) {
     var cnum = e.currentTarget.dataset['id']
-    this.setData({
-      nav_selectId: cnum,
-    })
-
+    if(this.data.nav == 0) {   //充值订单
+      this.setData({
+        nav_selectId: cnum,
+      })
+    } else if (this.data.nav == 1){  //报名订单
+      this.setData({
+        bm_nav_selectId: cnum,
+      })
+    }
+    
     this.onPullDownRefresh();
   },
 
@@ -52,25 +96,56 @@ Page({
 
   confirmPayment: function(e) {
     console.log(e)
+
     var oId = e.detail.oId;
     var orders = this.data.orders;
+    if (this.data.nav == 1) {
+      orders = this.data.bm_orders;
+    }
     for (let i in orders) {
       if (orders[i]["id"] == oId) {
-        orders[i]["pay_status"] = 1;
+        if (this.data.nav == 1) {
+          if (e.detail.err == 200) {
+            orders[i]["status"] = 2;
+          }else {
+            this.onPullDownRefresh();
+            return;
+          }
+        } else if (this.data.nav == 0) {
+          if (e.detail.err == 200) {
+            orders[i]["pay_status"] = 1;
+          }else {
+            this.onPullDownRefresh();
+            return;
+          }
+        }
         orders[i]["pay_date"] = e.detail.date;
         orders[i]["pay_img"] = e.detail.img;
       }
     }
-    this.setData({
-      orders: orders,
-    });
+    
+    if (this.data.nav == 1) {
+      this.setData({
+        bm_orders: orders,
+      });
+    } else if (this.data.nav == 0) {
+      this.setData({
+        orders: orders,
+      });
+    }
   },
 
   toOrderdetail: util.throttle(function(e) {
     var OId = e.currentTarget.dataset['id'];
-    wx.navigateTo({
-      url: '/pages/orderdetail/orderdetail?OId=' + OId,
-    })
+    if (this.data.nav == 0) {   //充值订单
+      wx.navigateTo({
+        url: '/pages/orderdetail/orderdetail?OId=' + OId + "&nav=0",
+      })
+    } else if (this.data.nav == 1) {  //报名订单
+      wx.navigateTo({
+        url: '/pages/orderdetail/orderdetail?OId=' + OId + "&nav=1",
+      })
+    }
   }, 2000),
 
   cancel: function(e) {
@@ -97,12 +172,23 @@ Page({
 
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh();
-    this.data.current_ordernum[this.data.nav_selectId] = 0;
-    this.setData({
-      orders:[],
-      loadingMoreHidden: true
-    });
-    this.requestOrder(this.data.nav_selectId);
+    
+    if (this.data.nav == 0) {   //充值订单
+      this.data.current_ordernum[this.data.nav_selectId] = 0;
+      this.setData({
+        orders: [],
+        loadingMoreHidden: true
+      });
+      this.requestOrder(this.data.nav_selectId);      
+    } else if (this.data.nav == 1) {  //报名订单
+      this.data.bm_current_ordernum[this.data.bm_nav_selectId] = 0;
+      this.setData({
+        bm_orders: [],
+        bm_loadingMoreHidden: true
+      });
+      this.requestBm(this.data.bm_nav_selectId)
+    }
+    
   },
 
   onReachBottom: function() {
@@ -110,10 +196,16 @@ Page({
       title: '加载中',
       mask: true,
     })
-    this.data.current_ordernum[this.data.nav_selectId] += 1;
-    this.requestOrder(this.data.nav_selectId);
+    if (this.data.nav == 0) {   //充值订单
+      this.data.current_ordernum[this.data.nav_selectId] += 1;
+      this.requestOrder(this.data.nav_selectId);
+    } else if (this.data.nav == 1) {  //报名订单
+      this.data.bm_current_ordernum[this.data.bm_nav_selectId] += 1;
+      this.requestBm(this.data.bm_nav_selectId)
+    }
+    
   },
-
+  //会员订单请求
   requestOrder: function(type) {
     var that = this;
     order.myVip1Order({
@@ -154,6 +246,37 @@ Page({
         }
       }
     });
+  },
+  //报名订单请求
+  requestBm: function (type) {
+    var that = this;
+    // myBmOrders
+    order.myBmOrders({
+      openId: app.globalData.openId,
+      token: app.globalData.token,
+      pages: that.data.bm_current_ordernum[type],
+      type: that.data.bm_menu[type],
+    }).then(function (res) {
+      wx.hideLoading();
+      wx.stopPullDownRefresh();
+      if (res.data.code == 200) {
+        res = res.data.data;
+        console.log(res);
+        if (res.length > 0) {
+          for (let i in res) {
+            that.data.bm_orders.push(res[i]);
+          }
+          that.setData({
+            bm_orders: that.data.bm_orders,
+          });
+        } else {
+          that.data.bm_current_ordernum[type] -= 1;
+          that.setData({
+            bm_loadingMoreHidden: false
+          })
+        }
+        
+      }
+    })
   }
-
 })

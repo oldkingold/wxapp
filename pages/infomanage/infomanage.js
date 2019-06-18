@@ -3,12 +3,13 @@ const meeting = require('../../utils/home/meeting.js');
 var app = getApp();
 Page({
   data: {
-    coms: [{id: '1',name: '',nature: '',ein: ''}],
-    conferees: [{id: '',name: '',tel: '',job: ''}],
+    coms: [],
+    conferees: [],
     addconferee: {name: '',tel: '',job: ''},
     editconferee: {id: '',name: '',tel: '',job: ''},
     showModal: false,
   },
+
   onLoad: function (options) {
     var token = app.globalData.token;
     var that = this;
@@ -29,6 +30,7 @@ Page({
       }
     })
   },
+  
   onShow: function () {
     // 页面显示
     this.onLoad();

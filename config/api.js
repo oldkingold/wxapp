@@ -67,6 +67,12 @@ module.exports = {
   buyVip1: ApiRootUrl + 'wxapp/Vip1/buyVip1', //购买套餐
   Vip1Order: ApiRootUrl + 'wxapp/Vip1/myVip1', //查看购买订单
   checkOrderVip1: ApiRootUrl + "wxapp/Vip1/checkOrderVip1",//套餐购买确认汇款
+  cancelOrderVip1: ApiRootUrl + "wxapp/Vip1/cancelOrderVip1",//套餐购买取消
+  myVip1Balance: ApiRootUrl + "wxapp/Vip1/myVip1Balance",//套餐购买取消
+  bmOrders: ApiRootUrl + "wxapp/Vip1/bmOrders",//报名订单
+  checkBmOrder: ApiRootUrl + "wxapp/Vip1/checkBmOrder", //确认汇款
+  cancelBmOrder: ApiRootUrl + "wxapp/Vip1/cancelBmOrder", 
+  bm_refund: ApiRootUrl + "wxapp/Vip1/bm_refund",  //报名订单申请退款
   //discountreceipt.js
   mylatestpeixun: ApiRootUrl + "wxapp/mylatestpeixun",//获取最近一场会议的报名
   

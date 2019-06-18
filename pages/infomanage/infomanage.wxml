@@ -1,4 +1,4 @@
-<view class="container" style='height:{{}}px'>
+<view class="container">
   <view class='com-info-object'>参会公司信息</view>
   <block wx:for="{{coms}}" wx:for-item="item" wx:key="item.id">
     <view class='com-item'>
@@ -35,7 +35,7 @@
 
   <navigator url='/pages/addcominfo/addcominfo' class='add-cominfo'>添加公司信息</navigator> 
 
-  <view class='conferee-object'>参会人员信息</view>
+  <view class='com-info-object'>参会人员信息</view>
 
   <block wx:for="{{conferees}}" wx:for-item="conferee" wx:key="*key">
     <view class='conferee-item'>

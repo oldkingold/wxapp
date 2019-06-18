@@ -3,9 +3,8 @@
 }
 
 .noscroll {
-     height: 100%;
-     overflow: hidden;
-
+  height: 100%;
+  overflow: hidden;
 } 
 
 .top0 {
@@ -46,8 +45,8 @@
   height: 38px;
   width: 720rpx;
   padding: 0 15rpx;
-  overflow: hidden;
-  white-space: nowrap;
+  /* overflow: hidden; */
+  /* white-space: nowrap; */
   background-color: white;
   display: flex;
   justify-content: space-around;
@@ -169,7 +168,7 @@
 
 .bottom .flex {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .bottom .content { 
@@ -223,4 +222,14 @@
   margin-top: 10rpx;
   padding-bottom:48rpx; 
   color: #999;
+}
+
+.bm_check {
+  color: #f6b72c;
+  border-radius: 40rpx;
+  border: 1rpx solid #f6b72c;
+  font-size: 26rpx;
+  line-height: 60rpx;
+  height: 60rpx;
+  padding: 0 30rpx;
 }

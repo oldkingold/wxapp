@@ -13,17 +13,20 @@
 		]
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.9",
+	"libVersion": "2.2.0",
 	"appid": "wxf09f92ab2843ecf2",
 	"projectname": "wx-app2.0",
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

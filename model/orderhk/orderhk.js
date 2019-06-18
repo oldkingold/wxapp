@@ -19,6 +19,10 @@ Component({
       type: Number,
       value: 0
     },
+    orderType: {
+      type: Number,
+      value:0
+    },
   },
 
   /**
@@ -27,7 +31,7 @@ Component({
   data: {
     show:true,
     tempFilePaths: [],
-    date: new Date().toLocaleDateString(),
+    date: util.formatDate(new Date()),
   },
   /**
    * 组件的方法列表
@@ -52,7 +56,6 @@ Component({
     },
     //确认汇款
     confirmPayment: function(e) {
-      console.log("confirmPayment");
       console.log(e);
       let that = this;
       var data = {};
@@ -60,65 +63,141 @@ Component({
       data['token'] = app.globalData.token;
       data['openId'] = app.globalData.openId;
       data['date'] = this.data.date; 
+      data['type'] = e.currentTarget.dataset['type'];
+      console.log(data);
+      
       if (this.data.tempFilePaths.length == 0) {
-        util.request(api.checkOrderVip1, "post", data).then((res)=>{
-          var rdata = res.data;
-          if (rdata.code == 200) {
-            wx.showToast({
-              title: "提交成功",
-              icon: 'none',
-              duration: 3000,
+        if (data['type'] == 0) {
+          util.request(api.checkOrderVip1, "post", data).then((res) => {
+            var rdata = res.data;
+            if (rdata.code == 200) {
+              wx.showToast({
+                title: "提交成功",
+                icon: 'none',
+                duration: 3000,
+              });
+              rdata.oId = data['oId'];
+              rdata.err = 200;
+              that.triggerEvent('confirmPayment', rdata)
+            } else {
+              wx.showToast({
+                title: "提交失败",
+                icon: 'none',
+                duration: 3000,
+              });
+              rdata.err = 403;
+              that.triggerEvent('confirmPayment', rdata)
+            }
+            that.setData({
+              show: true
             });
-            rdata.oId = data['oId'];
-            that.triggerEvent('confirmPayment', rdata)
-          } else {
-            wx.showToast({
-              title: "提交失败",
-              icon: 'none',
-              duration: 3000,
+          })
+          
+        }else {
+          util.request(api.checkBmOrder, "post", data).then((res) => {
+            var rdata = res.data;
+            if (rdata.code == 200) {
+              wx.showToast({
+                title: "提交成功",
+                icon: 'none',
+                duration: 3000,
+              });
+              rdata.oId = data['oId'];
+              rdata.err = 200;
+              that.triggerEvent('confirmPayment', rdata)
+            }else {
+              wx.showToast({
+                title: "提交失败",
+                icon: 'none',
+                duration: 3000,
+              });
+              rdata.err = 403;
+              that.triggerEvent('confirmPayment', rdata)
+            }
+            that.setData({
+              show: true
             });
-          }
-          that.setData({
-            show: true
-          });
-        })
+          })
+        }
         return;
       }
       // this.triggerEvent('confirmPayment', data)
-      wx.uploadFile({
-        url: api.checkOrderVip1, 
-        filePath: this.data.tempFilePaths[0],
-        name: 'img',
-        formData: data,
-        success(res) {
-          const rdata = JSON.parse(res.data)
-          if (rdata.code == 200) {
-            wx.showToast({
-              title: "提交成功",
-              icon: 'none',
-              duration: 3000,
+      if (data['type'] == 0) {
+        wx.uploadFile({
+          url: api.checkOrderVip1, 
+          filePath: this.data.tempFilePaths[0],
+          name: 'img',
+          formData: data,
+          success(res) {
+            const rdata = JSON.parse(res.data)
+            if (rdata.code == 200) {
+              wx.showToast({
+                title: "提交成功",
+                icon: 'none',
+                duration: 3000,
+              });
+              rdata.err = 200;
+            }else {
+              wx.showToast({
+                title: "提交失败",
+                icon: 'none',
+                duration: 3000,
+              });
+              rdata.err = 403;
+            }
+            rdata.oId = data['oId'];
+            that.triggerEvent('confirmPayment', rdata)
+            that.setData({
+              show: true
             });
-          }else {
+          },
+          fail(res) {
             wx.showToast({
-              title: "提交失败",
+              title: "网络异常",
               icon: 'none',
               duration: 3000,
             });
           }
-          rdata.oId = data['oId'];
-          that.triggerEvent('confirmPayment', rdata)
-          that.setData({
-            show: true
-          });
-        },
-        fail(res) {
-          wx.showToast({
-            title: "网络异常",
-            icon: 'none',
-            duration: 3000,
-          });
-        }
-      })
+        })
+      }else {
+        wx.uploadFile({
+          url: api.checkBmOrder,
+          filePath: this.data.tempFilePaths[0],
+          name: 'img',
+          formData: data,
+          success(res) {
+            const rdata = JSON.parse(res.data)
+            if (rdata.code == 200) {
+              wx.showToast({
+                title: "提交成功",
+                icon: 'none',
+                duration: 3000,
+              });
+              rdata.err = 200;
+            } else {
+              wx.showToast({
+                title: "提交失败",
+                icon: 'none',
+                duration: 3000,
+              });
+              rdata.err = 403;
+            }
+            rdata.oId = data['oId'];
+            that.triggerEvent('confirmPayment', rdata)
+            that.setData({
+              show: true
+            });
+          },
+          fail(res) {
+            wx.showToast({
+              title: "网络异常",
+              icon: 'none',
+              duration: 3000,
+            });
+          }
+        })
+      }
+
     },
     //时间选择器
     bindDateChange: function (e) {

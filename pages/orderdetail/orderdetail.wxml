@@ -1,4 +1,6 @@
-<view class="container">
+<orderhk id='orderhk' show='{{orderhkShow}}' money='{{orderhkMoney}}' orderId='{{orderhkId}}' orderType='{{nav}}' bindconfirmPayment='confirmPayment'></orderhk>
+
+<view class="container" wx:if="{{nav == 0}}">
   <view class='card1'>
     <view class='top'>
       <view >
@@ -13,13 +15,13 @@
         </view>
         <view class='blue tips'>逾期不付款订单将会取消</view>
       </view>
-      <image wx:if="{{item['pay_status'] == 4}}" class='status' src='../../static/images/refund.png'></image>
-      <view wx:if="{{item['pay_status'] == 5}}" class='hk'>已取消</view>
+      <image wx:if="{{order['pay_status'] == 4}}" class='statuss' src='../../static/images/refund.png'></image>
+      <view wx:if="{{order['pay_status'] == 5}}" class='hk'>已取消</view>
     </view>
     <view class='bottom'>
       <view class='flex'>
-          <image class='member_icon' mode='aspectFit' src='../../static/images/Vip1/{{order["order_type_img"]}}.png'></image>
-          <text>{{order['order_type']}}</text>
+        <image wx:if='{{order["order_type_img"]}}' class='member_icon' mode='aspectFit' src='../../static/images/Vip1/{{order["order_type_img"]}}.png'></image>
+        <text>{{order['order_type']}}</text>
       </view>
       <view class='flex'>订单金额：
         <text class='red'>¥{{order['price']}}</text>
@@ -31,7 +33,11 @@
         <text class='content'>{{order['created_at']}}</text>
       </view >
       <view class='flex'>提交人微信：{{order['wx_user']['nick_name']}}</view >
-      <view class='flex'>汇款凭证：未上传
+      <view class='flex'>汇款凭证：
+        <view wx:if="{{order.pay_img}}" data-url='{{rootUrl + order.pay_img}}' bindtap='showImage'>
+          <image class='hkImg' mode='widthFix' src='{{rootUrl + order.pay_img}}' ></image>
+        </view>
+        <block wx:else>未上传</block>
       </view>
     </view>
   </view>
@@ -40,7 +46,67 @@
   </view>
 
   <view wx:if="{{order['pay_status'] == 0}}" class='detail_bottom'>
-    <view class='detail_btn'>取消订单</view>
-    <view class='origen_btn detail_btn'>确认已汇款</view>
+    <view bindtap='cancel' data-id='{{order["id"]}}' class='detail_btn'>取消订单</view>
+    <view bindtap='remit' class='origen_btn detail_btn' data-id='{{order["id"]}}' data-money='{{order["price"]}}'>确认已汇款</view>
+  </view>
+</view>
+<view class="container" wx:if="{{nav == 1}}">
+  <view class='card1'>
+    <view class='top'>
+      <view >
+        <view class='dd'>订单号：{{order['order_id']}}</view>
+        <text class='date'>{{order['created_at']}}</text>
+      </view>
+      <image wx:if="{{order['status'] == 7}}" class='statuss' src='../../static/images/success.png'></image>
+      <view wx:if="{{order['status'] == 6}}" class='hk'>已支付</view>
+      <view wx:if="{{order['status'] == 2}}" class='hk'>汇款确认中</view>
+      <view wx:if="{{order['status'] == 3}}" class='hk'>退款中</view>
+      <view wx:if="{{order['status'] == 1}}" class='hk'>待支付</view>
+      <image wx:if="{{order['status'] == 4}}" class='statuss' src='../../static/images/refund.png'></image>
+      <view wx:if="{{order['status'] == 5}}" class='hk'>已取消</view>
+    </view>
+    <view class='bottom'>
+      <view class='flex'>
+        <text style='font-weight: bold;'>{{order['meeting_name']}}</text>
+      </view>
+      <view class='flex'>会议日期：{{order['meeting_start_date']}}</view>
+      <view class='flex'>会议地点：{{order['place']}}</view>
+      <view class='flex'>公司名称：{{order['company_name']}}</view>
+      <view class='flex'>报名人数： {{order['truth_num']}}人</view>
+      <view class='flex'>参会人：
+        <view>
+          <view wx:for="{{order['people']}}" wx:key="index" wx:for-item="pitem">{{pitem["name"]+"   " +pitem["tel"]}}</view>
+        </view>
+      </view>
+      <view class='flex'>会费金额： ￥{{order['meeting_price']}}/人</view>
+      <view class='flex' style='color:red'>实际金额： ￥{{order['truth_price']}}/人</view>
+      <view class='flex' style='color:red'>订单金额： {{order['price']}}</view>
+      <view class='flex'>付款方式： {{order['pay_mothed'].length >=2 ? "其他" : (order['pay_mothed'][0]["mothed"] == "ye" ? "余额" : "转账")}}</view>
+      <block wx:if="{{order['pay_mothed'].length >=2}}">
+        <view class='flex'>余额： {{order['pay_mothed'][0]["mothed"] == "ye" ? order['pay_mothed'][0]["price"] : order['pay_mothed'][1]["price"]}}
+        </view>
+        <view class='flex'>转账： {{order['pay_mothed'][1]["mothed"] == "zz" ? order['pay_mothed'][1]["price"] : order['pay_mothed'][0]["price"]}}
+        </view>
+      </block>
+      <view class='flex' wx:if="{{order['status'] != 1 && order['status'] != 5}}">付款日期： {{order['pay_date']}}
+      </view>
+      <view class='flex'>报名人微信：{{order['wx_name']}}</view >
+      <view class='flex'>汇款凭证：
+        <view wx:if="{{order.pay_img}}" data-url='{{rootUrl + order.pay_img}}' bindtap='showImage'>
+          <image class='hkImg' mode='aspectFit' src='{{rootUrl + order.pay_img}}' ></image>
+        </view>
+        <block wx:else>未上传</block>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{order['pay_status'] == 0}}" class='tip blue'>
+    若您已汇款成功，请点击确认已汇款!
+  </view>
+  <view wx:if="{{order['status'] == 1}}" class='detail_bottom'>
+    <view bindtap='cancel' data-id='{{order["id"]}}' class='detail_btn'>取消订单</view>
+    <view bindtap='remit' class='origen_btn detail_btn' data-id='{{order["id"]}}' data-money='{{order["price"]}}'>确认已汇款</view>
+  </view>
+  <view wx:if="{{order['status'] == 6}}" class='detail_bottom'>
+    <view bindtap='refund' class='origen_btn detail_btn' data-id='{{order["id"]}}' >申请退款</view>
   </view>
 </view>

@@ -36,7 +36,7 @@ Page({
             that.setData({
               loginStatus: 1,
               com_name: company_setting.name,
-              account: company_setting.money,
+              // account: company_setting.money,
             });
           }else {
             that.setData({

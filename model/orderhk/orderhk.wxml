@@ -39,7 +39,7 @@
   </view>
   <view class='hk_btn'>
     <view class='hk_zw' catchtap='cancel'>暂未汇款</view>
-    <view class='hk_qr' data-id='{{orderId}}' catchtap='confirmPayment' >确认已汇款</view>
+    <view class='hk_qr' data-id='{{orderId}}' data-type='{{orderType}}' catchtap='confirmPayment' >确认已汇款</view>
   </view>
   <view style='height:60rpx;'> </view>
   <view class='cancel'>

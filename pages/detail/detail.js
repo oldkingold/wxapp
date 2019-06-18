@@ -70,6 +70,11 @@ Page({
           meeting.teach_article = false;
         }
         
+        if (meeting.teachers.video) {
+          meeting.videourl = meeting.teachers.video.oss_dir;
+        }else {
+          meeting.videourl = false;
+        }
       } else {
         
         for (let i = 0; i < meeting.teachers_num; i++) {
@@ -89,6 +94,13 @@ Page({
               meeting.teach_article[key] = articles[key];
             }
           }
+
+          if (meeting.teachers[i].video) {
+            meeting.videourl = meeting.teachers[i].video.oss_dir;
+          } else {
+            meeting.videourl = false;
+          }
+
         }
         
       }
@@ -213,5 +225,7 @@ Page({
       url: '/pages/judge/judge?website=' + e.currentTarget.dataset['link'] + "&meeting=" + this.data.meeting["id"],
     })
   },
-
+  error: function (e) {
+    console.log(e)
+  }
 })

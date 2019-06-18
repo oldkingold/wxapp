@@ -3,6 +3,11 @@ page {
   font-size: 32rpx;
 }
 
+.blod {
+  font-weight : 600; 
+  color: #000;
+}
+
 .receipt {
   height: 100%;
   width: 100%;
@@ -419,4 +424,15 @@ image {
   margin-left: 10rpx;
   border: 1rpx solid white;
   border-radius: 15rpx;
+}
+
+.advertisement2 {
+  width: 100%;
+  margin-bottom: 28rpx;
+}
+
+
+.advertisement2 image{
+  width: 100%;
+
 }

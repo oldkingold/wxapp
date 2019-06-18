@@ -67,7 +67,11 @@ page {
   width: 90%;
   display: flex;
   justify-content: space-around;
-  margin-top: 50rpx;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin: 50rpx 5% 50px 5%;
+}
+
+.hkImg {
+  padding: 10rpx 0;
+  width: 150rpx;
+  height: 150rpx;
 }

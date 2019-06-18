@@ -86,8 +86,9 @@ function add_self_person(person,token) {
         title: '提示',
         content: '姓名不能为空',
       })
-      reject(false);
+      
       wx.hideLoading();
+      return reject(false);
     }
     //校验职务
     if (person.job.length < 1) {
@@ -96,13 +97,15 @@ function add_self_person(person,token) {
         title: '提示',
         content: '职务不能为空',
       })
-      reject(false);
+      
       wx.hideLoading();
+      return reject(false);
     }
     //校验手机
     if (!checek_phone(person.tel)) {
-      reject(false);
+      
       wx.hideLoading();
+      return reject(false);
     }
 
     wx.request({

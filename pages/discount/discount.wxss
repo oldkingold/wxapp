@@ -93,6 +93,13 @@ page {
   float: right;
   margin-right: 30rpx;
   margin-top: 30rpx;
+  background-color: transparent;
+  color: white;
+  font-size: 22rpx;
+}
+
+.card .bottom .login_btn::after{
+  border: none;
 }
 
 .card .bottom .left {

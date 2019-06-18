@@ -15,8 +15,8 @@
         </view>
 
         <view class='btn-content'>
-          <button class="btn-item-default" formType="submit">保存</button>
           <button class="btn-item-default" formType="reset">清空</button>
+          <button class="btn-item-default" formType="submit">保存</button> 
         </view>
 
       </form>

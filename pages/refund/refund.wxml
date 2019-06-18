@@ -1,0 +1,7 @@
+<view class='white'>
+  <view class='line border_line'>退款金额：<text class='red'>￥{{price}}</text></view>
+  <view class='line'>退款去向：退回余额</view>
+</view>
+<view class='tip'>申请退款已提交，我方通过审核以后将会在7个工作日内为你完成退款处理</view>
+
+<view bindtap='back' class='btn'>返回详情</view>
