@@ -10,13 +10,15 @@ Page({
     login: 0,
 
     nav_selectId: 0,
-    menu: ["全部", "待支付","汇款确认中","已完成","已取消"],
+    // menu: ["全部", "待支付","汇款确认中","已完成","已取消"],
+    menu: ["全部"],
     orders:[],
     current_ordernum: [0,0,0,0,0],
     loadingMoreHidden: true,
 
     bm_nav_selectId: 0,
-    bm_menu: ["全部", "待支付", "已完成", "已取消","已退款"],
+    // bm_menu: ["全部", "待支付", "已完成", "已取消","已退款"],
+    bm_menu: ["全部"],
     bm_orders: [],
     bm_current_ordernum: [0, 0, 0, 0, 0],
     bm_loadingMoreHidden: true,
@@ -25,7 +27,9 @@ Page({
     orderhkMoney: 0,
     orderhkId: 0,
 
-    balance: {"remainder": 0, "total": 0, "used": 0}
+    balance: {"remainder": 0, "using": 0, "used": 0},
+
+    lock: false //处理长按事件问题
   },
 
   onLoad: function () {
@@ -36,7 +40,7 @@ Page({
       order.myVip1Balance().then((res) => {
         if (res.data.code = 200) {
           that.setData({
-            balance: { "remainder": res.data.remainder, "total": res.data.total, "used": res.data.used }
+            balance: { "remainder": res.data.remainder, "using": res.data.using, "used": res.data.used }
           })
         }
       })
@@ -136,6 +140,11 @@ Page({
   },
 
   toOrderdetail: util.throttle(function(e) {
+    //防止长按时被触发
+    if (this.data.lock) {
+      return;
+    }
+
     var OId = e.currentTarget.dataset['id'];
     if (this.data.nav == 0) {   //充值订单
       wx.navigateTo({
@@ -223,6 +232,7 @@ Page({
         if (res.length > 0) {
           for (let i in res) {
             res[i]['remainDate'] = util.formatTimeToSevenDay(res[i]['created_at']);
+           
             // res[i]['cardInfo'] = JSON.parse(res[i]['cardInfo']);
             if (res[i]['order_type'] == "普通会员") {
               res[i]['order_type_img'] = "common"
@@ -278,5 +288,27 @@ Page({
         
       }
     })
-  }
+  },
+  touchend: function () {
+    if (this.data.lock) {
+      //开锁
+      setTimeout(() => {
+        this.setData({ lock: false });
+      }, 50);
+    }
+  },
+  //复制到剪切板
+  copy: function (e) {
+    //长按加锁
+    this.setData({ lock: true });
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.value,
+      success: function (res) {
+        wx.showToast({
+          title: e.currentTarget.dataset.key + '复制成功',
+          icon: "none"
+        });
+      }
+    });
+  },
 })

@@ -12,6 +12,11 @@ Page({
     orderhkShow: true,
     orderhkMoney: 0,
     orderhkId: 0,
+
+    refund_show:true,
+    refund: 0,
+
+    refund_suggestion: "",
   },
 
   onLoad: function (options) {
@@ -148,37 +153,164 @@ Page({
     
   },
 
+  chooseVip: function(e) {
+    this.setData({
+      refund: e.detail.value
+    })
+  },
+
+  hide: function(e) {
+    this.setData({
+      refund_show: true
+    })
+  },
+
+  refund_show: function(e) {
+    this.setData({
+      refund_show : false
+    })
+  },
+
+  refund_suggestion: function(e) {
+    this.setData({
+      refund_suggestion: e.detail.value
+    })
+  },
+
   refund: function(e) {
     var that = this;
-    console.log(e)
-    var bm_order_id = e.currentTarget.dataset["id"];
-    console.log(bm_order_id)
+    
     var data = {};
-    data['bm_id'] = bm_order_id;
+    data['bm_id'] = e.currentTarget.dataset["id"];
     data['token'] = app.globalData.token;
     data['openId'] = app.globalData.openId;
-    util.request(api.bm_refund,"post",data).then((res)=>{
-      if(res.data.code == 200) {
-        var pages = getCurrentPages();
-        var orders = pages[pages.length - 2].data.bm_orders;
-        for (let i in orders) {
-          if (orders[i]["id"] == bm_order_id) {
-            orders[i]["status"] = 3;
+    data['suggestion'] = that.data.refund_suggestion;
+
+    if (data['suggestion'] == "") {
+      wx.showModal({
+        title: '',
+        content: '请填写退款原因',
+        showCancel: false,
+      })
+      return false;
+    }
+
+    if (that.data.refund == 0) {
+      wx,wx.showModal({
+        title: '部分退款',
+        content: '是否确定发起部分退款申请',
+        success: function(res) {
+          if (res.confirm) {
+            util.request(api.bm_refund_part,"post", data).then((res)=>{
+                if(res.data.code == 200) {
+                  wx.showModal({
+                    title: '',
+                    content: '申请部分退款成功，客服人员将尽快为您处理。',
+                    showCancel: false,
+                  })
+                }
+            })
             that.setData({
-              order: orders[i]
+              refund_show: true,
             });
           }
+          
+        },
+      })
+    } else if (that.data.refund == 1) {
+      wx.showModal({
+        title: '全额退款',
+        content: '是否确定发起全额退款申请',
+        success(res) {
+          if (res.confirm) {
+            util.request(api.bm_refund, "post", data).then((res) => {
+              if (res.data.code == 200) {
+                var pages = getCurrentPages();
+                var orders = pages[pages.length - 2].data.bm_orders;
+                for (let i in orders) {
+                  if (orders[i]["id"] == e.currentTarget.dataset["id"]) {
+                    orders[i]["status"] = 3;
+                    that.setData({
+                      order: orders[i],
+                    });
+                  }
+                }
+                wx.navigateTo({
+                  url: '/pages/refund/refund?price=' + that.data.order["price"],
+                })
+              } else {
+                wx.showToast({
+                  title: "申请失败",
+                  icon: 'none',
+                  duration: 3000,
+                });
+              }
+            })
+            that.setData({
+              refund_show: true,
+            });
+          } else if (res.cancel) {
+
+          }
         }
-        wx.navigateTo({
-          url: '/pages/refund/refund?price=' + this.data.order["price"],
-        })
-      }else {
+      })
+    }
+  },
+
+  refund_cancel: function(e) {
+    var that = this;
+
+    var data = {};
+    data['bm_id'] = e.currentTarget.dataset["id"];
+    data['token'] = app.globalData.token;
+    data['openId'] = app.globalData.openId;
+
+    wx.showModal({
+      title: '取消退款',
+      content: '是否确定发起退款申请',
+      success(res) {
+        if (res.confirm) {
+          util.request(api.bm_refund_cancel, "post", data).then((res) => {
+            if (res.data.code == 200) {
+              var pages = getCurrentPages();
+              var orders = pages[pages.length - 2].data.bm_orders;
+              for (let i in orders) {
+                if (orders[i]["id"] == e.currentTarget.dataset["id"]) {
+                  orders[i]["status"] = 6;
+                  that.setData({
+                    order: orders[i]
+                  });
+                }
+              }
+              wx.showToast({
+                title: "取消退款成功",
+                icon: 'none',
+                duration: 3000,
+              });
+            } else {
+              wx.showToast({
+                title: "取消退款失败",
+                icon: 'none',
+                duration: 3000,
+              });
+            }
+          });
+        }
+      }
+    });
+
+  },
+
+  //复制到剪切板
+  copy: function (e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.value,
+      success: function (res) {
         wx.showToast({
-          title: "申请失败",
-          icon: 'none',
-          duration: 3000,
+          title: e.currentTarget.dataset.key + '复制成功',
+          icon: "none"
         });
       }
-    })
-  }
+    });
+  },
 })

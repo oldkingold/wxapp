@@ -31,7 +31,7 @@
 
   <view class='bottom'>
     <view class='bottom-content'>
-      <view class='bottom-text'>检测到用户非我公司内部人员，请</view>
+      <view class='bottom-text'>如检测到用户非我公司内部人员，请</view>
       <view class='bottom-opertaion' catchtap='bind_showModal'>清除该用户</view>
     </view>
   </view>

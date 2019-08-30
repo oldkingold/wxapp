@@ -1,4 +1,4 @@
-.page {
+page {
   background-color: #ebf0f5;
 }
 
@@ -35,6 +35,10 @@
 
 .bg_h96 {
   height: 96px;
+}
+
+.bg_h60 {
+  height: 60px;
 }
 
 .red {

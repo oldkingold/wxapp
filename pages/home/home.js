@@ -2,6 +2,7 @@ const app = getApp();
 const util = require('../../utils/util.js');
 const meeting = require('../../utils/home/meeting.js');
 const api = require('../../config/api.js');
+const CARDHEIGHT = 434;
 
 Page({
 
@@ -21,6 +22,8 @@ Page({
     menu_current_item: 0, //当前页面编号
     currentPage: [], //会议分页
     loadingMoreHidden: [], //更多隐藏
+    swiperHeight: app.globalData.systemInfo.height - 42,
+    // clickNumber: 0,
   },
 
   /**
@@ -30,8 +33,6 @@ Page({
     var that = this;
     //检查更新
     util.updateProgram();
-
-    
     
     //会议主题
     meeting.themes().then(function(res) {
@@ -66,22 +67,28 @@ Page({
   onShow: function() {
   
   },
-
+  //点击标签栏
   nav_select: function (e) {
     
     var cnum = e.currentTarget.dataset['id'] -2 
     console.log(cnum + 2)
     this.setData({
-      nav_siv: "menu"+cnum,
-      nav_selectId: e.currentTarget.id,
-      menu_current_item: -1, //清空当前页面的滚动
+      nav_siv: "menu"+cnum, 
+      nav_selectId: e.currentTarget.id, 
+      menu_current_item: cnum + 2, //清空当前页面的滚动
     })
 
-    this.setData({
-      menu_current_item: cnum + 2,
-    })
   },
-
+  //滑动swiper 
+  changeSwipe: function(e) {
+    console.log(e)
+    this.setData({
+      menu_current_item:e.detail.current,
+      nav_siv: "menu" + (e.detail.current - 2),
+      nav_selectId: "menu" + e.detail.current,
+    });
+    this.onPullDownRefresh();
+  },
   nav_list_selected (e) {
     // console.log(e);
     var cnum = e.currentTarget.dataset['id'] - 2 >= 0 ? e.currentTarget.dataset['id'] - 2 : 0;
@@ -113,7 +120,11 @@ Page({
       url: '../baoming/bm/bm',
     })
   },
-
+  //scroller拉到底部
+  scrolltolower: function(e) {
+    console.log(e);
+    this.onReachBottom();
+  },
   //下拉
   onPullDownRefresh: function () {
     var that = this;
@@ -133,6 +144,7 @@ Page({
   },
   //上拉
   onReachBottom: function (e) {
+    console.log("shagnl")
     var that = this;
     wx.showLoading({
       title: '加载中',

@@ -41,13 +41,13 @@
     <view class='conferee-item'>
       <view class='conferee-info-item'>
         <view class='conferee-name'>{{conferee.name}}</view>
-        <view class='conferee-phone'>{{conferee.tel}}</view>
-      </view>
-      <view class='conferee-info-item'>
         <view class='conferee-duty'>{{conferee.job}}</view>
       </view>
+      <view class='conferee-info-item'>
+        <view class='conferee-phone'>{{conferee.tel}}</view>  
+      </view>
 
-      <view class='conferee-bottom-item'>
+      <view class='com-bottom-item'>
         <view class='bottom-left ' catchtap='bind_edit_conferee' data-id='{{conferee.id}}'>
           <view class='icon'>
             <image src='/static/images/edit@3x.png'></image>
@@ -97,7 +97,7 @@
         <view class='object-name'>职务</view>
         <input value="{{editconferee.job}}" bindinput="edit_conf_duty" placeholder="请输入" />
       </view>
-      <view class='add-conferee-item'>
+      <view class='add-conferee-item' style='border: none;'>
         <view class='object-name'>手机</view>
         <input value="{{editconferee.tel}}" bindinput="edit_conf_phone" placeholder="请输入" />
       </view>

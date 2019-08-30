@@ -1,5 +1,5 @@
 var util = require('../../utils/util.js');
-// var api = require('../../../config/api.js');
+var api = require('../../config/api.js');
 var app = getApp();
 
 Page({
@@ -10,6 +10,7 @@ Page({
     loginStatus: 0,
     com_name: '',
     account: '',
+    unread: '',
   },
 
   onLoad: function (options) {
@@ -49,8 +50,26 @@ Page({
   },
 
   onShow: function () {
+    var that = this;
     console.log("onshow");
     this.onLoad();
+
+    var data = {};
+    data['token'] = app.globalData.token;
+    data['openId'] = app.globalData.openId;
+    util.request(api.messages, "post", data).then((res) => {
+      var message = res.data.data;
+      var unread = 0;
+      for (let index in message) {
+        if (message[index]['read'] == 0) {
+          unread++;
+        }
+      }
+      wx.setStorageSync("message", message);
+      that.setData({
+        unread: unread,
+      })
+    })
   },
 
   //微信授权登录

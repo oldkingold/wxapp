@@ -9,13 +9,14 @@ Page({
     companyName:'',
     phone:'',
     phoneCode: '',
-    phoneCodeID:'',
+    phoneCodeID:'935301565341497339^0',
     time: '获取验证码',
     timeOpen: true,
     timeNum : 60,
     reg: false,
     showmsg:'',
   },
+
   onLoad: function (options) {
     var that=this;
     // 页面初始化 options为页面跳转所带来的参数
@@ -29,12 +30,15 @@ Page({
   bind_phone: function (e) {
     this.data.phone = e.detail.value
   },
+
   bind_phone_code: function (e) {
     this.data.phoneCode = e.detail.value
   },
+
   bind_companyname: function(e) {
     this.data.companyName = e.detail.value
   },
+  
   //手机验证码请求事件
   downtime: function (e){
     (this.data.timeOpen) ? countdown(this) : ''

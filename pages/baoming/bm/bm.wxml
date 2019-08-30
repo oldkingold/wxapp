@@ -230,7 +230,7 @@
       <view class='tab_line'>
         <view class='tab_line_title'>报名人数</view> 
         <image bindtap="bm_num_cut" class="cut" src="../../../static/images/cut.png"></image>
-        <text class='tab_text'>{{bm_num}}</text>
+        <text class='tab_text'>{{bm_num != null ? bm_num : 0}}</text>
         <image bindtap="bm_num_add" class="add" src="../../../static/images/add.png"></image>
       </view>
       <view class='tab_line'>

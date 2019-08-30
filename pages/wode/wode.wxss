@@ -278,3 +278,17 @@ page {
   height: 0px;
   background-color: transparent;
 }
+
+.message_remind {
+  background-color: red;
+  height: 20rpx;
+  width: 20rpx;
+  border-radius: 10rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 10rpx;
+}
+
+.relative {
+  position: relative;
+}

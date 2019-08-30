@@ -440,8 +440,8 @@ Page({
 
   //购买vip1
   to_buy_Vip1: function () {
-    wx.switchTab({
-      url: '/pages/discount/discount',
+    wx.navigateTo({
+      url: '/pages/discount_nav/discount_nav',
     })
   },
 

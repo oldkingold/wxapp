@@ -63,6 +63,12 @@ page {
   background-color: #f4a500;
 }
 
+.refund_btn {
+  color: #7a7a7a;
+  background-color: #f2f2f2;
+  border: 1rpx solid #d8d8d8;
+}
+
 .detail_bottom {
   width: 90%;
   display: flex;
@@ -74,4 +80,106 @@ page {
   padding: 10rpx 0;
   width: 150rpx;
   height: 150rpx;
+}
+
+.refund_bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  top: 0rpx;
+  z-index: 1010;
+}
+
+.refund_win {
+  position: fixed;
+  opacity: 1;
+  z-index: 1011;
+  margin-left: 6%;
+  width: 80%;
+  height: 700rpx;
+  background-color: white;
+  font-size: 32rpx;
+  padding: 46rpx 4% 20rpx 4%;
+  border-radius: 16rpx;
+}
+
+.refund_win_l1 {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 16rpx;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.refund_win textarea {
+  background-color: #eef2f3;
+  border-radius: 16rpx;
+  width: 92%;
+  height: 166rpx;
+  margin-top: 24rpx;
+  padding: 4%;
+  font-size: 27rpx;
+}
+
+.refund_win_l2 {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10rpx;
+  font-size: 28rpx;
+  margin-top: 24rpx;
+}
+
+.refund_win_l3 {
+  margin-top: 45rpx;
+  display: flex;
+
+}
+
+.refund_win_l3 radio-group{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-right: 40rpx;
+}
+
+.refund_win_l3 radio {
+  margin-right: 8rpx;
+}
+
+.refund_win_l3 radio .wx-radio-input.wx-radio-input-checked {
+  background: #127cf4 !important;
+}
+
+.refund_win_l4 {
+  display: flex;
+  margin-top: 50rpx;
+}
+
+.refund_win_l4 view{
+  width: 42%;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+}
+
+.r_btn_check {
+  background-color: #f2f2f2;
+  border: 1rpx solid #d9d9d9;
+  color: #797979;
+  margin: 0 3% 0 5%;
+}
+
+.r_btn_cancel {
+  background-color: #f4a500;
+  color: white;
+  margin: 0 5% 0 3%;
 }

@@ -82,6 +82,7 @@ Page({
       addconferee: varaddconferee
     })
   },
+
   edit_conf_name: function (e) {
     // 添加参会人员姓名
     var that = this;
@@ -92,6 +93,7 @@ Page({
       editconferee: varaddconferee
     })
   },
+
   edit_conf_duty: function (e) {
     // 添加参会人员职务
     var that = this;
@@ -102,6 +104,7 @@ Page({
       editconferee: varaddconferee
     })
   },
+  
   edit_conf_phone: function (e) {
     // 添加参会人员手机
     var that = this;

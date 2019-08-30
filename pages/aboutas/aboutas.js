@@ -1,4 +1,4 @@
-// var api = require('../../../config/api.js');
+var api = require('../../config/api.js');
 const meet = require('../../utils/home/meeting.js');
 Page({
   data: {
@@ -14,13 +14,13 @@ Page({
     })
   },
   previewImage: function (e) {
-    // wx.previewImage({
-    //   current: '', // 当前显示图片的http链接     
-    //   urls: [api.ApiRootUrl + '/images/wxxcx/companycode.png'], // 需要预览的图片http链接列表
-    //   success: function () {
+    wx.previewImage({
+      current: '', // 当前显示图片的http链接     
+      urls: [api.ApiRootUrl + '/images/wxxcx/companycode.png'], // 需要预览的图片http链接列表
+      success: function () {
 
-    //   }
-    // })
+      }
+    })
   },
   //拨打电话
   phoneCall: function (e) {
@@ -34,5 +34,15 @@ Page({
       }
     })
   },
-
+  copy: function(e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.value,
+      success: function (res) {
+        wx.showToast({
+          title: e.currentTarget.dataset.key + '复制成功',
+          icon: "none"
+        });
+      }
+    });
+  },
 })

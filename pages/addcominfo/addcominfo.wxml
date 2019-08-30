@@ -72,13 +72,13 @@
 
   </view>
 
-    <view class='btn-content'>
-      <view class="{{bmResetSelected ?'btn-item-selected':'btn-item-default'}}" bindtap="bmReset">
-        重置
-      </view>
-      <view class="{{bmSubbmitSelected ?'btn-item-selected':'btn-item-default'}}" bindtap="bmSubbmit">
-        提交
-      </view>
+  <view class='btn-content'>
+    <view class="{{bmResetSelected ?'btn-item-selected':'btn-item-default'}}" bindtap="bmReset">
+      重置
     </view>
+    <view class="{{bmSubbmitSelected ?'btn-item-selected':'btn-item-default'}}" bindtap="bmSubbmit">
+      提交
+    </view>
+  </view>
 
 </view>

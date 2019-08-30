@@ -63,9 +63,6 @@ Page({
 
     let company_setting = wx.getStorageSync('company_setting');
     if (company_setting) {
-      that.setData({
-        company: company_setting["name"]
-      });
       order.myVip1Info().then((res) => {
         if (res.data.code == 200) {
           var data = JSON.parse(decodeURIComponent(decode.base64_decode(res.data.data)));

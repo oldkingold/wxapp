@@ -97,7 +97,7 @@ page {
   margin-left: 20rpx;
   margin-right: 20rpx;
   font-weight: bold;
-  margin-bottom: -25rpx;
+  margin-bottom: -5rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;

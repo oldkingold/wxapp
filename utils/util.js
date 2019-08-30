@@ -14,14 +14,21 @@ const split_array = (arr, len) => {
 const formatTimeToSevenDay = datestr => {
   let date = new Date(datestr);
   let now = new Date();
-  let distance = now.getTime() - date.getTime();
-  let hours = 7 * 24 - parseInt(distance / (3600 *1000));
-  let day = hours / 24;
-  let hour = hours % 24; 
-  if (parseInt(hour) == 0) {
-    return parseInt(day) + "天";
+  let distance = (now.getTime() - date.getTime()) / 1000;
+  if (distance >= 7 * 24 * 3600) {
+    distance = distance - 7 * 24 * 3600
+    return "超时";
+  }else {
+    distance = 7 * 24 * 3600 - distance
   }
-  return parseInt(day) + "天" + parseInt(hour) + "小时";
+  let day = parseInt(distance / (24 * 3600));
+  let hours = parseInt((distance - day * 24 * 3600) / 3600);
+  let i = parseInt((distance - day * 24 * 3600 - hours * 3600) / 60);
+
+  if (day == 0) {
+    return hours + "小时" + i + "分钟";
+  }
+  return day + "天" + hours + "小时";
 }
 
 const formatTime = date => {

@@ -9,10 +9,10 @@
 
         <view class='invoice-line'>
           <view class=' invoice-line-name-common'>
-            <text class='text-font'>户名</text>
+            <text class='text-font'>账户名</text>
           </view>
           <view class='invoice-line-value-common'>
-            <text class='text-font'>浙江度川企业管理咨询有限公司</text>
+            <text class='text-font'>浙江度川网络科技有限公司</text>
           </view>
         </view>
         <view class='invoice-line'>
@@ -28,7 +28,7 @@
             <text class='text-font'>账号</text>
           </view>
           <view class='invoice-line-value-common'>
-            <text class='text-font'>1202023309910119345</text>
+            <text class='text-font'>1202023309910094295</text>
           </view>
         </view>
       </view>
@@ -52,7 +52,7 @@
         </view>
       </view>
     </block>
-    <view class='title'>火热报名中的会议</view>
+    <view class='title' >火热报名中的会议</view>
     <view class='meetings'>
       <block wx:for="{{meetings}}" wx:key='*this'>
         <block wx:if="{{item}}">

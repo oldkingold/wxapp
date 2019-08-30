@@ -1,4 +1,7 @@
-// pages/message/message.js
+const app = getApp();
+const api = require("../../config/api.js");
+const util = require("../../utils/util.js");
+
 Page({
 
   /**
@@ -6,33 +9,36 @@ Page({
    */
   data: {
     message: [
-      {
-        date:"2018.09.12",
-        info:"您购买的5人次套餐已确认，可在套餐力查看详情，感谢您的支持！"
-      },{
-        date: "2018.09.12",
-        info: "0571-82734365您申诉的什么什么什么会议报名参会3人0571-82796365实际参会2人，已核实不通过，如有疑问请联系客服0571-82737365，感谢您的支持！"
-      }
+      
     ]
   },
 
   onLoad: function (options) {
     var rex = /0\d{2,3}-\d{7,8}/g;
-    var message = this.data.message;
+     
+    var message = wx.getStorageSync("message");
+    console.log(message);
     for (let index in message) {
       var info = message[index]['info'];
       //将电话与其他文字分割开，以数组形式重新拼接
+      console.log(info);
       var arr = info.split(rex);
       var phone = info.match(rex);
-      for(let i in phone) {
+      for (let i in phone) {
         arr.splice(i * 2 + 1, 0, phone[i])
       }
       message[index]['info'] = arr;
+      message[index]['date'] = message[index]['date'].substring(0, 10);
     }
     //刷新
     this.setData({
       message: message
     });
+    
+  },
+
+  onUnload: function() {
+    this.readAll()
   },
 
   phonecall: function (e) {
@@ -40,6 +46,45 @@ Page({
     wx.makePhoneCall({
       phoneNumber: tel
     })
-  }
+  },
+
+  readAll: function () {
+    var that = this;
+    var data = {};
+    data['token'] = app.globalData.token;
+    data['openId'] = app.globalData.openId;
+    util.request(api.message_all, "post", data).then((res) => {
+      if (res.data.code == 200) {
+        var message = that.data.message;
+        for(let i in message) {
+          message[i].read = 1;
+        }
+        that.setData({
+          message: message
+        })
+      }
+    });
+
+  },
   
+  readMessage: function (e) {
+    var that = this;
+
+    var data = {};
+    data['token'] = app.globalData.token;
+    data['openId'] = app.globalData.openId;
+    data['id'] = e.currentTarget.dataset["id"];
+    util.request(api.message_read, "post", data).then((res) => {
+      if(res.data.code = 200){
+        var message = that.data.message;
+        message[e.currentTarget.dataset["index"]].read = 1;
+        that.setData({
+          message: message
+        })
+      }
+    });
+  }
+
+
+
 })

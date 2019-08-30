@@ -222,7 +222,7 @@ function del_self_person(personid, token) {
 //检验手机格式
 function checek_phone(tel) {
   var that = this;
-  var mobile = /^[1][3,4,5,7,8][0-9]{9}$/;
+  var mobile = /^[1][3,4,5,7,8,9][0-9]{9}$/;
   if (!mobile.exec(tel)) {
     wx.showModal({
       showCancel: false,

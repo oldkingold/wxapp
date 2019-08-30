@@ -61,9 +61,13 @@
       <image src='/static/images/1.png'></image>
       <text>签到</text>
     </button>
-    <button class='evaluation nobutton' wx:if="{{canIUseGetUserInfo}}" open-type="getUserInfo" bindgetuserinfo='bindweixin'>
-      <image src='/static/images/2.png'></image>
-      <text>评价</text>
+    <button data-url='/pages/message/message' class='evaluation nobutton' 
+    wx:if="{{canIUseGetUserInfo}}" open-type="getUserInfo" bindgetuserinfo='bindweixin'>
+      <view class='relative'>
+        <image src='/static/images/2.png'></image>
+        <view wx:if="{{unread > 0}}" class='message_remind'></view>
+      </view>
+      <text>消息</text>
     </button>
     <button data-url='/pages/order/order' class='log nobutton'
     wx:if="{{canIUseGetUserInfo}}" open-type="getUserInfo" bindgetuserinfo='bindcheckloginwx'>
@@ -76,10 +80,13 @@
       <image src='/static/images/1.png'></image>
       <text>签到</text>
     </navigator>
-    <view class='evaluation' catchtap='scanCode'>
-      <image src='/static/images/2.png'></image>
-      <text>评价</text>
-    </view>
+    <navigator url='/pages/message/message' class='evaluation'>
+      <view class='relative'>
+        <image src='/static/images/2.png'></image>
+        <view wx:if="{{unread > 0}}" class='message_remind'></view>
+      </view>
+      <text>消息</text>
+    </navigator>
     <navigator url='/pages/order/order' class='log'>
       <image src='/static/images/3.png'></image>
       <text>订单</text>
@@ -123,13 +130,13 @@
         </view>
       </navigator>
     </block> -->
-    <navigator url='/pages/message/message' class='line'>
+    <!-- <navigator url='/pages/message/message' class='line'>
       <image mode="aspectFit" src='/static/images/m_message.png'></image>
       <view class='line-name'>我的消息</view>
       <view class='icon_go'>
         <image class='go' src='/static/images/go.png'></image>
       </view>
-    </navigator>
+    </navigator> -->
     <navigator url='/pages/infomanage/infomanage' class='line'>
       <image mode="aspectFit" src='/static/images/m_info.png'></image>
       <view class='line-name'>信息维护</view>

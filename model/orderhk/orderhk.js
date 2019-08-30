@@ -32,6 +32,7 @@ Component({
     show:true,
     tempFilePaths: [],
     date: util.formatDate(new Date()),
+    nowdate: util.formatDate(new Date()),
   },
   /**
    * 组件的方法列表

@@ -20,46 +20,46 @@ Page({
     this.setData({
       companySetting: company_setting,
       companyAdmin: company_setting ? company_setting['admin'] : false,
-      bindCompany: bind_setting ? bind_setting['company'] : '',
-      bindName: bind_setting ? bind_setting['name'] : '',
-      bindTel: bind_setting ? bind_setting['tel'] : '',
+      // bindCompany: bind_setting ? bind_setting['company'] : '',
+      // bindName: bind_setting ? bind_setting['name'] : '',
+      // bindTel: bind_setting ? bind_setting['tel'] : '',
     })
 
   },
   
-  onUnload: function () {
-    if (this.data.isChanged) {
-      var token = app.globalData.token;
-      var com = this.data.bindCompany;
-      var name = this.data.bindName;
-      var tel = this.data.bindTel;
-      wx.request({
-        url: api.updateBind,
-        method: 'POST',
-        data: {
-          token: token,
-          com: com,
-          name: name,
-          tel: tel
-        },
-        success: function (r) {
-          if (r.data.code != 200) {
-            wx.showModal({
-              showCancel: false,
-              title: '提示',
-              content: '错误'
-            })
-            return false;
-          }
-          let bind_setting = { company: com, name: name, tel: tel };
-          wx.setStorageSync('bind_setting', bind_setting);
-          // app.globalData.bindCompany = com;
-          // app.globalData.bindName = name;
-          // app.globalData.bindTel = tel;
-        }
-      })
-    }
-  },
+  // onUnload: function () {
+  //   if (this.data.isChanged) {
+  //     var token = app.globalData.token;
+  //     var com = this.data.bindCompany;
+  //     var name = this.data.bindName;
+  //     var tel = this.data.bindTel;
+  //     wx.request({
+  //       url: api.updateBind,
+  //       method: 'POST',
+  //       data: {
+  //         token: token,
+  //         com: com,
+  //         name: name,
+  //         tel: tel
+  //       },
+  //       success: function (r) {
+  //         if (r.data.code != 200) {
+  //           wx.showModal({
+  //             showCancel: false,
+  //             title: '提示',
+  //             content: '错误'
+  //           })
+  //           return false;
+  //         }
+  //         let bind_setting = { company: com, name: name, tel: tel };
+  //         wx.setStorageSync('bind_setting', bind_setting);
+  //         // app.globalData.bindCompany = com;
+  //         // app.globalData.bindName = name;
+  //         // app.globalData.bindTel = tel;
+  //       }
+  //     })
+  //   }
+  // },
 
   bind_unbundling: function () {
     wx.showLoading({mask: true});
@@ -113,25 +113,25 @@ Page({
     
   },
 
-  bind_comName: function (e) {
-    this.setData({
-      bindCompany: e.detail.value,
-      isChanged: true
-    })
-  },
+  // bind_comName: function (e) {
+  //   this.setData({
+  //     bindCompany: e.detail.value,
+  //     isChanged: true
+  //   })
+  // },
 
-  bind_confereeName: function (e) {
-    this.setData({
-      bindName: e.detail.value,
-      isChanged: true
-    })
-  },
+  // bind_confereeName: function (e) {
+  //   this.setData({
+  //     bindName: e.detail.value,
+  //     isChanged: true
+  //   })
+  // },
 
-  bind_phone: function (e) {
-    this.setData({
-      bindTel: e.detail.value,
-      isChanged: true
-    })
-  },
+  // bind_phone: function (e) {
+  //   this.setData({
+  //     bindTel: e.detail.value,
+  //     isChanged: true
+  //   })
+  // },
 
 })

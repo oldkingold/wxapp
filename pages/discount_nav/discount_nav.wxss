@@ -7,7 +7,7 @@ page {
   padding-top: 40rpx;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
 
 .bg2 {
@@ -406,7 +406,5 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   border-radius: 0;
 }
 
-.white-space {
-  white-space: nowrap;
-}
+
 

@@ -6,6 +6,7 @@ page {
   background: #f5f5f5;
   height: 100%;
   padding-top: 20rpx;
+  font-size: 30rpx;
 }
 
 .content {
@@ -73,7 +74,6 @@ page {
   margin: 50rpx auto;
   border: 1rpx solid #c6c7c9;
   line-height: 82rpx;
-  font-weight: 600;
   font-size: 31rpx;
   letter-spacing: 6rpx;
 }

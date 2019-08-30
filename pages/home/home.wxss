@@ -123,7 +123,7 @@ page {
   /* background: url('http://peixun-9.58jz.com.cn/images/card_bg.png'); */
   overflow: hidden;
   position: relative;
-  margin-top: 25rpx;
+  margin: 0rpx 12rpx 25rpx 12rpx;
 }
 
 .card_1_mb {
@@ -272,7 +272,7 @@ page {
   /* background: url('http://peixun-9.58jz.com.cn/images/card_bg.png'); */
   overflow: hidden;
   position: relative;
-  margin-top: 25rpx;
+  margin: 0rpx 12rpx 25rpx 12rpx;
 }
 
 .card_2_title {

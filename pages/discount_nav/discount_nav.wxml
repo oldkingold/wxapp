@@ -97,7 +97,7 @@
 
         <view class='item'>
           <text class='name'>公司名称：</text>
-          <input bindinput='bindMyInput' data-name='company' placeholder='请输入公司全称' value='{{company}}' disabled='true'></input>
+          <input bindinput='bindMyInput' data-name='company' placeholder='请输入公司全称' value='{{company}}'></input>
         </view>
         <view class='item'>
           <text class='name'>联系人：</text>
@@ -178,9 +178,9 @@
       <text>提示：</text>由于微信支付限额，请选择合适的套餐并汇款至我司账户后点击已汇款，汇款请备注公司名称，对公账号如下：
     </view>
     <view class='comapny'>
-      <view class="flex_row"><view class="white-space">账户名：</view><view>浙江度川网络科技有限公司</view></view>
-      <view class="flex_row"><view class="white-space">开户行：</view><view>中国工商银行股份有限公司杭州三墩支行</view></view>
-      <view class="flex_row"><view class="white-space">账　户：</view><view>1202023309910094295</view></view>
+      <view>账户名：浙江度川网络科技有限公司</view>
+      <view>开户行：中国建设银行古翠支行</view>
+      <view>账　户：1234567899990</view>
     </view>
     <view style='margin-top:250rpx;'>　
     </view>

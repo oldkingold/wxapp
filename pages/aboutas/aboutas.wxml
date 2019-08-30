@@ -28,11 +28,11 @@
         </view>
         <view class='b-line'>
           <view class='line-name'>传真</view>
-          <view class='line-value'>0571-89809185</view>
+          <view class='line-value' bindlongtap="copy" data-key="传真" data-value="0571-89809185">0571-89809185</view>
         </view>
         <view class='b-line'>
           <view class='line-name'>邮箱</view>
-          <view class='line-value'>contact@58jz.com.cn</view>
+          <view class='line-value' bindlongtap="copy" data-key="邮箱" data-value="contact@58jz.com.cn" >contact@58jz.com.cn</view>
         </view>
       </view>
       <view class='b-right' bindtap='previewImage'>
