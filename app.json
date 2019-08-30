@@ -27,6 +27,7 @@
     "pages/addcominfo/addcominfo",
     "pages/discountlog/index/index",
     "pages/discount/discount",
+    "pages/discount_nav/discount_nav",
     "pages/discountreceipt/discountreceipt",
     "pages/orderdetail/orderdetail",
     "pages/discountlog/detail/detail",
@@ -44,7 +45,7 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "首页",
+        "text": "课程",
         "iconPath": "static/images/home.png",
         "selectedIconPath": "static/images/home_h.png"
       },
