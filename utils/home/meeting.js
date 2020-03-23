@@ -23,21 +23,6 @@ function themes() {
 //获取会议
 function meeting(data) {
   return util.request(api.Meeting,"post",data);
-  // return new Promise(function (resolve, reject) {
-  //   wx.request({
-  //     url: api.Meeting,
-  //     method: "GET",
-  //     success: function (res) {
-  //       // console.log(res)
-  //       resolve(res)
-  //     },
-  //     fail: function (res) {
-  //       console.log(res);
-  //       reject(res);
-  //     }
-
-  //   })
-  // });
 }
 
 //获取某一场会议

@@ -157,7 +157,7 @@ function countdown(that) {
       } else {
         wx.showModal({
           title: '提示',
-          content: '验证码发送错误',
+          content: r.data.data ? r.data.data : '网络错误',
           success: function () { }
         })
       }

@@ -61,6 +61,7 @@ Page({
       ye_cz_show: ""
     } ,
     // Vip1
+    btnType : { 1: "highlight_button", 2: "button", 3: "unuse_button" } //付款方式按钮状态
   },
 
   onLoad: function (options) {
@@ -399,43 +400,43 @@ Page({
   },
   //vip1付款方式
   pay_mode: function (e) {
-    console.log(e.currentTarget.dataset.mode)
-    var mode = e.currentTarget.dataset.mode;
-    if (this.data.Vip1_tab.level_id < 5) {
-      return;
-    }
-    if (mode == "ye") {
-      if (this.data.Vip1_tab.ye_btn == 2) {
-        this.data.Vip1_tab.ye_btn = 1;
-        this.data.Vip1_tab.zz_btn = false;
-        this.data.Vip1_tab.qt_btn = false;
-        this.data.invoice.invType = "不开票";
-      }
+    // console.log(e.currentTarget.dataset.mode)
+    // var mode = e.currentTarget.dataset.mode;
+    // if (this.data.Vip1_tab.level_id < 5) {
+    //   return;
+    // }
+    // if (mode == "ye") {
+    //   if (this.data.Vip1_tab.ye_btn == 2) {
+    //     this.data.Vip1_tab.ye_btn = 1;
+    //     this.data.Vip1_tab.zz_btn = false;
+    //     this.data.Vip1_tab.qt_btn = false;
+    //     this.data.invoice.invType = "不开票";
+    //   }
 
-    } else if (mode == "zz") {
-      if (!this.data.Vip1_tab.zz_btn) {
-        if (this.data.Vip1_tab.ye_btn == 1) {
-          this.data.Vip1_tab.ye_btn = 2;
-        }
-        this.data.Vip1_tab.zz_btn = true;
-        this.data.Vip1_tab.qt_btn = false;
-      }
+    // } else if (mode == "zz") {
+    //   if (this.data.Vip1_tab.zz_btn == 2) {
+    //     if (this.data.Vip1_tab.ye_btn == 1) {
+    //       this.data.Vip1_tab.ye_btn = 2;
+    //     }
+    //     this.data.Vip1_tab.zz_btn = 1;
+    //     this.data.Vip1_tab.qt_btn = false;
+    //   }
       
-    } else if (mode == "qt") {
-      if (!this.data.Vip1_tab.qt_btn) {
-        if (this.data.Vip1_tab.ye_btn == 1) {
-          this.data.Vip1_tab.ye_btn = 2;
-        }
-        this.data.Vip1_tab.zz_btn = false;
-        this.data.Vip1_tab.qt_btn = true;
-      }
-    }
+    // } else if (mode == "qt") {
+    //   if (!this.data.Vip1_tab.qt_btn) {
+    //     if (this.data.Vip1_tab.ye_btn == 1) {
+    //       this.data.Vip1_tab.ye_btn = 2;
+    //     }
+    //     this.data.Vip1_tab.zz_btn = false;
+    //     this.data.Vip1_tab.qt_btn = true;
+    //   }
+    // }
 
     
-    this.setData({
-      Vip1_tab: this.data.Vip1_tab,
-      invoice: this.data.invoice
-    })
+    // this.setData({
+    //   Vip1_tab: this.data.Vip1_tab,
+    //   invoice: this.data.invoice
+    // })
   },
 
   //购买vip1
@@ -869,30 +870,31 @@ function Vip1(bm_num, meeting, vip1_info, Vip1_tab) {
     }
   }
 
-  if (vip1_info['id'] > 5) {
+  if (vip1_info['id'] > 3) {
     Vip1_tab.img = icons[vip1_info['id']];
-    if (vip1_info["remainder"] > bm_num * Vip1_tab.level_price) {
-      Vip1_tab.ye_btn = 1;  
-      Vip1_tab.zz_btn = false;
-      Vip1_tab.qt_btn = false;
+    if (vip1_info["remainder"] >= bm_num * Vip1_tab.level_price) {
+      //余额充足
+      Vip1_tab.ye_btn = 1;
+      Vip1_tab.zz_btn = 3;
+      Vip1_tab.qt_btn = 3;
+
       Vip1_tab.ye_tip = "剩余¥" + vip1_info["remainder"];
       Vip1_tab.ye_cz_show = true;
-      
     } else {
-      Vip1_tab.ye_btn = 3;  //不能点击
-      if (!Vip1_tab.qt_btn) {
-        Vip1_tab.zz_btn = false;
-        Vip1_tab.qt_btn = true;
-      }
+      //余额不足
+      Vip1_tab.ye_btn = 3;
+      Vip1_tab.zz_btn = 3;
+      Vip1_tab.qt_btn = 1;
+      
       Vip1_tab.ye_tip = "剩余¥" + vip1_info["remainder"] + ",余额不足,";
       Vip1_tab.ye_cz_show = false;
     }
   } else {
-    Vip1_tab.ye_btn = 3;  //不能点击
-    if (!Vip1_tab.qt_btn) {
-      Vip1_tab.zz_btn = true;
-      Vip1_tab.qt_btn = false;
-    }
+    //无余额，无会员
+    Vip1_tab.ye_btn = 3;
+    Vip1_tab.zz_btn = 1;
+    Vip1_tab.qt_btn = 3;
+
     Vip1_tab.ye_tip = "余额不足";
     Vip1_tab.ye_cz_show = false;
   }

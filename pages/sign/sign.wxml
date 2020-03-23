@@ -8,7 +8,7 @@
         <view class='header'>
           <image mode='aspectFit' src='/static/images/gongsi.png'></image>
         </view>
-        <input placeholder="请输入账号" maxlength="30" bindinput="bind_companyname" />
+        <input placeholder="请输入公司全称" maxlength="30" bindinput="bind_companyname" />
       </view>
 
       <view class="section">

@@ -45,6 +45,10 @@ Page({
 
   onShow: function () {
     let that = this;
+    
+    // util.loginState().then((res)=>{
+    //   console.log("---------------"+res)
+    // })
 
     order.myVip1Type().then((res) => {
       for (let i = 1; i < 5; i++) {
@@ -76,8 +80,10 @@ Page({
               break;
             }
           }
-          
-          if (vip_type < 2) {
+          if (vip_type == 0) {
+            that.data.select_vip_type = 1;
+            that.data.discountprice = 11920;
+          }else if (vip_type == 1) {
             that.data.select_vip_type = 2;
             that.data.discountprice = that.data.vip1[2].pay_in_advance;
           } else if (vip_type == 2) {
@@ -98,9 +104,9 @@ Page({
         }else {
           that.setData({
             vip_type: 0,
-            discountprice: 20860,
+            discountprice: 11920,
             balance : 0,
-            select_vip_type: 2,
+            select_vip_type: 1,
           });
         }
       });
@@ -108,9 +114,9 @@ Page({
 
       that.setData({
         vip_type: -1,
-        discountprice: 20860,
+        discountprice: 11920,
         balance: 0,
-        select_vip_type: 2,
+        select_vip_type: 1,
       });
     }
     
@@ -119,14 +125,16 @@ Page({
   //监听vip选择
   chooseVip: function (e) {
     //需要支付价格
-    if (this.data.vip_type < 2) {
+    if (e.detail.value == "1") {
+      this.data.discountprice = 11920;
+    }else if (this.data.vip_type < 2) {
       this.data.discountprice = this.data.vip1[parseInt(e.detail.value)].pay_in_advance;
     } else if ((this.data.vip_type == 2 && parseInt(e.detail.value) > 2) || (this.data.vip_type == 3 && parseInt(e.detail.value) > 3)) {
       this.data.discountprice = this.data.vip1[parseInt(e.detail.value)].pay_in_advance - this.data.balance;
     } else {
       this.data.discountprice = 0;
     }
-
+    
     this.setData({
       select_vip_type: parseInt(e.detail.value),
       discountprice: this.data.discountprice,
@@ -228,7 +236,7 @@ Page({
 
     var mobile = /^[1][3,4,5,7,8][0-9]{9}$/;
     if (!mobile.exec(that.data.contactTel)) {
-      that.showToast('手机号码有误');
+      that.showToast('手机号码有误d');
       return false;
     }
 

@@ -11,7 +11,7 @@
       <view class='sides'>
         <view class='item-name'>+86</view>
         <view class='column-line'></view>
-        <input type="text" placeholder="请输入新的手机号"  bindchange="bind_new_phone" />
+        <input type="text" placeholder="请输入新的手机号"  bindinput="bind_new_phone" />
       </view>
     </view>
   </view>
@@ -20,7 +20,7 @@
         <view class='sides'>
           <view class='item-name'>验证码</view>
           <view class='column-line'></view>
-          <input type="text" maxlength="6" bindchange="bind_phone_code" />
+          <input type="text" maxlength="6" bindinput="bind_phone_code" />
         </view>
       </view>
       <button bindtap="downtime">{{time}}</button>

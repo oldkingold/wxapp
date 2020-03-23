@@ -56,7 +56,7 @@ Component({
       })
     },
     //确认汇款
-    confirmPayment: function(e) {
+    confirmPayment: util.throttle(function(e) {
       console.log(e);
       let that = this;
       var data = {};
@@ -199,7 +199,7 @@ Component({
         })
       }
 
-    },
+    }, 2000),
     //时间选择器
     bindDateChange: function (e) {
       this.setData({

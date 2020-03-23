@@ -242,16 +242,16 @@
         <view class='tab_line_title'>付款方式</view>
         <view>
           <view class='tab_line_vip' >
-            <view bindtap='pay_mode' data-mode='ye' class='{{Vip1_tab.ye_btn == 3 ? "unuse_button":""}}{{Vip1_tab.ye_btn == 1 ? "highlight_button":""}}{{Vip1_tab.ye_btn == 2 ? "button":""}}'>余额</view>
-            <view class='vip_tip' >{{ Vip1_tab.level_id > 4 ? Vip1_tab.ye_tip : ""}}</view>
+            <view bindtap='pay_mode' data-mode='ye' class='{{btnType[Vip1_tab.ye_btn]}}'>余额支付</view>
+            <view class='vip_tip' >{{ Vip1_tab.level_id > 3 ? Vip1_tab.ye_tip : ""}}</view>
             <view bindtap='to_buy_Vip1' class='vip_cz' hidden='{{Vip1_tab.ye_cz_show}}'>去充值</view>
           </view>
           <view class='tab_line_vip'>
-            <view bindtap='pay_mode' data-mode='zz' class='{{Vip1_tab.zz_btn ? "highlight_button" : "button"}}'>转账</view>
+            <view bindtap='pay_mode' data-mode='zz' class='{{btnType[Vip1_tab.zz_btn]}}'>转账支付</view>
             <view class='vip_tip'>公对公或私对公</view>
           </view>
           <view class='tab_line_vip'>
-            <view wx:if="{{Vip1_tab.level_id > 4}}" bindtap='pay_mode' data-mode='qt' class='{{Vip1_tab.qt_btn ? "highlight_button" : "button"}}'>其他</view>
+            <view wx:if="{{Vip1_tab.level_id > 4}}" bindtap='pay_mode' data-mode='qt' class='{{btnType[Vip1_tab.qt_btn]}}'>其他支付</view>
             <view wx:else bindtap='pay_mode' data-mode='qt' class='unuse_button'>其他</view>
             <view class='vip_tip'>请联系客服</view>
           </view>

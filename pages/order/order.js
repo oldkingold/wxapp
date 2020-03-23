@@ -38,7 +38,7 @@ Page({
     if (company_setting) {
       this.onPullDownRefresh();
       order.myVip1Balance().then((res) => {
-        if (res.data.code = 200) {
+        if (res.data.code == 200) {
           that.setData({
             balance: { "remainder": res.data.remainder, "using": res.data.using, "used": res.data.used }
           })

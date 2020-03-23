@@ -18,7 +18,15 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"checkInvalidKey": true
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.2.0",

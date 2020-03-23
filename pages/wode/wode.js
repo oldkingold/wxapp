@@ -126,16 +126,6 @@ Page({
       url: '/pages/login/login'
     });
   },
-  scanCode: function () {
-    wx.scanCode({
-      onlyFromCamera: true,
-      success: (res) => {
-        wx.navigateTo({
-          url: '/pages/judge/judge?website=' + res.result,
-        })
-      }
-    })
-  },
   exitLogin: function () {
     wx.showModal({
       title: '',

@@ -39,19 +39,6 @@
       </view>
     </block>
   </block>
-
-  <view class="top-right">
-    <block wx:if="{{userInfo_status==0}}">
-      <button class='nobutton scan' wx:if="{{canIUseGetUserInfo}}" open-type="getUserInfo" bindgetuserinfo='bindweixin'>
-        <image src='/static/images/saoyisao.png'></image>
-      </button>
-    </block>
-    <block wx:else>
-      <view class='scan' bindtap='scanCode'>
-        <image src='/static/images/saoyisao.png'></image>
-      </view>
-    </block>
-  </view> 
 </view>
 
 <view class='operation'>

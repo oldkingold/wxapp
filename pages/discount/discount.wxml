@@ -21,7 +21,7 @@
   
       </view>
       <view class='bottom'>
-        <view class='left' wx:if="{{vip_type > 1}}">
+        <view class='left' wx:if="{{vip_type > 0}}">
           <text class='text1'>{{balance}}</text>
           <text class='text2'>账户金额</text>
         </view>
@@ -38,20 +38,25 @@
       <view class='line'>
         <radio-group name="vip-radio" class="radio-vip1" bindchange="chooseVip">
           <view class="radio-group" >
-            <label wx:if="{{vip_type <= 2}}">
-              <radio value="2" checked="{{vip_type < 2 ? 'checked':''}}" name="invoice" />
+            <label wx:if="{{vip_type <= 0}}">
+              <radio value="1" checked="{{vip_type <= 0 ? 'checked':''}}" name="invoice" />
+              <text>五人套餐</text>
+              <text class='red price'>￥11920.00</text>
+            </label>
+            <label wx:if="{{vip_type < 2}}">
+              <radio value="2" checked="{{vip_type == 1 ? 'checked':''}}" name="invoice" />
               <image src='../../static/images/Vip1/common.png'></image>
               <text>{{vip1[2].name}}</text>
               <text wx:if="{{vip_type <= 1}}" class='red price'>￥{{vip1[2].pay_in_advance}}.00</text>
-              <text wx:if="{{vip_type == 2}}" class='price'>可充值任意金额</text>
+              <!-- <text wx:if="{{vip_type == 2}}" class='price'>可充值任意金额</text> -->
             </label >
-            <label wx:if="{{vip_type <= 3}}">
+            <label wx:if="{{vip_type < 3}}">
               <radio value="3" checked="{{vip_type == 2 ? 'checked':''}}" name="invoice" />
               <image src='../../static/images/Vip1/silver.png'></image>
               <text>{{vip1[3].name}}</text>
               <text wx:if="{{vip_type <= 1}}" class='price red'>￥{{vip1[3].pay_in_advance}}.00</text>
               <text wx:if="{{vip_type == 2}}" class='price'>还差<text class='red'>￥{{vip1[3].pay_in_advance - balance}}.00</text></text>
-              <text wx:if="{{vip_type == 3}}" class='price'>可充值任意金额</text>
+              <!-- <text wx:if="{{vip_type == 3}}" class='price'>可充值任意金额</text> -->
             </label>
             <label wx:if="{{vip_type <= 4}}">
               <radio value="4" checked="{{vip_type >= 3 ? 'checked':''}}" name="invoice" />
@@ -59,7 +64,8 @@
               <text>{{vip1[4].name}}</text>
               <text wx:if="{{vip_type <= 1}}" class='price red'>￥{{vip1[4].pay_in_advance}}.00</text>
               <text wx:if="{{vip_type == 2 || vip_type == 3 }}" class='price'>还差<text class='red'>￥{{vip1[4].pay_in_advance - balance}}.00</text></text>
-              <text wx:if="{{vip_type == 4}}" class='price'>可充值任意金额</text>
+              <!-- 可充值任意金额 -->
+              <text wx:if="{{vip_type == 4}}" class='price'>已达到最高等级</text>
             </label>
           </view>
         </radio-group>
@@ -81,23 +87,23 @@
 
           <text class='price1'>￥{{vip1[select_vip_type].pay_in_advance - balance}}.00</text>
 
-          <view class='item'>
+          <!-- <view class='item'>
             <input class='money' type='number' bindinput='bindDiscountprice' placeholder='请输入其他金额' value='{{discountprice}}'></input>
             <text class='tip'>*金额不得低于{{vip1[select_vip_type].pay_in_advance - balance > vip1[select_vip_type].recharge_point ? vip1[select_vip_type].pay_in_advance - balance : vip1[select_vip_type].recharge_point}}元</text>
-          </view>
+          </view> -->
         </view>
       </view>
       
       <view class='contact' >
-        <view class='item' wx:if="{{(vip_type == select_vip_type && select_vip_type >= 2)}}">
+        <!-- <view class='item' wx:if="{{(vip_type == select_vip_type && select_vip_type >= 2)}}">
           <text class='name'>充值金额：</text>
           <input class='money' type='number' bindinput='bindDiscountprice' placeholder='请输入' value='{{discountprice}}'></input>
           <text wx:if="{{vip1[select_vip_type].recharge_point > 0}}" class='tip'>*金额不得低于{{vip1[select_vip_type].recharge_point}}元</text>
-        </view>
+        </view> -->
 
         <view class='item'>
           <text class='name'>公司名称：</text>
-          <input bindinput='bindMyInput' data-name='company' placeholder='请输入公司全称' value='{{company}}' disabled='true'></input>
+          <input bindinput='bindMyInput' data-name='company' placeholder='请输入公司全称' value='{{company}}' ></input>
         </view>
         <view class='item'>
           <text class='name'>联系人：</text>
@@ -182,11 +188,11 @@
       <view class="flex_row"><view class="white-space">开户行：</view><view>中国工商银行股份有限公司杭州三墩支行</view></view>
       <view class="flex_row"><view class="white-space">账　户：</view><view>1202023309910094295</view></view>
     </view>
-    <view style='margin-top:250rpx;'>　
+    <view style='margin-top:150rpx;'>　
     </view>
   </view>
 </view>
-<view class='submitview'>
+<view class='submitview' wx:if="{{vip_type != 4}}">
   <view class='tip'>请您在汇款成功以后点击确认汇款,谢谢！</view>
   <view class='content'>
     <view class='sl'>

@@ -129,7 +129,7 @@
   </view>
   <view wx:if="{{order['status'] == 1}}" class='detail_bottom'>
     <view bindtap='cancel' data-id='{{order["id"]}}' class='detail_btn'>取消订单</view>
-    <view bindtap='remit' class='origen_btn detail_btn' data-id='{{order["id"]}}' data-money='{{order["price"]}}'>确认已汇款</view>
+    <view bindtap='remit' class='origen_btn detail_btn' data-id='{{order["id"]}}' data-money='{{order["price"]}}'>确认汇款</view>
   </view>
   <view wx:if="{{order['status'] == 6}}" class='detail_bottom'>
     <view bindtap='refund_show' class='refund_btn detail_btn' data-id='{{order["id"]}}' >申请退款</view>

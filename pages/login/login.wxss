@@ -145,7 +145,7 @@ form {
 .showmsg{
   height: 70rpx;
   text-align:left;
-
+  font-size: 32rpx;
 }
 
 .img{

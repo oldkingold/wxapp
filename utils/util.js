@@ -154,47 +154,6 @@ function wxlogin() {
         }
       }
     });
-    // login().then((res) => {
-    //   code = res.code;
-    //   return getUserInfo();
-    // }).then((userInfo) => {
-    //   console.log("wx.login2222 +++++++++++++++++++++++++++++++ wx.login2222");
-    //   console.log(Date());
-    //   wx.setStorageSync('userInfo', userInfo.userInfo);
-    //   wx.request({
-    //     url: api.Wxlogin,
-    //     method: 'POST',
-    //     data: { 'code': code, 'encryptedData': userInfo.encryptedData, 'iv': userInfo.iv },
-    //     success: function (res) {
-    //       console.log("wx.login2222 +++++++++++++++++++++++++++++++ wx.login2222");
-    //       console.log(Date());
-    //       console.log(res);
-    //       // saveSession(res.header["Set-Cookie"]);
-    //       wx.setStorageSync("token", res.data.token);
-    //       wx.setStorageSync("openId", res.data.openId);
-    //       if (res.data) {
-    //         let bind_setting = { company: res.data.bind_company, name: res.data.bind_name, tel: res.data.bind_tel };
-    //         wx.setStorageSync('bind_setting', bind_setting);
-    //         if (res.data.companyName && res.data.companyBindTel) {
-    //           let money = res.data.companyAdd - res.data.companyReduce > 0 ? res.data.companyAdd - res.data.companyReduce : 0;
-    //           let company_setting = { name: res.data.companyName, tel: res.data.companyBindTel, money: money, admin: res.data.companyAdmin };
-    //           wx.setStorageSync('company_setting', company_setting);
-    //         } else {
-    //           wx.removeStorageSync('company_setting');
-    //         }
-    //         wx.setStorageSync('selfCompanies', res.data.selfCompanies ? res.data.selfCompanies : []);
-    //         wx.setStorageSync('selfPersons', res.data.selfPersons ? res.data.selfPersons : []);
-    //         wx.setStorageSync('companyBindTel', res.data.companyBindTel);
-    //         resolve(res.data);
-    //       } else {
-    //         reject(false);
-    //       }
-    //     },
-    //     fail: function (err) {
-    //       reject(err);
-    //     }
-    //   })
-    // });
   })
 
   
@@ -316,6 +275,21 @@ function request(url, method,data) {
   });
 }
 
+//获取当前的登陆状态
+function loginState() {
+  return new Promise(function (resolve, reject) {
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          resolve(1)  //微信授权
+        }else {
+          resolve(0)  //微信未授权
+        }
+      }
+    })
+  });
+}
+
 module.exports = {
   formatTimeToSevenDay: formatTimeToSevenDay,
   formatTime: formatTime,
@@ -327,4 +301,5 @@ module.exports = {
   updateProgram: updateProgram, //更新小程序
   throttle: throttle, //函数节流
   request: request,
+  loginState: loginState,//获取当前的登陆状态
 }
