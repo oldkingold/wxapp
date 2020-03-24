@@ -324,7 +324,7 @@ Page({
     } else {
       wx.showModal({
         title: "用户未授权",
-        content: '请授权允许微信登录后进行套餐购买',
+        content: '请授权允许微信登录',
         showCancel: false,
       })
       return;

@@ -13,20 +13,10 @@
 
       <view class="section">
         <view class='header'>
-          <image mode='aspectFit' src='/static/images/phone.png'></image>
-        </view>
-        <input type="tel" placeholder="请输入手机号" maxlength="11" bindinput="bind_phone" />
-      </view>
-
-      <view class="section">
-        <view class='header'>
           <image mode='aspectFit' src='/static/images/code@3x.png'></image>
         </view>
-        <input class='yzm' type="tel" placeholder="验证码" maxlength="6" bindinput="bind_phone_code" />
-        <button bindtap="downtime">{{time}}</button>
+        <input placeholder="请输入密码" password="true" maxlength="20" bindinput="bind_password" />
       </view>
-
-       <view class='showmsg'>{{showmsg}}</view>
     </view>
 
     <view class="btn-area">

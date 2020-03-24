@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/home/home",
     "pages/baoming/bm/bm",
     "pages/baoming/bmAddPerson/bmAddPerson",
@@ -31,7 +32,8 @@
     "pages/discountreceipt/discountreceipt",
     "pages/orderdetail/orderdetail",
     "pages/discountlog/detail/detail",
-    "pages/refund/refund"
+    "pages/refund/refund",
+    "pages/notices/notices"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -54,12 +56,6 @@
         "text": "会员卡",
         "iconPath": "static/images/card.png",
         "selectedIconPath": "static/images/card_h.png"
-      },
-      {
-        "pagePath": "pages/wode/wode",
-        "text": "我的",
-        "iconPath": "static/images/mine.png",
-        "selectedIconPath": "static/images/mine_h.png"
       }
     ]
   },

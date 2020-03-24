@@ -11,22 +11,26 @@
         <input placeholder="请输入公司全称" maxlength="30" bindinput="bind_companyname" />
       </view>
 
-      <view class="section">
+      <!-- <view class="section">
         <view class='header'>
           <image mode='aspectFit' src='/static/images/phone.png'></image>
         </view>
         <input type="number" placeholder="请输入手机号" maxlength="11" bindinput="bind_phone" />
+      </view> -->
+
+      <view class="section">
+        <view class='header'>
+          <image mode='aspectFit' src='/static/images/code@3x.png'></image>
+        </view>
+        <input placeholder="请输入密码" password maxlength="20" bindinput="bind_passward" />
       </view>
 
       <view class="section">
         <view class='header'>
           <image mode='aspectFit' src='/static/images/code@3x.png'></image>
         </view>
-        <input class='yzm' type="number" placeholder="验证码" maxlength="6" bindinput="bind_phone_code" />
-        <button bindtap="downtime">{{time}}</button>
+        <input placeholder="请再次输入密码" password maxlength="20" bindinput="bind_repassward" />
       </view>
-
-       <view class='showmsg'>{{showmsg}}</view>
     </view>
 
     <view class="btn-area">
@@ -42,7 +46,7 @@
   <view class="login-text">
     <image mode='aspectFit' src='/static/images/bigwarn@3x.png'></image>
     <view>
-      温馨提示：一个公司下只能有一个企业账号,多人可以共享账号信息
+      温馨提示：请填写完整的公司名称
     </view>
   </view>
 </view>

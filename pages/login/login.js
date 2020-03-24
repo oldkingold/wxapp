@@ -7,14 +7,7 @@ var app = getApp();
 Page({
   data: {
     companyName:'',
-    phone:'',
-    phoneCode: '',
-    phoneCodeID:'935301565341497339^0',
-    time: '获取验证码',
-    timeOpen: true,
-    timeNum : 60,
-    reg: false,
-    showmsg:'',
+    password:'',
   },
 
   onLoad: function (options) {
@@ -27,21 +20,12 @@ Page({
     }
   },
 
-  bind_phone: function (e) {
-    this.data.phone = e.detail.value
-  },
-
-  bind_phone_code: function (e) {
-    this.data.phoneCode = e.detail.value
+  bind_password: function (e) {
+    this.data.password = e.detail.value
   },
 
   bind_companyname: function(e) {
     this.data.companyName = e.detail.value
-  },
-  
-  //手机验证码请求事件
-  downtime: function (e){
-    (this.data.timeOpen) ? countdown(this) : ''
   },
   
   login: function (e) {
@@ -50,24 +34,32 @@ Page({
     });
     var that = this;
     
-    if (that.data.phoneCodeID == '') {
+    if (that.data.companyName.length <= 0) {
       wx.showToast({
         icon: 'none',
         duration: 1500,
-        title: '请点击获取验证码',
+        title: '请输入公司名称',
+      })
+      wx.hideLoading();
+      return false;
+    }
+
+    if (that.data.password.length <= 9) {
+      wx.showToast({
+        icon: 'none',
+        duration: 1500,
+        title: '密码至少是10位',
       })
       wx.hideLoading();
       return false;
     }
     
     wx.request({
-      url: api.Company_Loginsms,
+      url: api.Company_Login,
       data: { 
         "companyName": that.data.companyName,
         "openId": app.globalData.openId, 
-        "tel": that.data.phone,
-        "smsCode": that.data.phoneCode,
-        "biz_id": that.data.phoneCodeID,
+        "password": that.data.password,
         "token": app.globalData.token,
         },
       method:'POST',
@@ -84,7 +76,7 @@ Page({
             app.globalData.token = res.token;
             app.globalData.openId = res.openId;
             wx.switchTab({
-              url: "/pages/wode/wode",
+              url: "/pages/discount/discount",
             })
           });
         } else if (res.data.code == 199) {
@@ -96,7 +88,7 @@ Page({
         } else if (res.data.code == 403) {
           wx.showModal({
             title: '错误提示',
-            content: res.data.msg,
+            content: res.data.data,
             showCancel: false
           });
         } 

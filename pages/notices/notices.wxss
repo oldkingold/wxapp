@@ -1,0 +1,42 @@
+.title {
+  width: 100%;
+  text-align: center;
+  color: #007AFF;
+  font-weight: bold;
+}
+
+.content {
+  border: 5rpx solid #007AFF;
+  border-radius: 20px;
+  margin: 20px;
+  width: auto;
+  height: 920rpx;
+  background-color: rgb(240, 243, 247);
+  overflow: hidden;
+}
+
+.content scroll-view {
+  height: 100%;
+}
+
+.bg {
+  padding: 16rpx;
+  font-size: 28rpx;
+  letter-spacing: 2rpx;
+  text-indent: 56rpx;
+}
+
+.btn-area button {
+  display:block;
+  height:84rpx;
+  margin-top:45rpx;
+  margin-left: 60rpx;
+  margin-right: 60rpx;
+  border-radius:40rpx;
+  background:#195ba9;
+  color:#fff;
+  cursor:pointer;
+  text-align:center;
+  font-size:32rpx;
+  line-height:84rpx;
+}
