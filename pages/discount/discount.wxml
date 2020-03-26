@@ -9,7 +9,7 @@
         <view class='left'>
           <image src='/static/images/duchuancard.png'></image>
           <view class='text'>
-            <view class='text1'>度川教育培训课程</view>
+            <view class='text1'>{{company}}</view>
             <view class='text2'>会员卡</view>
           </view>
         </view> 

@@ -28,11 +28,13 @@ Page({
     discountprice: 0,  //需支付费用
     balance: 0,   //余额
     vip1:[
-      {"name": "注册用户", "icon": "", "bg": ""},
-      {"name": "普通用户", "icon": "", "bg": ""},
+      // {"name": "注册用户", "icon": "", "bg": ""},
+      { "name": "普通用户", "icon": "", "bg": ""},
       { "name": "普通会员", "icon": "common.png", "bg": "common_bg.png" },
-      { "name": "银牌会员", "icon": "silver.png", "bg": "silver_bg.png" },
-      { "name": "金牌会员", "icon": "gold.png", "bg": "gold_bg.png" },
+      { "name": "银卡会员", "icon": "silver.png", "bg": "silver_bg.png" },
+      { "name": "金卡会员", "icon": "gold.png", "bg": "gold_bg.png" },
+      { "name": "白金会员", "icon": "platinum.png", "bg": "platinum_bg.png" },
+      { "name": "钻石会员", "icon": "diamond.png", "bg": "diamond_bg.png" },
     ],
     select_vip_type: 2, //当前选中的会员
 
@@ -50,6 +52,22 @@ Page({
     //   console.log("---------------"+res)
     // })
 
+    order.companystate().then((res)=>{
+      if (res.data) {
+        console.log(res.data)
+        let setData = {}
+        setData["company"] = res.data.company_name
+        for (let i = 1; i < 6; i++) {
+          if (that.data.vip1[i]["name"] == res.data.level) {
+            setData["vip_type"] = i
+            break;
+          }
+        }
+        
+        that.setData(setData)
+      }
+    })
+
     order.myVip1Type().then((res) => {
       for (let i = 1; i < 5; i++) {
         for (let j = 0; j < res.data.length; j++) {
@@ -65,11 +83,12 @@ Page({
       });
     });
 
-    let company_setting = wx.getStorageSync('company_setting');
-    if (company_setting) {
-      that.setData({
-        company: company_setting["name"]
-      });
+    // let company_setting = wx.getStorageSync('company_setting');
+    // if (company_setting) {
+    //   that.setData({
+    //     company: company_setting["name"]
+    //   });
+    /*
       order.myVip1Info().then((res) => {
         if (res.data.code == 200) {
           var data = JSON.parse(decodeURIComponent(decode.base64_decode(res.data.data)));
@@ -110,15 +129,15 @@ Page({
           });
         }
       });
-    } else {
-
-      that.setData({
-        vip_type: -1,
-        discountprice: 11920,
-        balance: 0,
-        select_vip_type: 1,
-      });
-    }
+*/ 
+    // } else {
+    //   that.setData({
+    //     vip_type: -1,
+    //     discountprice: 11920,
+    //     balance: 0,
+    //     select_vip_type: 1,
+    //   });
+    // }
     
   },
 

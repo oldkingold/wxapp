@@ -97,6 +97,14 @@ function myBmOrders(data) {
   return util.request(api.bmOrders, "post", data);
 }
 
+/***************************************************** */
+function companystate() {
+  return util.request(api.ml.state, "post", {
+    token: wx.getStorageSync('token'),
+    openId: wx.getStorageSync('openId'),
+  })
+}
+
 module.exports = {
   //套餐方法,暂时弃用
   myCardOrder: myCardOrder,
@@ -110,4 +118,6 @@ module.exports = {
   myVip1Balance: myVip1Balance,
   //bm
   myBmOrders: myBmOrders,
+  //disconut
+  companystate: companystate
 }

@@ -66,7 +66,7 @@ page {
 }
 
 .card .top .left .text1{
-  font-size: 32rpx;
+  font-size: 28rpx;
 }
 
 .card .top .left .text2{
