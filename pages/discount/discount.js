@@ -68,6 +68,14 @@ Page({
       }
     })
 
+    order.levelType().then((res)=>{
+      if (res.data) {
+        console.log(res.data)
+        let setData = {}
+        
+      }
+    })
+
     order.myVip1Type().then((res) => {
       for (let i = 1; i < 5; i++) {
         for (let j = 0; j < res.data.length; j++) {

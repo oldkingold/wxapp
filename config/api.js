@@ -82,5 +82,8 @@ module.exports = {
   message_read: ApiRootUrl + "wxapp/message_read", //已读
   message_all: ApiRootUrl + "wxapp/message_all", //全部已读
   //discount
-  ml: { state: ApiRootUrl + "wxapp/ml/state"}
+  ml: { 
+    state: ApiRootUrl + "wxapp/ml/state",
+    levelType: ApiRootUrl + "wxapp/ml/levelType",
+    }
 }

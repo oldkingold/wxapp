@@ -105,6 +105,13 @@ function companystate() {
   })
 }
 
+function levelType() {
+  return util.request(api.ml.levelType, "post", {
+    token: wx.getStorageSync('token'),
+    openId: wx.getStorageSync('openId'),
+  })
+}
+
 module.exports = {
   //套餐方法,暂时弃用
   myCardOrder: myCardOrder,
@@ -119,5 +126,6 @@ module.exports = {
   //bm
   myBmOrders: myBmOrders,
   //disconut
-  companystate: companystate
+  companystate: companystate,
+  levelType: levelType
 }
