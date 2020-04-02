@@ -1,0 +1,163 @@
+.card {
+  /* background-color: white; */
+  width: 677rpx;
+  height: 360rpx;
+  position: relative;
+  font-size: 26rpx;
+  overflow: hidden;
+}
+
+
+.card image {
+  width: 677rpx;
+  height: 360rpx;
+}
+
+.card .top {
+  position: absolute;
+  top: 30rpx;
+  width: 677rpx;
+  margin-left: 38rpx;
+}
+
+.bg {
+  background-color: #f0f2f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40rpx;
+}
+
+.white {
+  color: white;
+}
+
+.card .top image {
+  width: 68rpx;
+  height: 68rpx;
+  float: left;
+}
+
+.card .top .text {
+  display: flex;
+  flex-direction: column;
+  padding-left: 25rpx;
+}
+
+.card .top .text1 {
+  font-size: 27rpx;
+}
+
+.card .top .text2 {
+  font-size: 21rpx;
+}
+
+.viptype {
+  position: absolute;
+  display: flex;
+  top: 120rpx;
+  font-size: 35rpx;
+  font-weight: bold;
+  margin-left: 54rpx;
+}
+
+.viptype image {
+  width: 35rpx;
+  height: auto;
+  margin-right: 12rpx;
+}
+
+.levelline {
+  position: absolute;
+  top: 181rpx;
+  margin-left: 54rpx;
+  background-color: white;
+  height: 5rpx;
+  width: 480rpx;
+}
+
+.levellinecover {
+  position: absolute;
+  top: 180rpx;
+  margin-left: 54rpx;
+  background-color: rgba(40, 106, 194, 0.836);
+  height: 7rpx;
+  width: 180rpx;
+}
+
+.levellinetip {
+  position: absolute;
+  top: 181rpx;
+  margin-left: 54rpx;
+}
+
+.levellinetip .t2 {
+  font-size: 20rpx;
+  line-height: 24rpx;
+}
+
+.levellinetip .t1 {
+  font-size: 24rpx;
+  font-weight: bold;
+  margin-right: 10rpx;
+  line-height: 20rpx;
+}
+
+.card .bottom {
+  position: absolute;
+  top: 280rpx;
+  width: 590rpx;
+  margin-left: 54rpx;
+  font-size: 24rpx;
+}
+
+.card .bottom .left {
+  float: left;
+}
+
+.card .bottom .right {
+  float: right;
+  display: flex;
+  align-items: center
+}
+
+.card .bottom .right image {
+  height: 24rpx;
+  width: 20rpx;
+  margin-left: 20rpx;
+}
+
+.middle {
+  padding: 0 18rpx;
+  background-color: white;
+  width: 100%;
+}
+
+.line {
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #f2f2f2;
+  padding: 0 25rpx;
+}
+
+.line image {
+  height: 42rpx;
+width: 42rpx;
+
+}
+.line-name {
+  font-size: 25rpx;
+  margin-left: 22rpx;
+  margin-right: 356rpx;
+  width: 40%;
+}
+
+.icon_go image {
+  height: 30rpx;
+  width: 16rpx;
+  margin-right: 18rpx;
+}
+
+
+

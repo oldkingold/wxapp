@@ -67,6 +67,7 @@
               <!-- 可充值任意金额 -->
               <text wx:if="{{vip_type == 4}}" class='price'>已达到最高等级</text>
             </label>
+            <label wx:for="{{vip1}}" wx:for-index=""></label>
 
           </view>
         </radio-group>

@@ -191,5 +191,10 @@ Page({
         wx.setStorageSync("meetings", that.data.meetings);
       }
     });
+  },
+  toBm:function(e) {
+    wx.navigateTo({
+      url: '/pages/baoming/bm/bm?id=' + e.currentTarget.dataset.id,
+    })
   }
 })

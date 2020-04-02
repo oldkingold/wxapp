@@ -82,7 +82,7 @@
             <view class='card_1_price'>￥<text>{{meetings[item].price}}</text>.00</view>
           </view>
         </view>
-        <view class='card_2' catchtap='toDetail' data-meeting='{{item}}' wx:else>
+        <view class='card_2' catchtap='toDetail' data-meeting='{{item}}' >
           <image class='card_1_bg'  src='https://duchuanoss.oss-cn-hangzhou.aliyuncs.com/wxapp/card_bg2.png'></image>
           <view class='card_2_title'>
             <text class='card_1_addr'>{{meetings[item].place}}</text>
@@ -123,6 +123,32 @@
             <view class='card_2_price'>￥<text>{{meetings[item].price}}</text>.00</view>
           </view>
         </view>
+
+        <view class="card_3" catchtap="tapDetail" data-meeting="{{item}}" >
+          <view class='left'>
+            <image class="img" src="{{rooturl + meetings[item].img}}" background-size="cover"></image>
+          </view>
+          <view class='right'>
+            <view class='title-content'>
+              <text class="title">【{{meetings[item].place}}】 {{meetings[item].name}}</text>
+            </view>
+            <view class='teacherline'>
+              <image class="cardimg" mode="aspectFit" src='/static/images/icon_card.png'></image>
+              <block wx:if="{{meetings[item].teachers_num == 1}}">
+                <text>{{meetings[item].teachers.name}}   </text>
+              </block>
+              <block wx:else>
+                <text wx:for="{{meetings[item].teachers}}" wx:for-item="teacher" >{{teacher.name}}   </text>
+              </block>
+            </view>
+            <view class='bottom'>
+              <text class="time">{{meetings[item].meeting_start + "-" + meetings[item].meeting_end}} </text>
+              <button class="uri" catchtap='toBm' data-id="{{meetings[item].id}}" >立即报名</button>
+            </view>
+
+          </view>
+        </view>
+
       </block>
       <view hidden='{{loadingMoreHidden[menu_current_item]}}' class="no-more-goods">没有更多啦</view>
     </scroll-view>

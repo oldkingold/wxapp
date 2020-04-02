@@ -1,6 +1,6 @@
 {
   "pages": [
-    
+    "pages/level/level",
     "pages/home/home",
     "pages/baoming/bm/bm",
     "pages/baoming/bmAddPerson/bmAddPerson",
@@ -46,13 +46,19 @@
     "selectedColor": "#f5a601",
     "list": [
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/wode/wode",
         "text": "课程",
         "iconPath": "static/images/home.png",
         "selectedIconPath": "static/images/home_h.png"
       },
       {
         "pagePath": "pages/discount/discount",
+        "text": "会员卡",
+        "iconPath": "static/images/card.png",
+        "selectedIconPath": "static/images/card_h.png"
+      },
+      {
+        "pagePath": "pages/level/level",
         "text": "会员卡",
         "iconPath": "static/images/card.png",
         "selectedIconPath": "static/images/card_h.png"
