@@ -32,41 +32,36 @@ Page({
   },
 
   login: function (e) {
-    wx.showLoading({
-      mask: true
-    });
+    
     var that = this;
 
     if (that.data.companyName.length <= 0) {
-      wx.showToast({
-        icon: 'none',
-        duration: 1500,
-        title: '请输入公司名称',
+      wx.showModal({
+        showCancel: false,
+        content: '请输入公司名称',
       })
-      wx.hideLoading();
       return false;
     }
 
-    if (that.data.password.length <= 9) {
-      wx.showToast({
-        icon: 'none',
-        duration: 1500,
-        title: '密码至少是10位',
+    if (that.data.password.length <= 7) {
+      wx.showModal({
+        showCancel: false,
+        content: '密码至少是8位',
       })
-      wx.hideLoading();
       return false;
     }
 
     if (that.data.password != that.data.repassword ) {
-      wx.showToast({
-        icon: 'none',
-        duration: 1500,
-        title: '密码不相同',
+      wx.showModal({
+        showCancel: false,
+        content: '密码不相同',
       })
-      wx.hideLoading();
       return false;
     }
-
+    
+    wx.showLoading({
+      mask: true
+    });
     wx.request({
       url: api.CompanyRegister,
       data: {

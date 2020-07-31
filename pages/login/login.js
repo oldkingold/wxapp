@@ -29,32 +29,31 @@ Page({
     this.data.companyName = e.detail.value
   },
   
-  login: function (e) {
-    wx.showLoading({
-      mask: true
-    });
+  login: util.throttle(function (e) {
+    
     var that = this;
     
     if (that.data.companyName.length <= 0) {
-      wx.showToast({
-        icon: 'none',
-        duration: 1500,
-        title: '请输入公司名称',
+      wx.showModal({
+        showCancel: false,
+        content: '请输入公司名称',
       })
       wx.hideLoading();
       return false;
     }
 
     if (that.data.password.length <= 9) {
-      wx.showToast({
-        icon: 'none',
-        duration: 1500,
-        title: '密码至少是10位',
+      wx.showModal({
+        showCancel: false,
+        content: '密码至少是10位',
       })
       wx.hideLoading();
       return false;
     }
     
+    wx.showLoading({
+      mask: true
+    });
     wx.request({
       url: api.Company_Login,
       data: { 
@@ -96,6 +95,6 @@ Page({
         
       }
     })
-  },
+  },1000),
 })
 
