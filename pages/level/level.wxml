@@ -27,7 +27,7 @@
         <view class="levellinecover" style="width: {{card.coverWidth}}rpx;"></view>
         <view class="levellinetip">
           <text class="t1">{{card.spend}}/{{card.nextmoney}}</text>
-          <text class="t2">还需消费{{card.nextmoney - card.spend}}元升级{{card.nextlevel}}</text>
+          <text class="t2">还需消费{{card.nextmoney - card.spend ? card.nextmoney - card.spend : 0}}元升级{{card.nextlevel}}</text>
         </view>
       </block>
       <!-- <view>
@@ -67,14 +67,14 @@
         <image mode="aspectFit" src='/static/images/m_info.png'></image>
         <view class='line-name'>信息维护</view>
         <view class='icon_go'>
-          <image class='go' src='/static/images/go.png'></image>
+          <image mode="aspectFit" class='go' src='/static/images/go.png'></image>
         </view>
       </navigator>
       <navigator url='/pages/order/order' class='line'>
         <image mode="aspectFit" src='/static/images/used.png'></image>
         <view class='line-name'>报名信息</view>
         <view class='icon_go'>
-          <image class='go' src='/static/images/go.png'></image>
+          <image mode="aspectFit" class='go' src='/static/images/go.png'></image>
         </view>
       </navigator>
     </view>

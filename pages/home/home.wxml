@@ -41,7 +41,7 @@
 
         <view class="card_3" catchtap="tapDetail" data-meeting="{{item}}" >
           <view class='left'>
-            <image class="img" src="{{rooturl + meetings[item].img}}" background-size="cover"></image>
+            <image mode="aspectFill" class="img" src="{{rooturl + meetings[item].img}}" background-size="cover"></image>
           </view>
           <view class='right'>
             <view class='title-content'>
