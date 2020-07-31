@@ -11,13 +11,20 @@ Page({
   },
 
   onLoad: function (options) {
+    
+  },
+  
+  onShow: function () {
+    // 页面显示
     var token = app.globalData.token;
+    var openId = app.globalData.openId;
     var that = this;
     wx.request({
       url: api.manageInfo,
       method: 'POST',
       data: {
-        token: token
+        token: token,
+        openId: openId
       },
       success: function (r) {
         console.log(r.data);
@@ -29,11 +36,6 @@ Page({
         })
       }
     })
-  },
-  
-  onShow: function () {
-    // 页面显示
-    this.onLoad();
   },
 
   bind_add_conferee: function (e) {
@@ -125,11 +127,13 @@ Page({
       content: '确定要删除吗？',
       success: function (res) {
         var token = app.globalData.token;
+        var openId = app.globalData.openId;
         wx.request({
           url: api.delComapny,
           method: 'POST',
           data: {
             token: token,
+            openId: openId,
             id: varid
           },
           success: function (r) {

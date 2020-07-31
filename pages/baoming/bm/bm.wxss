@@ -818,7 +818,7 @@ justify-content:space-between;
 }
 
 .vip_tip {
-  color: #bfbfbf;
+  color: #d10e0e;
   font-size:22rpx;
   margin-left: 30rpx;
 }

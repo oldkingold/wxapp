@@ -77,7 +77,7 @@ Page({
             app.globalData.token = res.token;
             app.globalData.openId = res.openId;
             wx.switchTab({
-              url: "/pages/discount/discount",
+              url: "/pages/level/level",
             })
           });
         } else if (res.data.code == 199) {

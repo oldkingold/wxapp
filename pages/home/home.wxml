@@ -38,91 +38,6 @@
   <swiper-item  wx:for="{{menu_meetings}}" wx:key="index" wx:for-item="current_item">
     <scroll-view scroll-y style="height:{{swiperHeight}}px" bindscrolltolower="scrolltolower">
       <block wx:for="{{current_item}}" wx:key='*this' wx:for-item="item">
-    
-        <view class='card_1' catchtap='toDetail' data-meeting='{{item}}' wx:if="{{ meetings[item].img }}">
-          <image class='card_1_mb'  src='../../static/images/mengban.png'></image>
-          <image class='card_1_bg'  src='{{rooturl + meetings[item].img}}'></image>
-          <image class='card_1_dc' src='../../static/images/duchuan.png'> </image>
-          <view class='card_1_title'>
-            <text class='card_1_addr'>{{meetings[item].place}}</text>
-            <text class='card_1_text'>{{meetings[item].name}}</text>
-          </view>
-          <block wx:if="{{meetings[item].teachers_num == 1}}">
-            <view class='card_1_teacher'>
-              <view class='card_1_head'>
-                <image src='{{rooturl + meetings[item].teachers.img}}'></image>
-              </view>
-              <view class='card_1_name'>
-                {{meetings[item].teachers.name}}
-              </view>
-              <view class='card_1_introduce'>
-                {{meetings[item].teachers.abstract}}
-              </view>
-            </view>
-          </block>
-          <block wx:else>
-            <scroll-view scroll-x class='card_3_teacher' style='top:165rpx'>
-              <view style='display: flex;flex-direction: row;'>
-                <view class='card_3_teach' wx:for="{{ meetings[item].teachers }}" wx:key='*this' wx:for-item="teacher">
-                  <view class='card_3_head'>
-                    <image src='{{rooturl + teacher.img}}'></image>
-                  </view>
-                  <view class='card_3_name'>
-                    {{teacher.name}}
-                  </view>
-                  <view class='card_3_introduce'>
-                    {{teacher.abstract}}
-                  </view>
-                </view>
-              </view>
-            </scroll-view>
-          </block>
-          <view class='card_1_tp'>
-            <view class='card_1_date'><image src='../../static/images/clock.png'></image><text>{{meetings[item].meeting_start + "-" + meetings[item].meeting_end}}</text></view>
-            <view class='card_1_price'>￥<text>{{meetings[item].price}}</text>.00</view>
-          </view>
-        </view>
-        <view class='card_2' catchtap='toDetail' data-meeting='{{item}}' >
-          <image class='card_1_bg'  src='https://duchuanoss.oss-cn-hangzhou.aliyuncs.com/wxapp/card_bg2.png'></image>
-          <view class='card_2_title'>
-            <text class='card_1_addr'>{{meetings[item].place}}</text>
-            <text class='card_1_text'>{{meetings[item].name}}</text>
-          </view>
-          <block wx:if="{{meetings[item].teachers_num == 1}}">
-            <view class='card_2_teacher'>
-              <view class='card_1_head'>
-                <image src='{{rooturl + meetings[item].teachers.img}}'></image>
-              </view>
-              <view class='card_1_name'>
-                {{meetings[item].teachers.name}}
-              </view>
-              <view class='card_1_introduce'>
-                {{meetings[item].teachers.abstract}}
-              </view>
-            </view>
-          </block>
-          <block wx:else>
-            <scroll-view scroll-x class='card_3_teacher'>
-              <view style='display: flex;flex-direction: row;'>
-                <view class='card_3_teach' wx:for="{{ meetings[item].teachers }}" wx:key='*this' wx:for-item="teacher">
-                  <view class='card_3_head'>
-                    <image src='{{rooturl + teacher.img}}'></image>
-                  </view>
-                  <view class='card_3_name'>
-                    {{teacher.name}}
-                  </view>
-                  <view class='card_3_introduce'>
-                    {{teacher.abstract}}
-                  </view>
-                </view>
-              </view>
-            </scroll-view>
-          </block>
-          <view class='card_2_tp'>
-            <view class='card_1_date'><image src='../../static/images/clock1.png'></image><text>{{meetings[item].meeting_start + "-" + meetings[item].meeting_end}}</text></view>
-            <view class='card_2_price'>￥<text>{{meetings[item].price}}</text>.00</view>
-          </view>
-        </view>
 
         <view class="card_3" catchtap="tapDetail" data-meeting="{{item}}" >
           <view class='left'>
@@ -138,7 +53,7 @@
                 <text>{{meetings[item].teachers.name}}   </text>
               </block>
               <block wx:else>
-                <text wx:for="{{meetings[item].teachers}}" wx:for-item="teacher" >{{teacher.name}}   </text>
+                <text wx:for="{{meetings[item].teachers}}" wx:key="item" wx:for-item="teacher" >{{teacher.name}}   </text>
               </block>
             </view>
             <view class='bottom'>

@@ -92,14 +92,8 @@ Page({
   more: function () {
     this.data.toMore = true;
     wx.switchTab({
-      url: '/pages/discount/discount',
+      url: '/pages/level/level',
     })
-  },
-
-  cancel: function () {
-    this.setData({
-      adverShow:true,
-    });
   },
 
   tipconfirm: function () {

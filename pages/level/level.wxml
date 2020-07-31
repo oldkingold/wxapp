@@ -1,11 +1,14 @@
 <view class="tologin">
-d
+
 </view>
 
 <view class='container'>
+  <view class="toptip" bindtap="toNotices">
+    <view><image src='/static/images/duchuancard.png'></image>会员等级根据您近12个月的累计消费，按月更新</view>
+  </view>
   <view class='bg'>
     <view class='card {{vip_type > 1 ? "":"white"}}' bindtap='toDiscountlog'>
-      <image wx:if="{{vip_type > 1}}" src='/static/images/Vip1/{{vip1[vip_type].bg}}'></image>
+      <image wx:if="{{vip[card.level]}}" src='/static/images/Vip1/{{vip[card.level].icon}}_bg.png'></image>
       <image wx:else src='/static/images/Vip1/card.png'></image>
       <view class='top'>
           <image src='/static/images/duchuancard.png'></image>
@@ -16,41 +19,64 @@ d
       </view>
 
       <view class="viptype">
-        <image mode="aspectFit"  src='/static/images/Vip1/{{vip1[vip_type].icon}}common.png' > </image>
-        <view>银牌会员</view>
+        <image wx:if="{{vip[card.level]}}" mode="aspectFit"  src='/static/images/Vip1/{{vip[card.level].icon}}.png' > </image>
+        <view>{{card.level}}</view>
       </view>
-
-      <view class="levelline"></view>
-      <view class="levellinecover"></view>
-      <view class="levellinetip">
-        <text class="t1">8000/10000</text>
-        <text class="t2">还需消费2000元升级白金会员</text>  
-      </view>
+      <block wx:if="{{card.level!='普通用户'}}">
+        <view class="levelline"></view>
+        <view class="levellinecover" style="width: {{card.coverWidth}}rpx;"></view>
+        <view class="levellinetip">
+          <text class="t1">{{card.spend}}/{{card.nextmoney}}</text>
+          <text class="t2">还需消费{{card.nextmoney - card.spend}}元升级{{card.nextlevel}}</text>
+        </view>
+      </block>
       <!-- <view>
         <view>会员卡详情 </view>
         <image></image>
       </view> -->
       <view class='bottom'>
-        <view class='left' >
-          <text class='text1'>{{balance}}</text>
-          <text class='text2'>账户金额</text>
+        <view class='left' wx:if="{{card.level!='普通用户'}}">
+          <text class='text2'>账户金额 </text>
+          <text class='text1'> ¥{{card.remainder}}</text>
         </view>
-        <view class='right' >
-          <view>会员卡详情</view>
-          <image mode="aspectFit" src="/static/images/gow.png"></image>
+        <view class='right' bindtap="todiscount">
+          <view>
+            <view>更多折扣</view>
+            <image mode="aspectFit" src="/static/images/gow.png"></image>
+          </view>
+          <view style="font-size: 20rpx;">了解升级规则</view>
         </view>
       </view>
-
-
+    </view>
+    <view class="rights" wx:if="{{card.rights}}" animation="{{rightsAnimation}}">
+      <view class="title" >
+        <view>当前享受权益</view>
+        <view class="show" bindtap="rightsShow" wx:if="{{rightsShow}}">收起</view>
+        <view class="show" bindtap="rightsShow" wx:else>展开</view>
+      </view>
+      <view class="grids"  >
+        <view class="grid" wx:for="{{card.rights}}" wx:key="index" bindtap="rights" data-index="{{index}}">
+          <view class="icon"><image mode="widthFix"  src="{{item.icon}}"></image></view>
+          <view>{{item.name}}</view>
+          <view>{{item.subtitle}}</view>
+        </view>
+      </view>
     </view>
     <view class='middle'>
-      <view data-url='/pages/infomanage/infomanage' class='line'>
+      <navigator url='/pages/infomanage/infomanage' class='line'>
         <image mode="aspectFit" src='/static/images/m_info.png'></image>
         <view class='line-name'>信息维护</view>
         <view class='icon_go'>
           <image class='go' src='/static/images/go.png'></image>
         </view>
-      </view>
+      </navigator>
+      <navigator url='/pages/order/order' class='line'>
+        <image mode="aspectFit" src='/static/images/used.png'></image>
+        <view class='line-name'>报名信息</view>
+        <view class='icon_go'>
+          <image class='go' src='/static/images/go.png'></image>
+        </view>
+      </navigator>
     </view>
   </view>
 </view>

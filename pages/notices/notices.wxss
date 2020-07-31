@@ -40,3 +40,8 @@
   font-size:32rpx;
   line-height:84rpx;
 }
+
+.textTitle {
+  font-weight: bold;
+  line-height: 60rpx;
+}

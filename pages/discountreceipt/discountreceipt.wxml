@@ -56,7 +56,31 @@
     <view class='meetings'>
       <block wx:for="{{meetings}}" wx:key='*this'>
         <block wx:if="{{item}}">
-          <view class='card_1' catchtap='toDetail' data-meeting='{{index}}' wx:if="{{ item.img }}">   
+          <view class="card_3" catchtap="tapDetail" data-meeting="{{index}}" >
+            <view class='left'>
+              <image class="img" src="{{rooturl + item.img}}" background-size="cover"></image>
+            </view>
+            <view class='right'>
+              <view class='title-content'>
+                <text >【{{item.place}}】 {{item.name}}</text>
+              </view>
+              <view class='teacherline'>
+                <image class="cardimg" mode="aspectFit" src='/static/images/icon_card.png'></image>
+                <block wx:if="{{item.teachers_num == 1}}">
+                  <text>{{item.teachers.name}}   </text>
+                </block>
+                <block wx:else>
+                  <text wx:for="{{item.teachers}}" wx:for-item="teacher" >{{teacher.name}}   </text>
+                </block>
+              </view>
+              <view class='bottom'>
+                <text class="time">{{item.meeting_start + "-" + item.meeting_end}} </text>
+                <button class="uri" catchtap='toBm' data-id="{{item.id}}" >立即报名</button>
+              </view>
+
+            </view>
+          </view>
+          <!-- <view class='card_1' catchtap='toDetail' data-meeting='{{index}}' wx:if="{{ item.img }}">   
             <image class='card_1_mb'  src='../../static/images/mengban.png'></image>        
             <image class='card_1_bg'  src='{{rooturl + item.img}}'></image> 
               
@@ -140,7 +164,7 @@
               <view class='card_1_date'><image src='../../static/images/clock1.png'></image><text>{{item.meeting_start + "-" + item.meeting_end}}</text></view>
               <view class='card_2_price'>￥<text>{{item.price}}</text>.00</view>
             </view>
-          </view>
+          </view> -->
         </block>
       </block>
     </view>

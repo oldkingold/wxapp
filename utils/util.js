@@ -103,27 +103,18 @@ function updateProgram() {
 function wxlogin() {
   return new Promise(function (resolve, reject) {
     let code = null;
-    console.log("wx.login +++++++++++++++++++++++++++++++ wx.login");
-    console.log((new Date()).valueOf());
     wx.login({
       success: function (ress) {
-        console.log("wx.login +++++++++++++++++++++++++++++++ wx.login");
-        console.log((new Date()).valueOf());
         if (ress.code) {
           wx.getUserInfo({
             withCredentials: true,
             success: function (userInfo) {
-              console.log("wx.login2222 +++++++++++++++++++++++++++++++ wx.login2222");
-              console.log((new Date()).valueOf());
               wx.setStorageSync('userInfo', userInfo.userInfo);
               wx.request({
                 url: api.Wxlogin,
                 method: 'POST',
                 data: { 'code': ress.code, 'encryptedData': userInfo.encryptedData, 'iv': userInfo.iv },
                 success: function (res) {
-                  console.log("wx.login2222 +++++++++++++++++++++++++++++++ wx.login2222");
-                  console.log((new Date()).valueOf());
-                  console.log(res);
                   // saveSession(res.header["Set-Cookie"]);
                   wx.setStorageSync("token", res.data.token);
                   wx.setStorageSync("openId", res.data.openId);
@@ -214,29 +205,6 @@ function loadFontFace() {
       console.log(res.status)
     }
   });
-}
-
-/*
-session处理
-*/
-var sessionId = "laravel_session";
-
-function saveSession(cookie) {
-  console.log(cookie);
-  let patt1 = new RegExp(sessionId + '\=(.*?);');
-
-  let match = cookie.match(patt1);
-  let session = match[1];
-
-  console.log(session)
-}
-
-function removeSession() {
-
-}
-
-function checkSession() {
-
 }
 
 //函数节流

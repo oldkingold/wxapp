@@ -34,8 +34,8 @@ Page({
 
   onLoad: function () {
     let that = this;
-    let company_setting = wx.getStorageSync('company_setting');
-    if (company_setting) {
+    // let company_setting = wx.getStorageSync('company_setting');
+    // if (company_setting) {
       this.onPullDownRefresh();
       order.myVip1Balance().then((res) => {
         if (res.data.code == 200) {
@@ -44,13 +44,13 @@ Page({
           })
         }
       })
-    } else { 
-      that.setData({
-        nav: 1,
-        login: 1, // 未登录公司账号
-      })
-      this.onPullDownRefresh();
-    }
+    // } else { 
+    //   that.setData({
+    //     nav: 1,
+    //     login: 1, // 未登录公司账号
+    //   })
+    //   this.onPullDownRefresh();
+    // }
     
   },
 

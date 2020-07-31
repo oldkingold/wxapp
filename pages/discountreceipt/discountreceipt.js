@@ -56,7 +56,11 @@ Page({
       }
     })
   },
-  
+  onUnload: function () {
+    wx.switchTab({
+      url: '/pages/level/level',
+    })
+  },
   //跳转我的订单页
   toOrder: util.throttle(function () {
     wx.navigateTo({
@@ -69,6 +73,12 @@ Page({
       url: '/pages/detail/detail?meeting=' + e.currentTarget.dataset['meeting'],
     })
   },2000),
+  //跳转报名
+  toBm: util.throttle(function (e) {
+    wx.navigateTo({
+      url: '/pages/baoming/bm/bm?id=' + e.currentTarget.dataset.id,
+    })
+  }),
   //跳转报名记录
   more: util.throttle(function () {
     wx.navigateTo({

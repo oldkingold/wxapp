@@ -10,7 +10,7 @@ Page({
 
   check: function () {
     wx.switchTab({
-      url: '/pages/discount/discount',
+      url: '/pages/level/level',
     })
   }
 })

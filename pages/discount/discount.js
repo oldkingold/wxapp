@@ -25,146 +25,68 @@ Page({
     company_setting: false,
 
     vip_type: -1,  //当前用户等级
-    discountprice: 0,  //需支付费用
+    
     balance: 0,   //余额
-    vip1:[
-      // {"name": "注册用户", "icon": "", "bg": ""},
-      { "name": "普通用户", "icon": "", "bg": ""},
-      { "name": "普通会员", "icon": "common.png", "bg": "common_bg.png" },
-      { "name": "银卡会员", "icon": "silver.png", "bg": "silver_bg.png" },
-      { "name": "金卡会员", "icon": "gold.png", "bg": "gold_bg.png" },
-      { "name": "白金会员", "icon": "platinum.png", "bg": "platinum_bg.png" },
-      { "name": "钻石会员", "icon": "diamond.png", "bg": "diamond_bg.png" },
-    ],
-    select_vip_type: 2, //当前选中的会员
 
+    
+
+    updateLevelMoney:[],
+    need_discountprice: 0,  
+    discountprice: 0,  //需支付费用
+    select_vip_type: "", //当前选中的会员
   },
 
   onLoad: function () {
     let that = this;
     that.onShow();
-  },
 
-  onShow: function () {
-    let that = this;
-    
-    // util.loginState().then((res)=>{
-    //   console.log("---------------"+res)
-    // })
-
-    order.companystate().then((res)=>{
-      if (res.data) {
-        console.log(res.data)
-        let setData = {}
-        setData["company"] = res.data.company_name
-        for (let i = 1; i < 6; i++) {
-          if (that.data.vip1[i]["name"] == res.data.level) {
-            setData["vip_type"] = i
-            break;
-          }
-        }
-        
-        that.setData(setData)
+    var pages = getCurrentPages();
+    var data = pages[pages.length - 2].data
+    var updateLevelMoney = data["card"]["updateLevelMoney"]
+    var vip = data["vip"]
+    var discountprice = this.data.need_discountprice
+    var select_vip_type = this.data.select_vip_type
+    if (updateLevelMoney.length > 0) {
+      for (let i = 0; i < updateLevelMoney.length; i++) {
+        updateLevelMoney[i]["icon"] = vip[updateLevelMoney[i]["level"]]["icon"]
       }
+      discountprice = updateLevelMoney[0]["short"]
+      select_vip_type = updateLevelMoney[0]["level"]
+    }
+    that.setData({
+      updateLevelMoney: updateLevelMoney,
+      need_discountprice: discountprice,
+      discountprice: discountprice,
+      select_vip_type: select_vip_type
     })
-
-    order.levelType().then((res)=>{
-      if (res.data) {
-        console.log(res.data)
-        let setData = {}
-        
-      }
-    })
-
-    order.myVip1Type().then((res) => {
-      for (let i = 1; i < 5; i++) {
-        for (let j = 0; j < res.data.length; j++) {
-          if (that.data.vip1[i]["name"] == res.data[j].level) {
-            that.data.vip1[i]["pay_in_advance"] = res.data[j].pay_in_advance;
-            that.data.vip1[i]["recharge_point"] = res.data[j].recharge_point;
-            break;
-          }
-        }
-      }
-      that.setData({
-        vip1: that.data.vip1,
-      });
-    });
-
-    // let company_setting = wx.getStorageSync('company_setting');
-    // if (company_setting) {
-    //   that.setData({
-    //     company: company_setting["name"]
-    //   });
-    /*
-      order.myVip1Info().then((res) => {
-        if (res.data.code == 200) {
-          var data = JSON.parse(decodeURIComponent(decode.base64_decode(res.data.data)));
-          var vip_type = 1;
-          for(let i = 0; i < 5; i++) {
-            if (that.data.vip1[i]["name"] == data.level) {
-              vip_type = i;
-              break;
-            }
-          }
-          if (vip_type == 0) {
-            that.data.select_vip_type = 1;
-            that.data.discountprice = 11920;
-          }else if (vip_type == 1) {
-            that.data.select_vip_type = 2;
-            that.data.discountprice = that.data.vip1[2].pay_in_advance;
-          } else if (vip_type == 2) {
-            that.data.select_vip_type = 3;
-            that.data.discountprice = that.data.vip1[3].pay_in_advance - data.remainder;
-          } else if (vip_type == 3){
-            that.data.select_vip_type = 4;
-            that.data.discountprice = that.data.vip1[4].pay_in_advance - data.remainder;
-          }else {
-            that.data.select_vip_type = 4;
-          }
-          this.setData({
-            vip_type: vip_type,
-            select_vip_type: that.data.select_vip_type,
-            balance: data.remainder,
-            discountprice: that.data.discountprice
-          })
-        }else {
-          that.setData({
-            vip_type: 0,
-            discountprice: 11920,
-            balance : 0,
-            select_vip_type: 1,
-          });
-        }
-      });
-*/ 
-    // } else {
-    //   that.setData({
-    //     vip_type: -1,
-    //     discountprice: 11920,
-    //     balance: 0,
-    //     select_vip_type: 1,
-    //   });
-    // }
-    
+    console.log(data);
   },
 
   //监听vip选择
   chooseVip: function (e) {
+    console.log(e)
+    var value = e.detail.value
+    var discountprice = this.data.need_discountprice
+    var updateLevelMoney = this.data.updateLevelMoney
+    var select_vip_type = this.data.select_vip_type
     //需要支付价格
-    if (e.detail.value == "1") {
-      this.data.discountprice = 11920;
-    }else if (this.data.vip_type < 2) {
-      this.data.discountprice = this.data.vip1[parseInt(e.detail.value)].pay_in_advance;
-    } else if ((this.data.vip_type == 2 && parseInt(e.detail.value) > 2) || (this.data.vip_type == 3 && parseInt(e.detail.value) > 3)) {
-      this.data.discountprice = this.data.vip1[parseInt(e.detail.value)].pay_in_advance - this.data.balance;
-    } else {
-      this.data.discountprice = 0;
+    if (updateLevelMoney.length > 0) {
+      for (let i = 0; i < updateLevelMoney.length;i++) {
+        console.log(updateLevelMoney[i])
+        if (updateLevelMoney[i]["level"] == value) {
+          discountprice = updateLevelMoney[i]["short"]
+          select_vip_type = updateLevelMoney[i]["level"]
+        }
+      }
+    }else {
+      discountprice = 0
     }
     
     this.setData({
-      select_vip_type: parseInt(e.detail.value),
-      discountprice: this.data.discountprice,
+      // select_vip_type: parseInt(e.detail.value),
+      need_discountprice: discountprice,
+      discountprice: discountprice,
+      select_vip_type: select_vip_type
     });
   },
 
@@ -194,24 +116,9 @@ Page({
   },
   //充值金额
   bindDiscountprice: function(e) {
-    // if ((this.data.vip_type == 2 && this.data.select_vip_type > 2) || (this.data.vip_type == 3 && this.data.select_vip_type > 3)) {
-    //   if ((this.data.vip1[this.data.select_vip_type].pay_in_advance - this.data.balance > this.data.vip1[this.data.select_vip_type].recharge_point ? this.data.vip1[this.data.select_vip_type].pay_in_advance - this.data.balance : this.data.vip1[this.data.select_vip_type].recharge_point) < e.detail['value']) {
-
-        
-    //     this.setData({
-    //       discountprice: e.detail['value']
-    //     });
-    //   }else {
-    //     this.setData({
-    //       discountprice: this.data.discountprice
-    //     });
-    //   }
-    // }else {
       this.setData({
         discountprice: e.detail['value']
       });
-    // }
-    
   },
 
   showToast: function(str) {
@@ -224,32 +131,12 @@ Page({
 
   submit: util.throttle(function(e) {
     let that = this;
-    let userInfo = wx.getStorageSync("userInfo");
-
-    if (e.detail.userInfo && !userInfo) {
-      util.wxlogin().then((res) => {
-        app.globalData.token = res.token;
-        app.globalData.openId = res.openId;
-        that.onShow();
-        that.submitdata(); //提交购买数据
-      });
-    } else if (e.detail.userInfo && userInfo) {
-      that.submitdata(); //提交购买数据
-    } else {
-      wx.showModal({
-        title: "用户未授权",
-        content: '请授权允许微信登录后进行套餐购买',
-        showCancel: false,
-      })
-      return ;
-    }
+    that.submitdata(); //提交购买数据
   },2000),
 
   submitdata: function() {
-
     let that = this;
     var data = {};
-
     //验证
     if (that.data.company.length < 1) {
       that.showToast('请输入公司名称');
@@ -263,7 +150,7 @@ Page({
 
     var mobile = /^[1][3,4,5,7,8][0-9]{9}$/;
     if (!mobile.exec(that.data.contactTel)) {
-      that.showToast('手机号码有误d');
+      that.showToast('手机号码有误');
       return false;
     }
 
@@ -286,11 +173,11 @@ Page({
       }
     }
     
-    if ((this.data.vip_type == 2 && this.data.select_vip_type > 2) || (this.data.vip_type == 3 && this.data.select_vip_type > 3)) {
-      if ((this.data.vip1[this.data.select_vip_type].pay_in_advance - this.data.balance > this.data.vip1[this.data.select_vip_type].recharge_point ? this.data.vip1[this.data.select_vip_type].pay_in_advance - this.data.balance : this.data.vip1[this.data.select_vip_type].recharge_point) > this.data.discountprice) {
-        that.showToast('充值金额不足');
+    if (this.data.need_discountprice > this.data.discountprice ) {
+      
+        that.showToast('充值金额不能达到当前所选等级');
         return false;
-      }
+      
     }
     
     data['company'] = that.data.company;
@@ -300,8 +187,10 @@ Page({
     data['discountprice'] = that.data.discountprice;
     data['token'] = app.globalData.token;
     data['openID'] = app.globalData.openId;
-    data["VipType"] = that.data.vip1[that.data.select_vip_type].name;
+    data["VipType"] = that.data.select_vip_type;
     
+
+    console.log(data)
     wx.request({
       url: api.buyVip1,
       data: data,
@@ -325,48 +214,12 @@ Page({
       })
     }
   }, 2000),
-
-
-  toSignin: util.throttle(function (e) {
-    console.log(e)
-    let that = this;
-    let userInfo = wx.getStorageSync("userInfo");
-
-    if (e.detail.userInfo && !userInfo) {
-      util.wxlogin().then((res) => {
-        app.globalData.token = res.token;
-        app.globalData.openId = res.openId;
-        that.onShow();
-        if (!res.companyName) {
-          wx.navigateTo({
-            url: '/pages/login/login',
-          })
-        }
-        
-      });
-    } else if (e.detail.userInfo && userInfo) {
-      wx.navigateTo({
-        url: '/pages/login/login',
-      })
-    } else {
-      wx.showModal({
-        title: "用户未授权",
-        content: '请授权允许微信登录',
-        showCancel: false,
-      })
-      return;
-    }
-  }, 2000),
   
   vip1Policy: function() {
     wx.navigateTo({
       url: '/pages/judge/judge?website=' + "https://58jz.com.cn/FavouredPolicy",
     })
   }
-  // util.throttle(function() {
-    // wx.navigateTo({
-    //   url: '/pages/login/login',
-    // })
-  // },2000),
+
 
 })

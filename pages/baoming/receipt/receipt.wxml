@@ -16,11 +16,39 @@
       <view class='desc-objetc'>
         <view>尊敬的用户：</view>
         <view class='desc-title'>
-          　　请联系客服人员{{meeting.customer_service.name}}<text class='phone' bindtap='phoneCall' data-tel="{{meeting.customer_service.tel}}">{{meeting.customer_service.tel}}</text>及时支付您的订单。
+          当前订单金额为{{pay["all"]}},您已支付{{pay["ye"]}},还需支付{{pay["zz"]}},账户余额为{{pay["remainder"]}}。
+          为了便于做好住宿、餐饮等各项接待工作，请将培训费（￥{{pay["zz"]}}）汇入到收款公司账户，账户信息如下：
         </view>
-        <view class='desc-title'>
+        <!-- <view class='desc-title'>
           同时我们提供了会员服务，可以更优惠。
           <view class='more1' catchtap='more'>查看详情<image mode='aspectFit' src='/static/images/go.png'></image></view>
+        </view> -->
+        <view class='desc-content' >
+          <image class='trangle' src='/static/images/icon_trangle.png'></image>
+          <view class='invoice-line'>
+            <view class=' invoice-line-name-common'>
+              <text class='text-font blod '>户名</text>
+            </view>
+            <view class='invoice-line-value-common'>
+              <text class='text-font blod'>{{meeting.pay_com.name}}</text>
+            </view>
+          </view>
+          <view class='invoice-line'>
+            <view class=' invoice-line-name-common'>
+              <text class='text-font blod'>开户行</text>
+            </view>
+            <view class='invoice-line-value-common'>
+              <text class='text-font blod'>{{meeting.pay_com.bank}}</text>
+            </view>
+          </view>
+          <view class='invoice-line'>
+            <view class=' invoice-line-name-common'>
+              <text class='text-font blod'>账号</text>
+            </view>
+            <view class='invoice-line-value-common'>
+              <text class='text-font blod'>{{meeting.pay_com.tax_id}}</text>
+            </view>
+          </view>
         </view>
       </view>
     </view>
@@ -29,7 +57,7 @@
       <view class='desc-objetc'>
         <view>尊敬的用户：</view>
         <view style='margin-bottom: 12rpx;'>
-          您当前已支付{{pay["used"]}},账户余额为{{pay["remainder"]}}。购买会员服务报名更划算！ 
+          您当前已支付{{pay["ye"]}},账户余额为{{pay["remainder"]}}。购买会员服务报名更划算！ 
           <view class='more1' catchtap='more'>查看更多会员服务<image mode='aspectFit' src='/static/images/go.png'></image></view>
         </view>
       </view>
@@ -37,7 +65,8 @@
 
     <view class='desc' wx:if="{{pay_mode == 'zz'}}">
       <view class='desc-objetc'>
-        <view class='desc-title'>为了便于做好住宿、餐饮等各项接待工作，请将培训费（￥{{pay["used"]}}）汇入到收款公司账户，账户信息如下：
+        <view>尊敬的用户：</view>
+        <view class='desc-title'>为了便于做好住宿、餐饮等各项接待工作，请将培训费（￥{{pay["zz"]}}）汇入到收款公司账户，账户信息如下：
         </view>
         <view class='desc-content' >
           <image class='trangle' src='/static/images/icon_trangle.png'></image>
@@ -177,22 +206,7 @@
       </view>
     </view>
 
-    <view bindtap='more' class='advertisement2'>
-      <image mode='widthFix' src='https://duchuanoss.oss-cn-hangzhou.aliyuncs.com/wxapp/advertisement.png'></image>
-    </view>
-
     <contact id="contact" employeeTeacherList="{{meeting.employees}}"  bind:phoneCall="phoneCall"></contact>
   </view>
 
-  <!-- 弹出广告 -->
-  <!-- <view class='advertisement' hidden='{{adverShow}}' >
-    <image mode='widthFix' src="https://duchuanoss.oss-cn-hangzhou.aliyuncs.com/wxapp/advertisement.png"></image>
-    <view class='adver_buy' bindtap='more'></view>
-    <view class='adver_cancel' catchtap='cancel'><image src='../../../static/images/cancel1.png'></image></view>
-    <view class='adver_tip' catchtap='tipconfirm'>
-      <view class='advcheckout' wx:if="{{!adverRedio}}" ></view>
-      <image mode='scaleToFill' wx:else src='../../../static/images/advcheck.png'></image>
-      <text>不再提示</text>
-    </view>
-  </view> -->
 </view>

@@ -55,13 +55,22 @@ Page({
       level_id: "",
       level_price: 0,
       ye_btn: 3,
-      zz_btn: true,
+      zz_btn: 1,
       qt_btn: false,
       ye_tip: "",
-      ye_cz_show: ""
+      zz_tip: "公对公或私对公",
+      ye_cz_show: "",
+      pay_mode:"zz",
+      discount:1,
     } ,
     // Vip1
-    btnType : { 1: "highlight_button", 2: "button", 3: "unuse_button" } //付款方式按钮状态
+    btnType : { 1: "highlight_button", 2: "button", 3: "unuse_button" }, //付款方式按钮状态
+    //
+    card: {},
+    vip: app.globalData.vip,
+    price:0,   //价格
+    is_discount:0, //是否享受会员优惠
+    discount:1,
   },
 
   onLoad: function (options) {
@@ -76,16 +85,10 @@ Page({
     that.setData({
       meeting: meeting,
       arriveDate: meeting.end_show,
-      leaveDate: meeting.end_date
+      leaveDate: meeting.end_date,
+      price: meeting.vip1.price,
+      is_discount: meeting.vip1.is_discount
     });
-    
-    // order.CardInfo().then((res) => {
-    //   if (res) {
-    //     that.setData({
-    //       cardInfo: res,
-    //     });
-    //   }
-    // });
 
     //页面从哪跳转过来的
     if (options.method) {
@@ -157,29 +160,42 @@ Page({
       fail: function () {
         console.log("meetPersonListSelected 数据获取失败");
       }
+      
     });
 
     //vip1模块处理
-    order.myVip1Info().then((res) => {
+    order.companystate().then((res) => {
       if (res.data.code == 200) {
-        var data = JSON.parse(decodeURIComponent(decode.base64_decode(res.data.data)));
-        this.setData({
-          Vip1_tab: Vip1(this.data.bm_num, this.data.meeting, data, this.data.Vip1_tab),
-          Vip1_info: data
+        that.setData({
+          card: res.data.data,
+          discount: res.data.data.discount,
         })
-        if (this.data.Vip1_tab.ye_btn == 1) {
-          this.data.invoice.invType = "不开票";
-          this.setData({
-            invoice: this.data.invoice
-          })
-        }
-      }else {
-        that.data.Vip1_tab.level_price = that.data.meeting.price;
-        this.setData({
-          Vip1_tab: that.data.Vip1_tab
-        })
+        
       }
-    });
+      that.setData({
+        Vip1_tab: Vip1(that),
+      })
+    })
+    // order.myVip1Info().then((res) => {
+    //   if (res.data.code == 200) {
+    //     var data = JSON.parse(decodeURIComponent(decode.base64_decode(res.data.data)));
+    //     this.setData({
+    //       Vip1_tab: Vip1(this.data.bm_num, this.data.meeting, data, this.data.Vip1_tab),
+    //       Vip1_info: data
+    //     })
+    //     if (this.data.Vip1_tab.ye_btn == 1) {
+    //       this.data.invoice.invType = "不开票";
+    //       this.setData({
+    //         invoice: this.data.invoice
+    //       })
+    //     }
+    //   }else {
+    //     that.data.Vip1_tab.level_price = that.data.meeting.price;
+    //     this.setData({
+    //       Vip1_tab: that.data.Vip1_tab
+    //     })
+    //   }
+    // });
   },
 
   onUnload: function () {
@@ -372,10 +388,12 @@ Page({
     bm_num = bm_num - 1 >= 0 ? bm_num - 1 : 0;
 
     this.setData({
-      Vip1_tab: Vip1(bm_num, this.data.meeting, this.data.Vip1_info, this.data.Vip1_tab),
       bm_num: bm_num
     })
-    if (this.data.Vip1_tab.ye_btn == 1) {
+    this.setData({
+      Vip1_tab: Vip1(this),
+    })
+    if (this.data.Vip1_tab.zz_btn != 1) {
       this.data.invoice.invType = "不开票";
       this.setData({
         invoice: this.data.invoice
@@ -388,10 +406,12 @@ Page({
     bm_num = bm_num + 1;
 
     this.setData({
-      Vip1_tab: Vip1(bm_num, this.data.meeting, this.data.Vip1_info, this.data.Vip1_tab),
       bm_num: bm_num
     })
-    if (this.data.Vip1_tab.ye_btn == 1) {
+    this.setData({
+      Vip1_tab: Vip1(this)
+    })
+    if (this.data.Vip1_tab.zz_btn != 1) {
       this.data.invoice.invType = "不开票";
       this.setData({
         invoice: this.data.invoice
@@ -701,20 +721,20 @@ Page({
       usedChart: 0,
       bm_num: 0,
     });
-    order.myVip1Info().then((res) => {
+    // order.myVip1Info().then((res) => {
 
-      var data = JSON.parse(decodeURIComponent(decode.base64_decode(res.data)));
-      this.setData({
-        Vip1_tab: Vip1(this.data.bm_num, this.data.meeting, data, this.data.Vip1_tab),
-        Vip1_info: data
-      })
-      if (this.data.Vip1_tab.ye_btn == 1) {
-        this.data.invoice.invType = "不开票";
-        this.setData({
-          invoice: this.data.invoice
-        })
-      }
-    });
+    //   var data = JSON.parse(decodeURIComponent(decode.base64_decode(res.data)));
+    //   this.setData({
+    //     Vip1_tab: Vip1(this),
+    //     Vip1_info: data
+    //   })
+    //   if (this.data.Vip1_tab.ye_btn == 1) {
+    //     this.data.invoice.invType = "不开票";
+    //     this.setData({
+    //       invoice: this.data.invoice
+    //     })
+    //   }
+    // });
     wx.showToast({
       title: '重置成功',
       icon: 'success',
@@ -809,7 +829,6 @@ Page({
         bmtype: that.data.method,
         com: that.data.com,
         bm_num: that.data.bm_num,
-        pay_mode: pay_mode(that.data.Vip1_tab)
       },
       method: 'POST',
       success: function (res) {
@@ -826,7 +845,7 @@ Page({
           }
           wx.setStorageSync('receipt', receipt);
           wx.navigateTo({
-            url: '/pages/baoming/receipt/receipt?method=' + that.data.method + "&pay_mode=" + pay_mode(that.data.Vip1_tab),
+            url: '/pages/baoming/receipt/receipt?method=' + that.data.method + "&pay_mode=" + that.data.Vip1_tab.pay_mode,
           })
         } else if (res.data.code == 400){
           wx.showToast({
@@ -854,63 +873,76 @@ Page({
 })
 
 //vip模块控制 
-function Vip1(bm_num, meeting, vip1_info, Vip1_tab) {
-  var icons = {
-    6: "common",
-    7: "silver",
-    8: "gold",
-  };
+function Vip1(that) {
+  var bm_num = that.data.bm_num //人数
+  var price = that.data.price //单价
+  var is_discount = that.data.is_discount  //是否享受折扣
+  var discount = that.data.discount //折扣
+  var Vip1_tab = that.data.Vip1_tab
+  Vip1_tab.discount = discount
 
-  Vip1_tab.level_name = vip1_info['level']
-  Vip1_tab.level_id = vip1_info['id']
-
-  for (let i = 0; i < meeting["vip1"].length; i++) {
-    if (meeting["vip1"][i]["level"] == vip1_info['id']) {
-      Vip1_tab.level_price = meeting["vip1"][i]["price"];
-    }
+  var all = price * bm_num  //总金额
+  if (is_discount == 1){
+    all = all * discount
   }
 
-  if (vip1_info['id'] > 3) {
-    Vip1_tab.img = icons[vip1_info['id']];
-    if (vip1_info["remainder"] >= bm_num * Vip1_tab.level_price) {
-      //余额充足
-      Vip1_tab.ye_btn = 1;
-      Vip1_tab.zz_btn = 3;
-      Vip1_tab.qt_btn = 3;
-
-      Vip1_tab.ye_tip = "剩余¥" + vip1_info["remainder"];
-      Vip1_tab.ye_cz_show = true;
-    } else {
-      //余额不足
-      Vip1_tab.ye_btn = 3;
-      Vip1_tab.zz_btn = 3;
-      Vip1_tab.qt_btn = 1;
+  var remainder = that.data.card.remainder == undefined ? 0 : that.data.card.remainder
+  var ye = 0
+  var zz = 0
+  if (remainder > all) {
+    ye = all
+  }else {
+    ye = remainder
+    zz = all - ye
+    if (is_discount == 1) {
+      var newLeveldiscount = discount;
+      for (let i = that.data.card.updateLevelMoney.length - 1; i >= 0; i--) {
+        if (zz >= that.data.card["updateLevelMoney"][i].short) {
+          newLeveldiscount = that.data.card["updateLevelMoney"][i]['discount'];
+          break;
+        }
+      }
       
-      Vip1_tab.ye_tip = "剩余¥" + vip1_info["remainder"] + ",余额不足,";
-      Vip1_tab.ye_cz_show = false;
+      if (newLeveldiscount != discount) {
+        Vip1_tab.discount = newLeveldiscount
+        all = price * bm_num * newLeveldiscount;
+      }
+      if (remainder > all) {
+        ye = all
+      } else {
+        ye = remainder
+        zz = all - ye
+      }
     }
-  } else {
-    //无余额，无会员
+
+  }
+  
+  Vip1_tab.ye = ye
+  Vip1_tab.zz = zz
+  Vip1_tab.all = all
+  if (remainder > ye) {
+    Vip1_tab.ye_btn = 1;
+    Vip1_tab.zz_btn = 3;
+    Vip1_tab.pay_mode = "ye"
+    Vip1_tab.ye_tip = "使用¥" + ye + " " + "剩余¥" + (remainder - ye);
+    Vip1_tab.zz_tip = "公对公或私对公"
+    Vip1_tab.ye_cz_show = true;
+  } else if (remainder == 0) {
     Vip1_tab.ye_btn = 3;
     Vip1_tab.zz_btn = 1;
-    Vip1_tab.qt_btn = 3;
-
-    Vip1_tab.ye_tip = "余额不足";
+    Vip1_tab.pay_mode = "zz"
+    Vip1_tab.ye_tip = "余额不足, ";
+    Vip1_tab.zz_tip = "请转账¥" + zz +",公对公或私对公"
+    Vip1_tab.ye_cz_show = false;
+  } else if (remainder == ye) {
+    Vip1_tab.ye_btn = 1;
+    Vip1_tab.zz_btn = 1;
+    Vip1_tab.pay_mode = "qt"
+    Vip1_tab.ye_tip = "使用¥" + ye + " " + ",余额为¥0,";
+    Vip1_tab.zz_tip = "请转账¥" + zz + ",公对公或私对公"
     Vip1_tab.ye_cz_show = false;
   }
 
+
   return Vip1_tab;
-}
-//上传支付方式
-function pay_mode(vip_tab) {
-  
-  if (vip_tab.ye_btn == 1) {
-    return "ye";
-  }
-
-  if (vip_tab.qt_btn == true) {
-    return "qt";
-  }
-
-  return "zz";
 }

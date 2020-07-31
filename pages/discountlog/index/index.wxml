@@ -1,5 +1,5 @@
 <view>
-  <view class='card' wx:for="{{usedRecords}}" bindtap='todetail' data-OId='{{index}}'>
+  <view class='card' wx:for="{{usedRecords}}" wx:key="index"  bindtap='todetail' data-OId='{{index}}'>
     <block wx:if="{{item['use_type'] == 1}}">
     <view class='bmtype' style='color:#f5c04e'>已报名</view>
     <view class='line'>

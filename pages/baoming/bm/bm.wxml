@@ -163,16 +163,16 @@
           <radio-group name="radio-group" bindchange="listenerRadioGroup" >
             <view class='radio-group'>
               <label class='label-4'>
-                <radio value="暂不填写" checked="{{invoice.invType=='暂不填写'?'checked':''}}" disabled='{{Vip1_tab.ye_btn == 1 ? "disabled" : ""}}' name="invoice" />暂不填写
+                <radio value="暂不填写" checked="{{invoice.invType=='暂不填写'?'checked':''}}" disabled='{{Vip1_tab.zz_btn != 1 ? "disabled" : ""}}' name="invoice" />暂不填写
               </label>
               <label class='label-4'>
-                <radio value="普票" checked="{{invoice.invType=='普票'?'checked':''}}" disabled='{{Vip1_tab.ye_btn == 1 ? "disabled" : ""}}' name="invoice" />普票
+                <radio value="普票" checked="{{invoice.invType=='普票'?'checked':''}}" disabled='{{Vip1_tab.zz_btn != 1 ? "disabled" : ""}}' name="invoice" />普票
               </label>
               <label class='label-4'>
-                <radio value="专票" checked="{{invoice.invType=='专票'?'checked':''}}" disabled='{{Vip1_tab.ye_btn == 1 ? "disabled" : ""}}' name="invoice" />专票
+                <radio value="专票" checked="{{invoice.invType=='专票'?'checked':''}}" disabled='{{Vip1_tab.zz_btn != 1 ? "disabled" : ""}}' name="invoice" />专票
               </label>
               <label class='label-4'>
-                <radio value="不开票" checked="{{invoice.invType=='不开票'?'checked':''}}" disabled='{{Vip1_tab.ye_btn == 1 ? "disabled" : ""}}' name="invoice" />不开票
+                <radio value="不开票" checked="{{invoice.invType=='不开票'?'checked':''}}" disabled='{{Vip1_tab.zz_btn != 1 ? "disabled" : ""}}' name="invoice" />不开票
               </label>
             </view>
           </radio-group>
@@ -224,8 +224,8 @@
 
     <view class='tab' >
       <view class='tab_title' >
-        <image wx:if='{{Vip1_tab.img != ""}}' class='huiyuan' src='../../../static/images/Vip1/{{Vip1_tab.img}}.png'></image>
-        <view>{{Vip1_tab.level_name}}</view>
+        <image wx:if='{{vip[card.level]}}' class='huiyuan' src='../../../static/images/Vip1/{{vip[card.level].icon}}.png'></image>
+        <view>{{card.level}}</view>
       </view>
       <view class='tab_line'>
         <view class='tab_line_title'>报名人数</view> 
@@ -235,27 +235,28 @@
       </view>
       <view class='tab_line'>
         <view class='tab_line_title'>付款金额</view>
-        <view class='Vip1_price'>¥{{bm_num * Vip1_tab.level_price}}</view>
-        <view class='original_price'>¥{{bm_num * meeting.price}}</view>
+        <view class='Vip1_price'>¥{{is_discount == 1 ? Vip1_tab.all : bm_num * price}}</view>
+        <view class='original_price' wx:if='{{is_discount == 1 && bm_num > 0}}'>¥{{bm_num * price}}</view>
+        <view wx:if="{{is_discount == 1}}" class='Vip1_price'>{{Vip1_tab.discount}}折</view>
       </view>
-      <view class='tab_area'  >
+      <view class='tab_area' >
         <view class='tab_line_title'>付款方式</view>
         <view>
           <view class='tab_line_vip' >
             <view bindtap='pay_mode' data-mode='ye' class='{{btnType[Vip1_tab.ye_btn]}}'>余额支付</view>
-            <view class='vip_tip' >{{ Vip1_tab.level_id > 3 ? Vip1_tab.ye_tip : ""}}</view>
+            <view class='vip_tip' >{{Vip1_tab.ye_tip}}</view>
             <view bindtap='to_buy_Vip1' class='vip_cz' hidden='{{Vip1_tab.ye_cz_show}}'>去充值</view>
           </view>
           <view class='tab_line_vip'>
             <view bindtap='pay_mode' data-mode='zz' class='{{btnType[Vip1_tab.zz_btn]}}'>转账支付</view>
-            <view class='vip_tip'>公对公或私对公</view>
+            <view class='vip_tip'>{{Vip1_tab.zz_tip}}</view>
           </view>
-          <view class='tab_line_vip'>
+          <!-- <view class='tab_line_vip'>
             <view wx:if="{{Vip1_tab.level_id > 4}}" bindtap='pay_mode' data-mode='qt' class='{{btnType[Vip1_tab.qt_btn]}}'>其他支付</view>
             <view wx:else bindtap='pay_mode' data-mode='qt' class='unuse_button'>其他</view>
             <view class='vip_tip'>请联系客服</view>
-          </view>
-        </view>
+          </view> -->
+        </view> 
       </view>
     </view>
 

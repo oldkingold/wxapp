@@ -1,3 +1,27 @@
+.toptip {
+  padding-top: 16rpx;
+  font-size: 26rpx;
+  /* background-color: #f0f2f5; */
+  background-color: #05071e;
+}
+
+.toptip view{
+  margin-left: 55rpx;
+  width: 642rpx;
+  /* background-color: #3d75c9; */
+  background-color: #282a3f;
+  display: flex;
+  align-items: center;
+  color: white;
+  height: 70rpx;
+}
+
+.toptip image {
+  width: 35rpx;
+  height: 35rpx;
+  margin: 0 18rpx 0 16rpx;
+}
+
 .card {
   /* background-color: white; */
   width: 677rpx;
@@ -6,7 +30,6 @@
   font-size: 26rpx;
   overflow: hidden;
 }
-
 
 .card image {
   width: 677rpx;
@@ -21,11 +44,12 @@
 }
 
 .bg {
-  background-color: #f0f2f5;
+  /* background-color: #f0f2f5; */
+  background-color: #05071e;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 40rpx;
+  padding-top: 20rpx;
 }
 
 .white {
@@ -89,6 +113,7 @@
   position: absolute;
   top: 181rpx;
   margin-left: 54rpx;
+  margin-top: 10rpx;
 }
 
 .levellinetip .t2 {
@@ -117,14 +142,18 @@
 
 .card .bottom .right {
   float: right;
+  margin-top: -18rpx;
+}
+
+.card .bottom .right view{
   display: flex;
-  align-items: center
+  align-items: center;
 }
 
 .card .bottom .right image {
   height: 24rpx;
   width: 20rpx;
-  margin-left: 20rpx;
+  margin-left: 12rpx;
 }
 
 .middle {
@@ -166,3 +195,41 @@ width: 42rpx;
   opacity: 0.2;
 }
 
+.rights {
+  color: white;
+  width: 688rpx;
+  height: 240rpx;
+}
+
+.rights .title {
+  font-weight:bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rights .title .show{
+  font-size: 26rpx;
+  font-weight: normal
+}
+
+.rights .grids .grid {
+  width: 24%;
+  /* background-color: beige; */
+  float:left;
+  margin-right: 1%;
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.rights .grids .grid .icon {
+  width: 100%;
+  height: 75rpx;
+  padding: 32rpx 0 0 0;
+}
+
+.rights .grids .grid .icon image {
+  width: 60rpx;
+  
+}
