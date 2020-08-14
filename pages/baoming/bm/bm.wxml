@@ -237,7 +237,7 @@
         <view class='tab_line_title'>付款金额</view>
         <view class='Vip1_price'>¥{{is_discount == 1 ? Vip1_tab.all : bm_num * price}}</view>
         <view class='original_price' wx:if='{{is_discount == 1 && bm_num > 0}}'>¥{{bm_num * price}}</view>
-        <view wx:if="{{is_discount == 1}}" class='Vip1_price'>{{Vip1_tab.discount}}折</view>
+        <view wx:if="{{is_discount == 1 && Vip1_tab.discount < 1}}" class='Vip1_price'>{{Vip1_tab.discount * 10}}折</view>
       </view>
       <view class='tab_area' >
         <view class='tab_line_title'>付款方式</view>

@@ -19,12 +19,12 @@
     "pages/addcominfo/addcominfo",
     "pages/discountlog/index/index",
     "pages/discount/discount",
-    "pages/discount_nav/discount_nav",
     "pages/discountreceipt/discountreceipt",
     "pages/orderdetail/orderdetail",
     "pages/discountlog/detail/detail",
     "pages/refund/refund",
-    "pages/notices/notices"
+    "pages/notices/notices",
+    "pages/wode/wode"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -47,6 +47,12 @@
         "text": "会员卡",
         "iconPath": "static/images/card.png",
         "selectedIconPath": "static/images/card_h.png"
+      },
+      {
+        "pagePath": "pages/wode/wode",
+        "text": "我的",
+        "iconPath": "static/images/mine.png",
+        "selectedIconPath": "static/images/mine_h.png"
       }
     ]
   },

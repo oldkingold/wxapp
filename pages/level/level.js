@@ -1,5 +1,6 @@
 const order = require("../../utils/home/order.js");
 const util = require('../../utils/util.js');
+var app = getApp();
 
 Page({
 
@@ -24,8 +25,9 @@ Page({
   },
 
   onLoad: function (options) {
-    
-    
+    if (app.globalData.openId == "") {
+      
+    }
   },
 
   onShow: function() {

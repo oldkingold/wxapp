@@ -7,15 +7,12 @@ App({
     // 获取基本信息
     wx.getSystemInfo({
       complete: function (e) {
-        console.log(e);
         that.globalData.systemInfo = { height: e.windowHeight };
       }
     });
 
     //账号登录
     util.wxlogin().then((res) => {
-      that.globalData.token = res.token;
-      that.globalData.openId = res.openId;
       //获取用户信息
       order.companystate().then((res) => {
         if (res.data.code == 200) {

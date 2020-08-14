@@ -35,6 +35,8 @@ Page({
       });
     }
     
+    console.log()
+    
   },
 
   onShow: function () {

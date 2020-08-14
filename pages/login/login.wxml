@@ -20,7 +20,7 @@
     </view>
 
     <view class="btn-area">
-      <button bindtap="login" >登录</button>
+      <button open-type="getUserInfo" bindgetuserinfo="login">登录</button>
       <view class='others'>
         <!-- <navigator url='/pages/reset/reset' open-type="navigate" hover-class="other-navigator-hover" class='left'>忘记密码</navigator> -->
         <navigator  class='register' url='/pages/sign/sign' open-type="redirect" hover-class="other-navigator-hover" >

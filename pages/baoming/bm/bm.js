@@ -66,7 +66,13 @@ Page({
     // Vip1
     btnType : { 1: "highlight_button", 2: "button", 3: "unuse_button" }, //付款方式按钮状态
     //
-    card: {},
+    card: {
+      updateLevelMoney: [
+        { level: "银卡会员", short: 10000, min_money: 10000, discount: "0.85" },
+        { level: "金卡会员", short: 30000, min_money: 30000, discount: "0.8" },
+        { level: "白金会员", short: 50000, min_money: 50000, discount: "0.75" },
+        { level: "钻石会员", short: 100000, min_money: 100000, discount: "0.7" }]
+    },
     vip: app.globalData.vip,
     price:0,   //价格
     is_discount:0, //是否享受会员优惠
@@ -176,26 +182,7 @@ Page({
         Vip1_tab: Vip1(that),
       })
     })
-    // order.myVip1Info().then((res) => {
-    //   if (res.data.code == 200) {
-    //     var data = JSON.parse(decodeURIComponent(decode.base64_decode(res.data.data)));
-    //     this.setData({
-    //       Vip1_tab: Vip1(this.data.bm_num, this.data.meeting, data, this.data.Vip1_tab),
-    //       Vip1_info: data
-    //     })
-    //     if (this.data.Vip1_tab.ye_btn == 1) {
-    //       this.data.invoice.invType = "不开票";
-    //       this.setData({
-    //         invoice: this.data.invoice
-    //       })
-    //     }
-    //   }else {
-    //     that.data.Vip1_tab.level_price = that.data.meeting.price;
-    //     this.setData({
-    //       Vip1_tab: that.data.Vip1_tab
-    //     })
-    //   }
-    // });
+   
   },
 
   onUnload: function () {
@@ -420,49 +407,13 @@ Page({
   },
   //vip1付款方式
   pay_mode: function (e) {
-    // console.log(e.currentTarget.dataset.mode)
-    // var mode = e.currentTarget.dataset.mode;
-    // if (this.data.Vip1_tab.level_id < 5) {
-    //   return;
-    // }
-    // if (mode == "ye") {
-    //   if (this.data.Vip1_tab.ye_btn == 2) {
-    //     this.data.Vip1_tab.ye_btn = 1;
-    //     this.data.Vip1_tab.zz_btn = false;
-    //     this.data.Vip1_tab.qt_btn = false;
-    //     this.data.invoice.invType = "不开票";
-    //   }
-
-    // } else if (mode == "zz") {
-    //   if (this.data.Vip1_tab.zz_btn == 2) {
-    //     if (this.data.Vip1_tab.ye_btn == 1) {
-    //       this.data.Vip1_tab.ye_btn = 2;
-    //     }
-    //     this.data.Vip1_tab.zz_btn = 1;
-    //     this.data.Vip1_tab.qt_btn = false;
-    //   }
-      
-    // } else if (mode == "qt") {
-    //   if (!this.data.Vip1_tab.qt_btn) {
-    //     if (this.data.Vip1_tab.ye_btn == 1) {
-    //       this.data.Vip1_tab.ye_btn = 2;
-    //     }
-    //     this.data.Vip1_tab.zz_btn = false;
-    //     this.data.Vip1_tab.qt_btn = true;
-    //   }
-    // }
-
     
-    // this.setData({
-    //   Vip1_tab: this.data.Vip1_tab,
-    //   invoice: this.data.invoice
-    // })
   },
 
   //购买vip1
   to_buy_Vip1: function () {
     wx.navigateTo({
-      url: '/pages/discount_nav/discount_nav',
+      url: '/pages/discount/discount',
     })
   },
 
@@ -721,20 +672,7 @@ Page({
       usedChart: 0,
       bm_num: 0,
     });
-    // order.myVip1Info().then((res) => {
 
-    //   var data = JSON.parse(decodeURIComponent(decode.base64_decode(res.data)));
-    //   this.setData({
-    //     Vip1_tab: Vip1(this),
-    //     Vip1_info: data
-    //   })
-    //   if (this.data.Vip1_tab.ye_btn == 1) {
-    //     this.data.invoice.invType = "不开票";
-    //     this.setData({
-    //       invoice: this.data.invoice
-    //     })
-    //   }
-    // });
     wx.showToast({
       title: '重置成功',
       icon: 'success',
@@ -916,7 +854,8 @@ function Vip1(that) {
     }
 
   }
-  
+  zz = Math.round(zz)
+  all = Math.round(all)
   Vip1_tab.ye = ye
   Vip1_tab.zz = zz
   Vip1_tab.all = all

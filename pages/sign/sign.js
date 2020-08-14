@@ -31,8 +31,19 @@ Page({
     this.data.companyName = e.detail.value
   },
 
-  login: function (e) {
-    
+  login: util.throttle(function (e) {
+    console.log("------------------------------------------")
+    console.log(e)
+    if (e.detail.userInfo) {
+      util.wxlogin();
+    }else {
+      wx.showModal({
+        showCancel: false,
+        content: '请先允许微信授权',
+      })
+      return false;
+    }
+
     var that = this;
 
     if (that.data.companyName.length <= 0) {
@@ -108,5 +119,5 @@ Page({
         
       }
     })
-  },
+  },1500)
 })

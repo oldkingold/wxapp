@@ -1,0 +1,58 @@
+<view class="profile-info" > 
+  <image class='wode-bg' src='../../static/images/wode_bg.png'></image>
+  <view class="avatarUrl">
+    <open-data type="userAvatarUrl"></open-data>
+  </view>
+  <view class='loginStatus'>
+    <view  class="top-middle_0">
+      <view class='userName_0'>
+        {{userInfo.nickName}}
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='middle'>
+  <navigator url='/pages/infomanage/infomanage' class='line'>
+    <image mode="aspectFit" src='/static/images/m_info.png'></image>
+    <view class='line-name'>信息维护</view>
+    <view class='icon_go'>
+      <image class='go' src='/static/images/go.png'></image>
+    </view>
+  </navigator>
+  <navigator url='/pages/setting/setting/setting' class='line'>
+    <image mode="aspectFit" style='height: 38rpx;width: 38rpx;' src='/static/images/m_setting.png'></image>
+    <view class='line-name'>设置</view>
+    <view class='icon_go'>
+      <image class='go' src='/static/images/go.png'></image>
+    </view>
+  </navigator>
+  <navigator url='/pages/aboutas/aboutas' class='line'>
+    <image mode="aspectFit" style='height: 38rpx;width: 38rpx;' src='/static/images/m_about.png'></image>
+    <view class='line-name'>关于度川</view>
+    <view class='icon_go'>
+      <image class='go' src='/static/images/go.png'></image>
+    </view>
+  </navigator>
+</view>
+
+
+<view class='bottom-title'>会务联系方式</view>
+<view class='buttom'> 
+  <view class='buttom-line' data-reply-phone="13677886754" catchtap="phoneCall" >
+    <view class='buttom-line-name'>周小姐</view>
+    <view class='buttom-line-phone'> 13677886754 </view>
+  </view>
+  <view class='buttom-line' data-reply-phone="13677886754" catchtap="phoneCall">
+    <view class='buttom-line-name'>周小姐</view>
+    <view class='buttom-line-phone'>13677886754 </view>
+  </view>
+  <view class='buttom-line' data-reply-phone="13677886754" catchtap="phoneCall">
+    <view class='buttom-line-name'>周小姐</view>
+    <view class='buttom-line-phone'> 13677886754 </view>
+  </view>
+  <view class='buttom-line' data-reply-phone="13677886754" catchtap="phoneCall">
+    <view class='buttom-line-name'>周小姐</view>
+    <view class='buttom-line-phone'>13677886754 </view>
+  </view>
+</view>

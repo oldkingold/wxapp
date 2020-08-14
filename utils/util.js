@@ -131,6 +131,11 @@ function wxlogin() {
                     wx.setStorageSync('selfCompanies', res.data.selfCompanies ? res.data.selfCompanies : []);
                     wx.setStorageSync('selfPersons', res.data.selfPersons ? res.data.selfPersons : []);
                     wx.setStorageSync('companyBindTel', res.data.companyBindTel);
+                    
+                    var app = getApp();
+                    app.globalData.token = res.data.token;
+                    app.globalData.openId = res.data.openId;
+
                     resolve(res.data);
                   } else {
                     reject(false);

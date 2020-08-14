@@ -55,8 +55,12 @@
         <view class="show" bindtap="rightsShow" wx:else>展开</view>
       </view>
       <view class="grids"  >
-        <view class="grid" wx:for="{{card.rights}}" wx:key="index" bindtap="rights" data-index="{{index}}">
-          <view class="icon"><image mode="widthFix"  src="{{item.icon}}"></image></view>
+        <view class="grid {{item.own ? '' : 'grey'}}" wx:for="{{card.rights}}" wx:key="index" catchtap="rights" data-index="{{index}}">
+          <view class="icon">
+            <icon class="iconfont {{item.icon}}"></icon>
+            <icon wx:if="{{!item.own}}" class="iconfont icon-suo"></icon>
+          </view>
+          <!-- <view class="icon"><image mode="widthFix"  src="{{item.icon}}"></image></view> -->
           <view>{{item.name}}</view>
           <view>{{item.subtitle}}</view>
         </view>

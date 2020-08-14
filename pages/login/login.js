@@ -30,7 +30,15 @@ Page({
   },
   
   login: util.throttle(function (e) {
-    
+    if (e.detail.userInfo) {
+      util.wxlogin();
+    } else {
+      wx.showModal({
+        showCancel: false,
+        content: '请先允许微信授权',
+      })
+      return false;
+    }
     var that = this;
     
     if (that.data.companyName.length <= 0) {
@@ -42,10 +50,10 @@ Page({
       return false;
     }
 
-    if (that.data.password.length <= 9) {
+    if (that.data.password.length <= 7) {
       wx.showModal({
         showCancel: false,
-        content: '密码至少是10位',
+        content: '密码至少是8位',
       })
       wx.hideLoading();
       return false;

@@ -1,3 +1,5 @@
+@import '/static/fonts/iconfont.wxss';
+
 .toptip {
   padding-top: 16rpx;
   font-size: 26rpx;
@@ -199,6 +201,7 @@ width: 42rpx;
   color: white;
   width: 688rpx;
   height: 240rpx;
+  overflow: hidden;
 }
 
 .rights .title {
@@ -231,5 +234,18 @@ width: 42rpx;
 
 .rights .grids .grid .icon image {
   width: 60rpx;
-  
+}
+
+.icon {
+  position: relative;
+}
+
+.icon .icon-suo {
+  position: absolute;
+  font-size: 20rpx;
+  bottom: 0;
+  right: 30rpx;
+}
+.grey {
+  color: gray;
 }

@@ -46,18 +46,25 @@ Page({
     var vip = data["vip"]
     var discountprice = this.data.need_discountprice
     var select_vip_type = this.data.select_vip_type
+    var companyname = data["card"]["companyname"]
+    if (data["card"]["other_company_name"]) {
+      companyname = data["card"]["other_company_name"]
+    }
     if (updateLevelMoney.length > 0) {
       for (let i = 0; i < updateLevelMoney.length; i++) {
         updateLevelMoney[i]["icon"] = vip[updateLevelMoney[i]["level"]]["icon"]
       }
       discountprice = updateLevelMoney[0]["short"]
       select_vip_type = updateLevelMoney[0]["level"]
+    }else{
+      select_vip_type = "钻石会员"
     }
     that.setData({
       updateLevelMoney: updateLevelMoney,
       need_discountprice: discountprice,
       discountprice: discountprice,
-      select_vip_type: select_vip_type
+      select_vip_type: select_vip_type,
+      company: companyname
     })
     console.log(data);
   },

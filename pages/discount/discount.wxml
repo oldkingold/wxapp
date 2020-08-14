@@ -27,10 +27,11 @@
         </radio-group>
       </view>
 
-      <view class='line flex_row'>
+      <view class='line flex_row' wx:if="{{updateLevelMoney.length > 0}}">
         <text class='name'>套餐说明：</text>
         <view class='content'>
           <view wx:for="{{updateLevelMoney}}" wx:key="index">升级{{item['level']}}，余额需达到<text class='price'>￥{{item['min_money']}}.00</text></view>
+          <!-- <view wx:if="updateLevelMoney.length > 0"></view> -->
           <!-- <view>若余额为<text class='red'>￥0</text>,则恢复至<text class='blue'>老客户</text></view> -->
         </view>
       </view>
@@ -49,7 +50,7 @@
           <text wx:if="{{need_discountprice > discountprice}}" class='tip'>*金额不得低于{{need_discountprice}}元</text>
         </view>
 
-        <view class='item'>
+        <view class='item' >
           <text class='name'>公司名称：</text>
           <input bindinput='bindMyInput' data-name='company' placeholder='请输入公司全称' value='{{company}}' ></input>
         </view>
