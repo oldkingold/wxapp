@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "报名表",
   "usingComponents": {
     "showmodel":"/model/showmodel/showmodel",
     "contact":"/model/contact/contact"

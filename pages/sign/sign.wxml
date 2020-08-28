@@ -8,29 +8,44 @@
         <view class='header'>
           <image mode='aspectFit' src='/static/images/gongsi.png'></image>
         </view>
-        <input placeholder="请输入公司全称" maxlength="30" bindinput="bind_companyname" />
-      </view>
-
-      <!-- <view class="section">
-        <view class='header'>
-          <image mode='aspectFit' src='/static/images/phone.png'></image>
-        </view>
-        <input type="number" placeholder="请输入手机号" maxlength="11" bindinput="bind_phone" />
-      </view> -->
-
-      <view class="section">
-        <view class='header'>
-          <image mode='aspectFit' src='/static/images/code@3x.png'></image>
-        </view>
-        <input placeholder="请输入密码" password maxlength="20" bindinput="bind_passward" />
+        <input placeholder="请填写公司全称" maxlength="30" bindinput="bind_companyname" />
       </view>
 
       <view class="section">
         <view class='header'>
           <image mode='aspectFit' src='/static/images/code@3x.png'></image>
         </view>
-        <input placeholder="请再次输入密码" password maxlength="20" bindinput="bind_repassward" />
+        <input placeholder="请填写密码" password maxlength="20" bindinput="bind_passward" />
       </view>
+
+      <view class="section">
+        <view class='header'>
+          <image mode='aspectFit' src='/static/images/code@3x.png'></image>
+        </view>
+        <input placeholder="请再次填写密码" password maxlength="20" bindinput="bind_repassward" />
+      </view>
+    </view>
+
+    <view class="section">
+      <view class='header'>
+        <image mode='aspectFit' src='/static/images/lianxiren.png'></image>
+      </view>
+      <input placeholder="请填写联系人姓名" maxlength="20" bindinput="bind_contact" />
+    </view>
+
+    <view class="section">
+      <view class='header'>
+        <image mode='aspectFit' src='/static/images/phone.png'></image>
+      </view>
+      <input type="number" placeholder="请填写手机号" maxlength="11" bindinput="bind_phone" />
+    </view>
+
+    <view class="section">
+      <view class='header'>
+        <image mode='aspectFit' src='/static/images/code@3x.png'></image>
+      </view>
+      <input class='yzm' type="number" placeholder="验证码" maxlength="6" bindinput="bind_phone_code" />
+      <button bindtap="downtime">{{time}}</button>
     </view>
 
     <view class="btn-area">

@@ -77,24 +77,41 @@ Page({
     price:0,   //价格
     is_discount:0, //是否享受会员优惠
     discount:1,
+    secret: ""
   },
 
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-    console.log(options);
     let that = this;
-    this.getTopic();
-    this.data.id = parseInt(options.id);
-    
-    let meeting = meet.meetingDetail(this.data.id);
-    
-    that.setData({
-      meeting: meeting,
-      arriveDate: meeting.end_show,
-      leaveDate: meeting.end_date,
-      price: meeting.vip1.price,
-      is_discount: meeting.vip1.is_discount
+    wx.showLoading({})
+    /*从外部二维码进入*/
+    if (options.q) {
+      util.qrcodeString(options.q, "secret");
+      var bmid = util.qrcodeString(options.q, "bm");
+      console.log("id==========="+bmid)
+      this.data.id = parseInt(bmid);
+    }else {
+      this.data.id = parseInt(options.id);
+    }
+    /*从外部二维码进入*/
+    //检测是否扫码进来
+    var secret = wx.getStorageSync("secret")
+    if (secret) {
+      this.data.secret = secret
+    }
+
+    let meeting = meet.meetingDetail(this.data.id).then((res)=>{
+      console.log(res)
+      that.setData({
+        meeting: res,
+        arriveDate: res.end_show,
+        leaveDate: res.end_date,
+        price: res.vip1.price,
+        is_discount: res.vip1.is_discount
+      });
     });
+    
+    
 
     //页面从哪跳转过来的
     if (options.method) {
@@ -174,15 +191,34 @@ Page({
       if (res.data.code == 200) {
         that.setData({
           card: res.data.data,
-          discount: res.data.data.discount,
+          discount: res.data.data.discount, 
         })
         
+      }else {
+        wx.showModal({
+          title: '提示',
+          content: '请先登陆，然后进行报名，可享受更多优惠',
+          cancelText: '返回首页',
+          confirmText: '去登陆',
+          confirmColor: '#195ba9',
+          success(res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            } else if (res.cancel) {
+              wx.switchTab({
+                url: '/pages/home/home'
+              })
+            }
+          }
+        })
       }
       that.setData({
         Vip1_tab: Vip1(that),
       })
     })
-   
+    wx.hideLoading()
   },
 
   onUnload: function () {
@@ -582,11 +618,11 @@ Page({
     });
   },
 
-  getTopic: function () {
-    wx.setNavigationBarTitle({
-      title: '报名表'
-    })
-  },
+  // getTopic: function () {
+  //   wx.setNavigationBarTitle({
+  //     title: '报名表'
+  //   })
+  // },
 
   invCompName: function (e) {
     let inv = this.data.invoice;
@@ -767,6 +803,7 @@ Page({
         bmtype: that.data.method,
         com: that.data.com,
         bm_num: that.data.bm_num,
+        secret: that.data.secret
       },
       method: 'POST',
       success: function (res) {
@@ -816,6 +853,9 @@ function Vip1(that) {
   var price = that.data.price //单价
   var is_discount = that.data.is_discount  //是否享受折扣
   var discount = that.data.discount //折扣
+  if (bm_num >= 2) {
+    discount = 0.9
+  }
   var Vip1_tab = that.data.Vip1_tab
   Vip1_tab.discount = discount
 
@@ -823,6 +863,7 @@ function Vip1(that) {
   if (is_discount == 1){
     all = all * discount
   }
+  
 
   var remainder = that.data.card.remainder == undefined ? 0 : that.data.card.remainder
   var ye = 0

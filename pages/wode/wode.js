@@ -2,12 +2,7 @@ var order = require("../../utils/home/order.js");
 
 Page({
   data: {
-    userInfo: {},
-    userInfo_status: 0,
-    loginStatus: 0,
     com_name: '',
-    account: '',
-    unread: '',
   },
 
   onLoad: function (options) {
@@ -16,7 +11,9 @@ Page({
     
     order.companystate().then((res) => {
       if (res.data.code == 200) {
-        
+        that.setData({
+          com_name: res.data.data.companyname
+        })
       } else {
         wx.showModal({
           title: '提示',

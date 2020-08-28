@@ -35,9 +35,9 @@
   <view class='bg_h96' > </view>
   <view class='contact'>
     <block wx:if="{{orders.length > 0}}">
-      <view class='card1' wx:for="{{orders}}" wx:key="{{index}}" catchtap='toOrderdetail' data-id='{{index}}'>
+      <view class='card1' wx:for="{{orders}}" wx:key="index" catchtap='toOrderdetail' data-id='{{index}}'>
         <view class='top'>
-          <view >
+          <view>
             <view class='dd' bindtouchend="touchend" catchlongtap="copy" data-key="订单号" data-value="{{item['order_id']}}">订单号：{{item['order_id']}}</view>
             <view class='ddd'>
               <text>会员服务：</text>
@@ -107,7 +107,7 @@
   <view class='bg_h60 bg_ebf0f5' > </view>
   <view class='contact bg_ebf0f5' style='min-height:{{screenHeight}}px'>
     <block wx:if="{{bm_orders.length > 0}}">
-      <view class='card1' wx:for="{{bm_orders}}" wx:key="{{index}}" catchtap='toOrderdetail' data-id='{{index}}'>
+      <view class='card1' wx:for="{{bm_orders}}" wx:key="index" catchtap='toOrderdetail' data-id='{{index}}'>
         <view class='top'>
           <view >
             <view class='dd' bindtouchend="touchend" catchlongtap="copy" data-key="订单号" data-value="{{item['order_id']}}" >订单号：{{item['order_id']}}</view>

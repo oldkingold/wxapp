@@ -12,7 +12,7 @@ Page({
       amount:0,
       spend: 0,
       rightsAnimation:null,
-      rightsShow:false
+      rightsShow:false,
     },
     vip:{
       "钻石会员": { "icon": "diamond" },

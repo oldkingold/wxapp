@@ -6,8 +6,8 @@
     "pages/baoming/bmAddPerson/bmAddPerson",
     "pages/baoming/receipt/receipt",
     "pages/login/login",
-    "pages/reset/reset",
     "pages/sign/sign",
+    "pages/reset/reset",
     "pages/bmlog/bmlog",
     "pages/bmlogdetail/bmlogdetail",
     "pages/order/order",
@@ -24,7 +24,8 @@
     "pages/discountlog/detail/detail",
     "pages/refund/refund",
     "pages/notices/notices",
-    "pages/wode/wode"
+    "pages/wode/wode",
+    "pages/setting/setting/setting"
   ],
   "window": {
     "backgroundTextStyle": "light",

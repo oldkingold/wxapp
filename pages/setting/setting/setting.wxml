@@ -1,0 +1,23 @@
+<view class="container" style='height:100%'>
+  <view class='top-margin'></view>
+  <!-- <view class='middle' >
+    <navigator url='/pages/setting/changepwd/changepwd' class='line border-line'>
+      <view class='line-name'>修改密码</view>
+      <view class='icon_go'>
+        <image class='go' src='/static/images/go.png'></image>
+      </view>
+    </navigator>
+    <navigator url='/pages/setting/changephonenext/changephonenext' class='line'>
+      <view class='line-name'>更换手机</view>
+      <view class='icon_go'>
+        <image class='go' src='/static/images/go.png'></image>
+      </view>
+    </navigator>
+    
+  </view> -->
+  <view class='middle'>
+    <view class="line" style="justify-content: center" bindtap="bind_unbundling">
+      退出登录
+    </view>
+  </view>
+</view>

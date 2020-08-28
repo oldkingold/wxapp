@@ -236,10 +236,14 @@ Page({
             // res[i]['cardInfo'] = JSON.parse(res[i]['cardInfo']);
             if (res[i]['order_type'] == "普通会员") {
               res[i]['order_type_img'] = "common"
-            } else if (res[i]['order_type'] == "银牌会员") {
+            } else if (res[i]['order_type'] == "银卡会员") {
               res[i]['order_type_img'] = "silver"
-            } else if (res[i]['order_type'] == "金牌会员") {
+            } else if (res[i]['order_type'] == "金卡会员") {
               res[i]['order_type_img'] = "gold"
+            } else if (res[i]['order_type'] == "白金会员") {
+              res[i]['order_type_img'] = "platinum"
+            } else if (res[i]['order_type'] == "钻石会员") {
+              res[i]['order_type_img'] = "diamond"
             }
             that.data.orders.push(res[i]);
           }

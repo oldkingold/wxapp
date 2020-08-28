@@ -51,8 +51,8 @@
     <view class="rights" wx:if="{{card.rights}}" animation="{{rightsAnimation}}">
       <view class="title" >
         <view>当前享受权益</view>
-        <view class="show" bindtap="rightsShow" wx:if="{{rightsShow}}">收起</view>
-        <view class="show" bindtap="rightsShow" wx:else>展开</view>
+        <!-- <view class="show" bindtap="rightsShow" wx:if="{{rightsShow}}">收起</view>
+        <view class="show" bindtap="rightsShow" wx:else>展开</view> -->
       </view>
       <view class="grids"  >
         <view class="grid {{item.own ? '' : 'grey'}}" wx:for="{{card.rights}}" wx:key="index" catchtap="rights" data-index="{{index}}">
@@ -66,7 +66,7 @@
         </view>
       </view>
     </view>
-    <view class='middle'>
+    <!-- <view class='middle'>
       <navigator url='/pages/infomanage/infomanage' class='line'>
         <image mode="aspectFit" src='/static/images/m_info.png'></image>
         <view class='line-name'>信息维护</view>
@@ -81,6 +81,6 @@
           <image mode="aspectFit" class='go' src='/static/images/go.png'></image>
         </view>
       </navigator>
-    </view>
+    </view> -->
   </view>
 </view>

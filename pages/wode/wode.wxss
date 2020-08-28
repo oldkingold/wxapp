@@ -20,8 +20,8 @@ page {
   width: 116rpx;
   height: 116rpx;
   overflow: hidden;
-  top: 45rpx;
-  left: 90rpx;
+  top: 35rpx;
+  left: 40rpx;
   border-radius: 50%;
   border: 4rpx solid white;
   padding: 0rpx;
@@ -52,8 +52,8 @@ page {
 
 .top-middle_0 {
   position: absolute;
-  left: 250rpx;
-  top: 40rpx;
+  left: 190rpx;
+  top: 50rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;

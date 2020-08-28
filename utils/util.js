@@ -263,6 +263,24 @@ function loginState() {
   });
 }
 
+function qrcodeString(url, key) {
+  var url = decodeURIComponent(url)
+  var str = decodeUrlString(url, key)
+  if(str) {
+    wx.setStorageSync(key,str);
+    return str;
+  }
+}
+
+function decodeUrlString(url, name) {
+  var reg = new RegExp('(^|&|/?)' + name + '=([^&|/?]*)(&|/?|$)', 'i')
+  var r = url.substr(1).match(reg)
+  if (r != null) {
+    return r[2]
+  }
+  return null;
+}
+
 module.exports = {
   formatTimeToSevenDay: formatTimeToSevenDay,
   formatTime: formatTime,
@@ -275,4 +293,5 @@ module.exports = {
   throttle: throttle, //函数节流
   request: request,
   loginState: loginState,//获取当前的登陆状态
+  qrcodeString: qrcodeString,//解析二维码数据，并存入内存中
 }

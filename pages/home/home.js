@@ -33,7 +33,10 @@ Page({
     var that = this;
     //检查更新
     util.updateProgram();
-    
+    if (options.q)  {
+      util.qrcodeString(options.q,"secret");
+      // console.log(options.secret)
+    }
     //会议主题
     meeting.themes().then(function(res) {
       if (res.data.menu.length > 1) {
@@ -128,10 +131,6 @@ Page({
   //下拉
   onPullDownRefresh: function () {
     var that = this;
-    wx.showLoading({
-      title: '刷新',
-      mask: true,
-    })
     var page = that.data.menu_current_item;
     that.data.currentPage[page] = 0;
     that.data.menu_meetings[page] = [];
@@ -146,10 +145,7 @@ Page({
   onReachBottom: function (e) {
     console.log("shagnl")
     var that = this;
-    wx.showLoading({
-      title: '加载中',
-      mask: true,
-    })
+    
     var page = that.data.menu_current_item;
 
     that.data.currentPage[page] += 1;
@@ -161,6 +157,10 @@ Page({
   requestMeeting: function(page) {
     var that = this;
     // var menu_meetings = that.data.menu_meetings;
+    wx.showLoading({
+      title: '加载中',
+      mask: true,
+    })
     meeting.meeting({
       page: that.data.currentPage[page],
       theme_id: parseInt(that.data.menu[page]["theme_id"])

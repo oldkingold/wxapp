@@ -34,11 +34,17 @@ Page({
     need_discountprice: 0,  
     discountprice: 0,  //需支付费用
     select_vip_type: "", //当前选中的会员
+    secret:"",
   },
 
   onLoad: function () {
     let that = this;
-    that.onShow();
+
+    //检测是否扫码进来
+    var secret = wx.getStorageSync("secret")
+    if (secret) {
+      this.data.secret = secret
+    }
 
     var pages = getCurrentPages();
     var data = pages[pages.length - 2].data
@@ -195,6 +201,7 @@ Page({
     data['token'] = app.globalData.token;
     data['openID'] = app.globalData.openId;
     data["VipType"] = that.data.select_vip_type;
+    data["secret"] = that.data.secret;
     
 
     console.log(data)

@@ -8,8 +8,8 @@
         <view class="section__title">公司名称</view>
         <view class='section_input'>
           <input name="compName" placeholder="请输入" bindfocus="showCompanys" bindblur='hideCompanys' bindinput="bindCompNameInput" value='{{compName}}' />
-          <block wx:if="{{selfCompanies != null}}">
-            <view wx:for="{{selfCompanies}}" wx:key="{{index}}" class='section_company' hidden='{{showCompanys}}'>
+          <block wx:if="{{selfCompanies}}">
+            <view wx:for="{{selfCompanies}}" wx:key="index" class='section_company' hidden='{{showCompanys}}'>
               <view data-index='{{index}}' class='com' catchtap='choseCompany'>
                 {{item.name}}
               </view>
@@ -43,7 +43,7 @@
           <view class="th" style='width:14%'>操作</view>
           <view class='th' style='width:18%'>主联系人</view>
         </view>
-        <block wx:for="{{meetPersonlist}}" wx:key="{{index}}">
+        <block wx:for="{{meetPersonlist}}" wx:key="index">
           <view class="tr {{index % 2 == 1 ? 'bg-g':''}}">
             <view class="td" style='width:20%'>{{item.name}}</view>
             <view class="td" style='width:20%'>{{item.duty}}</view>

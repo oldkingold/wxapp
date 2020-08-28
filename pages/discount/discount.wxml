@@ -30,7 +30,7 @@
       <view class='line flex_row' wx:if="{{updateLevelMoney.length > 0}}">
         <text class='name'>套餐说明：</text>
         <view class='content'>
-          <view wx:for="{{updateLevelMoney}}" wx:key="index">升级{{item['level']}}，余额需达到<text class='price'>￥{{item['min_money']}}.00</text></view>
+          <view wx:for="{{updateLevelMoney}}" wx:key="index">升级{{item['level']}}，消费金额需达到<text class='price'>￥{{item['min_money']}}</text></view>
           <!-- <view wx:if="updateLevelMoney.length > 0"></view> -->
           <!-- <view>若余额为<text class='red'>￥0</text>,则恢复至<text class='blue'>老客户</text></view> -->
         </view>

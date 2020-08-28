@@ -52,9 +52,21 @@
 			"currentL": -1,
 			"list": []
 		},
-		"miniprogram": {
+		"gamePlugin": {
 			"current": -1,
 			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/baoming/bm/bm",
+					"pathName": "pages/baoming/bm/bm",
+					"query": "q=peixun-9.58jz.com.cn/wxxcxqrcodebm?secret=12345678&bm=49",
+					"scene": 1012
+				}
+			]
 		}
 	}
 }

@@ -200,7 +200,8 @@ width: 42rpx;
 .rights {
   color: white;
   width: 688rpx;
-  height: 240rpx;
+  /* height: 240rpx; */
+  height: 565rpx;
   overflow: hidden;
 }
 

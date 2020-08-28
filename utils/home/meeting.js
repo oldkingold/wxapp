@@ -28,13 +28,18 @@ function meeting(data) {
 //获取某一场会议
 function meetingDetail(id) {
   let meetings = wx.getStorageSync("meetings");
-
-  if (meetings) {
-    return meetings[id];
+  console.log(meetings);
+  console.log(id);
+  if (meetings[id]) {
+    return new Promise(function (resolve, reject) {
+      resolve(meetings[id])
+        // reject(res);
+    });
   }else {
-    return null;
+    return util.request(api.MeetingBm, "post", {bmid:id}).then((res)=>{
+      return res.data;
+    });
   }
-
 }
 
 function companyInfo() {

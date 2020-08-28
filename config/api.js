@@ -7,6 +7,7 @@ module.exports = {
   Wxlogin: ApiRootUrl + "wxapp/wxlogin", //微信登录
   Theme: ApiRootUrl + "wxapp/theme",
   Meeting: ApiRootUrl + "wxapp/meeting",
+  MeetingBm: ApiRootUrl + "wxapp/meeting_bm",
   companyInfo: ApiRootUrl + "wxapp/companyInfo",
   //setting.js
   updateBind: ApiRootUrl + 'wxapp/self_update_bind',
