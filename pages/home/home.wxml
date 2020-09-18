@@ -48,13 +48,16 @@
               <text class="title">【{{meetings[item].place}}】 {{meetings[item].name}}</text>
             </view>
             <view class='teacherline'>
-              <image class="cardimg" mode="aspectFit" src='/static/images/icon_card.png'></image>
-              <block wx:if="{{meetings[item].teachers_num == 1}}">
-                <text>{{meetings[item].teachers.name}}   </text>
-              </block>
-              <block wx:else>
-                <text wx:for="{{meetings[item].teachers}}" wx:key="item" wx:for-item="teacher" >{{teacher.name}}   </text>
-              </block>
+              <view>
+                <image class="cardimg" mode="aspectFit" src='/static/images/icon_card.png'></image>
+                <block wx:if="{{meetings[item].teachers_num == 1}}">
+                  <text>{{meetings[item].teachers.name}}   </text>
+                </block>
+                <block wx:else>
+                  <text wx:for="{{meetings[item].teachers}}" wx:key="item" wx:for-item="teacher" >{{teacher.name}}   </text>
+                </block>
+              </view>
+              <view class="price">¥{{meetings[item].price}}/人</view>
             </view>
             <view class='bottom'>
               <text class="time">{{meetings[item].meeting_start + "-" + meetings[item].meeting_end}} </text>

@@ -7,7 +7,7 @@ const order = require("../../../utils/home/order.js");
 
 Page({
   data: {
-    meeting: [],
+    meeting:[],
     id: 0,
     method: 'method',
     com: 'com',
@@ -101,9 +101,10 @@ Page({
     }
 
     let meeting = meet.meetingDetail(this.data.id).then((res)=>{
-      console.log(res)
+      that.data.meeting = res
       that.setData({
-        meeting: res,
+        meetingname: res.name,
+        employees: res.employees,
         arriveDate: res.end_show,
         leaveDate: res.end_date,
         price: res.vip1.price,
@@ -134,6 +135,7 @@ Page({
       let value = wx.getStorageSync(keyid)
       if (value) {
         // Do something with return value
+        // console.log(value)
         that.setData({
           id: value.id,
           com: value.com,
@@ -217,6 +219,11 @@ Page({
       that.setData({
         Vip1_tab: Vip1(that),
       })
+      if (that.data.Vip1_tab.zz_btn != 1) {
+        that.setData({
+          'invoice.invType': "不开票"
+        })
+      }
     })
     wx.hideLoading()
   },
@@ -239,6 +246,7 @@ Page({
 
   //输入公司名时展示公司信息
   showCompanys: function () {
+    console.log("aaaa")
     this.setData({
       showCompanys: false,
     });
@@ -263,6 +271,13 @@ Page({
       compBank: company['tax_bank'],
       compBankAccount: company['tax_bank_id'],
     };
+    if (this.data.Vip1_tab.zz_btn != 1) {
+      inv.invType = "不开票"
+    }else {
+      if (inv.invType == "") {
+        inv.invType = "暂不填写"
+      }
+    }
     this.setData({
       invoice: inv,
       compName: company['name'],
@@ -417,10 +432,11 @@ Page({
       Vip1_tab: Vip1(this),
     })
     if (this.data.Vip1_tab.zz_btn != 1) {
-      this.data.invoice.invType = "不开票";
-      this.setData({
-        invoice: this.data.invoice
-      })
+      if (this.data.Vip1_tab.zz_btn != 1) {
+        this.setData({
+          'invoice.invType': "不开票"
+        })
+      }
     }
   },
   //报名人数 加
@@ -435,9 +451,8 @@ Page({
       Vip1_tab: Vip1(this)
     })
     if (this.data.Vip1_tab.zz_btn != 1) {
-      this.data.invoice.invType = "不开票";
       this.setData({
-        invoice: this.data.invoice
+        'invoice.invType': "不开票"
       })
     }
   },
@@ -497,13 +512,13 @@ Page({
   //切换发票信息
   listenerRadioGroup: function (e) {
     let that = this;
-    if (this.data.Vip1_tab.ye_btn != 1) {
+    // if (this.data.Vip1_tab.ye_btn != 1) {
       let invoice = that.data.invoice;
       invoice.invType = e.detail.value;
       that.setData({
         invoice: invoice
       })
-    }
+    // }
     
   },
 
@@ -853,7 +868,7 @@ function Vip1(that) {
   var price = that.data.price //单价
   var is_discount = that.data.is_discount  //是否享受折扣
   var discount = that.data.discount //折扣
-  if (bm_num >= 2) {
+  if (bm_num >= 2 && discount > 0.9) {
     discount = 0.9
   }
   var Vip1_tab = that.data.Vip1_tab

@@ -6,15 +6,15 @@
   <view class='hk_table'>
     <view class='hk_td'>
       <view class='title'>户名</view>
-      <view>浙江度川企业管理咨询有限公司</view>
+      <view>{{payCom.name}}</view>
     </view>
     <view class='hk_td'>
       <view class='title'>开户行</view>
-      <view>中国工商银行股份有限公司杭州三墩支行</view>
+      <view>{{payCom.bank}}</view>
     </view>
     <view class='hk_td'>
       <view class='title'>账户</view>
-      <view>1202023309910119345</view>
+      <view>{{payCom.tax_id}}</view>
     </view>
     <view></view>
     <view></view>

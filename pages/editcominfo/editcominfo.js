@@ -2,29 +2,15 @@ var api = require('../../config/api.js');
 var app = getApp();
 Page({
   data: {
-    antureCom: [{
-      name: '民营',
-      checked: true,
-    },
-    {
-      name: '国企',
-      checked: false,
-    }],
-    invoicetypes: [{
-      name: '普票',
-      checked: false,
-    },
-    {
-      name: '专票',
-      checked: true,
-    }],
+    antureCom: "民营",
+    invoicetypes: "暂不开票",
     bmResetSelected: false,
     bmSubbmitSelected: false,
     cominfo: {
       comId: '',
       comName: '',
       comType: '民营',
-      invoicType: '专票',
+      invoicType: '暂不开票',
       invoicEin: '',
       invoicComAddr: '',
       invoicComTel: '',
@@ -33,6 +19,7 @@ Page({
     },
   },
   onLoad: function (options) {
+    var that = this;
     var varid = options.id
     wx.showToast({
       title: '加载中...',
@@ -47,69 +34,25 @@ Page({
         break;
       }
     }
-    if (currentCom.company_type=='民营') {
+    
+    if (currentCom.company_type == '国企') {
       this.setData({
-        antureCom: [{
-          name: '民营',
-          checked: true,
-        },
-        {
-          name: '国企',
-          checked: false,
-        }]
+        antureCom: currentCom.company_type
       })
-    } else if (currentCom.company_type=='国企') {
+    } 
+
+    if (currentCom.tax_type == '普票' || currentCom.tax_type == '专票') {
       this.setData({
-        antureCom: [{
-          name: '民营',
-          checked: false,
-        },
-        {
-          name: '国企',
-          checked: true,
-        }]
+        invoicetypes: currentCom.tax_type
       })
-    }else{
-      this.setData({
-        antureCom: [{
-          name: '民营',
-          checked: true,
-        },
-        {
-          name: '国企',
-          checked: false,
-        }]
-      })
-    }
-    if (currentCom.tax_type=='普票') {
-      this.setData({
-        invoicetypes: [{
-          name: '普票',
-          checked: true,
-        },
-        {
-          name: '专票',
-          checked: false,
-        }]
-      })
-    } else{
-      this.setData({
-        invoicetypes: [{
-          name: '普票',
-          checked: false,
-        },
-        {
-          name: '专票',
-          checked: true,
-        }]
-      })
-    }
+    } 
+    
     this.setData({
       cominfo: {
         comId: currentCom.id,
         comName: currentCom.name,
-        comType: currentCom.company_type,
-        invoicType: currentCom.tax_type,
+        comType: that.data.comType,
+        invoicType: that.data.invoicetypes,
         invoicEin: currentCom.tax_id,
         invoicComAddr: currentCom.address,
         invoicComTel: currentCom.tel,
@@ -118,47 +61,25 @@ Page({
       }
     })
   },
+
   bind_changebox: function (e) {
+    console.log(e)
     var that = this;
     var name = e.currentTarget.dataset.name;
     var changeboxType = e.currentTarget.dataset.type;
     if (changeboxType == 1) {
-      // 公司性质
-      var varusers = that.data.antureCom;
-      for (var i = 0; i < varusers.length; i++) {
-        if (name == varusers[i].name) {
-          var user = varusers[i];
-          if (!varusers[i].checked) {
-            varusers[i].checked = !varusers[i].checked;
-            varusers[1 - i].checked = !varusers[1 - i].checked;
-            that.setData({
-              antureCom: varusers,
-              'cominfo.comType': name
-            })
-            break;
-          }
-        }
-      }
+      this.setData({
+        antureCom: name,
+        'cominfo.comType': name
+      })
     } else {
-      // 发票类型
-      var varusers = that.data.invoicetypes;
-      for (var i = 0; i < varusers.length; i++) {
-        if (name == varusers[i].name) {
-          var user = varusers[i];
-          if (!varusers[i].checked) {
-            varusers[i].checked = !varusers[i].checked;
-            varusers[1 - i].checked = !varusers[1 - i].checked;
-            that.setData({
-              invoicetypes: varusers,
-              'cominfo.invoicType': name
-            })
-            console.log("{{name}}" + name);
-            break;
-          }
-        }
-      }
+      this.setData({
+        invoicetypes: name,
+        'cominfo.invoicType': name
+      })
     }
   },
+
   bmSubbmit: function (e) {
     let that = this;
     var bmResetSelected = that.data.bmResetSelected;
@@ -188,7 +109,7 @@ Page({
       })
       return false;
     }
-    if (!that.checek_name(invoicEin)) {
+    if (invoicType != '暂不开票' && !that.checek_name(invoicEin)) {
       wx.showModal({
         showCancel: false,
         title: '提示',
@@ -319,7 +240,6 @@ Page({
   },
   checek_name: function (name) {
     //校验姓名
-    console.log("{{checek_name}}" + name);
     return (name.length < 1) ? false : true
   },
   checek_tel: function (phone) {

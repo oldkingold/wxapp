@@ -17,6 +17,7 @@ Page({
     refund: 0,
 
     refund_suggestion: "",
+    payCom: {}
   },
 
   onLoad: function (options) {
@@ -44,12 +45,30 @@ Page({
     })
   },
 
-  remit: function (e) {
-    this.setData({
-      orderhkShow: false,
-      orderhkMoney: e.currentTarget.dataset['money'],
-      orderhkId: e.currentTarget.dataset['id'],
-    });
+  remit: function (e) { 
+    if(this.data.nav == 0) {
+      
+      this.setData({
+        orderhkShow: false,
+        orderhkMoney: e.currentTarget.dataset['money'],
+        orderhkId: e.currentTarget.dataset['id'],
+        payCom: util.payCom()
+      });
+    }else {
+      var price
+      for (let i = 0; i < this.data.order.pay_mothed.length; i++) {
+        if (this.data.order.pay_mothed[i].mothed == "zz") {
+          price = this.data.order.pay_mothed[i].price;
+        }
+      }
+      this.setData({
+        orderhkShow: false,
+        orderhkMoney: price,
+        orderhkId: e.currentTarget.dataset['id'],
+        payCom: this.data.order.pay_com,
+      });
+    }
+    
   },
 
   confirmPayment: function(e) {

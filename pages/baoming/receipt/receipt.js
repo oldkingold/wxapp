@@ -1,4 +1,5 @@
 const api = require('../../../config/api.js');
+const util = require('../../../utils/util.js');
 Page({
   data: {
     rooturl: api.ApiRootUrl,
@@ -115,6 +116,13 @@ Page({
     wx.makePhoneCall({
       phoneNumber: tel
     })
-  }
+  },
+
+  //跳转我的订单页
+  toOrder: util.throttle(function () {
+    wx.navigateTo({
+      url: '/pages/order/order?nav=1',
+    })
+  }, 2000),
 
 })  

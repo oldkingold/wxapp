@@ -159,7 +159,6 @@ Page({
       },
       fail: function (res) {
         console.log(res);
-        
       }
     })
   },1500),
@@ -242,15 +241,9 @@ function countdown(that) {
         })
       } else if (res.data.code == 202) {
         wx.showModal({
-          // title: '错误提示',
+          title: '错误提示',
           content: res.data.data,
-          success: function (e) {
-            if (e.confirm == true) {
-              wx.redirectTo({
-                url: '/pages/login/login',
-              })
-            }
-          }
+          showCancel: false
         })
       }
     }

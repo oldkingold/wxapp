@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "15565541",
+      "name": "更多内容",
+      "font_class": "gengduoneirong",
+      "unicode": "eb83",
+      "unicode_decimal": 60291
+    },
+    {
       "icon_id": "201673",
       "name": "接送",
       "font_class": "jiesong",

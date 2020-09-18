@@ -1,10 +1,6 @@
-<view class="tologin">
-
-</view>
-
 <view class='container'>
   <view class="toptip" bindtap="toNotices">
-    <view><image src='/static/images/duchuancard.png'></image>会员等级根据您近12个月的累计消费，按月更新</view>
+    <view><image src='/static/images/duchuancard.png'></image>会员等级根据您近12个月的累计消费，时时更新</view>
   </view>
   <view class='bg'>
     <view class='card {{vip_type > 1 ? "":"white"}}' bindtap='toDiscountlog'>
@@ -64,6 +60,14 @@
           <view>{{item.name}}</view>
           <view>{{item.subtitle}}</view>
         </view>
+        <view class="grid grey">
+          <view class="icon">
+            <icon class="iconfont icon-gengduoneirong"></icon>
+          </view>
+          <!-- <view class="icon"><image mode="widthFix"  src="{{item.icon}}"></image></view> -->
+          <view>更多会员服务</view>
+          <view>开发中</view>
+        </view>
       </view>
     </view>
     <!-- <view class='middle'>
@@ -84,3 +88,5 @@
     </view> -->
   </view>
 </view>
+
+<myshow id="myshow" msg="加载中" ></myshow>

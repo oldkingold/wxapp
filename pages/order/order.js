@@ -29,10 +29,17 @@ Page({
 
     balance: {"remainder": 0, "using": 0, "used": 0},
 
-    lock: false //处理长按事件问题
+    lock: false, //处理长按事件问题
+    payCom:{}
   },
 
-  onLoad: function () {
+  onLoad: function (option) {
+    if (option.nav) {
+      this.setData({
+        nav: option.nav
+      })
+    }
+
     let that = this;
     // let company_setting = wx.getStorageSync('company_setting');
     // if (company_setting) {
@@ -91,11 +98,37 @@ Page({
   },
 
   remit: function(e) {
-    this.setData({
-      orderhkShow: false,
-      orderhkMoney: e.currentTarget.dataset['money'],
-      orderhkId: e.currentTarget.dataset['id'],
-    });
+    console.log(e)
+    var id = e.currentTarget.dataset['id']
+    var type = e.currentTarget.dataset['type'].split(":")
+    console.log(type)
+    if (type[0] == "border") {
+      var order = this.data.bm_orders[type[1]]
+      var price = order.price
+      var paycom = order.pay_com
+      for (let i = 0; i < order.pay_mothed.length; i++) {
+        if (order.pay_mothed[i].mothed == "zz") {
+          price = order.pay_mothed[i].price;
+        }
+      }
+      this.setData({
+        orderhkShow: false,
+        orderhkMoney: price,
+        orderhkId: id,
+        payCom: paycom,
+      });
+    }else {
+      var order = this.data.orders[type[1]]
+      var price = order.price
+      this.setData({
+        orderhkShow: false,
+        orderhkMoney: price,
+        orderhkId: id,
+        payCom: util.payCom()
+      });
+    }
+
+    
   },
 
   confirmPayment: function(e) {

@@ -1,0 +1,10 @@
+<view class="Toast" hidden="{{show}}">
+    <view class='ToastBg'></view>
+    <view class='mask'>
+        <view class='icon'>
+            <!-- <cover-view animation="{{ani}}" class='three-quarters-loader'></cover-view> -->
+            <image animation="{{ani}}" class='loading_icon' src="../../static/images/loading.png"></image>
+        </view>
+        <view class='msg'>{{msg}}</view>
+    </view>
+</view>

@@ -56,11 +56,11 @@
         </view>
         <view class='item'>
           <text class='name'>联系人：</text>
-          <input bindinput='bindMyInput' data-name='contact' placeholder='请输入'></input>
+          <input bindinput='bindMyInput' data-name='contact' placeholder='请输入' value='{{contact}}'></input>
         </view>
         <view class='item'>
           <text class='name'>联系方式：</text>
-          <input bindinput='bindMyInput' data-name='contactTel' placeholder='请输入'></input>
+          <input bindinput='bindMyInput' data-name='contactTel' placeholder='请输入' value='{{contactTel}}'></input>
         </view>
       </view>
     </view>
@@ -133,9 +133,9 @@
       <text>提示：</text>由于微信支付限额，请选择合适的套餐并汇款至我司账户后点击已汇款，汇款请备注公司名称，对公账号如下：
     </view>
     <view class='comapny'>
-      <view class="flex_row"><view class="white-space">账户名：</view><view>浙江度川网络科技有限公司</view></view>
-      <view class="flex_row"><view class="white-space">开户行：</view><view>中国工商银行股份有限公司杭州三墩支行</view></view>
-      <view class="flex_row"><view class="white-space">账　户：</view><view>1202023309910094295</view></view>
+      <view class="flex_row"><view class="white-space">账户名：</view><view>{{payCom.name}}</view></view>
+      <view class="flex_row"><view class="white-space">开户行：</view><view>{{payCom.bank}}</view></view>
+      <view class="flex_row"><view class="white-space">账　户：</view><view>{{payCom.tax_id}}</view></view>
     </view>
     <view style='margin-top:150rpx;'>　
     </view>

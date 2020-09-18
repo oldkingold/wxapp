@@ -63,3 +63,5 @@
     <view class='buttom-line-phone'>13677886754 </view>
   </view>
 </view>
+
+<myshow id="myshow" msg="加载中" ></myshow>

@@ -37,5 +37,6 @@ App({
       "银卡会员": { "icon": "silver" },
       "普通会员": { "icon": "common" },
     },
+    
   }
 })

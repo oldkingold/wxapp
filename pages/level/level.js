@@ -20,21 +20,21 @@ Page({
       "金卡会员": { "icon": "gold" },
       "银卡会员": { "icon": "silver" },
       "普通会员": { "icon":"common"},
-    }
-    
+    },
+    myshow:{}
   },
 
   onLoad: function (options) {
-    if (app.globalData.openId == "") {
-      
-    }
+    var that = this
+    this.data.myshow = this.selectComponent('#myshow')
   },
-
   onShow: function() {
     var that = this;
+    
+    this.data.myshow.Loading()
     order.companystate().then((res) => {
+      that.data.myshow.Close()
       if (res.data.code == 200) {
-        // console.log(res.data)
         let setData = {}
         setData["card"] = res.data.data
         if (setData["card"].maxmoney == "MAX") {
@@ -54,7 +54,9 @@ Page({
         // }
 
         that.setData(setData)
+        // this.data.myshow.Close()
       } else {
+        // this.data.myshow.Close()
         wx.showModal({
           title: '提示',
           content: '请前往登陆，开启会员卡服务',
@@ -75,9 +77,9 @@ Page({
         })
       }
     })
-
-    
-
+  },
+  onHide:function() {
+    this.data.myshow.Close()
   },
   //权益详细
   rights: function(e){
@@ -111,10 +113,11 @@ Page({
       
     }
     var ani = wx.createAnimation({
-      duration: 200,
+      duration: 2000,
       timingFunction: 'ease',
       delay: 100
     })
+
     ani.height(height).step()
     this.setData({
       rightsAnimation: ani.export()

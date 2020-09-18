@@ -72,6 +72,10 @@
 
 .card .top .text1 {
   font-size: 27rpx;
+  width: 500rpx;
+  white-space:nowrap; 
+  overflow:hidden; 
+  text-overflow:ellipsis;
 }
 
 .card .top .text2 {
@@ -190,18 +194,11 @@ width: 42rpx;
   margin-right: 18rpx;
 }
 
-.tologin {
-  width: 100%;
-  height: 100%;
-  background-color: #f0f2f5;
-  opacity: 0.2;
-}
-
 .rights {
   color: white;
   width: 688rpx;
   /* height: 240rpx; */
-  height: 565rpx;
+  height: 596rpx;
   overflow: hidden;
 }
 

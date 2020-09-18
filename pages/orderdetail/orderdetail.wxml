@@ -1,4 +1,4 @@
-<orderhk id='orderhk' show='{{orderhkShow}}' money='{{orderhkMoney}}' orderId='{{orderhkId}}' orderType='{{nav}}' bindconfirmPayment='confirmPayment'></orderhk>
+<orderhk id='orderhk' show='{{orderhkShow}}' money='{{orderhkMoney}}' payCom='{{payCom}}' orderId='{{orderhkId}}' orderType='{{nav}}' bindconfirmPayment='confirmPayment'></orderhk>
 
 <view hidden='{{refund_show}}'>
   <view class='refund_bg' catchtap='hide'></view>
@@ -105,7 +105,7 @@
       <view class='flex'>会费金额： ￥{{order['meeting_price']}}/人</view>
       <view class='flex' style='color:red'>实际金额： ￥{{order['truth_price']}}/人</view>
       <view class='flex' style='color:red'>订单金额： ￥{{order['price']}}</view>
-      <view class='flex'>付款方式： {{order['pay_mothed'].length >=2 ? "其他支付" : (order['pay_mothed'][0]["mothed"] == "ye" ? "余额支付" : "转账支付")}}</view>
+      <!-- <view class='flex'>付款方式： {{order['pay_mothed'].length >=2 ? "其他支付" : (order['pay_mothed'][0]["mothed"] == "ye" ? "余额支付" : "转账支付")}}</view> -->
       <block wx:if="{{order['pay_mothed'].length >=2}}">
         <view class='flex'>余额： ￥{{order['pay_mothed'][0]["mothed"] == "ye" ? order['pay_mothed'][0]["price"] : order['pay_mothed'][1]["price"]}}
         </view>

@@ -20,6 +20,8 @@ module.exports = {
   //changephonenext.js
   telCheck: ApiRootUrl + 'wxapp/tel_check',
   telSend: ApiRootUrl + 'wxapp/tel_send',
+  //changepwd.js
+  pwdChange: ApiRootUrl + 'wxapp/pwd_change',
   //personmanage.js
   bdWxusers: ApiRootUrl + 'wxapp/bd_wxusers',
   bdDel: ApiRootUrl + 'wxapp/bd_del',

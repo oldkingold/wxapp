@@ -28,8 +28,6 @@ function meeting(data) {
 //获取某一场会议
 function meetingDetail(id) {
   let meetings = wx.getStorageSync("meetings");
-  console.log(meetings);
-  console.log(id);
   if (meetings[id]) {
     return new Promise(function (resolve, reject) {
       resolve(meetings[id])

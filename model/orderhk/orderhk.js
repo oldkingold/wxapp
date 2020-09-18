@@ -23,6 +23,10 @@ Component({
       type: Number,
       value:0
     },
+    payCom: {
+      type: Object,
+      value: 0
+    },
   },
 
   /**

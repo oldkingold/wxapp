@@ -6,14 +6,24 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.removeStorageSync("company_bind_tel")
     // 页面初始化 options为页面跳转所带来的参数
     var that = this;
+    this.data.myshow = this.selectComponent('#myshow')
     
+
+  },
+
+  onShow: function () {
+    var that = this;
+    this.data.myshow.Loading()
     order.companystate().then((res) => {
+      that.data.myshow.Close()
       if (res.data.code == 200) {
         that.setData({
           com_name: res.data.data.companyname
         })
+        wx.setStorageSync("company_bind_tel", res.data.data.bind_tel)
       } else {
         wx.showModal({
           title: '提示',
@@ -37,13 +47,9 @@ Page({
     })
 
   },
-
-  onShow: function () {
-    var that = this;
-    this.onLoad();
-
+  onHide: function () {
+    this.data.myshow.Close()
   },
-  
   phoneCall: function (e) {
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.replyPhone,

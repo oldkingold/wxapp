@@ -20,7 +20,6 @@ Page({
     contact: '',
     contactTel: '',
 
-    
     isSignin: false,
     company_setting: false,
 
@@ -28,13 +27,12 @@ Page({
     
     balance: 0,   //余额
 
-    
-
     updateLevelMoney:[],
     need_discountprice: 0,  
     discountprice: 0,  //需支付费用
     select_vip_type: "", //当前选中的会员
-    secret:"",
+    secret:"fffff",
+    payCom: util.payCom()
   },
 
   onLoad: function () {
@@ -44,6 +42,9 @@ Page({
     var secret = wx.getStorageSync("secret")
     if (secret) {
       this.data.secret = secret
+      // this.setData({
+      //   secret: secret
+      // })
     }
 
     var pages = getCurrentPages();
@@ -70,7 +71,9 @@ Page({
       need_discountprice: discountprice,
       discountprice: discountprice,
       select_vip_type: select_vip_type,
-      company: companyname
+      company: companyname,
+      contact: data["card"]["bind_contact"],
+      contactTel: data["card"]["bind_tel"],
     })
     console.log(data);
   },
@@ -145,7 +148,7 @@ Page({
   submit: util.throttle(function(e) {
     let that = this;
     that.submitdata(); //提交购买数据
-  },2000),
+  },4000),
 
   submitdata: function() {
     let that = this;

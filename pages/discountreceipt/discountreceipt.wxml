@@ -12,7 +12,7 @@
             <text class='text-font'>账户名</text>
           </view>
           <view class='invoice-line-value-common'>
-            <text class='text-font'>浙江度川网络科技有限公司</text>
+            <text class='text-font'>{{payCom.name}}</text>
           </view>
         </view>
         <view class='invoice-line'>
@@ -20,7 +20,7 @@
             <text class='text-font'>开户行</text>
           </view>
           <view class='invoice-line-value-common'>
-            <text class='text-font'>中国工商银行股份有限公司杭州三墩支行</text>
+            <text class='text-font'>{{payCom.bank}}</text>
           </view>
         </view>
         <view class='invoice-line'>
@@ -28,7 +28,7 @@
             <text class='text-font'>账号</text>
           </view>
           <view class='invoice-line-value-common'>
-            <text class='text-font'>1202023309910094295</text>
+            <text class='text-font'>{{payCom.tax_id}}</text>
           </view>
         </view>
       </view>

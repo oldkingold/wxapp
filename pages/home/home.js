@@ -17,7 +17,7 @@ Page({
     nav_siv: 'menu0',
     menu: [],        
     menu_list: [],   //类型栏下拉框 
-    meetings: [],
+    meetings: {},
     menu_meetings: [],
     menu_current_item: 0, //当前页面编号
     currentPage: [], //会议分页
@@ -156,7 +156,7 @@ Page({
 
   requestMeeting: function(page) {
     var that = this;
-    // var menu_meetings = that.data.menu_meetings;
+    
     wx.showLoading({
       title: '加载中',
       mask: true,
@@ -176,8 +176,21 @@ Page({
           });
           return;
         }
+        var meetings = {};
         for (let key in res.data) {
-          that.data.meetings[key] = res.data[key];
+          
+          meetings[key] = res.data[key];
+          that.data.meetings[key] = { 
+            img: res.data[key].img,
+            place: res.data[key].place,
+            name: res.data[key].name,
+            teachers_num: res.data[key].teachers_num,
+            price: res.data[key].price,
+            meeting_start: res.data[key].meeting_start,
+            meeting_end: res.data[key].meeting_end,
+            teachers: res.data[key].teachers,
+            id: res.data[key].id,
+          }
           if (!that.data.menu_meetings[page]) {
             that.data.menu_meetings[page] = [];
           }
@@ -188,7 +201,7 @@ Page({
           menu_meetings: that.data.menu_meetings
         });
         console.log(that.data.menu_meetings)
-        wx.setStorageSync("meetings", that.data.meetings);
+        wx.setStorageSync("meetings", meetings);
       }
     });
   },

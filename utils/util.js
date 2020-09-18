@@ -25,6 +25,10 @@ const formatTimeToSevenDay = datestr => {
   let hours = parseInt((distance - day * 24 * 3600) / 3600);
   let i = parseInt((distance - day * 24 * 3600 - hours * 3600) / 60);
 
+  if (isNaN(day) || isNaN(hours)) {
+    return ""
+  }
+
   if (day == 0) {
     return hours + "小时" + i + "分钟";
   }
@@ -119,18 +123,18 @@ function wxlogin() {
                   wx.setStorageSync("token", res.data.token);
                   wx.setStorageSync("openId", res.data.openId);
                   if (res.data) {
-                    let bind_setting = { company: res.data.bind_company, name: res.data.bind_name, tel: res.data.bind_tel };
-                    wx.setStorageSync('bind_setting', bind_setting);
-                    if (res.data.companyName && res.data.companyBindTel) {
-                      let money = res.data.companyAdd - res.data.companyReduce > 0 ? res.data.companyAdd - res.data.companyReduce : 0;
-                      let company_setting = { name: res.data.companyName, tel: res.data.companyBindTel, money: money, admin: res.data.companyAdmin };
-                      wx.setStorageSync('company_setting', company_setting);
-                    } else {
-                      wx.removeStorageSync('company_setting');
-                    }
+                    // let bind_setting = { company: res.data.bind_company, name: res.data.bind_name, tel: res.data.bind_tel };
+                    // wx.setStorageSync('bind_setting', bind_setting);
+                    // if (res.data.companyName && res.data.companyBindTel) {
+                    //   let money = res.data.companyAdd - res.data.companyReduce > 0 ? res.data.companyAdd - res.data.companyReduce : 0;
+                    //   let company_setting = { name: res.data.companyName, tel: res.data.companyBindTel, money: money, admin: res.data.companyAdmin };
+                    //   wx.setStorageSync('company_setting', company_setting);
+                    // } else {
+                    //   wx.removeStorageSync('company_setting');
+                    // }
                     wx.setStorageSync('selfCompanies', res.data.selfCompanies ? res.data.selfCompanies : []);
                     wx.setStorageSync('selfPersons', res.data.selfPersons ? res.data.selfPersons : []);
-                    wx.setStorageSync('companyBindTel', res.data.companyBindTel);
+                    // wx.setStorageSync('companyBindTel', res.data.companyBindTel);
                     
                     var app = getApp();
                     app.globalData.token = res.data.token;
@@ -281,6 +285,14 @@ function decodeUrlString(url, name) {
   return null;
 }
 
+function payCom() {
+  return {
+    name: "浙江度川网络科技有限公司",
+    bank: "中国工商银行股份有限公司杭州三墩支行",
+    tax_id:"1202023309910094295",
+  }
+}
+
 module.exports = {
   formatTimeToSevenDay: formatTimeToSevenDay,
   formatTime: formatTime,
@@ -294,4 +306,5 @@ module.exports = {
   request: request,
   loginState: loginState,//获取当前的登陆状态
   qrcodeString: qrcodeString,//解析二维码数据，并存入内存中
+  payCom: payCom,
 }

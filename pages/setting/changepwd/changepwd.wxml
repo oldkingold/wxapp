@@ -1,0 +1,16 @@
+<view class="container">
+  <view class='content'>
+    
+  <view class="form-item">
+    <view class="content-item ">
+      <view class='sides'>
+        <view class='item-name'>新密码</view>
+        <view class='column-line'></view>
+        <input type="text" placeholder="请输入新的密码"  bindinput="bind_new_pwd" />
+      </view>
+    </view>
+  </view>
+  </view>
+
+  <button class="login-btn" bindtap="confirm">确认修改</button>
+</view>

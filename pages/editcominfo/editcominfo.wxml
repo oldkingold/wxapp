@@ -8,42 +8,68 @@
 
     <view class='content-line'>
       <view class='object-name'>公司性质</view>
-
-      <block wx:for="{{antureCom}}" wx:for-item="anture" wx:key="*key">
-        <view class='check-box-item' catchtap='bind_changebox' data-name="{{anture.name}}" data-type="1">
-          <view wx:if="{{anture.checked}}" class='check-box-icon'>
-            <image src='/static/images/checked@3x.png'></image>
-          </view>
-          <view wx:else class='check-box-icon'>
-            <image src='/static/images/check@3x.png'></image>
-          </view>
-          <view class='check-box-value'>{{anture.name}}</view>
+      <view class='check-box-item' catchtap='bind_changebox' data-name="民营" data-type="1">
+        <view wx:if="{{antureCom == '民营'}}" class='check-box-icon'>
+          <image src='/static/images/checked@3x.png'></image>
         </view>
-      </block>
-
+        <view wx:else class='check-box-icon'>
+          <image src='/static/images/check@3x.png'></image>
+        </view>
+        <view class='check-box-value'>民营</view>
+      </view>
+      <view class='check-box-item' catchtap='bind_changebox' data-name="国企" data-type="1">
+        <view wx:if="{{antureCom == '国企'}}" class='check-box-icon'>
+          <image src='/static/images/checked@3x.png'></image>
+        </view>
+        <view wx:else class='check-box-icon'>
+          <image src='/static/images/check@3x.png'></image>
+        </view>
+        <view class='check-box-value'>国企</view>
+      </view>
     </view>
 
-    <view class='fee-object content-line'>
-      <view class='object-name'>发票类型</view>
+    <view class='invoice row' >
+      <view class='invoice-name'>发票类型</view>
+      <view>
+        <view class="row">
+          <view class='check-box-item' catchtap='bind_changebox' data-name="普票" data-type="2">
+            <view wx:if="{{invoicetypes == '普票'}}" class='check-box-icon'>
+              <image src='/static/images/checked@3x.png'></image>
+            </view>
+            <view wx:else class='check-box-icon'>
+              <image src='/static/images/check@3x.png'></image>
+            </view>
+            <view class='check-box-value'>普票</view>
+          </view>
 
-      <block wx:for="{{invoicetypes}}" wx:for-item="invoice" wx:key="*key">
-        <view class='check-box-item' catchtap='bind_changebox' data-name="{{invoice.name}}" data-type="2">
-          <view wx:if="{{invoice.checked}}" class='check-box-icon'>
+          <view class='check-box-item' catchtap='bind_changebox' data-name="专票" data-type="2">
+            <view wx:if="{{invoicetypes == '专票'}}" class='check-box-icon'>
+              <image src='/static/images/checked@3x.png'></image>
+            </view>
+            <view wx:else class='check-box-icon'>
+              <image src='/static/images/check@3x.png'></image>
+            </view>
+            <view class='check-box-value'>专票</view>
+          </view>
+        </view>
+
+        <view class='check-box-item' catchtap='bind_changebox' data-name="暂不开票" data-type="2">
+          <view wx:if="{{invoicetypes == '暂不开票'}}" class='check-box-icon'>
             <image src='/static/images/checked@3x.png'></image>
           </view>
           <view wx:else class='check-box-icon'>
             <image src='/static/images/check@3x.png'></image>
           </view>
-          <view class='check-box-value'>{{invoice.name}}</view>
+          <view class='check-box-value'>暂不开票</view>
         </view>
-      </block>
+      </view>
 
       <view class=''>{{cominfodetail.invoice.anture}}</view>
     </view>
   </view>
 
   <!-- 底部的添加人员信息 -->
-  <view class='content'>
+  <view class='content' wx:if="{{invoicetypes == '普票' || invoicetypes == '专票'}}">
     <view class='content-line'>
       <view class='object-name'>开票信息</view>
     </view>
@@ -51,7 +77,7 @@
       <view class='object-name'>纳税识别号</view>
       <input value="{{cominfo.invoicEin}}" bindinput="bind_invoicEin" size="2" placeholder="请输入 (注：英文字母需大写)" />
     </view>
-    <block wx:if="{{invoicetypes[1].checked}}">
+    <block wx:if="{{invoicetypes == '专票'}}">
       <view class='content-line'>
         <view class='object-name'>公司地址</view>
         <input value="{{cominfo.invoicComAddr}}" bindinput="bind_invoicComAddr" placeholder="请输入" />

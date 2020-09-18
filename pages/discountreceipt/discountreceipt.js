@@ -13,6 +13,7 @@ Page({
     meetings:[],
     latestCompany:{},
     discountprice: 0,
+    payCom: util.payCom()
   },
 
   onLoad: function (options) {

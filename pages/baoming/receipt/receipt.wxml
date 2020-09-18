@@ -208,5 +208,5 @@
 
     <contact id="contact" employeeTeacherList="{{meeting.employees}}"  bind:phoneCall="phoneCall"></contact>
   </view>
-
+  <view class='button' catchtap='toOrder'>查看订单</view>
 </view>
