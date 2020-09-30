@@ -1,6 +1,6 @@
 <view class='container'>
   <view class="toptip" bindtap="toNotices">
-    <view><image src='/static/images/duchuancard.png'></image>会员等级根据您近12个月的累计消费，时时更新</view>
+    <view><image src='/static/images/duchuancard.png'></image>会员等级根据您近12个月的累计消费，实时更新</view>
   </view>
   <view class='bg'>
     <view class='card {{vip_type > 1 ? "":"white"}}' bindtap='toDiscountlog'>
@@ -23,7 +23,7 @@
         <view class="levellinecover" style="width: {{card.coverWidth}}rpx;"></view>
         <view class="levellinetip">
           <text class="t1">{{card.spend}}/{{card.nextmoney}}</text>
-          <text class="t2">还需消费{{card.nextmoney - card.spend ? card.nextmoney - card.spend : 0}}元升级{{card.nextlevel}}</text>
+          <text class="t2" style='{{ card.level == "白金会员" ? "color:rgb(163, 163, 163);" : "" }}' >还需消费{{card.nextmoney - card.spend ? card.nextmoney - card.spend : 0}}元升级{{card.nextlevel}}</text>
         </view>
       </block>
       <!-- <view>

@@ -46,21 +46,17 @@
 
 <view class='bottom-title'>会务联系方式</view>
 <view class='buttom'> 
-  <view class='buttom-line' data-reply-phone="13677886754" catchtap="phoneCall" >
-    <view class='buttom-line-name'>周小姐</view>
-    <view class='buttom-line-phone'> 13677886754 </view>
+  <view class='buttom-line' data-reply-phone="13958193848" catchtap="phoneCall" >
+    <view class='buttom-line-name'>孙老师</view>
+    <view class='buttom-line-phone'> 13958193848 </view>
   </view>
-  <view class='buttom-line' data-reply-phone="13677886754" catchtap="phoneCall">
-    <view class='buttom-line-name'>周小姐</view>
-    <view class='buttom-line-phone'>13677886754 </view>
+  <view class='buttom-line' data-reply-phone="13958083848" catchtap="phoneCall">
+    <view class='buttom-line-name'>周老师</view>
+    <view class='buttom-line-phone'>13958083848 </view>
   </view>
-  <view class='buttom-line' data-reply-phone="13677886754" catchtap="phoneCall">
-    <view class='buttom-line-name'>周小姐</view>
-    <view class='buttom-line-phone'> 13677886754 </view>
-  </view>
-  <view class='buttom-line' data-reply-phone="13677886754" catchtap="phoneCall">
-    <view class='buttom-line-name'>周小姐</view>
-    <view class='buttom-line-phone'>13677886754 </view>
+  <view class='buttom-line' data-reply-phone="0571-89809186" catchtap="phoneCall">
+    <view class='buttom-line-name'>固定电话</view>
+    <view class='buttom-line-phone'> 0571-89809186 </view>
   </view>
 </view>
 

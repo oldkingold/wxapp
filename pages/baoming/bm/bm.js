@@ -512,12 +512,12 @@ Page({
   //切换发票信息
   listenerRadioGroup: function (e) {
     let that = this;
-    // if (this.data.Vip1_tab.ye_btn != 1) {
-      let invoice = that.data.invoice;
-      invoice.invType = e.detail.value;
-      that.setData({
-        invoice: invoice
-      })
+    // if (this.data.Vip1_tab.ye_btn != 1) { 
+    let invoice = that.data.invoice;
+    invoice.invType = e.detail.value;
+    that.setData({
+      invoice: invoice
+    })
     // }
     
   },

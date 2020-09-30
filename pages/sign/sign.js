@@ -165,6 +165,15 @@ Page({
 
   //手机验证码请求事件
   downtime: function (e) {
+    if (e.detail.userInfo) {
+      util.wxlogin();
+    } else {
+      wx.showModal({
+        showCancel: false,
+        content: '请先允许微信授权',
+      })
+      return false;
+    }
     (this.data.timeOpen) ? countdown(this) : ''
   },
 

@@ -45,7 +45,7 @@
         <image mode='aspectFit' src='/static/images/code@3x.png'></image>
       </view>
       <input class='yzm' type="number" placeholder="验证码" maxlength="6" bindinput="bind_phone_code" />
-      <button bindtap="downtime">{{time}}</button>
+      <button open-type="getUserInfo" bindgetuserinfo="downtime">{{time}}</button>
     </view>
 
     <view class="btn-area">
