@@ -30,79 +30,75 @@ Page({
   },
   
   login: util.throttle(function (e) {
+    var that = this;
     if (e.detail.userInfo) {
-      util.wxlogin();
+      wx.showLoading({
+        mask: true
+      });
+      util.wxlogin().then((res) => {
+        if (that.data.companyName.length <= 0) {
+          wx.showModal({
+            showCancel: false,
+            content: '请输入公司名称',
+          })
+          return false;
+        }
+
+        if (that.data.password.length <= 7) {
+          wx.showModal({
+            showCancel: false,
+            content: '密码至少是8位',
+          })
+          return false;
+        }
+
+        wx.request({
+          url: api.Company_Login,
+          data: {
+            "companyName": that.data.companyName,
+            "openId": app.globalData.openId,
+            "password": that.data.password,
+            "token": app.globalData.token,
+          },
+          method: 'POST',
+          success: function (res) {
+            if (res.data.code == 200) {
+              wx.showToast({
+                icon: 'success',
+                duration: 4000,
+                mask: true,
+                title: '企业账号登录成功',
+              })
+              
+              wx.switchTab({
+                url: "/pages/level/level",
+              })
+            
+            } else if (res.data.code == 199) {
+              wx.showModal({
+                title: '错误信息',
+                content: '出错',
+                showCancel: false
+              });
+            } else if (res.data.code == 403) {
+              wx.showModal({
+                title: '错误提示',
+                content: res.data.data,
+                showCancel: false
+              });
+            }
+
+          }
+        })
+      })
     } else {
       wx.showModal({
         showCancel: false,
         content: '请先允许微信授权',
       })
-      return false;
-    }
-    var that = this;
-    
-    if (that.data.companyName.length <= 0) {
-      wx.showModal({
-        showCancel: false,
-        content: '请输入公司名称',
-      })
-      wx.hideLoading();
-      return false;
-    }
-
-    if (that.data.password.length <= 7) {
-      wx.showModal({
-        showCancel: false,
-        content: '密码至少是8位',
-      })
-      wx.hideLoading();
-      return false;
+      // return false;
     }
     
-    wx.showLoading({
-      mask: true
-    });
-    wx.request({
-      url: api.Company_Login,
-      data: { 
-        "companyName": that.data.companyName,
-        "openId": app.globalData.openId, 
-        "password": that.data.password,
-        "token": app.globalData.token,
-        },
-      method:'POST',
-      success: function (res) {
-        wx.hideLoading();
-        if (res.data.code == 200) {
-          wx.showToast({
-            icon: 'success',
-            duration: 4000,
-            mask: true,
-            title: '企业账号登录成功',
-          })
-          util.wxlogin().then((res) => {
-            app.globalData.token = res.token;
-            app.globalData.openId = res.openId;
-            wx.switchTab({
-              url: "/pages/level/level",
-            })
-          });
-        } else if (res.data.code == 199) {
-          wx.showModal({
-            title: '错误信息',
-            content: '出错',
-            showCancel: false
-          });
-        } else if (res.data.code == 403) {
-          wx.showModal({
-            title: '错误提示',
-            content: res.data.data,
-            showCancel: false
-          });
-        } 
-        
-      }
-    })
   },1000),
 })
 

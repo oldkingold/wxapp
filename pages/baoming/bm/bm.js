@@ -105,7 +105,7 @@ Page({
       that.setData({
         meetingname: res.name,
         employees: res.employees,
-        arriveDate: res.end_show,
+        arriveDate: res.start_date,
         leaveDate: res.end_date,
         price: res.vip1.price,
         is_discount: res.vip1.is_discount

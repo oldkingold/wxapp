@@ -49,8 +49,107 @@ Page({
 
   //登陆
   login: util.throttle(function (e) {
+    var that = this;
     if (e.detail.userInfo) {
-      util.wxlogin();
+      util.wxlogin().then((res) => {
+        wx.showLoading({
+          mask: true
+        });
+
+        if (that.data.companyName.length <= 0) {
+          wx.showModal({
+            showCancel: false,
+            content: '请输入公司名称',
+          })
+          return false;
+        }
+
+        if (that.data.password.length <= 7) {
+          wx.showModal({
+            showCancel: false,
+            content: '密码至少是8位',
+          })
+          return false;
+        }
+
+        if (that.data.password != that.data.repassword) {
+          wx.showModal({
+            showCancel: false,
+            content: '密码不相同',
+          })
+          return false;
+        }
+
+        if (that.data.contact == "") {
+          wx.showModal({
+            showCancel: false,
+            content: '请填写联系人姓名',
+          })
+          return false;
+        }
+
+        if (that.data.phone == "") {
+          wx.showModal({
+            showCancel: false,
+            content: '请填写手机号码',
+          })
+          return false;
+        }
+
+        if (that.data.phoneCodeID == "" || that.data.phoneCode == "") {
+          wx.showModal({
+            showCancel: false,
+            content: '请填写验证码',
+          })
+          return false;
+        }
+
+        wx.request({
+          url: api.CompanyRegister,
+          data: {
+            "companyName": that.data.companyName,
+            "openId": app.globalData.openId,
+            "password": that.data.password,
+            "repassword": that.data.repassword,
+            "token": app.globalData.token,
+            "contact": that.data.contact,
+            "phone": that.data.phone,
+            "phoneCodeID": that.data.phoneCodeID,
+            "phoneCode": that.data.phoneCode,
+          },
+          method: 'POST',
+          success: function (res) {
+            if (res.data.code == 200) {
+              wx.showToast({
+                icon: 'success',
+                duration: 4000,
+                mask: true,
+                title: '账号注册成功',
+              })
+              
+              wx.navigateTo({
+                url: "/pages/notices/notices",
+              })
+            } else if (res.data.code == 199) {
+              wx.showModal({
+                title: '错误信息',
+                content: '出错',
+                showCancel: false
+              });
+            } else if (res.data.code == 403) {
+              wx.showModal({
+                title: '错误提示',
+                content: res.data.data,
+                showCancel: false
+              });
+            }
+
+          },
+          fail: function (res) {
+            console.log(res);
+          }
+        })
+      })
     }else {
       wx.showModal({
         showCancel: false,
@@ -58,109 +157,6 @@ Page({
       })
       return false;
     }
-
-    var that = this;
-
-    if (that.data.companyName.length <= 0) {
-      wx.showModal({
-        showCancel: false,
-        content: '请输入公司名称',
-      })
-      return false;
-    }
-
-    if (that.data.password.length <= 7) {
-      wx.showModal({
-        showCancel: false,
-        content: '密码至少是8位',
-      })
-      return false;
-    }
-
-    if (that.data.password != that.data.repassword ) {
-      wx.showModal({
-        showCancel: false,
-        content: '密码不相同',
-      })
-      return false;
-    }
-
-    if (that.data.contact == "") {
-      wx.showModal({
-        showCancel: false,
-        content: '请填写联系人姓名',
-      })
-      return false;
-    }
-
-    if (that.data.phone == "" ) {
-      wx.showModal({
-        showCancel: false,
-        content: '请填写手机号码',
-      })
-      return false;
-    }
-
-    if (that.data.phoneCodeID == "" || that.data.phoneCode == "") {
-      wx.showModal({
-        showCancel: false,
-        content: '请填写验证码',
-      })
-      return false;
-    }
-    
-    wx.showLoading({
-      mask: true
-    });
-    wx.request({
-      url: api.CompanyRegister,
-      data: {
-        "companyName": that.data.companyName,
-        "openId": app.globalData.openId,
-        "password": that.data.password,
-        "repassword": that.data.repassword,
-        "token": app.globalData.token,
-        "contact": that.data.contact,
-        "phone": that.data.phone,
-        "phoneCodeID": that.data.phoneCodeID,
-        "phoneCode": that.data.phoneCode,
-      },
-      method: 'POST',
-      success: function (res) {
-        wx.hideLoading();
-        if (res.data.code == 200) {
-          wx.showToast({
-            icon: 'success',
-            duration: 4000,
-            mask: true,
-            title: '账号注册成功',
-          })
-          util.wxlogin().then((res) => {
-            app.globalData.token = res.token;
-            app.globalData.openId = res.openId;
-            wx.navigateTo ({
-              url: "/pages/notices/notices",
-            })
-          });
-        } else if (res.data.code == 199) {
-          wx.showModal({
-            title: '错误信息',
-            content: '出错',
-            showCancel: false
-          });
-        } else if (res.data.code == 403) {
-          wx.showModal({
-            title: '错误提示',
-            content: res.data.data,
-            showCancel: false
-          });
-        }
-
-      },
-      fail: function (res) {
-        console.log(res);
-      }
-    })
   },1500),
 
   //手机验证码请求事件

@@ -1,4 +1,4 @@
-var ApiRootUrl = 'https://peixun-9.58jz.com.cn/';
+var ApiRootUrl = 'https://peixun-8.58jz.com.cn/';
 var historyUrl = 'https://www.58jz.com.cn/';
 
 module.exports = {
