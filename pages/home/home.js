@@ -36,6 +36,10 @@ Page({
     if (options.q)  {
       util.qrcodeString(options.q,"secret");
       // console.log(options.secret)
+    }else {
+      if (options.secret) {
+        wx.setStorageSync("secret", options.secret);
+      }
     }
     //会议主题
     meeting.themes().then(function(res) {

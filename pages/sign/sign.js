@@ -61,6 +61,7 @@ Page({
             showCancel: false,
             content: '请输入公司名称',
           })
+          wx.hideLoading();
           return false;
         }
 
@@ -69,6 +70,7 @@ Page({
             showCancel: false,
             content: '密码至少是8位',
           })
+          wx.hideLoading();
           return false;
         }
 
@@ -77,6 +79,7 @@ Page({
             showCancel: false,
             content: '密码不相同',
           })
+          wx.hideLoading();
           return false;
         }
 
@@ -85,6 +88,7 @@ Page({
             showCancel: false,
             content: '请填写联系人姓名',
           })
+          wx.hideLoading();
           return false;
         }
 
@@ -93,6 +97,7 @@ Page({
             showCancel: false,
             content: '请填写手机号码',
           })
+          wx.hideLoading();
           return false;
         }
 
@@ -101,6 +106,7 @@ Page({
             showCancel: false,
             content: '请填写验证码',
           })
+          wx.hideLoading();
           return false;
         }
 
@@ -143,10 +149,11 @@ Page({
                 showCancel: false
               });
             }
-
+            wx.hideLoading();
           },
           fail: function (res) {
             console.log(res);
+            wx.hideLoading();
           }
         })
       })

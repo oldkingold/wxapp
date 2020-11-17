@@ -104,15 +104,11 @@
           <view class='arrive-time-name'>
             <text>到达时间</text>
           </view>
-
           <view class='arrive-time-icon'>
             <image src='/static/images/date@3x.png'></image>
           </view>
           <view class='arrive-time-value'>
-            <view class="picker picker-holder" wx:if="{{isArriveDateHolder}}">
-              {{arriveDateHolder}}
-            </view>
-            <view class="picker" wx:else>
+            <view class="picker">
               {{arriveDate}}
             </view>
           </view>
@@ -130,10 +126,7 @@
             <image src='/static/images/date@3x.png'></image>
           </view>
           <view class='arrive-time-value'>
-            <view class="picker picker-holder" wx:if="{{isLeaveDateHolder}}">
-              {{leaveDateHolder}}
-            </view>
-            <view class="picker" wx:else>
+            <view class="picker">
               {{leaveDate}}
             </view>
           </view>

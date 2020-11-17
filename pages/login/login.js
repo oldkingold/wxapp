@@ -41,6 +41,7 @@ Page({
             showCancel: false,
             content: '请输入公司名称',
           })
+          wx.hideLoading();
           return false;
         }
 
@@ -49,6 +50,7 @@ Page({
             showCancel: false,
             content: '密码至少是8位',
           })
+          wx.hideLoading();
           return false;
         }
 
@@ -87,7 +89,11 @@ Page({
                 showCancel: false
               });
             }
-
+            wx.hideLoading();
+          },
+          fail: function (res) {
+            console.log(res);
+            wx.hideLoading();
           }
         })
       })

@@ -17,12 +17,8 @@ Page({
     singleRoomNum: 0,
     doubleRoomNum: 0,
     isNotNeedRoom: true,
-    arriveDateHolder: "请选择到达时间",
-    isArriveDateHolder: false,
     arriveDate: "",
-    leaveDateHolder: "请选择离开时间",
-    isLeaveDateHolder: false,
-    leaveDate: '',
+    leaveDate: "",
 
     invCompNamechange: false,
     invoice: {
@@ -91,7 +87,11 @@ Page({
       console.log("id==========="+bmid)
       this.data.id = parseInt(bmid);
     }else {
+      console.log(options)
       this.data.id = parseInt(options.id);
+      if (options.secret) {
+        wx.setStorageSync("secret", options.secret);
+      }
     }
     /*从外部二维码进入*/
     //检测是否扫码进来
@@ -497,7 +497,6 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       arriveDate: e.detail.value,
-      isArriveDateHolder: false
     });
   },
   //离开日期修改
@@ -505,7 +504,6 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       leaveDate: e.detail.value,
-      isLeaveDateHolder: false
     });
   },
 
@@ -633,12 +631,6 @@ Page({
     });
   },
 
-  // getTopic: function () {
-  //   wx.setNavigationBarTitle({
-  //     title: '报名表'
-  //   })
-  // },
-
   invCompName: function (e) {
     let inv = this.data.invoice;
     inv.invCompName = e.detail.value;
@@ -707,8 +699,6 @@ Page({
       singleRoomNum: 0,
       doubleRoomNum: 0,
       isNotNeedRoom: true,
-      isArriveDateHolder: false,
-      isLeaveDateHolder: false,
       invCompNamechange: false,
       invoice: {
         invType: "暂不填写",

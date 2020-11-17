@@ -60,17 +60,17 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "pages/baoming/bm/bm",
 					"pathName": "pages/baoming/bm/bm",
-					"query": "q=peixun-9.58jz.com.cn/wxxcxqrcodebm?secret=12345678&bm=49",
+					"query": "q=peixun-9.58jz.com.cn/wxxcxqrcodebm _test?secret=12345678&bm=49",
 					"scene": 1012
 				},
 				{
 					"id": 1,
 					"name": "pages/baoming/bm/bm",
 					"pathName": "pages/baoming/bm/bm",
-					"query": "id=63",
+					"query": "id=75&secret=jYfAxnu8vJ8",
 					"scene": 1035,
 					"referrerInfo": {
 						"appId": "wxf09f92ab2843ecf2"
