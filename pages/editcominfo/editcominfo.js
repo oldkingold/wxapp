@@ -37,7 +37,7 @@ Page({
     
     if (currentCom.company_type == '国企') {
       this.setData({
-        antureCom: currentCom.company_type
+        antureCom: currentCom.company_type,
       })
     } 
 
@@ -58,6 +58,7 @@ Page({
         invoicComTel: currentCom.tel,
         invoicOpenBank: currentCom.tax_bank,
         invoicBankAccount: currentCom.tax_bank_id,
+        comType: that.data.antureCom,
       }
     })
   },
